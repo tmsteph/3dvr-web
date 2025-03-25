@@ -2,220 +2,206 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3dvr.tech</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { margin: 0; font-family: sans-serif; }
-    .topnav {
-      width: 100%;
-      background-color: #3b454869;
-      overflow: hidden;
-      position: fixed;
-      top: 0;
-      z-index: 10;
-      animation: fadeIn 4s cubic-bezier(1,0,.7,0);
-    }
-    .topnav a {
-      float: left;
-      display: block;
-      color: #f2f2f2;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      font-size: 1.5vw;
-    }
-    .topnav a:hover {
-      background-color: #ddd;
-      color: black;
-    }
-    .nav-logo {
-      width: 8vw;
-      position: absolute;
-      right: 1rem;
-      top: 0.25rem;
-    }
-    .home-section {
-      padding-top: 6rem;
-      min-height: 100vh;
-      background: #3b4548;
-      text-align: center;
+    body { font-family: sans-serif; background-color: #f5f5f5; color: #222; line-height: 1.6; }
+    header {
+      background-color: #3b4548;
+      padding: 1rem 2rem;
       color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    .App-logo {
-      height: 19vw;
-      animation: fadeIn 7s ease-in-out;
+    header img {
+      height: 50px;
     }
-    .Productions {
-      font-size: 12vw;
-      font-family: serif;
-      font-weight: bold;
-      color: rgb(193, 213, 220);
-    }
-    .Catch-phrase {
-      font-size: 5vw;
-      color: rgb(155, 183, 183);
-      margin-top: -2vw;
-    }
-    .introduction-section {
-      background: linear-gradient(#3b4548 5%, #8ec6d7 30%, #b37070 90%);
-      text-align: center;
-      padding: 10rem 1rem;
-    }
-    .we-are-a, .creating-universal {
-      font-size: 5vw;
-      font-family: Kalam, serif;
-      font-weight: 600;
-    }
-    .tool-section {
-      background: linear-gradient(#b37070 80%, #9d4ca9);
-      text-align: center;
-      padding: 5rem 1rem 10rem;
-    }
-    .using-free {
-      font-size: 4vw;
-      font-weight: 500;
-    }
-    .tool-list {
-      list-style: none;
-      font-size: 3vw;
-      padding: 0;
-    }
-    .plan-section {
-      background: linear-gradient(#9d4ca9 70%, #edc2c2 90%);
-      padding: 10rem 1rem;
-      text-align: center;
-    }
-    .creating-environments {
-      font-size: 5vw;
-      font-weight: 600;
-      font-family: Kalam, serif;
-    }
-    .what-we-do-section {
-      background: linear-gradient(#edc2c2 80%,#a0d0ff);
-      padding: 5rem 2rem;
-      text-align: center;
-    }
-    .what-we-do-section h2 { font-size: 2rem; }
-    .plain-link {
-      color: black;
+    nav a {
+      color: white;
       text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
     }
-    .projects-section {
-      background: linear-gradient(#a0d0ff,#f0ecf0);
-      padding: 5rem 2rem;
+    nav a:hover { text-decoration: underline; }
+    .hero {
+      background: linear-gradient(#3b4548, #8ec6d7);
+      color: white;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
     }
-    .projects-section video {
+    .hero img {
+      height: 20vw;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      margin-top: 1rem;
+    }
+    .hero p {
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .tool-list, .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .tool-item, .team-member {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      text-align: center;
+      width: 250px;
+    }
+    .tool-item h3, .team-member h3 {
+      margin-bottom: 0.5rem;
+    }
+    .team-member img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+    .video-container {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .video-container video {
       width: 100%;
       max-width: 600px;
-      margin-top: 1rem;
-      opacity: 0.6;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-    .biography-section {
-      background: linear-gradient(#f3ecf3, #f8f8f8);
-      padding: 5rem 2rem;
-    }
-    .biography-title {
-      font-size: 2rem;
-      margin-bottom: 2rem;
+    .cta {
+      background: #d0ffd0;
       text-align: center;
+      padding: 4rem 2rem;
     }
-    .bio-card {
-      margin-bottom: 2rem;
+    .cta h2 {
+      font-size: 2.5rem;
     }
-    .bio-card h2 {
-      font-size: 1.5rem;
+    .cta p {
+      font-size: 1.3rem;
+      margin-top: 1rem;
     }
-    .bio-card p {
+    .cta a {
+      display: inline-block;
+      margin-top: 2rem;
+      background: #3b4548;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
       font-size: 1.2rem;
-      line-height: 1.4;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    footer {
+      background: #3b4548;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
     }
   </style>
 </head>
 <body>
-  <div class="topnav">
-    <a href="#home">3dvr.tech</a>
-    <a href="#what-we-do">What We Do</a>
-    <a href="#projects">Projects</a>
-    <a href="#biography">Biography</a>
-    <img src="3DVR.png" class="nav-logo" alt="logo">
-  </div>
+  <header>
+    <img src="3DVR.png" alt="3dvr.tech logo">
+    <nav>
+      <a href="#tools">Tools</a>
+      <a href="#projects">Projects</a>
+      <a href="#team">Team</a>
+      <a href="#subscribe">Subscribe</a>
+    </nav>
+  </header>
 
-  <section class="home-section" id="home">
-    <img src="3DVR.png" class="App-logo" alt="logo" />
-    <p class="Productions">Productions</p>
-    <p class="Catch-phrase">Build The Future</p>
+  <section class="hero">
+    <img src="3DVR.png" alt="3dvr.tech logo" />
+    <h1>Build The Future</h1>
+    <p>Open-source tech for digital nomads, creators, and explorers</p>
   </section>
 
-  <section class="introduction-section">
-    <h2 class="we-are-a">We are an emerging technology company</h2>
-    <h2 class="creating-universal">Creating Universal Experiences</h2>
-  </section>
-
-  <section class="tool-section">
-    <h2 class="using-free">Using the latest Tools</h2>
-    <ul class="tool-list">
-      <li>Unity</li>
-      <li>Three.js</li>
-      <li>React</li>
-    </ul>
-  </section>
-
-  <section class="plan-section">
-    <h2 class="creating-environments">Developing Environments to Explore</h2>
-  </section>
-
-  <section class="what-we-do-section" id="what-we-do">
-    <h1>What We Do</h1>
-    <div>
-      <h2>3D Design</h2>
-      <p><em>Dream up virtual objects.</em></p>
-      <p><a href="https://www.blender.org/about/" class="plain-link" target="_blank">Blender</a> | 
-         <a href="https://www.gravitysketch.com/" class="plain-link" target="_blank">Gravity Sketch</a></p>
-    </div>
-    <div>
-      <h2>Web App Integration</h2>
-      <p><em>Showcase using the web.</em></p>
-      <p><a href="https://threejs.org/" class="plain-link" target="_blank">Three.js</a> | 
-         <a href="https://aframe.io/" class="plain-link" target="_blank">A-Frame</a></p>
-    </div>
-    <div>
-      <h2>Metaverse Worlds</h2>
-      <p><em>Create immersive environments.</em></p>
-      <p><a href="https://unity.com/" class="plain-link" target="_blank">Unity</a> | 
-         <a href="https://altvr.com/" class="plain-link" target="_blank">Altspace</a></p>
+  <section class="section" id="tools">
+    <h2>Our Stack</h2>
+    <div class="tool-list">
+      <div class="tool-item"><h3>Unity</h3><p>Immersive environments & experiences</p></div>
+      <div class="tool-item"><h3>Three.js</h3><p>3D Web Graphics</p></div>
+      <div class="tool-item"><h3>React</h3><p>Interactive Web Apps</p></div>
+      <div class="tool-item"><h3>Flutter</h3><p>Cross-Platform Mobile</p></div>
+      <div class="tool-item"><h3>Laravel</h3><p>Powerful Backend Services</p></div>
     </div>
   </section>
 
-  <section class="projects-section" id="projects">
-    <h1>Projects</h1>
-    <div>
-      <h2><a href="https://account.altvr.com/worlds/1811899537686528860/spaces/1829292561525637486" class="plain-link" target="_blank">Unity House</a></h2>
-      <p>This is a house we made using Unity3D hosted on AltspaceVR.</p>
+  <section class="section" id="projects">
+    <h2>Featured Project</h2>
+    <p style="text-align:center;">Unity House - An open metaverse home hosted in AltspaceVR</p>
+    <div class="video-container">
       <video autoplay muted loop playsinline>
         <source src="videos/UnityHouse.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
-    <div>
-      <h2>Gif English Center</h2>
-      <p>A remarkable place in Guatemala where people of all ages learn English. We're helping build their online platform.</p>
+  </section>
+
+  <section class="section" id="team">
+    <h2>Meet the Team</h2>
+    <div class="team-grid">
+      <div class="team-member">
+        <img src="profile-thomas.jpg" alt="Thomas">
+        <h3>Thomas M. Stephens</h3>
+        <p>CEO / CTO / Founder</p>
+        <p>Visionary technologist creating the tools of tomorrow.</p>
+      </div>
+      <div class="team-member">
+        <img src="profile-bodhi.jpg" alt="Bodhi">
+        <h3>Bodhi</h3>
+        <p>Chief Marketing Officer</p>
+        <p>Building the brand through grassroots storytelling and growth.</p>
+      </div>
+      <div class="team-member">
+        <img src="profile-david.jpg" alt="David">
+        <h3>David Martínez R.</h3>
+        <p>Lead Developer</p>
+        <p>Crafting immersive 3D and web experiences with finesse.</p>
+      </div>
+      <div class="team-member">
+        <img src="profile-esai.jpg" alt="Esai">
+        <h3>Esai</h3>
+        <p>Developer</p>
+        <p>Frontend expert focused on clean, responsive interfaces.</p>
+      </div>
+      <div class="team-member">
+        <img src="profile-brandon.jpg" alt="Brandon">
+        <h3>Brandon</h3>
+        <p>Flutter Developer</p>
+        <p>Cross-platform mobile builder with an eye for design.</p>
+      </div>
     </div>
   </section>
 
-  <section class="biography-section" id="biography">
-    <h1 class="biography-title">Biography</h1>
-    <div class="bio-card">
-      <h2>Thomas M. Stephens</h2>
-      <p>Thomas has been traveling the globe, seeking spirituality and producing world-class events. With a background in music, live events, and computer programming, he’s ready to build a new world of technology—free from borders and boundaries.</p>
-    </div>
-    <div class="bio-card">
-      <h2>David Martínez R.</h2>
-      <p>David is a web designer, 3D artist, and animator with a vision for the future. He’s passionate about learning and stepping deeper into virtual reality.</p>
-    </div>
+  <section class="cta" id="subscribe">
+    <h2>Websites & Apps for $20/month</h2>
+    <p>Subscribe to get a personal site, app, or support package tailored to your vision. Simple, clean, and open-source powered by 3dvr.tech.</p>
+    <a href="#contact">Subscribe Now</a>
   </section>
+
+  <footer>
+    <p>© 2025 3dvr.tech — Built for the future, powered by community.</p>
+  </footer>
 </body>
 </html>
