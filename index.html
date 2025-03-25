@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3dvr.tech</title>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     :root {
       color-scheme: light dark;
     }
@@ -74,10 +77,12 @@
   text-align: center;
 }
     .hero img {
-  width: 80vw;
-  max-width: 500px;
+  width: 90vw;
+  max-width: 600px;
   height: auto;
-  margin: 0.5rem auto 0.5rem;
+  margin: 0.25rem auto 0.5rem;
+  opacity: 0;
+  animation: fadeInLogo 1.5s ease-in-out forwards;
 }
     .hero h1 {
       font-size: 4rem;
@@ -185,6 +190,10 @@
         max-width: 300px;
       }
     }
+  @keyframes fadeInLogo {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
   </style>
 </head>
 <body id="top">
