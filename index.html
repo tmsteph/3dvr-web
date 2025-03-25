@@ -123,7 +123,8 @@ $1header, footer {
       margin-bottom: 1rem;
     }
     .team-member a {
-  display: none;
+  display: none !important;
+  pointer-events: none;
 }
     .video-container {
       text-align: center;
@@ -197,10 +198,7 @@ $1header, footer {
 .team-member:hover {
   transform: scale(1.03);
 }
-.team-member.open a {
-  display: block;
-  margin-top: 0.5rem;
-}
+
 </style>
 </head>
 <body id="top">
@@ -284,7 +282,10 @@ $1header, footer {
 <script>
   document.querySelectorAll('.team-member').forEach(member => {
     member.addEventListener('click', () => {
-      member.classList.toggle('open');
+      const link = member.querySelector('a');
+      if (link) {
+        window.open(link.href, '_blank');
+      }
     });
   });
 </script>
