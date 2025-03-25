@@ -123,12 +123,8 @@ $1header, footer {
       margin-bottom: 1rem;
     }
     .team-member a {
-      text-decoration: none;
-      color: #3498db;
-      font-size: 0.9rem;
-      display: block;
-      margin-top: 0.5rem;
-    }
+  display: none;
+}
     .video-container {
       text-align: center;
       margin-top: 2rem;
@@ -194,7 +190,18 @@ $1header, footer {
   0% { opacity: 0; transform: translateY(-10px); }
   100% { opacity: 1; transform: translateY(0); }
 }
-  </style>
+  .team-member {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.team-member:hover {
+  transform: scale(1.03);
+}
+.team-member.open a {
+  display: block;
+  margin-top: 0.5rem;
+}
+</style>
 </head>
 <body id="top">
   <header>
@@ -274,5 +281,12 @@ $1header, footer {
   <footer>
     <p>© 2025 3dvr.tech — Built for the future, powered by community.</p>
   </footer>
+<script>
+  document.querySelectorAll('.team-member').forEach(member => {
+    member.addEventListener('click', () => {
+      member.classList.toggle('open');
+    });
+  });
+</script>
 </body>
 </html>
