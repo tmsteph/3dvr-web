@@ -41,16 +41,18 @@
       }
     }
     header {
-      background-color: #3b4548;
-      padding: 1rem 2rem;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+  background-color: rgba(59, 69, 72, 0.8);
+  padding: 0.5rem 1rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeInHeader 1.5s ease-in-out 1.2s forwards;
+}
     header img {
       height: 40px;
       max-width: 150px;
@@ -191,6 +193,10 @@
       }
     }
   @keyframes fadeInLogo {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+  @keyframes fadeInHeader {
   0% { opacity: 0; transform: translateY(-10px); }
   100% { opacity: 1; transform: translateY(0); }
 }
