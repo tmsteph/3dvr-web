@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3dvr.tech</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { margin: 0; font-family: sans-serif; }
+    .topnav {
+      width: 100%;
+      background-color: #3b454869;
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      z-index: 10;
+      animation: fadeIn 4s cubic-bezier(1,0,.7,0);
+    }
+    .topnav a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      font-size: 1.5vw;
+    }
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    .nav-logo {
+      width: 8vw;
+      position: absolute;
+      right: 1rem;
+      top: 0.25rem;
+    }
+    .home-section {
+      padding-top: 6rem;
+      min-height: 100vh;
+      background: #3b4548;
+      text-align: center;
+      color: white;
+    }
+    .App-logo {
+      height: 19vw;
+      animation: fadeIn 7s ease-in-out;
+    }
+    .Productions {
+      font-size: 12vw;
+      font-family: serif;
+      font-weight: bold;
+      color: rgb(193, 213, 220);
+    }
+    .Catch-phrase {
+      font-size: 5vw;
+      color: rgb(155, 183, 183);
+      margin-top: -2vw;
+    }
+    .introduction-section {
+      background: linear-gradient(#3b4548 5%, #8ec6d7 30%, #b37070 90%);
+      text-align: center;
+      padding: 10rem 1rem;
+    }
+    .we-are-a, .creating-universal {
+      font-size: 5vw;
+      font-family: Kalam, serif;
+      font-weight: 600;
+    }
+    .tool-section {
+      background: linear-gradient(#b37070 80%, #9d4ca9);
+      text-align: center;
+      padding: 5rem 1rem 10rem;
+    }
+    .using-free {
+      font-size: 4vw;
+      font-weight: 500;
+    }
+    .tool-list {
+      list-style: none;
+      font-size: 3vw;
+      padding: 0;
+    }
+    .plan-section {
+      background: linear-gradient(#9d4ca9 70%, #edc2c2 90%);
+      padding: 10rem 1rem;
+      text-align: center;
+    }
+    .creating-environments {
+      font-size: 5vw;
+      font-weight: 600;
+      font-family: Kalam, serif;
+    }
+    .what-we-do-section {
+      background: linear-gradient(#edc2c2 80%,#a0d0ff);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .what-we-do-section h2 { font-size: 2rem; }
+    .plain-link {
+      color: black;
+      text-decoration: none;
+    }
+    .projects-section {
+      background: linear-gradient(#a0d0ff,#f0ecf0);
+      padding: 5rem 2rem;
+    }
+    .projects-section video {
+      width: 100%;
+      max-width: 600px;
+      margin-top: 1rem;
+      opacity: 0.6;
+    }
+    .biography-section {
+      background: linear-gradient(#f3ecf3, #f8f8f8);
+      padding: 5rem 2rem;
+    }
+    .biography-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .bio-card {
+      margin-bottom: 2rem;
+    }
+    .bio-card h2 {
+      font-size: 1.5rem;
+    }
+    .bio-card p {
+      font-size: 1.2rem;
+      line-height: 1.4;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topnav">
+    <a href="#home">3dvr.tech</a>
+    <a href="#what-we-do">What We Do</a>
+    <a href="#projects">Projects</a>
+    <a href="#biography">Biography</a>
+    <img src="3DVR.png" class="nav-logo" alt="logo">
+  </div>
+
+  <section class="home-section" id="home">
+    <img src="3DVR.png" class="App-logo" alt="logo" />
+    <p class="Productions">Productions</p>
+    <p class="Catch-phrase">Build The Future</p>
+  </section>
+
+  <section class="introduction-section">
+    <h2 class="we-are-a">We are an emerging technology company</h2>
+    <h2 class="creating-universal">Creating Universal Experiences</h2>
+  </section>
+
+  <section class="tool-section">
+    <h2 class="using-free">Using the latest Tools</h2>
+    <ul class="tool-list">
+      <li>Unity</li>
+      <li>Three.js</li>
+      <li>React</li>
+    </ul>
+  </section>
+
+  <section class="plan-section">
+    <h2 class="creating-environments">Developing Environments to Explore</h2>
+  </section>
+
+  <section class="what-we-do-section" id="what-we-do">
+    <h1>What We Do</h1>
+    <div>
+      <h2>3D Design</h2>
+      <p><em>Dream up virtual objects.</em></p>
+      <p><a href="https://www.blender.org/about/" class="plain-link" target="_blank">Blender</a> | 
+         <a href="https://www.gravitysketch.com/" class="plain-link" target="_blank">Gravity Sketch</a></p>
+    </div>
+    <div>
+      <h2>Web App Integration</h2>
+      <p><em>Showcase using the web.</em></p>
+      <p><a href="https://threejs.org/" class="plain-link" target="_blank">Three.js</a> | 
+         <a href="https://aframe.io/" class="plain-link" target="_blank">A-Frame</a></p>
+    </div>
+    <div>
+      <h2>Metaverse Worlds</h2>
+      <p><em>Create immersive environments.</em></p>
+      <p><a href="https://unity.com/" class="plain-link" target="_blank">Unity</a> | 
+         <a href="https://altvr.com/" class="plain-link" target="_blank">Altspace</a></p>
+    </div>
+  </section>
+
+  <section class="projects-section" id="projects">
+    <h1>Projects</h1>
+    <div>
+      <h2><a href="https://account.altvr.com/worlds/1811899537686528860/spaces/1829292561525637486" class="plain-link" target="_blank">Unity House</a></h2>
+      <p>This is a house we made using Unity3D hosted on AltspaceVR.</p>
+      <video autoplay muted loop playsinline>
+        <source src="videos/UnityHouse.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div>
+      <h2>Gif English Center</h2>
+      <p>A remarkable place in Guatemala where people of all ages learn English. We're helping build their online platform.</p>
+    </div>
+  </section>
+
+  <section class="biography-section" id="biography">
+    <h1 class="biography-title">Biography</h1>
+    <div class="bio-card">
+      <h2>Thomas M. Stephens</h2>
+      <p>Thomas has been traveling the globe, seeking spirituality and producing world-class events. With a background in music, live events, and computer programming, he’s ready to build a new world of technology—free from borders and boundaries.</p>
+    </div>
+    <div class="bio-card">
+      <h2>David Martínez R.</h2>
+      <p>David is a web designer, 3D artist, and animator with a vision for the future. He’s passionate about learning and stepping deeper into virtual reality.</p>
+    </div>
+  </section>
+</body>
+</html>
