@@ -36,7 +36,6 @@
       padding: 0.5rem 1rem;
       color: white;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       position: sticky;
@@ -44,27 +43,29 @@
       z-index: 1000;
       opacity: 0;
       animation: fadeInHeader 1.5s ease-in-out 1.2s forwards;
+      flex-wrap: wrap;
     }
+
     header img {
       height: 40px;
       max-width: 150px;
       object-fit: contain;
-      margin-right: 1rem;
     }
+
     nav {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
       align-items: center;
+      gap: 1rem;
     }
+
     nav a {
       color: white;
       text-decoration: none;
-      margin: 0.5rem 1rem;
       font-weight: bold;
       font-size: 1rem;
-      padding: 0.5rem;
+      padding: 0.5rem 0.25rem;
     }
+
     nav a:hover {
       text-decoration: underline;
     }
@@ -80,12 +81,14 @@
       color: white;
       text-align: center;
     }
+
     .hero-img-wrapper {
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
     }
+
     .hero img {
       width: 90vw;
       max-width: 600px;
@@ -93,6 +96,7 @@
       opacity: 0;
       animation: fadeInLogo 1.5s ease-in-out forwards;
     }
+
     .hero h1 {
       font-family: 'Poppins', sans-serif;
       font-size: clamp(2rem, 8vw, 4rem);
@@ -100,6 +104,7 @@
       margin-top: 1rem;
       letter-spacing: 0.01em;
     }
+
     .hero p {
       font-size: 1.5rem;
       margin-top: 0.5rem;
@@ -110,6 +115,7 @@
       max-width: 1000px;
       margin: auto;
     }
+
     .section h2 {
       font-family: 'Poppins', sans-serif;
       font-size: 2rem;
@@ -123,6 +129,7 @@
       gap: 2rem;
       justify-content: center;
     }
+
     .team-member {
       background: white;
       border-radius: 10px;
@@ -133,13 +140,16 @@
       cursor: pointer;
       transition: transform 0.3s ease;
     }
+
     .team-member:hover {
       transform: scale(1.03);
     }
+
     .team-member h3 {
       font-family: 'Poppins', sans-serif;
       margin-bottom: 0.5rem;
     }
+
     .team-member img {
       width: 100px;
       height: 100px;
@@ -147,6 +157,7 @@
       object-fit: cover;
       margin-bottom: 1rem;
     }
+
     .team-member a {
       display: none !important;
       pointer-events: none;
@@ -163,15 +174,18 @@
       min-height: 100vh;
       transition: background 0.3s ease;
     }
+
     .cta h2 {
       font-family: 'Poppins', sans-serif;
       font-size: 2.5rem;
     }
+
     .cta p {
       font-size: 1.3rem;
       margin-top: 1rem;
       max-width: 600px;
     }
+
     .cta a {
       display: inline-block;
       margin-top: 2rem;
@@ -186,6 +200,7 @@
       text-align: center;
       transition: background 0.3s ease, transform 0.2s ease;
     }
+
     .cta a:hover {
       background: #2c3e50;
       transform: translateY(-2px);
@@ -203,30 +218,37 @@
         flex-direction: column;
         align-items: flex-start;
       }
+
       nav {
         flex-direction: column;
+        align-items: flex-end;
         width: 100%;
         margin-top: 0.5rem;
-        align-items: flex-start;
       }
+
       nav a {
-        padding: 0.75rem 1rem;
-        width: 100%;
-        display: block;
+        padding: 0.4rem 0.75rem;
+        width: auto;
+        font-size: 0.95rem;
       }
+
       .hero h1 {
         font-size: 2.2rem;
         white-space: normal;
       }
+
       .hero p {
         font-size: 1rem;
       }
+
       .cta h2 {
         font-size: 2rem;
       }
+
       .cta p, .cta a {
         font-size: 1rem;
       }
+
       .team-member {
         width: 100%;
         max-width: 300px;
@@ -237,6 +259,7 @@
       0% { opacity: 0; transform: translateY(-10px); }
       100% { opacity: 1; transform: translateY(0); }
     }
+
     @keyframes fadeInHeader {
       0% { opacity: 0; transform: translateY(-10px); }
       100% { opacity: 1; transform: translateY(0); }
