@@ -30,19 +30,13 @@
       transition: background 0.3s, color 0.3s;
       overflow-x: hidden;
     }
-    @media (prefers-color-scheme: dark) {
-      header, footer {
-        background-color: rgba(44, 62, 80, 0.8);
-      }
-      .cta a {
-        background-color: #3498db;
-      }
-    }
+
     header {
       background-color: rgba(44, 62, 80, 0.8);
       padding: 0.5rem 1rem;
       color: white;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       position: sticky;
@@ -55,16 +49,26 @@
       height: 40px;
       max-width: 150px;
       object-fit: contain;
+      margin-right: 1rem;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
     }
     nav a {
       color: white;
       text-decoration: none;
-      margin: 0 1rem;
+      margin: 0.5rem 1rem;
       font-weight: bold;
+      font-size: 1rem;
+      padding: 0.5rem;
     }
     nav a:hover {
       text-decoration: underline;
     }
+
     .hero {
       min-height: 100vh;
       display: flex;
@@ -100,6 +104,7 @@
       font-size: 1.5rem;
       margin-top: 0.5rem;
     }
+
     .section {
       padding: 4rem 2rem;
       max-width: 1000px;
@@ -111,6 +116,7 @@
       margin-bottom: 1rem;
       text-align: center;
     }
+
     .team-grid {
       display: flex;
       flex-wrap: wrap;
@@ -145,6 +151,7 @@
       display: none !important;
       pointer-events: none;
     }
+
     .cta {
       background: linear-gradient(160deg, #4ca1af 0%, #56ab2f 100%);
       text-align: center;
@@ -183,13 +190,34 @@
       background: #2c3e50;
       transform: translateY(-2px);
     }
+
     footer {
       background: #3b4548;
       color: white;
       text-align: center;
       padding: 2rem 1rem;
     }
+
     @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 0.5rem;
+        align-items: flex-start;
+      }
+      nav a {
+        padding: 0.75rem 1rem;
+        width: 100%;
+        display: block;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+        white-space: normal;
+      }
       .hero p {
         font-size: 1rem;
       }
@@ -204,6 +232,7 @@
         max-width: 300px;
       }
     }
+
     @keyframes fadeInLogo {
       0% { opacity: 0; transform: translateY(-10px); }
       100% { opacity: 1; transform: translateY(0); }
