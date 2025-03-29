@@ -86,7 +86,8 @@
       animation: fadeInLogo 1.5s ease-in-out forwards;
     }
     .hero h1 {
-      font-size: 4rem;
+      font-size: clamp(2rem, 8vw, 4rem);
+      white-space: nowrap;
       margin-top: 1rem;
     }
     .hero p {
@@ -180,9 +181,6 @@
       padding: 2rem 1rem;
     }
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
-      }
       .hero p {
         font-size: 1rem;
       }
