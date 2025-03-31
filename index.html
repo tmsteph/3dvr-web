@@ -117,7 +117,7 @@
     }
 
     .hero img {
-      width: clamp(280px, 65vw, 520px);
+      width: clamp(300px, 70vw, 560px);
       margin-bottom: 2rem;
     }
 
@@ -126,7 +126,7 @@
     }
 
     .hero p {
-      font-size: clamp(1.4rem, 2vw, 1.6rem);
+      font-size: clamp(1.5rem, 2.5vw, 1.7rem);
     }
   </style>
 </head>
@@ -160,7 +160,7 @@
 
   <section id="features" style="background: var(--bg-features);">
     <h2>What You Get</h2>
-    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; max-width: 1200px;">
+    <div class="feature-grid">
       <div class="feature-card">
         <h3>✔ Websites & Landing Pages</h3>
         <p>Beautiful, responsive sites tailored to your brand and goals.</p>
@@ -183,11 +183,18 @@
       </div>
     </div>
     <style>
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+      }
       .feature-card {
         background: rgba(255,255,255,0.08);
         border-radius: 12px;
         padding: 1.5rem;
-        width: 260px;
         text-align: center;
         transition: all 0.3s ease;
         cursor: pointer;
@@ -227,7 +234,6 @@
         <p>“Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”</p>
       </div>
     </div>
-
     <style>
       .testimonial-grid {
         display: grid;
@@ -243,7 +249,7 @@
         color: var(--text-light);
         border-radius: 14px;
         padding: 1.5rem;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         box-shadow: 0 6px 14px rgba(0,0,0,0.15);
         transition: transform 0.3s ease, background 0.3s ease;
         cursor: pointer;
@@ -262,11 +268,12 @@
 
       .testimonial-card p {
         font-size: 0.85rem;
+        line-height: 1.5;
       }
     </style>
   </section>
 
-    <section id="team" style="background: var(--bg-team);">
+  <section id="team" style="background: var(--bg-team);">
     <h2>Meet the Team</h2>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem;">
       <div class="team-member" data-link="https://tmsteph.com">
@@ -376,4 +383,3 @@
 
 </body>
 </html>
-
