@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/png" href="3DVRfavicon.png" />
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>3dvr.tech</title>
+  <link rel="icon" type="image/png" href="3DVRfavicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <style>
     html { scroll-behavior: smooth; }
     :root {
-      --accent-color: #00ffc8;
-      --bg-primary: #2c3e50;
-      --bg-secondary: #34495e;
-      --bg-highlight: #1abc9c;
-      --bg-highlight-dark: #16a085;
+      --accent: #00ffc8;
+      --bg-hero: linear-gradient(to bottom, #2c3e50, #4ca1af);
+      --bg-subscribe: linear-gradient(160deg, #4ca1af 0%, #56ab2f 100%);
+      --bg-features: linear-gradient(135deg, #1abc9c, #16a085);
+      --bg-testimonials: linear-gradient(135deg, #34495e, #2c3e50);
+      --bg-team: linear-gradient(135deg, #5c258d, #4389a2);
+      --bg-about: linear-gradient(135deg, #232526, #414345);
       --text-light: #ffffff;
       --text-dark: #000000;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background-color: var(--bg-primary);
       font-family: 'Inter', sans-serif;
       color: var(--text-light);
       line-height: 1.6;
-      overflow-x: hidden;
+      background: var(--bg-hero);
     }
     header {
-      background-color: rgba(44, 62, 80, 0.95);
-      padding: 0.75rem 1.25rem;
+      background-color: rgba(0,0,0,0.6);
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 1000;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
     }
     header img {
-      height: 48px;
-      max-width: 160px;
-      object-fit: contain;
+      height: 40px;
     }
     nav {
       display: flex;
@@ -47,123 +46,89 @@
       flex-wrap: wrap;
     }
     nav a {
-      color: var(--text-light);
+      color: white;
       text-decoration: none;
       font-weight: 600;
-      font-size: 1rem;
       padding: 0.5rem 0.75rem;
       border-radius: 6px;
       transition: background 0.3s;
     }
     nav a:hover {
-      background-color: var(--bg-highlight-dark);
+      background: rgba(255,255,255,0.1);
     }
     .sticky-cta {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      z-index: 999;
-      background: var(--accent-color);
+      background: var(--accent);
       color: var(--text-dark);
       padding: 0.75rem 1.5rem;
-      border-radius: 8px;
+      border-radius: 10px;
       font-weight: bold;
       text-decoration: none;
-      box-shadow: 0 0 12px rgba(0, 255, 200, 0.6);
-      transition: transform 0.2s ease;
+      box-shadow: 0 0 15px rgba(0,255,200,0.5);
+      z-index: 1001;
     }
-    .sticky-cta:hover { transform: scale(1.08); }
-    .hero {
+
+    section {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 2rem;
-      background: linear-gradient(to bottom, var(--bg-primary), #4ca1af);
+      padding: 5rem 2rem;
       text-align: center;
     }
-    .hero-img-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-    .hero img {
-      width: 85vw;
-      max-width: 600px;
-      height: auto;
-      animation: fadeInLogo 1.5s ease-in-out forwards;
-    }
-    .hero h1 {
+    section h2 {
       font-family: 'Poppins', sans-serif;
-      font-size: clamp(2rem, 6vw, 4rem);
-      margin-top: 1rem;
-      letter-spacing: 0.02em;
-    }
-    .hero p {
-      font-size: 1.3rem;
-      margin-top: 0.75rem;
-    }
-    .section {
-      padding: 4rem 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .section h2 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin-bottom: 1rem;
-      text-align: center;
     }
-    .section ul {
+    section p, section ul {
+      max-width: 800px;
+      font-size: 1.2rem;
+    }
+
+    .hero { background: var(--bg-hero); }
+    .subscribe { background: var(--bg-subscribe); }
+    .features { background: var(--bg-features); }
+    .testimonials { background: var(--bg-testimonials); }
+    .team { background: var(--bg-team); }
+    .about { background: var(--bg-about); }
+
+    ul {
       list-style: none;
       padding: 0;
-      max-width: 600px;
-      margin: auto;
+      margin-top: 1rem;
     }
-    .section ul li {
-      margin-bottom: 0.75rem;
-      font-size: 1.1rem;
-    }
-    .section ul li::before {
+    ul li::before {
       content: '✔ ';
-      color: var(--accent-color);
+      color: var(--accent);
       margin-right: 0.5em;
     }
-    .section.alt {
-      background: linear-gradient(135deg, var(--bg-highlight), var(--bg-highlight-dark));
-      color: var(--text-light);
+    ul li {
+      margin-bottom: 0.75rem;
     }
-    .section.testimonials {
-      background-color: var(--bg-secondary);
-    }
-    .section.testimonials p {
-      max-width: 800px;
-      margin: 1rem auto;
-      font-size: 1.1rem;
-    }
+
     .team-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
       justify-content: center;
+      margin-top: 2rem;
     }
     .team-member {
       background: white;
       color: black;
       border-radius: 12px;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-      padding: 1.5rem;
-      text-align: center;
       width: 260px;
+      padding: 1.5rem;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
       cursor: pointer;
       transition: transform 0.3s ease;
     }
-    .team-member:hover { transform: scale(1.05); }
-    .team-member h3 {
-      font-family: 'Poppins', sans-serif;
-      margin-bottom: 0.5rem;
+    .team-member:hover {
+      transform: scale(1.05);
     }
     .team-member img {
       width: 100px;
@@ -172,69 +137,33 @@
       object-fit: cover;
       margin-bottom: 1rem;
     }
-    .team-member a {
-      display: none !important;
-      pointer-events: none;
-    }
-    .cta {
-      background: linear-gradient(160deg, #4ca1af 0%, #56ab2f 100%);
-      text-align: center;
-      padding: 5rem 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    .cta h2 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2.5rem;
-    }
-    .cta p {
-      font-size: 1.3rem;
-      margin-top: 1rem;
-      max-width: 600px;
-    }
-    .cta a {
-      display: inline-block;
+    .cta-button {
       margin-top: 2rem;
-      background: #3b4548;
+      background: #111;
       color: white;
       padding: 1rem 2rem;
+      font-size: 1.1rem;
       border-radius: 8px;
       text-decoration: none;
-      font-size: 1.2rem;
-      max-width: 300px;
-      width: 100%;
-      text-align: center;
     }
-    .cta a:hover {
-      background: var(--bg-primary);
-      transform: translateY(-2px);
+    .cta-button:hover {
+      background: #000;
     }
     footer {
-      background: #3b4548;
-      color: white;
+      background: #111;
+      padding: 2rem;
       text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      color: #aaa;
     }
     footer a {
-      color: var(--accent-color);
-      text-decoration: none;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-    @keyframes fadeInLogo {
-      0% { opacity: 0; transform: translateY(-10px); }
-      100% { opacity: 1; transform: translateY(0); }
+      color: var(--accent);
     }
   </style>
 </head>
 <body id="top">
-
   <header>
-    <a href="#top"><img src="3DVR.png" alt="3dvr.tech logo"></a>
+    <a href="#top"><img src="3DVR.png" alt="3dvr.tech Logo"></a>
     <nav>
       <a href="#top">Home</a>
       <a href="#subscribe">Subscribe</a>
@@ -248,20 +177,18 @@
   <a class="sticky-cta" href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank">Subscribe</a>
 
   <section class="hero">
-    <div class="hero-img-wrapper">
-      <img src="3DVR.png" alt="3dvr.tech logo" />
-    </div>
-    <h1>Build The Future</h1>
-    <p>Open-source tech for digital nomads, creators, and explorers</p>
+    <img src="3DVR.png" alt="3dvr.tech logo" style="max-width: 300px;" />
+    <h2>Build the Future</h2>
+    <p>Open-source tech for digital nomads, creators, and explorers.</p>
   </section>
 
-  <section class="cta" id="subscribe">
+  <section class="subscribe" id="subscribe">
     <h2>Websites & Apps for $20/month</h2>
-    <p>Subscribe to get a personal site, app, or support package tailored to your vision. Simple, clean, and open-source powered by 3dvr.tech.</p>
-    <a href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank">Subscribe Now</a>
+    <p>Get a personal site, app, or support package tailored to your vision. Clean, simple, open-source—powered by 3dvr.tech.</p>
+    <a href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" class="cta-button" target="_blank">Subscribe Now</a>
   </section>
 
-  <section class="section alt" id="features">
+  <section class="features" id="features">
     <h2>What You Get</h2>
     <ul>
       <li>Custom Websites & Landing Pages</li>
@@ -272,15 +199,15 @@
     </ul>
   </section>
 
-  <section class="section testimonials" id="testimonials">
+  <section class="testimonials" id="testimonials">
     <h2>What Our Clients Say</h2>
-    <p><strong><a href="https://www.brendadyestephens.com/" target="_blank">SC Librarian</a>:</strong> “3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.”</p>
-    <p><strong><a href="https://cruisersgarage.com/" target="_blank">Cruisers Garage</a>:</strong> “They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.”</p>
-    <p><strong><a href="https://www.gif.edu.gt/" target="_blank">GIF English</a>:</strong> “We needed a site that could handle English lessons, scheduling, and videos. 3dvr.tech delivered exactly what we imagined.”</p>
-    <p><strong><a href="https://www.sdvanlife.com/" target="_blank">SD Vanlife</a>:</strong> “Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”</p>
+    <p><strong><a href="https://www.brendadyestephens.com/" target="_blank">SC Librarian</a></strong>: “3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.”</p>
+    <p><strong><a href="https://cruisersgarage.com/" target="_blank">Cruisers Garage</a></strong>: “They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.”</p>
+    <p><strong><a href="https://www.gif.edu.gt/" target="_blank">GIF English</a></strong>: “We needed a site that could handle English lessons, scheduling, and videos. 3dvr.tech delivered exactly what we imagined.”</p>
+    <p><strong><a href="https://www.sdvanlife.com/" target="_blank">SD Vanlife</a></strong>: “Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”</p>
   </section>
 
-  <section class="section" id="team">
+  <section class="team" id="team">
     <h2>Meet the Team</h2>
     <div class="team-grid">
       <div class="team-member">
@@ -288,55 +215,55 @@
         <h3>Thomas Stephens</h3>
         <p><strong>CEO / CTO / Founder</strong></p>
         <p>Visionary technologist creating the tools of tomorrow.</p>
-        <a href="https://tmsteph.com" target="_blank">tmsteph.com</a>
       </div>
       <div class="team-member">
         <img src="Bodhi_Lowski.jpg" alt="Bodhi Lowski">
         <h3>Bodhi Lowski</h3>
         <p><strong>Chief Marketing Officer</strong></p>
         <p>Building the brand through grassroots storytelling and growth.</p>
-        <a href="https://bodhi-lowski.vercel.app/" target="_blank">bodhi-lowski.vercel.app</a>
       </div>
       <div class="team-member">
         <img src="David_Martinez.jpg" alt="David Martinez">
         <h3>David Martinez</h3>
         <p><strong>Lead Developer</strong></p>
         <p>Crafting immersive 3D and web experiences with finesse.</p>
-        <a href="https://david-martinez.vercel.app/" target="_blank">david-martinez.vercel.app</a>
       </div>
       <div class="team-member">
         <img src="Esai_Gamboa.jpg" alt="Esai Gamboa">
         <h3>Esai Gamboa</h3>
         <p><strong>Developer</strong></p>
         <p>Frontend expert focused on clean, responsive interfaces.</p>
-        <a href="https://esai-gamboa.vercel.app/" target="_blank">esai-gamboa.vercel.app</a>
       </div>
       <div class="team-member">
         <img src="Brandon_Adolfo.jpg" alt="Brandon Adolfo">
         <h3>Brandon Adolfo</h3>
         <p><strong>Developer</strong></p>
         <p>Cross-platform mobile builder with an eye for design.</p>
-        <a href="https://brandon-adolfo.vercel.app/" target="_blank">brandon-adolfo.vercel.app</a>
       </div>
     </div>
   </section>
 
-  <section class="section" id="about">
+  <section class="about" id="about">
     <h2>About 3dvr.tech</h2>
-    <p style="max-width: 700px; margin: auto; text-align: center;">
-      We believe everyone deserves the tools to build their digital life. We're creating an ecosystem of open-source hardware, software, and support—starting with $20/month personal services. Our mission is to empower creators, entrepreneurs, and digital nomads everywhere.
-    </p>
+    <p>We believe everyone deserves the tools to build their digital life. We're creating an ecosystem of open-source hardware, software, and support—starting with $20/month personal services. Our mission is to empower creators, entrepreneurs, and digital nomads everywhere.</p>
   </section>
 
   <footer>
-    <p>&copy; 2025 <a href="https://3dvr.tech">3dvr.tech</a> — Open Source. Open Future.</p>
+    &copy; 2025 <a href="https://3dvr.tech" target="_blank">3dvr.tech</a> — Open Source. Open Future.
   </footer>
 
   <script>
     document.querySelectorAll('.team-member').forEach(member => {
       member.addEventListener('click', () => {
-        const link = member.querySelector('a');
-        if (link) window.open(link.href, '_blank');
+        const name = member.querySelector('h3')?.innerText || '';
+        const url = {
+          'Thomas Stephens': 'https://tmsteph.com',
+          'Bodhi Lowski': 'https://bodhi-lowski.vercel.app/',
+          'David Martinez': 'https://david-martinez.vercel.app/',
+          'Esai Gamboa': 'https://esai-gamboa.vercel.app/',
+          'Brandon Adolfo': 'https://brandon-adolfo.vercel.app/'
+        }[name];
+        if (url) window.open(url, '_blank');
       });
     });
   </script>
