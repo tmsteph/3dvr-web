@@ -4,10 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>3dvr.tech</title>
-  <link rel="icon" type="image/png" href="3DVRfavicon.png" />
+  <link rel="icon" href="3DVRfavicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    html { scroll-behavior: smooth; }
     :root {
       --accent: #00ffc8;
       --bg-hero: linear-gradient(to bottom, #2c3e50, #4ca1af);
@@ -19,15 +18,19 @@
       --text-light: #ffffff;
       --text-dark: #000000;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text-light);
-      line-height: 1.7;
       background: var(--bg-hero);
+      line-height: 1.7;
     }
+
     header {
-      background-color: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
@@ -35,16 +38,18 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      backdrop-filter: blur(12px);
     }
+
     header img {
       height: 48px;
     }
+
     nav {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
     }
+
     nav a {
       color: white;
       text-decoration: none;
@@ -54,9 +59,11 @@
       border-radius: 6px;
       transition: background 0.3s;
     }
+
     nav a:hover {
       background: rgba(255,255,255,0.1);
     }
+
     .sticky-cta {
       position: fixed;
       bottom: 20px;
@@ -71,6 +78,7 @@
       box-shadow: 0 0 15px rgba(0,255,200,0.5);
       z-index: 1001;
     }
+
     section {
       min-height: 100vh;
       display: flex;
@@ -80,20 +88,25 @@
       padding: 6rem 2rem;
       text-align: center;
     }
+
     section h2 {
       font-family: 'Poppins', sans-serif;
       font-size: clamp(2.5rem, 6vw, 4rem);
       margin-bottom: 1rem;
     }
+
     section p {
       font-size: clamp(1.2rem, 2vw, 1.5rem);
       max-width: 800px;
+      margin-bottom: 1.5rem;
     }
+
     .hero {
       background: var(--bg-hero);
     }
+
     .hero img {
-      width: clamp(200px, 50vw, 420px);
+      width: clamp(240px, 60vw, 500px);
       margin-bottom: 2rem;
     }
   </style>
@@ -101,7 +114,7 @@
 <body id="top">
 
   <header>
-    <a href="#top"><img src="3DVR.png" alt="3dvr.tech Logo"></a>
+    <a href="#top"><img src="3DVR.png" alt="3dvr.tech logo"></a>
     <nav>
       <a href="#top">Home</a>
       <a href="#subscribe">Subscribe</a>
@@ -128,53 +141,82 @@
 
   <section class="features" id="features" style="background: var(--bg-features);">
     <h2>What You Get</h2>
-    <ul style="list-style: none; padding: 0; font-size: 1.3rem;">
-      <li>✔ Custom Websites & Landing Pages</li>
-      <li>✔ Mobile-Friendly App Designs</li>
-      <li>✔ Unlimited Tech Support Questions</li>
-      <li>✔ Personal Consultations</li>
-      <li>✔ Access to Our Builder Community</li>
+    <ul style="list-style: none; padding: 0; font-size: 1.25rem;">
+      <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+        <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">✔</span>
+        Custom Websites & Landing Pages
+      </li>
+      <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+        <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">✔</span>
+        Mobile-Friendly App Designs
+      </li>
+      <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+        <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">✔</span>
+        Unlimited Tech Support Questions
+      </li>
+      <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+        <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">✔</span>
+        Personal Consultations
+      </li>
+      <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+        <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">✔</span>
+        Access to Our Builder Community
+      </li>
     </ul>
   </section>
 
   <section class="testimonials" id="testimonials" style="background: var(--bg-testimonials);">
     <h2>What Our Clients Say</h2>
-    <p><strong><a href="https://www.brendadyestephens.com/" target="_blank">SC Librarian</a></strong>: “3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.”</p>
-    <p><strong><a href="https://cruisersgarage.com/" target="_blank">Cruisers Garage</a></strong>: “They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.”</p>
-    <p><strong><a href="https://www.gif.edu.gt/" target="_blank">GIF English</a></strong>: “We needed a site that could handle English lessons, scheduling, and videos. 3dvr.tech delivered exactly what we imagined.”</p>
-    <p><strong><a href="https://www.sdvanlife.com/" target="_blank">SD Vanlife</a></strong>: “Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”</p>
+    <div style="max-width: 900px; display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem;">
+      <div style="background: rgba(255,255,255,0.15); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+        <strong><a href="https://www.brendadyestephens.com/" target="_blank" style="color: var(--accent); text-decoration: none;">SC Librarian</a></strong>:  
+        “3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.”
+      </div>
+      <div style="background: rgba(255,255,255,0.15); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+        <strong><a href="https://cruisersgarage.com/" target="_blank" style="color: var(--accent); text-decoration: none;">Cruisers Garage</a></strong>:  
+        “They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.”
+      </div>
+      <div style="background: rgba(255,255,255,0.15); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+        <strong><a href="https://www.gif.edu.gt/" target="_blank" style="color: var(--accent); text-decoration: none;">GIF English</a></strong>:  
+        “We needed a site that could handle English lessons, scheduling, and videos. 3dvr.tech delivered exactly what we imagined.”
+      </div>
+      <div style="background: rgba(255,255,255,0.15); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+        <strong><a href="https://www.sdvanlife.com/" target="_blank" style="color: var(--accent); text-decoration: none;">SD Vanlife</a></strong>:  
+        “Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”
+      </div>
+    </div>
   </section>
 
-    <section class="team" id="team" style="background: var(--bg-team);">
+  <section class="team" id="team" style="background: var(--bg-team);">
     <h2>Meet the Team</h2>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem;">
-      <div class="team-member">
-        <img src="Thomas_Stephens.jpg" alt="Thomas Stephens">
-        <h3>Thomas Stephens</h3>
+      <div class="team-member" style="background: white; color: black; border-radius: 14px; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2); padding: 1.5rem; text-align: center; width: 260px; cursor: pointer; transition: transform 0.3s;">
+        <img src="Thomas_Stephens.jpg" alt="Thomas Stephens" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.3rem;">Thomas Stephens</h3>
         <p><strong>CEO / CTO / Founder</strong></p>
         <p>Visionary technologist creating the tools of tomorrow.</p>
       </div>
-      <div class="team-member">
-        <img src="Bodhi_Lowski.jpg" alt="Bodhi Lowski">
-        <h3>Bodhi Lowski</h3>
+      <div class="team-member" style="background: white; color: black; border-radius: 14px; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2); padding: 1.5rem; text-align: center; width: 260px; cursor: pointer; transition: transform 0.3s;">
+        <img src="Bodhi_Lowski.jpg" alt="Bodhi Lowski" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.3rem;">Bodhi Lowski</h3>
         <p><strong>Chief Marketing Officer</strong></p>
         <p>Building the brand through grassroots storytelling and growth.</p>
       </div>
-      <div class="team-member">
-        <img src="David_Martinez.jpg" alt="David Martinez">
-        <h3>David Martinez</h3>
+      <div class="team-member" style="background: white; color: black; border-radius: 14px; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2); padding: 1.5rem; text-align: center; width: 260px; cursor: pointer; transition: transform 0.3s;">
+        <img src="David_Martinez.jpg" alt="David Martinez" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.3rem;">David Martinez</h3>
         <p><strong>Lead Developer</strong></p>
         <p>Crafting immersive 3D and web experiences with finesse.</p>
       </div>
-      <div class="team-member">
-        <img src="Esai_Gamboa.jpg" alt="Esai Gamboa">
-        <h3>Esai Gamboa</h3>
+      <div class="team-member" style="background: white; color: black; border-radius: 14px; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2); padding: 1.5rem; text-align: center; width: 260px; cursor: pointer; transition: transform 0.3s;">
+        <img src="Esai_Gamboa.jpg" alt="Esai Gamboa" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.3rem;">Esai Gamboa</h3>
         <p><strong>Developer</strong></p>
         <p>Frontend expert focused on clean, responsive interfaces.</p>
       </div>
-      <div class="team-member">
-        <img src="Brandon_Adolfo.jpg" alt="Brandon Adolfo">
-        <h3>Brandon Adolfo</h3>
+      <div class="team-member" style="background: white; color: black; border-radius: 14px; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2); padding: 1.5rem; text-align: center; width: 260px; cursor: pointer; transition: transform 0.3s;">
+        <img src="Brandon_Adolfo.jpg" alt="Brandon Adolfo" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.3rem;">Brandon Adolfo</h3>
         <p><strong>Developer</strong></p>
         <p>Cross-platform mobile builder with an eye for design.</p>
       </div>
@@ -191,8 +233,8 @@
     </p>
   </section>
 
-  <footer>
-    <p>&copy; 2025 <a href="https://3dvr.tech" target="_blank">3dvr.tech</a> — Open Source. Open Future.</p>
+  <footer style="background: #111; color: #aaa; text-align: center; padding: 2rem 1rem; font-size: 0.95rem;">
+    <p>&copy; 2025 <a href="https://3dvr.tech" target="_blank" style="color: var(--accent);">3dvr.tech</a> — Open Source. Open Future.</p>
   </footer>
 
   <script>
@@ -204,10 +246,10 @@
         "Esai Gamboa": "https://esai-gamboa.vercel.app/",
         "Brandon Adolfo": "https://brandon-adolfo.vercel.app/"
       };
-      member.addEventListener('click', () => {
-        const name = member.querySelector('h3')?.innerText;
-        if (name && links[name]) window.open(links[name], '_blank');
-      });
+      const name = member.querySelector('h3')?.innerText;
+      if (name && links[name]) {
+        member.addEventListener('click', () => window.open(links[name], '_blank'));
+      }
     });
   </script>
 
