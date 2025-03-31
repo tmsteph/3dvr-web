@@ -226,19 +226,19 @@
 
     <style>
       .feature-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         gap: 2rem;
         max-width: 1200px;
         margin: 2rem auto 0;
+        justify-items: center;
       }
 
       .feature-card {
         background: rgba(255,255,255,0.08);
         border-radius: 12px;
         padding: 1.5rem;
-        width: 260px;
+        max-width: 260px;
         text-align: center;
         transition: all 0.3s ease;
         cursor: pointer;
@@ -284,14 +284,14 @@
 
     <style>
       .testimonial-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         gap: 2rem;
         margin-top: 2rem;
         max-width: 1200px;
         margin-left: auto;
         margin-right: auto;
+        justify-items: center;
       }
 
       .testimonial-card {
@@ -299,11 +299,12 @@
         color: var(--text-light);
         border-radius: 14px;
         padding: 1.5rem;
-        width: 260px;
+        max-width: 260px;
         font-size: 0.9rem;
         box-shadow: 0 6px 14px rgba(0,0,0,0.15);
         transition: transform 0.3s ease, background 0.3s ease;
         cursor: pointer;
+        text-align: left;
       }
 
       .testimonial-card:hover {
@@ -361,14 +362,14 @@
 
     <style>
       .team-grid {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         gap: 2rem;
-        justify-content: center;
         margin-top: 2rem;
         max-width: 1200px;
         margin-left: auto;
         margin-right: auto;
+        justify-items: center;
       }
 
       .team-member {
@@ -376,7 +377,7 @@
         color: black;
         border-radius: 14px;
         padding: 1.5rem;
-        width: 260px;
+        max-width: 260px;
         box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
         text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -422,14 +423,14 @@
   </footer>
 
   <script>
-    // Hamburger toggle
+    // Mobile menu toggle
     const toggle = document.getElementById('mobileMenuToggle');
     const nav = document.getElementById('mainNav');
     toggle.addEventListener('click', () => {
       nav.classList.toggle('active');
     });
 
-    // Clickable Team Cards
+    // Clickable team cards
     document.querySelectorAll('.team-member').forEach(member => {
       const link = member.getAttribute('data-link');
       if (link) {
@@ -439,7 +440,7 @@
       }
     });
 
-    // Clickable Testimonial Cards
+    // Clickable testimonial cards
     document.querySelectorAll('.testimonial-card').forEach(card => {
       const link = card.getAttribute('data-link');
       if (link) {
