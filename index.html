@@ -12,10 +12,10 @@
       --accent-color: #00ffc8;
       --bg-primary: #2c3e50;
       --bg-secondary: #34495e;
+      --bg-highlight: #1abc9c;
+      --bg-highlight-dark: #16a085;
       --text-light: #ffffff;
       --text-dark: #000000;
-      --highlight: #1abc9c;
-      --highlight-dark: #16a085;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -23,7 +23,6 @@
       font-family: 'Inter', sans-serif;
       color: var(--text-light);
       line-height: 1.6;
-      transition: background 0.3s, color 0.3s;
       overflow-x: hidden;
     }
     header {
@@ -57,7 +56,7 @@
       transition: background 0.3s;
     }
     nav a:hover {
-      background-color: var(--highlight-dark);
+      background-color: var(--bg-highlight-dark);
     }
     .sticky-cta {
       position: fixed;
@@ -81,7 +80,7 @@
       justify-content: center;
       align-items: center;
       padding: 2rem;
-      background: linear-gradient(to bottom, var(--bg-primary) 0%, #4ca1af 100%);
+      background: linear-gradient(to bottom, var(--bg-primary), #4ca1af);
       text-align: center;
     }
     .hero-img-wrapper {
@@ -133,8 +132,16 @@
       margin-right: 0.5em;
     }
     .section.alt {
-      background: linear-gradient(135deg, var(--highlight) 0%, var(--highlight-dark) 100%);
+      background: linear-gradient(135deg, var(--bg-highlight), var(--bg-highlight-dark));
       color: var(--text-light);
+    }
+    .section.testimonials {
+      background-color: var(--bg-secondary);
+    }
+    .section.testimonials p {
+      max-width: 800px;
+      margin: 1rem auto;
+      font-size: 1.1rem;
     }
     .team-grid {
       display: flex;
@@ -224,7 +231,8 @@
     }
   </style>
 </head>
-      <body id="top">
+<body id="top">
+
   <header>
     <a href="#top"><img src="3DVR.png" alt="3dvr.tech logo"></a>
     <nav>
@@ -264,14 +272,12 @@
     </ul>
   </section>
 
-  <section class="section" id="testimonials">
+  <section class="section testimonials" id="testimonials">
     <h2>What Our Clients Say</h2>
-    <div>
-      <p><strong><a href="https://www.brendadyestephens.com/" target="_blank">SC Librarian</a>:</strong> “3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.”</p>
-      <p><strong><a href="https://cruisersgarage.com/" target="_blank">Cruisers Garage</a>:</strong> “They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.”</p>
-      <p><strong><a href="https://www.gif.edu.gt/" target="_blank">GIF English</a>:</strong> “We needed a site that could handle English lessons, scheduling, and videos. 3dvr.tech delivered exactly what we imagined.”</p>
-      <p><strong><a href="https://www.sdvanlife.com/" target="_blank">SD Vanlife</a>:</strong> “Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”</p>
-    </div>
+    <p><strong><a href="https://www.brendadyestephens.com/" target="_blank">SC Librarian</a>:</strong> “3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.”</p>
+    <p><strong><a href="https://cruisersgarage.com/" target="_blank">Cruisers Garage</a>:</strong> “They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.”</p>
+    <p><strong><a href="https://www.gif.edu.gt/" target="_blank">GIF English</a>:</strong> “We needed a site that could handle English lessons, scheduling, and videos. 3dvr.tech delivered exactly what we imagined.”</p>
+    <p><strong><a href="https://www.sdvanlife.com/" target="_blank">SD Vanlife</a>:</strong> “Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”</p>
   </section>
 
   <section class="section" id="team">
@@ -323,7 +329,7 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 <a href="https://3dvr.tech" style="color: #00ffc8;">3dvr.tech</a> — Open Source. Open Future.</p>
+    <p>&copy; 2025 <a href="https://3dvr.tech">3dvr.tech</a> — Open Source. Open Future.</p>
   </footer>
 
   <script>
