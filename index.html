@@ -5,39 +5,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3dvr.tech</title>
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
-
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
-    :root {
-      color-scheme: light dark;
-      background-color: #2c3e50;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    html { scroll-behavior: smooth; }
+    :root { color-scheme: light dark; background-color: #2c3e50; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background-color: #2c3e50;
       font-family: 'Inter', sans-serif;
-      color: #222;
+      color: #fff;
       line-height: 1.6;
       transition: background 0.3s, color 0.3s;
       overflow-x: hidden;
     }
-
     header {
       background-color: rgba(44, 62, 80, 0.8);
       padding: 0.5rem 1rem;
-      color: white;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -48,19 +31,8 @@
       animation: fadeInHeader 1.5s ease-in-out 1.2s forwards;
       flex-wrap: nowrap;
     }
-
-    header img {
-      height: 40px;
-      max-width: 150px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    nav {
-      display: flex;
-      gap: 0.5rem;
-    }
-
+    header img { height: 40px; max-width: 150px; object-fit: contain; flex-shrink: 0; }
+    nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
     nav a {
       color: white;
       text-decoration: none;
@@ -69,11 +41,7 @@
       padding: 0.4rem 0.5rem;
       white-space: nowrap;
     }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
+    nav a:hover { text-decoration: underline; }
     .hero {
       min-height: 100vh;
       display: flex;
@@ -82,17 +50,14 @@
       align-items: center;
       padding: 2rem;
       background: linear-gradient(to bottom, #2c3e50 0%, #4ca1af 100%);
-      color: white;
       text-align: center;
     }
-
     .hero-img-wrapper {
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-
     .hero img {
       width: 90vw;
       max-width: 600px;
@@ -100,7 +65,6 @@
       opacity: 0;
       animation: fadeInLogo 1.5s ease-in-out forwards;
     }
-
     .hero h1 {
       font-family: 'Poppins', sans-serif;
       font-size: clamp(2rem, 8vw, 4rem);
@@ -108,34 +72,38 @@
       margin-top: 1rem;
       letter-spacing: 0.01em;
     }
-
-    .hero p {
-      font-size: 1.5rem;
-      margin-top: 0.5rem;
-    }
-
+    .hero p { font-size: 1.5rem; margin-top: 0.5rem; }
     .section {
       padding: 4rem 2rem;
       max-width: 1000px;
       margin: auto;
     }
-
     .section h2 {
       font-family: 'Poppins', sans-serif;
       font-size: 2rem;
       margin-bottom: 1rem;
       text-align: center;
     }
-
+    .section ul {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+      margin: auto;
+    }
+    .section ul li::before {
+      content: '✔ ';
+      color: #00ffc8;
+      margin-right: 0.5em;
+    }
     .team-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
       justify-content: center;
     }
-
     .team-member {
       background: white;
+      color: black;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       padding: 1.5rem;
@@ -144,16 +112,8 @@
       cursor: pointer;
       transition: transform 0.3s ease;
     }
-
-    .team-member:hover {
-      transform: scale(1.03);
-    }
-
-    .team-member h3 {
-      font-family: 'Poppins', sans-serif;
-      margin-bottom: 0.5rem;
-    }
-
+    .team-member:hover { transform: scale(1.03); }
+    .team-member h3 { font-family: 'Poppins', sans-serif; margin-bottom: 0.5rem; }
     .team-member img {
       width: 100px;
       height: 100px;
@@ -161,18 +121,7 @@
       object-fit: cover;
       margin-bottom: 1rem;
     }
-
-    .team-member a {
-      display: none !important;
-      pointer-events: none;
-    }
-
-    .team-member p strong {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 0.25rem;
-    }
-
+    .team-member a { display: none !important; pointer-events: none; }
     .cta {
       background: linear-gradient(160deg, #4ca1af 0%, #56ab2f 100%);
       text-align: center;
@@ -182,92 +131,33 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      transition: background 0.3s ease;
     }
-
-    .cta h2 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2.5rem;
-    }
-
-    .cta p {
-      font-size: 1.3rem;
-      margin-top: 1rem;
-      max-width: 600px;
-    }
-
+    .cta h2 { font-family: 'Poppins', sans-serif; font-size: 2.5rem; }
+    .cta p { font-size: 1.3rem; margin-top: 1rem; max-width: 600px; }
     .cta a {
       display: inline-block;
       margin-top: 2rem;
       background: #3b4548;
       color: white;
-      padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2rem);
+      padding: 1rem 2rem;
       border-radius: 8px;
       text-decoration: none;
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-size: 1.2rem;
       max-width: 300px;
       width: 100%;
       text-align: center;
-      transition: background 0.3s ease, transform 0.2s ease;
     }
-
-    .cta a:hover {
-      background: #2c3e50;
-      transform: translateY(-2px);
-    }
-
+    .cta a:hover { background: #2c3e50; transform: translateY(-2px); }
     footer {
       background: #3b4548;
       color: white;
       text-align: center;
       padding: 2rem 1rem;
     }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: row;
-        align-items: flex-start;
-      }
-
-      nav {
-        flex-direction: column;
-        align-items: flex-end;
-        margin-left: auto;
-        gap: 0.25rem;
-      }
-
-      nav a {
-        padding: 0.25rem 0.5rem;
-      }
-
-      .hero h1 {
-        font-size: 2.2rem;
-        white-space: normal;
-      }
-
-      .hero p {
-        font-size: 1rem;
-      }
-
-      .cta h2 {
-        font-size: 2rem;
-      }
-
-      .cta p, .cta a {
-        font-size: 1rem;
-      }
-
-      .team-member {
-        width: 100%;
-        max-width: 300px;
-      }
-    }
-
     @keyframes fadeInLogo {
       0% { opacity: 0; transform: translateY(-10px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes fadeInHeader {
       0% { opacity: 0; transform: translateY(-10px); }
       100% { opacity: 1; transform: translateY(0); }
@@ -280,7 +170,10 @@
     <nav>
       <a href="#top">Home</a>
       <a href="#subscribe">Subscribe</a>
+      <a href="#features">Features</a>
+      <a href="#testimonials">Testimonials</a>
       <a href="#team">Team</a>
+      <a href="#about">About</a>
     </nav>
   </header>
 
@@ -296,6 +189,27 @@
     <h2>Websites & Apps for $20/month</h2>
     <p>Subscribe to get a personal site, app, or support package tailored to your vision. Simple, clean, and open-source powered by 3dvr.tech.</p>
     <a href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank">Subscribe Now</a>
+  </section>
+
+  <section class="section" id="features">
+    <h2>What You Get</h2>
+    <ul>
+      <li>Custom Websites & Landing Pages</li>
+      <li>Mobile-Friendly App Designs</li>
+      <li>Unlimited Tech Support Questions</li>
+      <li>Personal Consultations</li>
+      <li>Access to Our Builder Community</li>
+    </ul>
+  </section>
+
+  <section class="section" id="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div>
+      <p><strong><a href="https://www.brendadyestephens.com/" target="_blank">SC Librarian</a>:</strong> “3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.”</p>
+      <p><strong><a href="https://cruisersgarage.com/" target="_blank">Cruisers Garage</a>:</strong> “They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.”</p>
+      <p><strong><a href="https://www.gif.edu.gt/" target="_blank">GIF English</a>:</strong> “We needed a site that could handle English lessons, scheduling, and videos. 3dvr.tech delivered exactly what we imagined.”</p>
+      <p><strong><a href="https://www.sdvanlife.com/" target="_blank">SD Vanlife</a>:</strong> “Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”</p>
+    </div>
   </section>
 
   <section class="section" id="team">
@@ -339,17 +253,22 @@
     </div>
   </section>
 
+  <section class="section" id="about">
+    <h2>About 3dvr.tech</h2>
+    <p style="max-width: 700px; margin: auto; text-align: center;">
+      We believe everyone deserves the tools to build their digital life. We're creating an ecosystem of open-source hardware, software, and support—starting with $20/month personal services. Our mission is to empower creators, entrepreneurs, and digital nomads everywhere.
+    </p>
+  </section>
+
   <footer>
-    <p>© 2025 3dvr.tech — Built for the future, powered by community.</p>
+    <p>&copy; 2025 <a href="https://3dvr.tech" style="color: #00ffc8;">3dvr.tech</a> — Open Source. Open Future.</p>
   </footer>
 
   <script>
     document.querySelectorAll('.team-member').forEach(member => {
       member.addEventListener('click', () => {
         const link = member.querySelector('a');
-        if (link) {
-          window.open(link.href, '_blank');
-        }
+        if (link) window.open(link.href, '_blank');
       });
     });
   </script>
