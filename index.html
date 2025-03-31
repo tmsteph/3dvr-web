@@ -152,7 +152,7 @@
     }
 
     .hero img {
-      width: clamp(300px, 70vw, 580px);
+      width: clamp(300px, 80vw, 600px);
       margin-bottom: 2rem;
     }
 
@@ -164,19 +164,21 @@
       font-size: clamp(1.5rem, 2.5vw, 1.7rem);
     }
 
-    /* 💡 Shared card grid styles */
+    /* 🧠 Shared card grid style with improved layout */
     .card-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 2rem;
-      max-width: 1200px;
+      max-width: 1400px;
+      padding: 0 1rem;
       margin-top: 2rem;
     }
 
     .card {
-      width: 260px;
-      max-width: 100%;
+      flex: 1 1 calc(20% - 2rem); /* up to 5 cards per row */
+      min-width: 220px;
+      max-width: 260px;
       background: rgba(255,255,255,0.08);
       border-radius: 14px;
       padding: 1.5rem;
@@ -230,7 +232,10 @@
 
   <section id="subscribe" style="background: var(--bg-subscribe);">
     <h2>Websites & Apps for $20/month</h2>
-    <p>Get a personal site, app, or support package tailored to your vision. Clean, simple, open-source—powered by 3dvr.tech.</p>
+    <p>
+      Get a personal site, app, or support package tailored to your vision.
+      Clean, simple, open-source—powered by 3dvr.tech.
+    </p>
     <a href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank" class="sticky-cta" style="position: static; margin-top: 2rem;">Subscribe Now</a>
   </section>
 
@@ -281,7 +286,6 @@
       </div>
     </div>
   </section>
-
   <section id="team" style="background: var(--bg-team);">
     <h2>Meet the Team</h2>
     <div class="card-grid">
@@ -333,14 +337,14 @@
   </footer>
 
   <script>
-    // Hamburger toggle
+    // Hamburger nav toggle
     const toggle = document.getElementById('mobileMenuToggle');
     const nav = document.getElementById('mainNav');
     toggle.addEventListener('click', () => {
       nav.classList.toggle('active');
     });
 
-    // Clickable cards: testimonials + team
+    // Clickable testimonial and team cards
     document.querySelectorAll('.testimonial-card, .team-card').forEach(card => {
       const link = card.getAttribute('data-link');
       if (link) {
@@ -353,5 +357,4 @@
 
 </body>
 </html>
-
 
