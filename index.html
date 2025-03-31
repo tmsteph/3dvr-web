@@ -181,33 +181,41 @@
         <h3>✔ Builder Community</h3>
         <p>Join a community of creators, developers, and dreamers.</p>
       </div>
+      <!-- Optional invisible card for perfect symmetry -->
+      <div class="feature-card" style="visibility: hidden;"></div>
     </div>
     <style>
       .feature-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
+        gap: 2rem;
         max-width: 1200px;
         width: 100%;
         margin: 0 auto;
+        justify-items: center;
       }
+
       .feature-card {
         background: rgba(255,255,255,0.08);
         border-radius: 12px;
         padding: 1.5rem;
+        max-width: 260px;
         text-align: center;
         transition: all 0.3s ease;
         cursor: pointer;
       }
+
       .feature-card:hover {
         background: rgba(255,255,255,0.15);
         transform: translateY(-5px);
       }
+
       .feature-card h3 {
         color: var(--accent);
         margin-bottom: 0.5rem;
         font-size: 1.2rem;
       }
+
       .feature-card p {
         font-size: 1rem;
       }
@@ -234,6 +242,7 @@
         <p>“Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”</p>
       </div>
     </div>
+
     <style>
       .testimonial-grid {
         display: grid;
@@ -275,7 +284,7 @@
 
   <section id="team" style="background: var(--bg-team);">
     <h2>Meet the Team</h2>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem;">
+    <div class="team-grid">
       <div class="team-member" data-link="https://tmsteph.com">
         <img src="Thomas_Stephens.jpg" alt="Thomas Stephens">
         <h3>Thomas Stephens</h3>
@@ -309,6 +318,17 @@
     </div>
 
     <style>
+      .team-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+        margin-top: 2rem;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
       .team-member {
         background: white;
         color: black;
@@ -383,3 +403,5 @@
 
 </body>
 </html>
+
+
