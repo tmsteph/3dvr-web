@@ -93,7 +93,6 @@
       max-width: 1000px;
       margin: auto;
     }
-    .section:nth-of-type(even) { background: #34495e; }
     .section h2 {
       font-family: 'Poppins', sans-serif;
       font-size: 2rem;
@@ -110,6 +109,10 @@
       content: '✔ ';
       color: #00ffc8;
       margin-right: 0.5em;
+    }
+    .section.alt {
+      background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
+      color: #fff;
     }
     .team-grid {
       display: flex;
@@ -209,7 +212,7 @@
     <a href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank">Subscribe Now</a>
   </section>
 
-  <section class="section" id="features">
+  <section class="section alt" id="features">
     <h2>What You Get</h2>
     <ul>
       <li>Custom Websites & Landing Pages</li>
