@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Websites & Landing Pages | 3dvr.tech</title>
+  <link rel="icon" href="3DVRfavicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #00ffc8;
+      --bg-main: linear-gradient(to bottom, #2c3e50, #4ca1af);
+      --text-light: #ffffff;
+      --text-dark: #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header img {
+      height: 48px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-left: 1.5rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .sticky-cta {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: var(--text-dark);
+      padding: 0.9rem 1.6rem;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 0 15px rgba(0,255,200,0.5);
+      z-index: 1001;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 6rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    section h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 1rem;
+    }
+
+    section p {
+      max-width: 800px;
+      font-size: 1.3rem;
+    }
+
+    .btn {
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.1);
+      color: var(--accent);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    footer {
+      background: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.95rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/"><img src="3DVR.png" alt="3dvr.tech logo" /></a>
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+  </header>
+
+  <a class="sticky-cta" href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank">Subscribe</a>
+
+  <section>
+    <h1>Websites & Landing Pages</h1>
+    <p>
+      Your online presence starts here. Whether you're a creator, entrepreneur, small business, or digital nomad — we’ll build a modern, mobile-friendly, and open-source powered website that matches your vision. Landing pages, portfolios, small business sites — you name it.
+    </p>
+    <a class="btn" href="/">← Back to 3dvr.tech</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 <a href="https://3dvr.tech" target="_blank">3dvr.tech</a> — Open Source. Open Future.</p>
+  </footer>
+
+</body>
+</html>
