@@ -17,7 +17,6 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg-dark);
@@ -37,9 +36,7 @@
       z-index: 1000;
     }
 
-    header img {
-      height: 48px;
-    }
+    header img { height: 48px; }
 
     nav {
       display: flex;
@@ -54,9 +51,7 @@
       font-size: 1rem;
     }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+    nav a:hover { text-decoration: underline; }
 
     .sticky-cta {
       position: fixed;
@@ -76,38 +71,36 @@
     section {
       padding: 6rem 2rem;
       text-align: center;
+      min-height: 100vh;
     }
 
     .hero {
       background: linear-gradient(to bottom, #2c3e50, #4ca1af);
-      color: var(--text-light);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
     }
 
     .hero img {
-      max-width: 500px;
+      max-width: 600px;
       width: 90%;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .hero h1 {
-      font-size: clamp(2.8rem, 7vw, 4rem);
+      font-size: clamp(3rem, 7vw, 4.5rem);
       font-family: 'Poppins', sans-serif;
       margin-bottom: 1rem;
     }
 
     .hero p {
       font-size: 1.5rem;
-      max-width: 700px;
+      max-width: 800px;
     }
 
     .cta {
       background: linear-gradient(160deg, #4ca1af 0%, #56ab2f 100%);
-      color: white;
     }
 
     .cta h2 {
@@ -139,7 +132,6 @@
     }
   </style>
 </head>
-
 <body id="top">
 
   <header>
@@ -169,24 +161,24 @@
 
   <section id="features" style="background: #16a085; color: white;">
     <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.5rem; margin-bottom: 2rem;">What You Get</h2>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 1200px; margin: auto;">
-      <a href="websites.html" class="card" style="text-decoration: none; color: inherit; background: white; color: black; border-radius: 12px; padding: 2rem; width: 250px; transition: transform 0.3s; text-align: center;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 1400px; margin: auto;">
+      <a href="websites.html" class="card" style="text-decoration: none; background: rgba(255,255,255,0.05); color: white; border-radius: 12px; padding: 2rem; flex: 1 1 220px; max-width: 250px; text-align: center; transition: transform 0.3s, background 0.3s;">
         <h3>Websites & Landing Pages</h3>
         <p>Beautiful, responsive sites tailored to your brand and goals.</p>
       </a>
-      <a href="apps.html" class="card" style="text-decoration: none; color: inherit; background: white; color: black; border-radius: 12px; padding: 2rem; width: 250px; transition: transform 0.3s; text-align: center;">
+      <a href="apps.html" class="card" style="text-decoration: none; background: rgba(255,255,255,0.05); color: white; border-radius: 12px; padding: 2rem; flex: 1 1 220px; max-width: 250px; text-align: center; transition: transform 0.3s, background 0.3s;">
         <h3>App Designs</h3>
         <p>Mobile-first layouts built for usability and impact.</p>
       </a>
-      <a href="support.html" class="card" style="text-decoration: none; color: inherit; background: white; color: black; border-radius: 12px; padding: 2rem; width: 250px; transition: transform 0.3s; text-align: center;">
+      <a href="support.html" class="card" style="text-decoration: none; background: rgba(255,255,255,0.05); color: white; border-radius: 12px; padding: 2rem; flex: 1 1 220px; max-width: 250px; text-align: center; transition: transform 0.3s, background 0.3s;">
         <h3>Unlimited Tech Support</h3>
         <p>Ask anything, anytime. We’ve got your back.</p>
       </a>
-      <a href="consulting.html" class="card" style="text-decoration: none; color: inherit; background: white; color: black; border-radius: 12px; padding: 2rem; width: 250px; transition: transform 0.3s; text-align: center;">
+      <a href="consulting.html" class="card" style="text-decoration: none; background: rgba(255,255,255,0.05); color: white; border-radius: 12px; padding: 2rem; flex: 1 1 220px; max-width: 250px; text-align: center; transition: transform 0.3s, background 0.3s;">
         <h3>Personal Consultations</h3>
         <p>Talk through ideas and get strategic advice, one-on-one.</p>
       </a>
-      <a href="community.html" class="card" style="text-decoration: none; color: inherit; background: white; color: black; border-radius: 12px; padding: 2rem; width: 250px; transition: transform 0.3s; text-align: center;">
+      <a href="community.html" class="card" style="text-decoration: none; background: rgba(255,255,255,0.05); color: white; border-radius: 12px; padding: 2rem; flex: 1 1 220px; max-width: 250px; text-align: center; transition: transform 0.3s, background 0.3s;">
         <h3>Builder Community</h3>
         <p>Collaborate with makers, dreamers, and doers like you.</p>
       </a>
@@ -194,28 +186,28 @@
   </section>
 
   <section id="testimonials" style="background: #34495e;">
-    <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.5rem; color: white; margin-bottom: 2rem;">What Our Clients Say</h2>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 1200px; margin: auto;">
+    <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.5rem; margin-bottom: 2rem;">What Our Clients Say</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 1400px; margin: auto;">
       <a href="https://www.brendadyestephens.com/" target="_blank" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.1); color: white; padding: 1.5rem; border-radius: 12px; width: 260px; text-align: center; transition: transform 0.3s;">
+        <div style="background: rgba(255,255,255,0.08); color: white; padding: 1.5rem; border-radius: 12px; flex: 1 1 220px; max-width: 250px; text-align: center; transition: transform 0.3s;">
           <strong>SC Librarian</strong>
           <p>“3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.”</p>
         </div>
       </a>
       <a href="https://cruisersgarage.com/" target="_blank" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.1); color: white; padding: 1.5rem; border-radius: 12px; width: 260px; text-align: center; transition: transform 0.3s;">
+        <div style="background: rgba(255,255,255,0.08); color: white; padding: 1.5rem; border-radius: 12px; flex: 1 1 220px; max-width: 250px; text-align: center; transition: transform 0.3s;">
           <strong>Cruisers Garage</strong>
           <p>“They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.”</p>
         </div>
       </a>
       <a href="https://www.gif.edu.gt/" target="_blank" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.1); color: white; padding: 1.5rem; border-radius: 12px; width: 260px; text-align: center; transition: transform 0.3s;">
+        <div style="background: rgba(255,255,255,0.08); color: white; padding: 1.5rem; border-radius: 12px; flex: 1 1 220px; max-width: 250px; text-align: center; transition: transform 0.3s;">
           <strong>GIF English</strong>
           <p>“We needed a site that could handle English lessons, scheduling, and videos. 3dvr.tech delivered exactly what we imagined.”</p>
         </div>
       </a>
       <a href="https://www.sdvanlife.com/" target="_blank" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.1); color: white; padding: 1.5rem; border-radius: 12px; width: 260px; text-align: center; transition: transform 0.3s;">
+        <div style="background: rgba(255,255,255,0.08); color: white; padding: 1.5rem; border-radius: 12px; flex: 1 1 220px; max-width: 250px; text-align: center; transition: transform 0.3s;">
           <strong>SD Vanlife</strong>
           <p>“Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”</p>
         </div>
@@ -224,37 +216,37 @@
   </section>
 
   <section id="team" style="background: #1f2a35;">
-    <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.5rem; color: white; margin-bottom: 2rem;">Meet the Team</h2>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 1200px; margin: auto;">
-      <div class="team-member" style="background: white; color: black; border-radius: 12px; padding: 1.5rem; width: 260px; text-align: center; cursor: pointer;">
+    <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.5rem; margin-bottom: 2rem;">Meet the Team</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 1400px; margin: auto;">
+      <div class="team-member" style="background: rgba(255,255,255,0.08); color: white; border-radius: 12px; padding: 1.5rem; width: 260px; text-align: center; cursor: pointer; transition: transform 0.3s;">
         <img src="Thomas_Stephens.jpg" alt="Thomas Stephens" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
         <h3>Thomas Stephens</h3>
         <p><strong>CEO / CTO / Founder</strong></p>
         <p>Visionary technologist creating the tools of tomorrow.</p>
         <a href="https://tmsteph.com" target="_blank">tmsteph.com</a>
       </div>
-      <div class="team-member" style="background: white; color: black; border-radius: 12px; padding: 1.5rem; width: 260px; text-align: center; cursor: pointer;">
+      <div class="team-member" style="background: rgba(255,255,255,0.08); color: white; border-radius: 12px; padding: 1.5rem; width: 260px; text-align: center; cursor: pointer; transition: transform 0.3s;">
         <img src="Bodhi_Lowski.jpg" alt="Bodhi Lowski" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
         <h3>Bodhi Lowski</h3>
         <p><strong>Chief Marketing Officer</strong></p>
         <p>Building the brand through grassroots storytelling and growth.</p>
         <a href="https://bodhi-lowski.vercel.app/" target="_blank">bodhi-lowski.vercel.app</a>
       </div>
-      <div class="team-member" style="background: white; color: black; border-radius: 12px; padding: 1.5rem; width: 260px; text-align: center; cursor: pointer;">
+      <div class="team-member" style="background: rgba(255,255,255,0.08); color: white; border-radius: 12px; padding: 1.5rem; width: 260px; text-align: center; cursor: pointer; transition: transform 0.3s;">
         <img src="David_Martinez.jpg" alt="David Martinez" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
         <h3>David Martinez</h3>
         <p><strong>Lead Developer</strong></p>
         <p>Crafting immersive 3D and web experiences with finesse.</p>
         <a href="https://david-martinez.vercel.app/" target="_blank">david-martinez.vercel.app</a>
       </div>
-      <div class="team-member" style="background: white; color: black; border-radius: 12px; padding: 1.5rem; width: 260px; text-align: center; cursor: pointer;">
+      <div class="team-member" style="background: rgba(255,255,255,0.08); color: white; border-radius: 12px; padding: 1.5rem; width: 260px; text-align: center; cursor: pointer; transition: transform 0.3s;">
         <img src="Esai_Gamboa.jpg" alt="Esai Gamboa" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
         <h3>Esai Gamboa</h3>
         <p><strong>Developer</strong></p>
         <p>Frontend expert focused on clean, responsive interfaces.</p>
         <a href="https://esai-gamboa.vercel.app/" target="_blank">esai-gamboa.vercel.app</a>
       </div>
-      <div class="team-member" style="background: white; color: black; border-radius: 12px; padding: 1.5rem; width: 260px; text-align: center; cursor: pointer;">
+      <div class="team-member" style="background: rgba(255,255,255,0.08); color: white; border-radius: 12px; padding: 1.5rem; width: 260px; text-align: center; cursor: pointer; transition: transform 0.3s;">
         <img src="Brandon_Adolfo.jpg" alt="Brandon Adolfo" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
         <h3>Brandon Adolfo</h3>
         <p><strong>Developer</strong></p>
@@ -264,7 +256,7 @@
     </div>
   </section>
 
-  <section id="about" style="background: #22303c; color: white;">
+  <section id="about" style="background: #22303c; color: white; display: flex; align-items: center; justify-content: center; flex-direction: column;">
     <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.5rem; margin-bottom: 1rem;">About 3dvr.tech</h2>
     <p style="max-width: 700px; margin: auto; font-size: 1.2rem;">
       We believe everyone deserves the tools to build their digital life. We're creating an ecosystem of open-source hardware, software, and support—starting with $20/month personal services. Our mission is to empower creators, entrepreneurs, and digital nomads everywhere.
