@@ -7,44 +7,31 @@
   <link rel="icon" href="3DVRfavicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    html { scroll-behavior: smooth; }
-
     :root {
       --accent: #00ffc8;
-      --bg-hero: linear-gradient(to bottom, #2c3e50, #4ca1af);
-      --bg-subscribe: linear-gradient(160deg, #4ca1af 0%, #56ab2f 100%);
-      --bg-features: linear-gradient(135deg, #1abc9c, #16a085);
-      --bg-testimonials: linear-gradient(135deg, #ff6e7f, #bfe9ff);
-      --bg-team: linear-gradient(135deg, #5c258d, #4389a2);
-      --bg-about: linear-gradient(135deg, #232526, #414345);
+      --bg-dark: #2c3e50;
+      --bg-light: #34495e;
       --text-light: #ffffff;
       --text-dark: #000000;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
       color: var(--text-light);
-      background: var(--bg-hero);
-      line-height: 1.7;
-    }
-
-    h1, h2, h3 {
-      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
     }
 
     header {
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(10px);
-      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 1rem 2rem;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -56,59 +43,19 @@
 
     nav {
       display: flex;
-      gap: 1rem;
+      gap: 1.25rem;
+      flex-wrap: wrap;
     }
 
     nav a {
       color: white;
-      text-decoration: none;
       font-weight: 600;
-      font-size: 1.1rem;
-      padding: 0.5rem 0.75rem;
-      border-radius: 6px;
-      transition: background 0.3s;
+      text-decoration: none;
+      font-size: 1rem;
     }
 
     nav a:hover {
-      background: rgba(255,255,255,0.1);
-    }
-
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 4px;
-    }
-
-    .menu-toggle span {
-      width: 25px;
-      height: 3px;
-      background: white;
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: rgba(0, 0, 0, 0.95);
-        flex-direction: column;
-        display: none;
-        width: 200px;
-      }
-
-      nav.active {
-        display: flex;
-      }
-
-      nav a {
-        padding: 1rem;
-        border-top: 1px solid rgba(255,255,255,0.1);
-      }
-
-      .menu-toggle {
-        display: flex;
-      }
+      text-decoration: underline;
     }
 
     .sticky-cta {
@@ -117,105 +64,89 @@
       right: 20px;
       background: var(--accent);
       color: var(--text-dark);
-      padding: 0.9rem 1.6rem;
+      padding: 0.75rem 1.5rem;
       border-radius: 10px;
       font-weight: bold;
       text-decoration: none;
       font-size: 1.1rem;
-      box-shadow: 0 0 15px rgba(0,255,200,0.5);
+      box-shadow: 0 0 12px rgba(0,255,200,0.4);
       z-index: 1001;
     }
 
     section {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       padding: 6rem 2rem;
       text-align: center;
     }
 
-    section h2 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      margin-bottom: 1rem;
-    }
-
-    section p {
-      font-size: clamp(1.2rem, 2vw, 1.5rem);
-      max-width: 800px;
-      margin-bottom: 1.5rem;
-    }
-
     .hero {
-      background: var(--bg-hero);
+      background: linear-gradient(to bottom, #2c3e50, #4ca1af);
+      color: var(--text-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
 
     .hero img {
-      width: clamp(300px, 80vw, 600px);
-      margin-bottom: 2rem;
+      max-width: 500px;
+      width: 90%;
+      margin-bottom: 1.5rem;
     }
 
-    .hero h2 {
-      font-size: clamp(3rem, 8vw, 5rem);
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 4rem);
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 1rem;
     }
 
     .hero p {
-      font-size: clamp(1.5rem, 2.5vw, 1.7rem);
+      font-size: 1.5rem;
+      max-width: 700px;
     }
 
-    /* 🧠 Shared card grid style with improved layout */
-    .card-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      max-width: 1400px;
-      padding: 0 1rem;
-      margin-top: 2rem;
+    .cta {
+      background: linear-gradient(160deg, #4ca1af 0%, #56ab2f 100%);
+      color: white;
     }
 
-    .card {
-      flex: 1 1 calc(20% - 2rem); /* up to 5 cards per row */
-      min-width: 220px;
-      max-width: 260px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 14px;
-      padding: 1.5rem;
-      text-align: center;
-      transition: all 0.3s ease;
-      cursor: pointer;
+    .cta h2 {
+      font-size: 2.5rem;
+      font-family: 'Poppins', sans-serif;
     }
 
-    .card:hover {
-      background: rgba(255,255,255,0.15);
-      transform: translateY(-5px);
-    }
-
-    .card h3 {
-      color: var(--accent);
+    .cta p {
       font-size: 1.2rem;
-      margin-bottom: 0.5rem;
+      margin-top: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .card p {
-      font-size: 1rem;
+    .cta a {
+      display: inline-block;
+      margin-top: 2rem;
+      background: #3b4548;
+      color: white;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      text-decoration: none;
+    }
+
+    .cta a:hover {
+      background: var(--bg-dark);
     }
   </style>
 </head>
+
 <body id="top">
 
   <header>
     <a href="#top"><img src="3DVR.png" alt="3dvr.tech logo"></a>
-    <div class="menu-toggle" id="mobileMenuToggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <nav id="mainNav">
+    <nav>
       <a href="#top">Home</a>
-      <a href="#subscribe">Subscribe</a>
-      <a href="#features">Features</a>
+      <a href="#features">What You Get</a>
       <a href="#testimonials">Testimonials</a>
       <a href="#team">Team</a>
       <a href="#about">About</a>
@@ -225,138 +156,135 @@
   <a class="sticky-cta" href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank">Subscribe</a>
 
   <section class="hero">
-    <img src="3DVR.png" alt="3dvr.tech logo" />
-    <h2>Build the Future</h2>
-    <p>Open-source tech for digital nomads, creators, and explorers.</p>
+    <img src="3DVR.png" alt="3dvr.tech Logo" />
+    <h1>Build The Future</h1>
+    <p>Open-source tech for digital nomads, creators, and explorers</p>
   </section>
 
-  <section id="subscribe" style="background: var(--bg-subscribe);">
+  <section class="cta" id="subscribe">
     <h2>Websites & Apps for $20/month</h2>
-    <p>
-      Get a personal site, app, or support package tailored to your vision.
-      Clean, simple, open-source—powered by 3dvr.tech.
-    </p>
-    <a href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank" class="sticky-cta" style="position: static; margin-top: 2rem;">Subscribe Now</a>
+    <p>Subscribe to get a personal site, app, or support package tailored to your vision. Simple, clean, and open-source powered by 3dvr.tech.</p>
+    <a href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank">Subscribe Now</a>
   </section>
 
-  <section id="features" style="background: var(--bg-features);">
-    <h2>What You Get</h2>
-    <div class="card-grid">
-      <a href="websites.html" class="card" style="text-decoration: none; color: inherit;">
-      <div class="card">
+  <section id="features" style="background: #16a085; color: white;">
+    <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.5rem; margin-bottom: 2rem;">What You Get</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 1200px; margin: auto;">
+      <a href="websites.html" class="card" style="text-decoration: none; color: inherit; background: white; color: black; border-radius: 12px; padding: 2rem; width: 250px; transition: transform 0.3s; text-align: center;">
         <h3>Websites & Landing Pages</h3>
         <p>Beautiful, responsive sites tailored to your brand and goals.</p>
-      </div>
       </a>
-      <div class="card">
+      <a href="apps.html" class="card" style="text-decoration: none; color: inherit; background: white; color: black; border-radius: 12px; padding: 2rem; width: 250px; transition: transform 0.3s; text-align: center;">
         <h3>App Designs</h3>
-        <p>Mobile-ready UI/UX designs that engage and convert.</p>
-      </div>
-      <div class="card">
+        <p>Mobile-first layouts built for usability and impact.</p>
+      </a>
+      <a href="support.html" class="card" style="text-decoration: none; color: inherit; background: white; color: black; border-radius: 12px; padding: 2rem; width: 250px; transition: transform 0.3s; text-align: center;">
         <h3>Unlimited Tech Support</h3>
-        <p>Ask anything—no limits. We're here to help you build.</p>
-      </div>
-      <div class="card">
+        <p>Ask anything, anytime. We’ve got your back.</p>
+      </a>
+      <a href="consulting.html" class="card" style="text-decoration: none; color: inherit; background: white; color: black; border-radius: 12px; padding: 2rem; width: 250px; transition: transform 0.3s; text-align: center;">
         <h3>Personal Consultations</h3>
-        <p>We'll meet with you to brainstorm, refine, and launch ideas.</p>
-      </div>
-      <div class="card">
+        <p>Talk through ideas and get strategic advice, one-on-one.</p>
+      </a>
+      <a href="community.html" class="card" style="text-decoration: none; color: inherit; background: white; color: black; border-radius: 12px; padding: 2rem; width: 250px; transition: transform 0.3s; text-align: center;">
         <h3>Builder Community</h3>
-        <p>Join a community of creators, developers, and dreamers.</p>
-      </div>
+        <p>Collaborate with makers, dreamers, and doers like you.</p>
+      </a>
     </div>
   </section>
 
-  <section id="testimonials" style="background: var(--bg-testimonials);">
-    <h2>What Our Clients Say</h2>
-    <div class="card-grid">
-      <div class="card testimonial-card" data-link="https://www.brendadyestephens.com/">
-        <h3>SC Librarian</h3>
-        <p>“3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.”</p>
-      </div>
-      <div class="card testimonial-card" data-link="https://cruisersgarage.com/">
-        <h3>Cruisers Garage</h3>
-        <p>“They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.”</p>
-      </div>
-      <div class="card testimonial-card" data-link="https://www.gif.edu.gt/">
-        <h3>GIF English</h3>
-        <p>“We needed a site that could handle English lessons, scheduling, and videos. 3dvr.tech delivered exactly what we imagined.”</p>
-      </div>
-      <div class="card testimonial-card" data-link="https://www.sdvanlife.com/">
-        <h3>SD Vanlife</h3>
-        <p>“Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”</p>
-      </div>
+  <section id="testimonials" style="background: #34495e;">
+    <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.5rem; color: white; margin-bottom: 2rem;">What Our Clients Say</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 1200px; margin: auto;">
+      <a href="https://www.brendadyestephens.com/" target="_blank" style="text-decoration: none;">
+        <div style="background: rgba(255,255,255,0.1); color: white; padding: 1.5rem; border-radius: 12px; width: 260px; text-align: center; transition: transform 0.3s;">
+          <strong>SC Librarian</strong>
+          <p>“3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.”</p>
+        </div>
+      </a>
+      <a href="https://cruisersgarage.com/" target="_blank" style="text-decoration: none;">
+        <div style="background: rgba(255,255,255,0.1); color: white; padding: 1.5rem; border-radius: 12px; width: 260px; text-align: center; transition: transform 0.3s;">
+          <strong>Cruisers Garage</strong>
+          <p>“They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.”</p>
+        </div>
+      </a>
+      <a href="https://www.gif.edu.gt/" target="_blank" style="text-decoration: none;">
+        <div style="background: rgba(255,255,255,0.1); color: white; padding: 1.5rem; border-radius: 12px; width: 260px; text-align: center; transition: transform 0.3s;">
+          <strong>GIF English</strong>
+          <p>“We needed a site that could handle English lessons, scheduling, and videos. 3dvr.tech delivered exactly what we imagined.”</p>
+        </div>
+      </a>
+      <a href="https://www.sdvanlife.com/" target="_blank" style="text-decoration: none;">
+        <div style="background: rgba(255,255,255,0.1); color: white; padding: 1.5rem; border-radius: 12px; width: 260px; text-align: center; transition: transform 0.3s;">
+          <strong>SD Vanlife</strong>
+          <p>“Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”</p>
+        </div>
+      </a>
     </div>
   </section>
-  <section id="team" style="background: var(--bg-team);">
-    <h2>Meet the Team</h2>
-    <div class="card-grid">
-      <div class="card team-card" data-link="https://tmsteph.com">
+
+  <section id="team" style="background: #1f2a35;">
+    <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.5rem; color: white; margin-bottom: 2rem;">Meet the Team</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 1200px; margin: auto;">
+      <div class="team-member" style="background: white; color: black; border-radius: 12px; padding: 1.5rem; width: 260px; text-align: center; cursor: pointer;">
         <img src="Thomas_Stephens.jpg" alt="Thomas Stephens" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
         <h3>Thomas Stephens</h3>
         <p><strong>CEO / CTO / Founder</strong></p>
         <p>Visionary technologist creating the tools of tomorrow.</p>
+        <a href="https://tmsteph.com" target="_blank">tmsteph.com</a>
       </div>
-      <div class="card team-card" data-link="https://bodhi-lowski.vercel.app/">
+      <div class="team-member" style="background: white; color: black; border-radius: 12px; padding: 1.5rem; width: 260px; text-align: center; cursor: pointer;">
         <img src="Bodhi_Lowski.jpg" alt="Bodhi Lowski" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
         <h3>Bodhi Lowski</h3>
         <p><strong>Chief Marketing Officer</strong></p>
         <p>Building the brand through grassroots storytelling and growth.</p>
+        <a href="https://bodhi-lowski.vercel.app/" target="_blank">bodhi-lowski.vercel.app</a>
       </div>
-      <div class="card team-card" data-link="https://david-martinez.vercel.app/">
+      <div class="team-member" style="background: white; color: black; border-radius: 12px; padding: 1.5rem; width: 260px; text-align: center; cursor: pointer;">
         <img src="David_Martinez.jpg" alt="David Martinez" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
         <h3>David Martinez</h3>
         <p><strong>Lead Developer</strong></p>
         <p>Crafting immersive 3D and web experiences with finesse.</p>
+        <a href="https://david-martinez.vercel.app/" target="_blank">david-martinez.vercel.app</a>
       </div>
-      <div class="card team-card" data-link="https://esai-gamboa.vercel.app/">
+      <div class="team-member" style="background: white; color: black; border-radius: 12px; padding: 1.5rem; width: 260px; text-align: center; cursor: pointer;">
         <img src="Esai_Gamboa.jpg" alt="Esai Gamboa" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
         <h3>Esai Gamboa</h3>
         <p><strong>Developer</strong></p>
         <p>Frontend expert focused on clean, responsive interfaces.</p>
+        <a href="https://esai-gamboa.vercel.app/" target="_blank">esai-gamboa.vercel.app</a>
       </div>
-      <div class="card team-card" data-link="https://brandon-adolfo.vercel.app/">
+      <div class="team-member" style="background: white; color: black; border-radius: 12px; padding: 1.5rem; width: 260px; text-align: center; cursor: pointer;">
         <img src="Brandon_Adolfo.jpg" alt="Brandon Adolfo" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
         <h3>Brandon Adolfo</h3>
         <p><strong>Developer</strong></p>
         <p>Cross-platform mobile builder with an eye for design.</p>
+        <a href="https://brandon-adolfo.vercel.app/" target="_blank">brandon-adolfo.vercel.app</a>
       </div>
     </div>
   </section>
 
-  <section id="about" style="background: var(--bg-about);">
-    <h2>About 3dvr.tech</h2>
-    <p style="max-width: 700px; margin: 1rem auto; font-size: 1.3rem;">
-      We believe everyone deserves the tools to build their digital life.
-      We're creating an ecosystem of open-source hardware, software, and support—
-      starting with $20/month personal services. Our mission is to empower creators,
-      entrepreneurs, and digital nomads everywhere.
+  <section id="about" style="background: #22303c; color: white;">
+    <h2 style="font-family: 'Poppins', sans-serif; font-size: 2.5rem; margin-bottom: 1rem;">About 3dvr.tech</h2>
+    <p style="max-width: 700px; margin: auto; font-size: 1.2rem;">
+      We believe everyone deserves the tools to build their digital life. We're creating an ecosystem of open-source hardware, software, and support—starting with $20/month personal services. Our mission is to empower creators, entrepreneurs, and digital nomads everywhere.
     </p>
   </section>
 
   <footer style="background: #111; color: #aaa; text-align: center; padding: 2rem 1rem; font-size: 0.95rem;">
-    <p>&copy; 2025 <a href="https://3dvr.tech" target="_blank" style="color: var(--accent);">3dvr.tech</a> — Open Source. Open Future.</p>
+    <p>&copy; 2025 <a href="https://3dvr.tech" style="color: var(--accent); text-decoration: none;">3dvr.tech</a> — Open Source. Open Future.</p>
   </footer>
 
   <script>
-    // Hamburger nav toggle
-    const toggle = document.getElementById('mobileMenuToggle');
-    const nav = document.getElementById('mainNav');
-    toggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
-
-    // Clickable testimonial and team cards
-    document.querySelectorAll('.testimonial-card, .team-card').forEach(card => {
-      const link = card.getAttribute('data-link');
-      if (link) {
-        card.addEventListener('click', () => {
-          window.open(link, '_blank');
-        });
-      }
+    document.querySelectorAll('.team-member').forEach(member => {
+      member.addEventListener('click', () => {
+        const link = member.querySelector('a');
+        if (link) window.open(link.href, '_blank');
+      });
     });
   </script>
 
 </body>
 </html>
+
 
