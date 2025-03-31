@@ -152,7 +152,7 @@
     <p>Open-source tech for digital nomads, creators, and explorers.</p>
   </section>
 
-    <section id="subscribe" style="background: var(--bg-subscribe);">
+  <section id="subscribe" style="background: var(--bg-subscribe);">
     <h2>Websites & Apps for $20/month</h2>
     <p>Get a personal site, app, or support package tailored to your vision. Clean, simple, open-source—powered by 3dvr.tech.</p>
     <a href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank" class="sticky-cta" style="position: static; margin-top: 2rem;">Subscribe Now</a>
@@ -160,7 +160,7 @@
 
   <section id="features" style="background: var(--bg-features);">
     <h2>What You Get</h2>
-    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; max-width: 1000px;">
+    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; max-width: 1200px;">
       <div class="feature-card">
         <h3>✔ Websites & Landing Pages</h3>
         <p>Beautiful, responsive sites tailored to your brand and goals.</p>
@@ -187,7 +187,7 @@
         background: rgba(255,255,255,0.08);
         border-radius: 12px;
         padding: 1.5rem;
-        width: 280px;
+        width: 260px;
         text-align: center;
         transition: all 0.3s ease;
         cursor: pointer;
@@ -209,49 +209,59 @@
 
   <section id="testimonials" style="background: var(--bg-testimonials);">
     <h2>What Our Clients Say</h2>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem; max-width: 1000px;">
-      <div class="testimonial-card">
-        <h3><a href="https://www.brendadyestephens.com/" target="_blank">SC Librarian</a></h3>
-        <p>3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.</p>
+    <div class="testimonial-grid">
+      <div class="testimonial-card" data-link="https://www.brendadyestephens.com/">
+        <h3>SC Librarian</h3>
+        <p>“3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.”</p>
       </div>
-      <div class="testimonial-card">
-        <h3><a href="https://cruisersgarage.com/" target="_blank">Cruisers Garage</a></h3>
-        <p>They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.</p>
+      <div class="testimonial-card" data-link="https://cruisersgarage.com/">
+        <h3>Cruisers Garage</h3>
+        <p>“They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.”</p>
       </div>
-      <div class="testimonial-card">
-        <h3><a href="https://www.gif.edu.gt/" target="_blank">GIF English</a></h3>
-        <p>We needed a site that could handle English lessons, scheduling, and videos. 3dvr.tech delivered exactly what we imagined.</p>
+      <div class="testimonial-card" data-link="https://www.gif.edu.gt/">
+        <h3>GIF English</h3>
+        <p>“We needed a site that could handle English lessons, scheduling, and videos. 3dvr.tech delivered exactly what we imagined.”</p>
       </div>
-      <div class="testimonial-card">
-        <h3><a href="https://www.sdvanlife.com/" target="_blank">SD Vanlife</a></h3>
-        <p>Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.</p>
+      <div class="testimonial-card" data-link="https://www.sdvanlife.com/">
+        <h3>SD Vanlife</h3>
+        <p>“Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”</p>
       </div>
     </div>
+
     <style>
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+        max-width: 1200px;
+        width: 100%;
+      }
+
       .testimonial-card {
         background: rgba(255,255,255,0.07);
         color: var(--text-light);
         border-radius: 14px;
         padding: 1.5rem;
-        width: 280px;
         font-size: 0.95rem;
         box-shadow: 0 6px 14px rgba(0,0,0,0.15);
         transition: transform 0.3s ease, background 0.3s ease;
+        cursor: pointer;
       }
+
       .testimonial-card:hover {
         transform: translateY(-6px);
         background: rgba(255,255,255,0.15);
       }
+
       .testimonial-card h3 {
         font-size: 1rem;
         margin-bottom: 0.5rem;
-      }
-      .testimonial-card a {
         color: var(--accent);
-        text-decoration: none;
       }
-      .testimonial-card a:hover {
-        text-decoration: underline;
+
+      .testimonial-card p {
+        font-size: 0.85rem;
       }
     </style>
   </section>
@@ -343,6 +353,7 @@
   </footer>
 
   <script>
+    // Clickable Team Cards
     document.querySelectorAll('.team-member').forEach(member => {
       const link = member.getAttribute('data-link');
       if (link) {
@@ -351,9 +362,18 @@
         });
       }
     });
+
+    // Clickable Testimonial Cards
+    document.querySelectorAll('.testimonial-card').forEach(card => {
+      const link = card.getAttribute('data-link');
+      if (link) {
+        card.addEventListener('click', () => {
+          window.open(link, '_blank');
+        });
+      }
+    });
   </script>
 
 </body>
 </html>
-
 
