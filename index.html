@@ -23,13 +23,21 @@
       --text-dark: #000000;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text-light);
       background: var(--bg-hero);
       line-height: 1.7;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Poppins', sans-serif;
     }
 
     header {
@@ -94,7 +102,6 @@
     }
 
     section h2 {
-      font-family: 'Poppins', sans-serif;
       font-size: clamp(2.5rem, 6vw, 4rem);
       margin-bottom: 1rem;
     }
@@ -110,8 +117,16 @@
     }
 
     .hero img {
-      width: clamp(260px, 65vw, 520px);
+      width: clamp(280px, 65vw, 520px);
       margin-bottom: 2rem;
+    }
+
+    .hero h2 {
+      font-size: clamp(3rem, 8vw, 5rem);
+    }
+
+    .hero p {
+      font-size: clamp(1.4rem, 2vw, 1.6rem);
     }
   </style>
 </head>
@@ -137,40 +152,57 @@
     <p>Open-source tech for digital nomads, creators, and explorers.</p>
   </section>
 
-  <section id="subscribe" style="background: var(--bg-subscribe);">
+    <section id="subscribe" style="background: var(--bg-subscribe);">
     <h2>Websites & Apps for $20/month</h2>
     <p>Get a personal site, app, or support package tailored to your vision. Clean, simple, open-source—powered by 3dvr.tech.</p>
-    <a href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" class="sticky-cta" target="_blank">Subscribe Now</a>
+    <a href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank" class="sticky-cta" style="position: static; margin-top: 2rem;">Subscribe Now</a>
   </section>
 
   <section id="features" style="background: var(--bg-features);">
     <h2>What You Get</h2>
     <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; max-width: 1000px;">
-      <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 12px; width: 280px; transition: transform 0.3s; cursor: pointer;">
-        <h3 style="font-size: 1.4rem; color: var(--accent); margin-bottom: 0.5rem;">✔ Websites & Landing Pages</h3>
-        <p style="font-size: 1rem;">Beautiful, responsive sites tailored to your brand and goals.</p>
+      <div class="feature-card">
+        <h3>✔ Websites & Landing Pages</h3>
+        <p>Beautiful, responsive sites tailored to your brand and goals.</p>
       </div>
-      <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 12px; width: 280px; transition: transform 0.3s; cursor: pointer;">
-        <h3 style="font-size: 1.4rem; color: var(--accent); margin-bottom: 0.5rem;">✔ App Designs</h3>
-        <p style="font-size: 1rem;">Mobile-ready UI/UX designs that engage and convert.</p>
+      <div class="feature-card">
+        <h3>✔ App Designs</h3>
+        <p>Mobile-ready UI/UX designs that engage and convert.</p>
       </div>
-      <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 12px; width: 280px; transition: transform 0.3s; cursor: pointer;">
-        <h3 style="font-size: 1.4rem; color: var(--accent); margin-bottom: 0.5rem;">✔ Unlimited Tech Support</h3>
-        <p style="font-size: 1rem;">Ask anything—no limits. We're here to help you build.</p>
+      <div class="feature-card">
+        <h3>✔ Unlimited Tech Support</h3>
+        <p>Ask anything—no limits. We're here to help you build.</p>
       </div>
-      <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 12px; width: 280px; transition: transform 0.3s; cursor: pointer;">
-        <h3 style="font-size: 1.4rem; color: var(--accent); margin-bottom: 0.5rem;">✔ Personal Consultations</h3>
-        <p style="font-size: 1rem;">We'll meet with you to brainstorm, refine, and launch ideas.</p>
+      <div class="feature-card">
+        <h3>✔ Personal Consultations</h3>
+        <p>We'll meet with you to brainstorm, refine, and launch ideas.</p>
       </div>
-      <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 12px; width: 280px; transition: transform 0.3s; cursor: pointer;">
-        <h3 style="font-size: 1.4rem; color: var(--accent); margin-bottom: 0.5rem;">✔ Builder Community</h3>
-        <p style="font-size: 1rem;">Join a community of creators, developers, and dreamers.</p>
+      <div class="feature-card">
+        <h3>✔ Builder Community</h3>
+        <p>Join a community of creators, developers, and dreamers.</p>
       </div>
     </div>
     <style>
-      #features div:hover {
-        transform: translateY(-8px);
+      .feature-card {
+        background: rgba(255,255,255,0.08);
+        border-radius: 12px;
+        padding: 1.5rem;
+        width: 280px;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      .feature-card:hover {
         background: rgba(255,255,255,0.15);
+        transform: translateY(-5px);
+      }
+      .feature-card h3 {
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+      }
+      .feature-card p {
+        font-size: 1rem;
       }
     </style>
   </section>
@@ -178,59 +210,87 @@
   <section id="testimonials" style="background: var(--bg-testimonials);">
     <h2>What Our Clients Say</h2>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem; max-width: 1000px;">
-      <div style="background: white; color: black; border-radius: 14px; padding: 1.5rem; width: 280px; box-shadow: 0 6px 14px rgba(0,0,0,0.2);">
-        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;"><a href="https://www.brendadyestephens.com/" target="_blank" style="color: #222;">SC Librarian</a></h3>
-        <p>“3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.”</p>
+      <div class="testimonial-card">
+        <h3><a href="https://www.brendadyestephens.com/" target="_blank">SC Librarian</a></h3>
+        <p>3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.</p>
       </div>
-      <div style="background: white; color: black; border-radius: 14px; padding: 1.5rem; width: 280px; box-shadow: 0 6px 14px rgba(0,0,0,0.2);">
-        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;"><a href="https://cruisersgarage.com/" target="_blank" style="color: #222;">Cruisers Garage</a></h3>
-        <p>“They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.”</p>
+      <div class="testimonial-card">
+        <h3><a href="https://cruisersgarage.com/" target="_blank">Cruisers Garage</a></h3>
+        <p>They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.</p>
       </div>
-      <div style="background: white; color: black; border-radius: 14px; padding: 1.5rem; width: 280px; box-shadow: 0 6px 14px rgba(0,0,0,0.2);">
-        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;"><a href="https://www.gif.edu.gt/" target="_blank" style="color: #222;">GIF English</a></h3>
-        <p>“We needed a site that could handle English lessons, scheduling, and videos. 3dvr.tech delivered exactly what we imagined.”</p>
+      <div class="testimonial-card">
+        <h3><a href="https://www.gif.edu.gt/" target="_blank">GIF English</a></h3>
+        <p>We needed a site that could handle English lessons, scheduling, and videos. 3dvr.tech delivered exactly what we imagined.</p>
       </div>
-      <div style="background: white; color: black; border-radius: 14px; padding: 1.5rem; width: 280px; box-shadow: 0 6px 14px rgba(0,0,0,0.2);">
-        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;"><a href="https://www.sdvanlife.com/" target="_blank" style="color: #222;">SD Vanlife</a></h3>
-        <p>“Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”</p>
+      <div class="testimonial-card">
+        <h3><a href="https://www.sdvanlife.com/" target="_blank">SD Vanlife</a></h3>
+        <p>Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.</p>
       </div>
     </div>
+    <style>
+      .testimonial-card {
+        background: rgba(255,255,255,0.07);
+        color: var(--text-light);
+        border-radius: 14px;
+        padding: 1.5rem;
+        width: 280px;
+        font-size: 0.95rem;
+        box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+      .testimonial-card:hover {
+        transform: translateY(-6px);
+        background: rgba(255,255,255,0.15);
+      }
+      .testimonial-card h3 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+      }
+      .testimonial-card a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      .testimonial-card a:hover {
+        text-decoration: underline;
+      }
+    </style>
   </section>
 
-  <section id="team" style="background: var(--bg-team);">
+    <section id="team" style="background: var(--bg-team);">
     <h2>Meet the Team</h2>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem;">
       <div class="team-member" data-link="https://tmsteph.com">
-        <img src="Thomas_Stephens.jpg" alt="Thomas Stephens" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
-        <h3 style="font-size: 1.3rem;">Thomas Stephens</h3>
+        <img src="Thomas_Stephens.jpg" alt="Thomas Stephens">
+        <h3>Thomas Stephens</h3>
         <p><strong>CEO / CTO / Founder</strong></p>
         <p>Visionary technologist creating the tools of tomorrow.</p>
       </div>
       <div class="team-member" data-link="https://bodhi-lowski.vercel.app/">
-        <img src="Bodhi_Lowski.jpg" alt="Bodhi Lowski" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
-        <h3 style="font-size: 1.3rem;">Bodhi Lowski</h3>
+        <img src="Bodhi_Lowski.jpg" alt="Bodhi Lowski">
+        <h3>Bodhi Lowski</h3>
         <p><strong>Chief Marketing Officer</strong></p>
         <p>Building the brand through grassroots storytelling and growth.</p>
       </div>
       <div class="team-member" data-link="https://david-martinez.vercel.app/">
-        <img src="David_Martinez.jpg" alt="David Martinez" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
-        <h3 style="font-size: 1.3rem;">David Martinez</h3>
+        <img src="David_Martinez.jpg" alt="David Martinez">
+        <h3>David Martinez</h3>
         <p><strong>Lead Developer</strong></p>
         <p>Crafting immersive 3D and web experiences with finesse.</p>
       </div>
       <div class="team-member" data-link="https://esai-gamboa.vercel.app/">
-        <img src="Esai_Gamboa.jpg" alt="Esai Gamboa" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
-        <h3 style="font-size: 1.3rem;">Esai Gamboa</h3>
+        <img src="Esai_Gamboa.jpg" alt="Esai Gamboa">
+        <h3>Esai Gamboa</h3>
         <p><strong>Developer</strong></p>
         <p>Frontend expert focused on clean, responsive interfaces.</p>
       </div>
       <div class="team-member" data-link="https://brandon-adolfo.vercel.app/">
-        <img src="Brandon_Adolfo.jpg" alt="Brandon Adolfo" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
-        <h3 style="font-size: 1.3rem;">Brandon Adolfo</h3>
+        <img src="Brandon_Adolfo.jpg" alt="Brandon Adolfo">
+        <h3>Brandon Adolfo</h3>
         <p><strong>Developer</strong></p>
         <p>Cross-platform mobile builder with an eye for design.</p>
       </div>
     </div>
+
     <style>
       .team-member {
         background: white;
@@ -243,9 +303,27 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
       }
+
       .team-member:hover {
         transform: translateY(-6px);
         box-shadow: 0 12px 22px rgba(0, 0, 0, 0.3);
+      }
+
+      .team-member img {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 1rem;
+      }
+
+      .team-member h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .team-member p {
+        font-size: 0.95rem;
       }
     </style>
   </section>
@@ -265,11 +343,12 @@
   </footer>
 
   <script>
-    // Clickable team cards
-    document.querySelectorAll('.team-member').forEach(card => {
-      const link = card.getAttribute('data-link');
+    document.querySelectorAll('.team-member').forEach(member => {
+      const link = member.getAttribute('data-link');
       if (link) {
-        card.addEventListener('click', () => window.open(link, '_blank'));
+        member.addEventListener('click', () => {
+          window.open(link, '_blank');
+        });
       }
     });
   </script>
