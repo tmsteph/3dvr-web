@@ -49,6 +49,10 @@
       position: sticky;
       top: 0;
       z-index: 1001;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeSlideIn 1.8s ease-out forwards;
+      animation-delay: 3s;
     }
 
     header img {
@@ -154,6 +158,8 @@
       max-height: 400px;
       height: auto;
       margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeIn 3s ease-out forwards;
     }
 
     .hero h2 {
@@ -203,18 +209,6 @@
       font-size: 1rem;
     }
 
-    /* ✅ Slowed-down fade-in effects */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(-20px);
-      animation: fadeSlideIn 1.8s ease-out forwards;
-    }
-
-    .fade-in-logo {
-      opacity: 0;
-      animation: fadeIn 2s ease-out forwards;
-    }
-
     @keyframes fadeSlideIn {
       to {
         opacity: 1;
@@ -230,7 +224,7 @@
   </style>
 </head>
 <body id="top">
-  <header class="fade-in">
+  <header>
     <a href="#top"><img src="3DVR.png" alt="3dvr.tech logo" /></a>
     <div class="menu-toggle" id="mobileMenuToggle">
       <span></span><span></span><span></span>
@@ -248,7 +242,7 @@
   <a class="sticky-cta" href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank">Subscribe</a>
 
   <section class="hero">
-    <img src="3DVR.png" alt="3dvr.tech logo" class="fade-in-logo" />
+    <img src="3DVR.png" alt="3dvr.tech logo" />
     <h2>Build the Future</h2>
     <p>Open-source tech for digital nomads, creators, and explorers.</p>
   </section>
