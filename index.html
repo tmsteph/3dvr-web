@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
   <style>
     html { scroll-behavior: smooth; }
+
     :root {
       --accent: #00ffc8;
       --bg-hero: linear-gradient(to bottom, #2c3e50, #4ca1af);
@@ -201,11 +202,36 @@
     .card p {
       font-size: 1rem;
     }
+
+    /* ✅ Fade-in effects */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeSlideIn 1s ease-out forwards;
+    }
+
+    .fade-in-logo {
+      opacity: 0;
+      animation: fadeIn 1.2s ease-out forwards;
+    }
+
+    @keyframes fadeSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body id="top">
-  <header>
-    <a href="#top"><img src="3DVR.png" alt="3dvr.tech logo"></a>
+  <header class="fade-in">
+    <a href="#top"><img src="3DVR.png" alt="3dvr.tech logo" /></a>
     <div class="menu-toggle" id="mobileMenuToggle">
       <span></span><span></span><span></span>
     </div>
@@ -222,7 +248,7 @@
   <a class="sticky-cta" href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank">Subscribe</a>
 
   <section class="hero">
-    <img src="3DVR.png" alt="3dvr.tech logo" />
+    <img src="3DVR.png" alt="3dvr.tech logo" class="fade-in-logo" />
     <h2>Build the Future</h2>
     <p>Open-source tech for digital nomads, creators, and explorers.</p>
   </section>
@@ -319,7 +345,7 @@
       });
     });
 
-    // Make testimonial & team cards clickable
+    // Clickable testimonial & team cards
     document.querySelectorAll('.testimonial-card, .team-card').forEach(card => {
       const link = card.getAttribute('data-link');
       if (link) {
@@ -331,3 +357,5 @@
   </script>
 </body>
 </html>
+
+  
