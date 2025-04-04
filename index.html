@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="color-scheme" content="dark light" />
   <title>3dvr.tech</title>
   <link rel="icon" href="3DVRfavicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
@@ -64,7 +65,7 @@
         position: absolute;
         top: 100%;
         right: 0;
-        background: rgba(0, 0, 0, 0.95);
+        background: rgba(44, 62, 80, 0.95); /* ✅ Dark-mode compatible background */
         flex-direction: column;
         display: none;
         width: 200px;
@@ -90,69 +91,7 @@
       box-shadow: 0 0 15px rgba(0,255,200,0.5);
       z-index: 1000;
     }
-    section {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 6rem 2rem;
-      text-align: center;
-    }
-    section h2 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      margin-bottom: 1rem;
-    }
-    section p {
-      font-size: clamp(1.2rem, 2vw, 1.5rem);
-      max-width: 800px;
-      margin-bottom: 1.5rem;
-    }
-    .hero img {
-      width: clamp(300px, 80vw, 600px);
-      margin-bottom: 2rem;
-    }
-    .hero h2 {
-      font-size: clamp(3rem, 8vw, 5rem);
-    }
-    .hero p {
-      font-size: clamp(1.5rem, 2.5vw, 1.7rem);
-    }
-    .card-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      max-width: 1400px;
-      padding: 0 1rem;
-      margin-top: 2rem;
-    }
-    .card {
-      flex: 1 1 calc(20% - 2rem);
-      min-width: 220px;
-      max-width: 260px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 14px;
-      padding: 1.5rem;
-      text-align: center;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      text-decoration: none;
-      color: white;
-    }
-    .card:hover {
-      background: rgba(255,255,255,0.15);
-      transform: translateY(-5px);
-    }
-    .card h3 {
-      color: var(--accent);
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-    .card p {
-      font-size: 1rem;
-    }
-  </style>
+      </style>
 </head>
 <body id="top">
   <header>
@@ -169,13 +108,16 @@
       <a href="#about">About</a>
     </nav>
   </header>
+
   <a class="sticky-cta" href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank">Subscribe</a>
+
   <section class="hero">
     <img src="3DVR.png" alt="3dvr.tech logo" />
     <h2>Build the Future</h2>
     <p>Open-source tech for digital nomads, creators, and explorers.</p>
   </section>
-    <section id="subscribe" style="background: var(--bg-subscribe);">
+
+  <section id="subscribe" style="background: var(--bg-subscribe);">
     <h2>Websites & Apps for $20/month</h2>
     <p>Get a personal site, app, or support package tailored to your vision. Clean, simple, open-source—powered by 3dvr.tech.</p>
     <a href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank" class="sticky-cta" style="position: static; margin-top: 2rem;">Subscribe Now</a>
@@ -253,6 +195,7 @@
   <script>
     const toggle = document.getElementById('mobileMenuToggle');
     const nav = document.getElementById('mainNav');
+
     toggle.addEventListener('click', () => {
       nav.classList.toggle('active');
     });
@@ -279,4 +222,4 @@
 </body>
 </html>
 
-  
+    
