@@ -203,16 +203,16 @@
       font-size: 1rem;
     }
 
-    /* ✅ Fade-in effects */
+    /* ✅ Slowed-down fade-in effects */
     .fade-in {
       opacity: 0;
       transform: translateY(-20px);
-      animation: fadeSlideIn 1s ease-out forwards;
+      animation: fadeSlideIn 1.8s ease-out forwards;
     }
 
     .fade-in-logo {
       opacity: 0;
-      animation: fadeIn 1.2s ease-out forwards;
+      animation: fadeIn 2s ease-out forwards;
     }
 
     @keyframes fadeSlideIn {
@@ -328,15 +328,15 @@
   </footer>
 
   <script>
-    // Hamburger toggle
     const toggle = document.getElementById('mobileMenuToggle');
     const nav = document.getElementById('mainNav');
 
+    // Toggle mobile nav menu
     toggle.addEventListener('click', () => {
       nav.classList.toggle('active');
     });
 
-    // Auto-close mobile nav when link is clicked
+    // Auto-close mobile nav on link click
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', () => {
         if (window.innerWidth <= 768) {
@@ -345,7 +345,7 @@
       });
     });
 
-    // Clickable testimonial & team cards
+    // Make testimonial and team cards clickable
     document.querySelectorAll('.testimonial-card, .team-card').forEach(card => {
       const link = card.getAttribute('data-link');
       if (link) {
