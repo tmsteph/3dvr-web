@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3DVR.tech Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      background-color: #0a0a0a;
+      color: #f0f0f0;
+    }
+
+    header {
+      background-color: #111;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #333;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      color: #f0f0f0;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: radial-gradient(circle at center, #1a1a1a, #0a0a0a);
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .projects {
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .project {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 0.5rem;
+    }
+
+    .project h3 {
+      margin-top: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #888;
+      border-top: 1px solid #333;
+    }
+
+    @media (max-width: 600px) {
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>3DVR.tech</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Explore Our Portfolio</h2>
+    <p>Open-source tech solutions for digital nomads, creatives, and communities. Built with care, passion, and purpose.</p>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="project">
+      <h3>Subscription Service</h3>
+      <p>Websites, app designs, and unlimited tech support for creators and small businesses.</p>
+      <a href="https://portal.3dvr.tech" target="_blank">Visit portal.3dvr.tech →</a>
+    </div>
+
+    <div class="project">
+      <h3>GIF English App</h3>
+      <p>Immersive English-learning app with flashcards, dialogues, quizzes, and more – built with Gun.js and Vercel.</p>
+    </div>
+
+    <div class="project">
+      <h3>TommyOS</h3>
+      <p>A modular, open-source web OS that blends browser and desktop functionality. In progress with React and Gun.js.</p>
+    </div>
+
+    <!-- Add more projects here -->
+  </section>
+
+  <footer id="contact">
+    <p>&copy; 2025 3DVR.tech. Built by open minds for an open world.</p>
+  </footer>
+</body>
+</html>
