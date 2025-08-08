@@ -22,11 +22,7 @@
       --text-dark: #000000;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -35,9 +31,7 @@
       line-height: 1.7;
     }
 
-    h1, h2, h3 {
-      font-family: 'Poppins', sans-serif;
-    }
+    h1, h2, h3 { font-family: 'Poppins', sans-serif; }
 
     header {
       background: rgba(0, 0, 0, 0.6);
@@ -55,225 +49,127 @@
       animation-delay: 1s;
     }
 
-    header img {
-      height: 48px;
-      max-width: 150px;
-    }
+    header img { height: 48px; max-width: 150px; }
 
-    nav {
-      display: flex;
-      gap: 1rem;
-    }
+    nav { display: flex; gap: 1rem; }
 
     nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      padding: 0.5rem 0.75rem;
-      border-radius: 6px;
-      transition: background 0.3s;
+      color: white; text-decoration: none; font-weight: 600; font-size: 1.1rem;
+      padding: 0.5rem 0.75rem; border-radius: 6px; transition: background 0.3s;
     }
+    nav a:hover { background: rgba(255,255,255,0.1); }
 
-    nav a:hover {
-      background: rgba(255,255,255,0.1);
-    }
-
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 4px;
-    }
-
-    .menu-toggle span {
-      width: 25px;
-      height: 3px;
-      background: white;
-    }
+    .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 4px; }
+    .menu-toggle span { width: 25px; height: 3px; background: white; }
 
     @media (max-width: 768px) {
       nav {
-        position: absolute;
-        top: 100%;
-        right: 0;
+        position: absolute; top: 100%; right: 0;
         background: rgba(44, 62, 80, 0.95);
-        flex-direction: column;
-        display: none;
-        width: 200px;
+        flex-direction: column; display: none; width: 200px;
       }
-
-      nav.active {
-        display: flex;
-      }
-
-      nav a {
-        padding: 1rem;
-        border-top: 1px solid rgba(255,255,255,0.1);
-      }
-
-      .menu-toggle {
-        display: flex;
-      }
+      nav.active { display: flex; }
+      nav a { padding: 1rem; border-top: 1px solid rgba(255,255,255,0.1); }
+      .menu-toggle { display: flex; }
     }
 
     .sticky-cta {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--accent);
-      color: var(--text-dark);
-      padding: 0.9rem 1.6rem;
-      border-radius: 10px;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1.1rem;
-      box-shadow: 0 0 15px rgba(0,255,200,0.5);
-      z-index: 1000;
+      position: fixed; bottom: 20px; right: 20px;
+      background: var(--accent); color: var(--text-dark);
+      padding: 0.9rem 1.6rem; border-radius: 10px; font-weight: bold;
+      text-decoration: none; font-size: 1.1rem;
+      box-shadow: 0 0 15px rgba(0,255,200,0.5); z-index: 1000;
     }
 
     section {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 6rem 2rem;
-      text-align: center;
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; padding: 6rem 2rem; text-align: center;
     }
-
-    section h2 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      margin-bottom: 1rem;
-    }
-
-    section p {
-      font-size: clamp(1.2rem, 2vw, 1.5rem);
-      max-width: 800px;
-      margin-bottom: 1.5rem;
-    }
+    section h2 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem; }
+    section p { font-size: clamp(1.2rem, 2vw, 1.5rem); max-width: 800px; margin-bottom: 1.5rem; }
 
     .hero img {
-      max-width: 90vw;
-      max-height: 400px;
-      height: auto;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeIn 3s ease-out forwards;
+      max-width: 90vw; max-height: 400px; height: auto; margin-bottom: 2rem;
+      opacity: 0; animation: fadeIn 3s ease-out forwards;
     }
-
-    .hero h2 {
-      font-size: clamp(3rem, 8vw, 5rem);
-    }
-
-    .hero p {
-      font-size: clamp(1.5rem, 2.5vw, 1.7rem);
-    }
+    .hero h2 { font-size: clamp(3rem, 8vw, 5rem); }
+    .hero p { font-size: clamp(1.5rem, 2.5vw, 1.7rem); }
 
     .card-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      max-width: 1400px;
-      padding: 0 1rem;
-      margin-top: 2rem;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;
+      max-width: 1400px; padding: 0 1rem; margin-top: 2rem;
     }
-
     .card {
       flex: 1 1 calc(20% - 2rem);
-      min-width: 220px;
-      max-width: 260px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 14px;
-      padding: 1.5rem;
-      text-align: center;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      text-decoration: none;
-      color: white;
+      min-width: 220px; max-width: 260px;
+      background: rgba(255,255,255,0.08); border-radius: 14px; padding: 1.5rem;
+      text-align: center; transition: all 0.3s ease; cursor: pointer;
+      text-decoration: none; color: white; position: relative;
+    }
+    .card:hover { background: rgba(255,255,255,0.15); transform: translateY(-5px); }
+    .card h3 { color: var(--accent); font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .card p { font-size: 1rem; }
+
+    .btn-like {
+      display: inline-block; margin-top: 1rem; font-weight: 700;
+      background: var(--accent); color: var(--text-dark);
+      padding: 0.6rem 1rem; border-radius: 10px; text-decoration: none;
+      box-shadow: 0 0 12px rgba(0,255,200,0.35);
     }
 
-    .card:hover {
-      background: rgba(255,255,255,0.15);
-      transform: translateY(-5px);
-    }
-
-    .card h3 {
-      color: var(--accent);
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .card p {
-      font-size: 1rem;
-    }
-
-    @keyframes fadeSlideIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
+    @keyframes fadeSlideIn { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { to { opacity: 1; } }
   </style>
 </head>
 <body id="top">
   <header>
     <a href="#top"><img src="3DVR.png" alt="3dvr.tech logo" /></a>
-    <div class="menu-toggle" id="mobileMenuToggle">
-      <span></span><span></span><span></span>
-    </div>
+    <div class="menu-toggle" id="mobileMenuToggle"><span></span><span></span><span></span></div>
     <nav id="mainNav">
       <a href="#top">Home</a>
-      <a href="#subscribe">Subscribe</a>
+      <!-- Changed to the explainer page -->
+      <a href="subscribe.html">Subscribe</a>
       <a href="#features">Features</a>
       <a href="#testimonials">Testimonials</a>
       <a href="#team">Team</a>
       <a href="#about">About</a>
       <a href="https://3dvr-portal.vercel.app/">Portal</a>
     </nav>
-
   </header>
 
-  <a class="sticky-cta" href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank">Subscribe</a>
+  <!-- Floating CTA now routes to explainer -->
+  <a class="sticky-cta" href="subscribe.html">Subscribe</a>
 
- <a href="https://portal.3dvr.tech" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-  <section class="hero" style="cursor: pointer;">
-    <img src="3DVR.png" alt="3dvr.tech logo" />
-    <h2>Build the Future</h2>
-    <p>Open-source tech for digital nomads, creators, and explorers.</p>
+  <a href="https://portal.3dvr.tech" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+    <section class="hero" style="cursor: pointer;">
+      <img src="3DVR.png" alt="3dvr.tech logo" />
+      <h2>Build the Future</h2>
+      <p>Open-source tech for digital nomads, creators, and explorers.</p>
+    </section>
+  </a>
+
+  <!-- SUBSCRIBE SECTION: every click leads to subscribe.html (no direct Stripe links) -->
+  <section id="subscribe" style="background: var(--bg-subscribe);">
+    <h2>Choose Your Plan</h2>
+    <p>Start building your vision with the plan that fits you best. Upgrade anytime.</p>
+    <div class="card-grid">
+      <a href="subscribe.html#free" class="card">
+        <h3>Free Plan</h3>
+        <p>Get limited access to tools, resources, and community. Perfect for curious explorers.</p>
+        <span class="btn-like">Learn More</span>
+      </a>
+      <a href="subscribe.html#supporter" class="card">
+        <h3>$5 / Month</h3>
+        <p>Early Supporter Tier: Show your support, unlock exclusive updates, and help shape the future.</p>
+        <span class="btn-like">Learn More</span>
+      </a>
+      <a href="subscribe.html#pro" class="card">
+        <h3>$20 / Month</h3>
+        <p>Full Access: Website, app, tech support, consulting, and more. Fully tailored to your goals.</p>
+        <span class="btn-like">Learn More</span>
+      </a>
+    </div>
   </section>
-</a>
-
-  
-<section id="subscribe" style="background: var(--bg-subscribe);">
-  <h2>Choose Your Plan</h2>
-  <p>Start building your vision with the plan that fits you best. Upgrade anytime.</p>
-  <div class="card-grid">
-    <div class="card">
-      <h3>Free Plan</h3>
-      <p>Get limited access to tools, resources, and community. Perfect for curious explorers.</p>
-      <a href="https://3dvr-portal.vercel.app/free-trial.html" target="_blank" class="sticky-cta" style="position: static; margin-top: 1rem;">Join Free</a>
-    </div>
-    <div class="card">
-      <h3>$5 / Month</h3>
-      <p>Early Supporter Tier: Show your support, unlock exclusive updates, and help shape the future.</p>
-      <a href="https://buy.stripe.com/28EcN599Q2dJbFdh2Qc7u07" target="_blank" class="sticky-cta" style="position: static; margin-top: 1rem;">Support Us</a>
-    </div>
-    <div class="card">
-      <h3>$20 / Month</h3>
-      <p>Full Access: Website, app, tech support, consulting, and more. Fully tailored to your goals.</p>
-      <a href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank" class="sticky-cta" style="position: static; margin-top: 1rem;">Subscribe Now</a>
-    </div>
-  </div>
-</section>
-
 
   <section id="features" style="background: var(--bg-features);">
     <h2>What You Get</h2>
@@ -297,99 +193,80 @@
   </section>
 
   <section id="team" style="background: var(--bg-team);">
-  <h2>Meet the Team</h2>
-  <div class="card-grid">
-    <div class="card team-card" data-link="https://tmsteph.com">
-      <img src="Thomas_Stephens.jpg" alt="Thomas Stephens" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
-      <h3>Thomas Stephens</h3>
-      <p><strong>CEO / CTO / Founder</strong></p>
-      <p>Visionary technologist creating the tools of tomorrow.</p>
+    <h2>Meet the Team</h2>
+    <div class="card-grid">
+      <div class="card team-card" data-link="https://tmsteph.com">
+        <img src="Thomas_Stephens.jpg" alt="Thomas Stephens" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+        <h3>Thomas Stephens</h3>
+        <p><strong>CEO / CTO / Founder</strong></p>
+        <p>Visionary technologist creating the tools of tomorrow.</p>
+      </div>
+      <div class="card team-card" data-link="https://bodhi-lowski.vercel.app/">
+        <img src="Bodhi_Lowski.jpg" alt="Bodhi Lowski" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+        <h3>Bodhi Lowski</h3>
+        <p><strong>Chief Marketing Officer</strong></p>
+        <p>Building the brand through grassroots storytelling and growth.</p>
+      </div>
+      <div class="card team-card" data-link="https://david-martinez.vercel.app/">
+        <img src="David_Martinez.jpg" alt="David Martinez" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+        <h3>David Martinez</h3>
+        <p><strong>Lead Developer</strong></p>
+        <p>Crafting immersive 3D and web experiences.</p>
+      </div>
+      <div class="card team-card" data-link="https://esai-gamboa.vercel.app/">
+        <img src="Esai_Gamboa.jpg" alt="Esai Gamboa" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+        <h3>Esai Gamboa</h3>
+        <p><strong>Financial Specialist</strong></p>
+        <p>Linux Expert and Chief Financial Officer.</p>
+      </div>
+      <div class="card team-card" data-link="https://brandon-adolfo.vercel.app/">
+        <img src="Brandon_Adolfo.jpg" alt="Brandon Adolfo" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+        <h3>Brandon Adolfo</h3>
+        <p><strong>Junior Developer</strong></p>
+        <p>Cross-platform mobile builder with an eye for design.</p>
+      </div>
+      <div class="card team-card" data-link="https://3dvr-mark-wells.vercel.app/">
+        <img src="mark-wells.png" alt="Mark Wells" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+        <h3>Mark Wells</h3>
+        <p><strong>Senior Developer</strong></p>
+        <p>10+ years in software design, specializing in real-time embedded systems and performance-critical code.</p>
+      </div>
     </div>
-    <div class="card team-card" data-link="https://bodhi-lowski.vercel.app/">
-      <img src="Bodhi_Lowski.jpg" alt="Bodhi Lowski" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
-      <h3>Bodhi Lowski</h3>
-      <p><strong>Chief Marketing Officer</strong></p>
-      <p>Building the brand through grassroots storytelling and growth.</p>
-    </div>
-    <div class="card team-card" data-link="https://david-martinez.vercel.app/">
-      <img src="David_Martinez.jpg" alt="David Martinez" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
-      <h3>David Martinez</h3>
-      <p><strong>Lead Developer</strong></p>
-      <p>Crafting immersive 3D and web experiences.</p>
-    </div>
-    <div class="card team-card" data-link="https://esai-gamboa.vercel.app/">
-      <img src="Esai_Gamboa.jpg" alt="Esai Gamboa" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
-      <h3>Esai Gamboa</h3>
-      <p><strong>Financial Specialist</strong></p>
-      <p>Linux Expert and Cheif Financial Officer. </p>
-    </div>
-    <div class="card team-card" data-link="https://brandon-adolfo.vercel.app/">
-      <img src="Brandon_Adolfo.jpg" alt="Brandon Adolfo" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
-      <h3>Brandon Adolfo</h3>
-      <p><strong>Junior Developer</strong></p>
-      <p>Cross-platform mobile builder with an eye for design.</p>
-    </div>
-    <div class="card team-card" data-link="https://3dvr-mark-wells.vercel.app/">
-      <img src="mark-wells.png" alt="Mark Wells" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
-      <h3>Mark Wells</h3>
-      <p><strong>Senior Developer</strong></p>
-      <p>10+ years in software design, specializing in real-time embedded systems and performance-critical code.</p>
-    </div>
-  </div>
   </section>
-    
- <section id="about" style="background: var(--bg-about);">
-  <h2>About 3dvr.tech</h2>
-  <p style="max-width: 700px; margin: 1rem auto; font-size: 1.3rem;">
-    We believe everyone deserves the tools to build their digital life.<br />
-    We're creating an ecosystem of <strong>open-source</strong> hardware, software, and support—starting with $20/month personal services.<br />
-    Our mission is to empower creators, entrepreneurs, and digital nomads everywhere.<br />
-    Contributions welcome on <a href="https://github.com/tmsteph/3dvr-web" target="_blank" style="color: var(--accent);">GitHub</a>.
-  </p>
-</section>
+
+  <section id="about" style="background: var(--bg-about);">
+    <h2>About 3dvr.tech</h2>
+    <p style="max-width: 700px; margin: 1rem auto; font-size: 1.3rem;">
+      We believe everyone deserves the tools to build their digital life.<br />
+      We're creating an ecosystem of <strong>open-source</strong> hardware, software, and support—starting with $20/month personal services.<br />
+      Our mission is to empower creators, entrepreneurs, and digital nomads everywhere.<br />
+      Contributions welcome on <a href="https://github.com/tmsteph/3dvr-web" target="_blank" style="color: var(--accent);">GitHub</a>.
+    </p>
+  </section>
 
   <footer style="background: #111; color: #aaa; text-align: center; padding: 2rem 1rem; font-size: 0.95rem;">
-  <p>
-    &copy; 2025 <a href="https://3dvr.tech" target="_blank" style="color: var(--accent);">3dvr.tech</a> —
-    Open Source. Open Future.
-  </p>
-  <p>
-    <a href="https://github.com/tmsteph/3dvr-web" target="_blank" style="color: var(--accent); text-decoration: none;">
-      ✏️ Edit this page on GitHub
-    </a>
-  </p>
-</footer>
-
+    <p>&copy; 2025 <a href="https://3dvr.tech" target="_blank" style="color: var(--accent);">3dvr.tech</a> — Open Source. Open Future.</p>
+    <p><a href="https://github.com/tmsteph/3dvr-web" target="_blank" style="color: var(--accent); text-decoration: none;">✏️ Edit this page on GitHub</a></p>
+  </footer>
 
   <script>
     const toggle = document.getElementById('mobileMenuToggle');
     const nav = document.getElementById('mainNav');
 
-    // Toggle mobile nav menu
-    toggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
+    toggle.addEventListener('click', () => nav.classList.toggle('active'));
 
-    // Auto-close mobile nav on link click
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-          nav.classList.remove('active');
-        }
+        if (window.innerWidth <= 768) nav.classList.remove('active');
       });
     });
 
-    // Make testimonial and team cards clickable
     document.querySelectorAll('.testimonial-card, .team-card').forEach(card => {
       const link = card.getAttribute('data-link');
       if (link) {
-        card.addEventListener('click', () => {
-          window.open(link, '_blank');
-        });
+        card.addEventListener('click', () => window.open(link, '_blank'));
       }
     });
   </script>
 </body>
 </html>
-
-  
