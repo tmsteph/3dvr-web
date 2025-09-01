@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>3dvr.tech · Our Vision</title>
+  <meta name="description" content="3dvr.tech is building an open-source ecosystem: laptop, phone, e-bike, car, backpack, tent, and yurt — plus a suite of web apps and subscriptions to get there." />
+  <link rel="icon" href="/3DVRfavicon.png" />
+  <style>
+    :root {
+      --bg: #0b0f14; --card:#121821; --muted:#a7b5c6; --text:#e6edf6; --accent:#4cc2ff; --ok:#9aff6f;
+    }
+    * { box-sizing: border-box }
+    html { scroll-behavior: smooth }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, #0d1622 0%, var(--bg) 60%) fixed;
+      color: var(--text);
+    }
+    header, main, footer { max-width: 1100px; margin: 0 auto; padding: 24px }
+    a { color: var(--accent); text-decoration: none }
+    a:hover { text-decoration: underline }
+    .wrap { display: grid; gap: 16px }
+    .hero {
+      display: grid; gap: 12px; padding: 28px; border-radius: 18px; background: linear-gradient(180deg,#0f1824 0%, #0c121a 100%);
+      border: 1px solid #1a2432; box-shadow: 0 10px 24px rgba(0,0,0,.35);
+    }
+    .hero h1 { margin: 0; font-size: clamp(26px, 4vw, 40px); line-height: 1.1 }
+    .hero p { margin: 0; color: var(--muted) }
+    .cta-row { display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px }
+    .btn {
+      display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; font-weight:600;
+      background:#12263a; border:1px solid #1a2e44;
+    }
+    .btn.primary { background: #16314a; border-color:#234b6c }
+    .btn .dot { width:10px; height:10px; border-radius:50%; background: var(--ok) }
+    nav {
+      position: sticky; top: 0; backdrop-filter: blur(8px);
+      background: rgba(11,15,20,.7); border-bottom: 1px solid #1a2432; z-index: 10;
+    }
+    nav .row { display:flex; gap:14px; align-items:center; justify-content: space-between; max-width: 1100px; margin:0 auto; padding:10px 24px }
+    nav a { color: #d9e7f7; opacity: .9 }
+    .grid { display:grid; gap:16px; grid-template-columns: repeat(12, minmax(0,1fr)) }
+    .card {
+      grid-column: span 12; padding:18px; border-radius:16px; background: var(--card); border:1px solid #1a2432;
+      display:grid; gap:10px;
+    }
+    .card h3{ margin: 0; font-size: 18px }
+    .card p{ margin:0; color: var(--muted) }
+    .meta { font-size: 13px; color: #c1cee0 }
+    .pill { display:inline-block; padding:4px 8px; border:1px solid #233246; border-radius:999px; font-size:12px; color:#cfe6ff }
+    .links { display:flex; flex-wrap:wrap; gap:10px; margin-top:6px }
+    .road { display:grid; gap:12px }
+    .stage { padding:16px; border:1px dashed #27425f; border-radius:14px; background:#0f1824 }
+    @media (min-width: 740px) {
+      .card.two { grid-template-columns: 1fr 1.2fr; align-items: start }
+      .card .col { padding-right: 8px }
+      .card.slim { grid-template-columns: 1fr 1fr }
+    }
+    footer { color: #94a6bc; font-size: 13px }
+    .tiny { font-size: 12px; color: #9db2c9 }
+    .divider { height:1px; background:#1a2432; margin: 18px 0 }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="row">
+      <div><a href="/">← 3dvr.tech</a></div>
+      <div class="wrap" style="grid-auto-flow:column;">
+        <a href="#subs">Subscriptions</a>
+        <a href="#products">Products</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#inspo">Inspiration</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <section class="hero">
+      <h1>Our Vision: Open-Source Tools for Freedom</h1>
+      <p>We’re building a practical, believable path to open hardware + software: start with web-apps and subscriptions, then ship devices you can own, repair, and remix.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="/subscribe/"><span class="dot"></span> Join the $0 / $5 / $20 plan</a>
+        <a class="btn" href="/"><span>Back to Home</span></a>
+      </div>
+      <div class="tiny">Everything here is open-inspired and community-driven. We credit the pioneers and link directly to them below.</div>
+    </section>
+  </header>
+
+  <main class="wrap">
+
+    <!-- Subscriptions -->
+    <section id="subs" class="card">
+      <h2>Subscriptions (Now)</h2>
+      <p>To get off the ground, we’re offering simple monthly tiers and launching a suite of web-apps (sites, CRM, chat, docs). Subscriptions fund R&amp;D and community builds.</p>
+      <ul>
+        <li><strong>$0</strong> — Join the builder community, read docs, and comment.</li>
+        <li><strong>$5</strong> — Supporter tier; early web-app access + feedback channel.</li>
+        <li><strong>$20</strong> — Unlimited tech support (fair use), site/app help, and priority access.</li>
+      </ul>
+      <div class="links"><a class="pill" href="/subscribe/">Subscribe →</a><a class="pill" href="/community.html">Community →</a></div>
+      <div class="meta">We’ll stay lean and profitable first—then build hardware.</div>
+    </section>
+
+    <!-- Products overview -->
+    <section id="products" class="grid">
+      <!-- Laptop -->
+      <article class="card two" id="laptop">
+        <div class="col">
+          <h3>Open Laptop (after profitability)</h3>
+          <p>Modular, repairable laptop inspired by Balthazar. Developer-friendly on <strong>Debian or Arch</strong>. Early prototypes likely on RISC-V SBCs, then our own boards.</p>
+          <div class="links">
+            <a href="https://balthazar.space/" target="_blank" rel="noopener">Balthazar.space →</a>
+            <a href="https://nlnet.nl/project/Balthazar-Prototype/" target="_blank" rel="noopener">NLnet prototype →</a>
+          </div>
+          <div class="meta">Goal: 14” display, user-replaceable parts, open firmware.</div>
+        </div>
+        <div class="col">
+          <span class="pill">OS: Debian / Arch</span>
+          <span class="pill">Prototype: RISC-V SBC</span>
+        </div>
+      </article>
+
+      <!-- Phone -->
+      <article class="card two" id="phone">
+        <div class="col">
+          <h3>Open Phone (next)</h3>
+          <p>Privacy-first smartphone based on a mobile Linux stack. We’ll prototype UX on Ubuntu Touch and adjacent projects to keep it practical.</p>
+          <div class="links">
+            <a href="https://ubuntu-touch.io/" target="_blank" rel="noopener">Ubuntu Touch (UBports) →</a>
+            <a href="https://postmarketos.org/" target="_blank" rel="noopener">postmarketOS →</a>
+            <a href="https://pine64.org/devices/pinephone/" target="_blank" rel="noopener">PinePhone →</a>
+          </div>
+          <div class="meta">Target: open drivers where possible, PWA-first apps, encrypted sync.</div>
+        </div>
+        <div class="col">
+          <span class="pill">OS: Ubuntu Touch</span>
+          <span class="pill">Alt: postmarketOS</span>
+        </div>
+      </article>
+
+      <!-- E-bike / Scooter -->
+      <article class="card two" id="ebike">
+        <div class="col">
+          <h3>E-Bike / Scooter (after phone)</h3>
+          <p>Modular, serviceable mobility with open motor-control roots and easy battery swaps. Start small, then scale to micro-EV.</p>
+          <div class="links">
+            <a href="https://vesc-project.com/" target="_blank" rel="noopener">VESC motor-control ecosystem →</a>
+          </div>
+          <div class="meta">Aim: safe controllers, standard connectors, weather-resistant wiring.</div>
+        </div>
+        <div class="col">
+          <span class="pill">Battery: swappable</span>
+          <span class="pill">Mounts: universal</span>
+        </div>
+      </article>
+
+      <!-- Car / Micro-EV -->
+      <article class="card two" id="car">
+        <div class="col">
+          <h3>Micro-EV / Car (later)</h3>
+          <p>Graduate from scooter/bike to a road-legal micro-EV inspired by the open TABBY EVO platform. Keep it modular and hackable for community fleets.</p>
+          <div class="links">
+            <a href="https://www.openmotors.co/product/tabbyevo/" target="_blank" rel="noopener">Open Motors · TABBY EVO →</a>
+            <a href="https://www.openmotors.co/download/" target="_blank" rel="noopener">Download TABBY designs →</a>
+          </div>
+          <div class="meta">Focus: low cost, easy maintenance, interchangeable modules.</div>
+        </div>
+        <div class="col">
+          <span class="pill">Chassis: modular</span>
+          <span class="pill">Telematics: open</span>
+        </div>
+      </article>
+
+      <!-- Backpack -->
+      <article class="card two" id="backpack">
+        <div class="col">
+          <h3>Backpack (travel desk, power, storage)</h3>
+          <p>A nomad backpack that converts into a compact standing desk, with mounts for laptop/phone, battery module, and solar panel pocket. Built to last, field-repairable.</p>
+          <div class="links">
+            <a href="https://www.opensourceecology.org/" target="_blank" rel="noopener">Open Source Ecology →</a>
+          </div>
+          <div class="meta">Fabric: organic cotton / merino / linen blends; repair kit included.</div>
+        </div>
+        <div class="col">
+          <span class="pill">Desk-mode</span>
+          <span class="pill">Solar pocket</span>
+        </div>
+      </article>
+
+      <!-- Tent -->
+      <article class="card two" id="tent">
+        <div class="col">
+          <h3>Open Tent (lightweight, secure)</h3>
+          <p>Light, weather-resistant tent designed for repairability and modular add-ons (solar, sensors). Community-manufacturable with accessible materials.</p>
+          <div class="links">
+            <a href="https://www.opensourceecology.org/gvcs/" target="_blank" rel="noopener">OSE · Global Village Construction Set →</a>
+          </div>
+          <div class="meta">Focus: easy to pitch, easy to mend, parts you can source locally.</div>
+        </div>
+        <div class="col">
+          <span class="pill">Modular poles</span>
+          <span class="pill">Repair patches</span>
+        </div>
+      </article>
+
+      <!-- Yurt -->
+      <article class="card two" id="yurt">
+        <div class="col">
+          <h3>Yurt / Eco-Shelter (community build)</h3>
+          <p>Durable, insulating shelter for longer stays and micro-villages. Leverage open building toolkits and accessible fabrication methods.</p>
+          <div class="links">
+            <a href="https://www.openbuildinginstitute.org/" target="_blank" rel="noopener">Open Building Institute →</a>
+          </div>
+          <div class="meta">Goal: plans + BOMs + build guides under permissive licenses.</div>
+        </div>
+        <div class="col">
+          <span class="pill">Insulated</span>
+          <span class="pill">Expandable</span>
+        </div>
+      </article>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Roadmap -->
+    <section id="roadmap" class="card">
+      <h2>Roadmap (Practical & Believable)</h2>
+      <div class="road">
+        <div class="stage">
+          <strong>Now → Profitability</strong><br />
+          Launch websites + a suite of web-apps; grow $0 / $5 / $20 subscriptions to fund hardware R&amp;D.
+        </div>
+        <div class="stage">
+          <strong>After Profitability</strong><br />
+          1) Laptop → 2) Phone → 3) E-bike/Scooter → 4) Backpack → 5) Tent → 6) Car → 7) Yurt.
+        </div>
+        <div class="stage">
+          <strong>Long-Term</strong><br />
+          Local fabrication hubs, open supply chains, and community-run fleets—powered by open standards.
+        </div>
+      </div>
+      <div class="links" style="margin-top:10px;">
+        <a class="pill" href="/support.html">Get Support</a>
+        <a class="pill" href="/apps.html">Try Our Web-Apps</a>
+        <a class="pill" href="/subscribe/">Start a Subscription</a>
+      </div>
+    </section>
+
+    <section id="inspo" class="card">
+      <h2>Credits & Inspiration</h2>
+      <p>We stand on the shoulders of giants and link directly to the projects that inspire us.</p>
+      <ul class="tiny">
+        <li>Laptop: <a href="https://balthazar.space/" target="_blank" rel="noopener">Balthazar</a> · <a href="https://nlnet.nl/project/Balthazar-Prototype/" target="_blank" rel="noopener">NLnet</a></li>
+        <li>Phone: <a href="https://ubuntu-touch.io/" target="_blank" rel="noopener">Ubuntu Touch</a> · <a href="https://postmarketos.org/" target="_blank" rel="noopener">postmarketOS</a> · <a href="https://pine64.org/devices/pinephone/" target="_blank" rel="noopener">PinePhone</a></li>
+        <li>E-bike/Scooter: <a href="https://vesc-project.com/" target="_blank" rel="noopener">VESC project</a></li>
+        <li>Car/Micro-EV: <a href="https://www.openmotors.co/product/tabbyevo/" target="_blank" rel="noopener">Open Motors · TABBY EVO</a> (<a href="https://www.openmotors.co/download/" target="_blank" rel="noopener">downloads</a>)</li>
+        <li>Backpack/Tent/Yurt: <a href="https://www.opensourceecology.org/" target="_blank" rel="noopener">Open Source Ecology</a> · <a href="https://www.openbuildinginstitute.org/" target="_blank" rel="noopener">Open Building Institute</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <div>© <span id="y"></span> 3dvr.tech — Open-source tools for human freedom.</div>
+    <div class="tiny">Questions? <a href="/support.html">Talk to us</a>. Ready? <a href="/subscribe/">Subscribe</a>.</div>
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+</body>
+</html>
