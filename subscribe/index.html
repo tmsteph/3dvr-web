@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Subscribe | 3dvr.tech</title>
+  <link rel="icon" href="3DVRfavicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #00ffc8;
+      --bg: linear-gradient(160deg, #0f2027, #203a43, #2c5364);
+      --panel: rgba(255,255,255,0.08);
+      --panel-hover: rgba(255,255,255,0.14);
+      --text: #fff;
+      --muted: #d7e0e7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); }
+    a { color: var(--accent); text-decoration: none; }
+    header { display:flex; align-items:center; justify-content:space-between; padding: 1rem 1.25rem; background: rgba(0,0,0,0.5); position: sticky; top:0; backdrop-filter: blur(10px); z-index:10; }
+    header img { height:40px; }
+    header nav a { margin-left:1rem; font-weight:600; }
+    main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem 4rem; }
+
+    .hero {
+      text-align:center; padding: 2.5rem 1rem 1.5rem;
+    }
+    .hero h1 { font-family: Poppins, sans-serif; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.75rem; }
+    .hero p { color: var(--muted); font-size: 1.1rem; }
+
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+    .card {
+      background: var(--panel); padding:1.25rem; border-radius: 14px; transition: .25s; position: relative;
+    }
+    .card:hover { background: var(--panel-hover); transform: translateY(-3px); }
+    .card h2 { font-family: Poppins, sans-serif; font-size: 1.2rem; color: var(--accent); margin-bottom: 0.5rem; }
+    .price { font-size: 1.8rem; font-weight: 800; margin: .25rem 0 .75rem; }
+    ul { margin-left: 1rem; }
+    li { margin: .4rem 0; }
+
+    .cta {
+      display:inline-block; margin-top:1rem; background: var(--accent); color:#000; padding:.65rem 1rem; border-radius: 10px; font-weight: 800;
+      box-shadow: 0 0 12px rgba(0,255,200,.35);
+    }
+
+    .notice {
+      margin-top: 1rem; font-size:.9rem; color: var(--muted);
+    }
+
+    .faq { margin-top: 3rem; }
+    .faq h3 { font-family:Poppins, sans-serif; font-size:1.5rem; margin-bottom: .75rem; }
+    details { background: var(--panel); border-radius: 12px; padding: .9rem 1rem; margin:.6rem 0; }
+    details[open] { background: var(--panel-hover); }
+    summary { cursor:pointer; font-weight:700; }
+
+    footer { text-align:center; color:#bfc9cf; padding: 2rem 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html"><img src="3DVR.png" alt="3dvr.tech logo" /></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#plans">Plans</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://3dvr-portal.vercel.app/" target="_blank" rel="noopener">Portal</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Choose Your 3dvr.tech Plan</h1>
+      <p>Start free, support the mission, or go all-in with full-service help. Upgrade or cancel anytime.</p>
+    </section>
+
+    <section id="plans" class="grid">
+      <!-- FREE -->
+      <article id="free" class="card">
+        <h2>Free Plan</h2>
+        <div class="price">$0</div>
+        <ul>
+          <li>Access to public docs & starter templates</li>
+          <li>Community updates & roadmap</li>
+          <li>Open-source repos and experiments</li>
+        </ul>
+        <!-- If you have a real free signup page, swap this href -->
+        <a class="cta" href="https://3dvr-portal.vercel.app/free-trial.html" target="_blank" rel="noopener">Join Free</a>
+        <div class="notice">No credit card required.</div>
+      </article>
+
+      <!-- SUPPORTER -->
+      <article id="supporter" class="card">
+        <h2>Early Supporter</h2>
+        <div class="price">$5 / month</div>
+        <ul>
+          <li>All Free features</li>
+          <li>Early feature previews</li>
+          <li>Name/brand shout-outs (opt-in)</li>
+          <li>Helps fund open development</li>
+        </ul>
+        <!-- Stripe supporter link -->
+        <a class="cta" href="https://buy.stripe.com/28EcN599Q2dJbFdh2Qc7u07" target="_blank" rel="noopener">Become a Supporter</a>
+        <div class="notice">Cancel anytime from your Stripe receipt/email.</div>
+      </article>
+
+      <!-- PRO -->
+      <article id="pro" class="card">
+        <h2>Full Access</h2>
+        <div class="price">$20 / month</div>
+        <ul>
+          <li>Done-for-you website & landing pages</li>
+          <li>App/UI mockups & prototypes</li>
+          <li>Unlimited tech support & quick fixes</li>
+          <li>Personal consultations & roadmap help</li>
+          <li>Access to the Builder Community</li>
+        </ul>
+        <!-- Stripe main subscribe link -->
+        <a class="cta" href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank" rel="noopener">Subscribe Now</a>
+        <div class="notice">We’ll reach out after signup to get you moving fast.</div>
+      </article>
+    </section>
+
+    <section class="faq" id="faq">
+      <h3>FAQ</h3>
+
+      <details>
+        <summary>Can I change plans later?</summary>
+        <p class="answer">Yes—upgrade, downgrade, or cancel anytime. Your Stripe receipt/email includes a self-serve portal.</p>
+      </details>
+
+      <details>
+        <summary>What does “Unlimited Tech Support” mean?</summary>
+        <p class="answer">Ask anything related to your site, apps, stack, or hosting. We handle small fixes quickly; larger work gets scoped with you first.</p>
+      </details>
+
+      <details>
+        <summary>Do you build custom projects?</summary>
+        <p class="answer">Yep. The $20/month plan gets you rolling. If you need heavy lifting, we’ll propose a scoped add-on with clear timelines.</p>
+      </details>
+
+      <details>
+        <summary>Where can I see examples?</summary>
+        <p class="answer">Check our <a href="index.html#testimonials">testimonials</a> and the <a href="https://3dvr-portal.vercel.app/" target="_blank" rel="noopener">portal</a> for in-progress experiments.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 3dvr.tech — Open Source. Open Future.
+  </footer>
+</body>
+</html>
