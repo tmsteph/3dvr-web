@@ -247,25 +247,45 @@
     </p>
   </section>
 
-  <!-- SOCIAL LINKS SECTION -->
+  <!-- SOCIAL LINKS SECTION (app deep-links + web fallback) -->
   <section id="social" style="background: #1a1a1a; padding: 3rem 1rem; text-align: center;">
     <h2 style="color: var(--accent); margin-bottom: 1rem;">Follow Us</h2>
     <p style="color: #ccc; margin-bottom: 2rem;">Connect with us on social media.</p>
     <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-      <a href="https://www.facebook.com/3dvr.facebook/" target="_blank" aria-label="Facebook"
-         style="color: var(--accent); font-size: 2rem; transition: transform 0.2s;">
+  
+      <!-- Facebook -->
+      <a class="social-deeplink"
+         aria-label="Facebook"
+         style="color: var(--accent); font-size: 2rem; transition: transform 0.2s;"
+         data-web="https://www.facebook.com/3dvr.facebook/"
+         data-android-intent="intent://facewebmodal/f?href=https%3A%2F%2Fwww.facebook.com%2F3dvr.facebook%2F#Intent;scheme=fb;package=com.facebook.katana;S.browser_fallback_url=https%3A%2F%2Fwww.facebook.com%2F3dvr.facebook%2F;end"
+         data-ios-scheme="fb://facewebmodal/f?href=https://www.facebook.com/3dvr.facebook/">
         <i class="fab fa-facebook-square"></i>
       </a>
-      <a href="https://www.linkedin.com/company/3dvrtech" target="_blank" aria-label="LinkedIn"
-         style="color: var(--accent); font-size: 2rem; transition: transform 0.2s;">
+  
+      <!-- LinkedIn (company) -->
+      <a class="social-deeplink"
+         aria-label="LinkedIn"
+         style="color: var(--accent); font-size: 2rem; transition: transform 0.2s;"
+         data-web="https://www.linkedin.com/company/3dvrtech"
+         data-android-intent="intent://www.linkedin.com/company/3dvrtech/#Intent;scheme=https;package=com.linkedin.android;S.browser_fallback_url=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2F3dvrtech;end"
+         data-ios-scheme="linkedin://company/3dvrtech">
         <i class="fab fa-linkedin"></i>
       </a>
-      <a href="https://www.instagram.com/3dvr.tech/" target="_blank" aria-label="Instagram"
-         style="color: var(--accent); font-size: 2rem; transition: transform 0.2s;">
+  
+      <!-- Instagram -->
+      <a class="social-deeplink"
+         aria-label="Instagram"
+         style="color: var(--accent); font-size: 2rem; transition: transform 0.2s;"
+         data-web="https://www.instagram.com/3dvr.tech/"
+         data-android-intent="intent://instagram.com/_u/3dvr.tech/#Intent;scheme=https;package=com.instagram.android;S.browser_fallback_url=https%3A%2F%2Fwww.instagram.com%2F3dvr.tech%2F;end"
+         data-ios-scheme="instagram://user?username=3dvr.tech">
         <i class="fab fa-instagram"></i>
       </a>
+  
     </div>
   </section>
+
   
   <footer style="background: #111; color: #aaa; text-align: center; padding: 2rem 1rem; font-size: 0.95rem;">
     <p>&copy; 2025 <a href="https://3dvr.tech" target="_blank" style="color: var(--accent);">3dvr.tech</a> — Open Source. Open Future.</p>
@@ -291,5 +311,44 @@
       }
     });
   </script>
+
+  <!-- SOCIAL LINKS Script -->
+  <script>
+(() => {
+  const ua = navigator.userAgent || navigator.vendor || "";
+  const isAndroid = /Android/i.test(ua);
+  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+  document.querySelectorAll('.social-deeplink').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const web = a.dataset.web;
+      const androidIntent = a.dataset.androidIntent;
+      const iosScheme = a.dataset.iosScheme;
+
+      // Android: use intent:// for native app (fallback inside the intent)
+      if (isAndroid && androidIntent) {
+        e.preventDefault();
+        window.location.href = androidIntent;
+        return;
+      }
+
+      // iOS: try app scheme; if it doesn't steal focus quickly, fallback to web
+      if (isIOS) {
+        e.preventDefault();
+        const start = Date.now();
+        window.location.href = iosScheme || web;
+        setTimeout(() => {
+          if (Date.now() - start < 1600) window.location.href = web;
+        }, 1000);
+        return;
+      }
+
+      // Desktop or unknown: let the default click go to the website URL
+      // (no target=_blank to avoid in-app browser oddities)
+    }, { passive: false });
+  });
+})();
+</script>
+
 </body>
 </html>
