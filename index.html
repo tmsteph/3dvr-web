@@ -247,44 +247,47 @@
     </p>
   </section>
 
-  <!-- SOCIAL LINKS SECTION (app deep-links + web fallback) -->
+ <!-- SOCIAL LINKS SECTION (desktop href + mobile deep-link) -->
   <section id="social" style="background: #1a1a1a; padding: 3rem 1rem; text-align: center;">
     <h2 style="color: var(--accent); margin-bottom: 1rem;">Follow Us</h2>
     <p style="color: #ccc; margin-bottom: 2rem;">Connect with us on social media.</p>
-    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
   
+    <div class="social-links" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
       <!-- Facebook -->
       <a class="social-deeplink"
+         href="https://www.facebook.com/3dvr.facebook/"
          aria-label="Facebook"
          style="color: var(--accent); font-size: 2rem; transition: transform 0.2s;"
          data-web="https://www.facebook.com/3dvr.facebook/"
          data-android-intent="intent://facewebmodal/f?href=https%3A%2F%2Fwww.facebook.com%2F3dvr.facebook%2F#Intent;scheme=fb;package=com.facebook.katana;S.browser_fallback_url=https%3A%2F%2Fwww.facebook.com%2F3dvr.facebook%2F;end"
          data-ios-scheme="fb://facewebmodal/f?href=https://www.facebook.com/3dvr.facebook/">
-        <i class="fab fa-facebook-square"></i>
+        <i class="fab fa-facebook-square" aria-hidden="true"></i>
       </a>
   
       <!-- LinkedIn (company) -->
       <a class="social-deeplink"
+         href="https://www.linkedin.com/company/3dvrtech"
          aria-label="LinkedIn"
          style="color: var(--accent); font-size: 2rem; transition: transform 0.2s;"
          data-web="https://www.linkedin.com/company/3dvrtech"
          data-android-intent="intent://www.linkedin.com/company/3dvrtech/#Intent;scheme=https;package=com.linkedin.android;S.browser_fallback_url=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2F3dvrtech;end"
          data-ios-scheme="linkedin://company/3dvrtech">
-        <i class="fab fa-linkedin"></i>
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
       </a>
   
       <!-- Instagram -->
       <a class="social-deeplink"
+         href="https://www.instagram.com/3dvr.tech/"
          aria-label="Instagram"
          style="color: var(--accent); font-size: 2rem; transition: transform 0.2s;"
          data-web="https://www.instagram.com/3dvr.tech/"
          data-android-intent="intent://instagram.com/_u/3dvr.tech/#Intent;scheme=https;package=com.instagram.android;S.browser_fallback_url=https%3A%2F%2Fwww.instagram.com%2F3dvr.tech%2F;end"
          data-ios-scheme="instagram://user?username=3dvr.tech">
-        <i class="fab fa-instagram"></i>
+        <i class="fab fa-instagram" aria-hidden="true"></i>
       </a>
-  
     </div>
   </section>
+
 
   
   <footer style="background: #111; color: #aaa; text-align: center; padding: 2rem 1rem; font-size: 0.95rem;">
@@ -313,38 +316,36 @@
   </script>
 
   <!-- SOCIAL LINKS Script -->
-  <script>
+ <script>
 (() => {
   const ua = navigator.userAgent || navigator.vendor || "";
   const isAndroid = /Android/i.test(ua);
   const isIOS = /iPhone|iPad|iPod/i.test(ua);
 
   document.querySelectorAll('.social-deeplink').forEach(a => {
-    a.addEventListener('click', (e) => {
-      const web = a.dataset.web;
-      const androidIntent = a.dataset.androidIntent;
-      const iosScheme = a.dataset.iosScheme;
+    const web = a.dataset.web;
+    const androidIntent = a.dataset.androidIntent;
+    const iosScheme = a.dataset.iosScheme;
 
-      // Android: use intent:// for native app (fallback inside the intent)
+    // Ensure desktop works out of the box
+    if (!isAndroid && !isIOS) {
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+    }
+
+    a.addEventListener('click', (e) => {
       if (isAndroid && androidIntent) {
         e.preventDefault();
-        window.location.href = androidIntent;
-        return;
-      }
-
-      // iOS: try app scheme; if it doesn't steal focus quickly, fallback to web
-      if (isIOS) {
+        window.location.href = androidIntent; // app first; intent includes web fallback
+      } else if (isIOS && iosScheme) {
         e.preventDefault();
         const start = Date.now();
-        window.location.href = iosScheme || web;
+        window.location.href = iosScheme;     // try app
         setTimeout(() => {
-          if (Date.now() - start < 1600) window.location.href = web;
+          if (Date.now() - start < 1600) window.location.href = web; // fallback to web
         }, 1000);
-        return;
       }
-
-      // Desktop or unknown: let the default click go to the website URL
-      // (no target=_blank to avoid in-app browser oddities)
+      // desktop: let anchor's href open normally
     }, { passive: false });
   });
 })();
