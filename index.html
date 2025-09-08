@@ -8,7 +8,7 @@
   <link rel="icon" href="3DVRfavicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  
+
   <style>
     html { scroll-behavior: smooth; }
 
@@ -126,10 +126,22 @@
 <body id="top">
   <header>
     <a href="#top"><img src="3DVR.png" alt="3dvr.tech logo" /></a>
-    <div class="menu-toggle" id="mobileMenuToggle"><span></span><span></span><span></span></div>
+
+    <!-- a11y & control bindings for mobile menu -->
+    <div
+      class="menu-toggle"
+      id="mobileMenuToggle"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mainNav"
+      role="button"
+      tabindex="0"
+    >
+      <span></span><span></span><span></span>
+    </div>
+
     <nav id="mainNav">
       <a href="#top">Home</a>
-      <!-- Changed to the explainer page -->
       <a href="subscribe.html">Subscribe</a>
       <a href="#features">Features</a>
       <a href="#testimonials">Testimonials</a>
@@ -140,7 +152,6 @@
     </nav>
   </header>
 
-  <!-- Floating CTA now routes to explainer -->
   <a class="sticky-cta" href="subscribe.html">Subscribe</a>
 
   <a href="https://portal.3dvr.tech" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
@@ -151,7 +162,6 @@
     </section>
   </a>
 
-  <!-- SUBSCRIBE SECTION: every click leads to subscribe.html (no direct Stripe links) -->
   <section id="subscribe" style="background: var(--bg-subscribe);">
     <h2>Choose Your Plan</h2>
     <p>Start building your vision with the plan that fits you best. Upgrade anytime.</p>
@@ -247,11 +257,11 @@
     </p>
   </section>
 
- <!-- SOCIAL LINKS SECTION (desktop href + mobile deep-link) -->
+  <!-- SOCIAL LINKS SECTION (desktop href + mobile deep-link) -->
   <section id="social" style="background: #1a1a1a; padding: 3rem 1rem; text-align: center;">
     <h2 style="color: var(--accent); margin-bottom: 1rem;">Follow Us</h2>
     <p style="color: #ccc; margin-bottom: 2rem;">Connect with us on social media.</p>
-  
+
     <div class="social-links" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
       <!-- Facebook -->
       <a class="social-deeplink"
@@ -263,7 +273,7 @@
          data-ios-scheme="fb://facewebmodal/f?href=https://www.facebook.com/3dvr.facebook/">
         <i class="fab fa-facebook-square" aria-hidden="true"></i>
       </a>
-  
+
       <!-- LinkedIn (company) -->
       <a class="social-deeplink"
          href="https://www.linkedin.com/company/3dvrtech"
@@ -274,7 +284,7 @@
          data-ios-scheme="linkedin://company/3dvrtech">
         <i class="fab fa-linkedin" aria-hidden="true"></i>
       </a>
-  
+
       <!-- Instagram -->
       <a class="social-deeplink"
          href="https://www.instagram.com/3dvr.tech/"
@@ -288,25 +298,69 @@
     </div>
   </section>
 
-
-  
   <footer style="background: #111; color: #aaa; text-align: center; padding: 2rem 1rem; font-size: 0.95rem;">
     <p>&copy; 2025 <a href="https://3dvr.tech" target="_blank" style="color: var(--accent);">3dvr.tech</a> — Open Source. Open Future.</p>
     <p><a href="https://github.com/tmsteph/3dvr-web" target="_blank" style="color: var(--accent); text-decoration: none;">✏️ Edit this page on GitHub</a></p>
   </footer>
 
+  <!-- Main UI behaviors: mobile menu open/close, outside-click, ESC, and helpers -->
   <script>
     const toggle = document.getElementById('mobileMenuToggle');
     const nav = document.getElementById('mainNav');
 
-    toggle.addEventListener('click', () => nav.classList.toggle('active'));
+    function openMenu() {
+      nav.classList.add('active');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+    function closeMenu() {
+      if (nav.classList.contains('active')) {
+        nav.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+    function toggleMenu(e) {
+      e.stopPropagation();
+      const willOpen = !nav.classList.contains('active');
+      if (willOpen) openMenu(); else closeMenu();
+    }
 
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (window.innerWidth <= 768) nav.classList.remove('active');
-      });
+    toggle.addEventListener('click', toggleMenu);
+    // also allow keyboard activation of the hamburger
+    toggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu(e);
+      }
     });
 
+    // Close when a nav item is clicked
+    document.querySelectorAll('#mainNav a').forEach(link => {
+      link.addEventListener('click', () => closeMenu());
+    });
+
+    // Prevent clicks inside the nav from bubbling to the document
+    nav.addEventListener('click', (e) => e.stopPropagation());
+
+    // Close when clicking/tapping outside the nav/toggle
+    ['click','touchstart'].forEach(evt => {
+      document.addEventListener(evt, (e) => {
+        const clickInsideNav = nav.contains(e.target);
+        const clickOnToggle = toggle.contains(e.target);
+        if (!clickInsideNav && !clickOnToggle) closeMenu();
+      }, { passive: true });
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // Close if resizing out of mobile layout
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) closeMenu();
+    });
+
+    // Clickable cards for testimonials/team
     document.querySelectorAll('.testimonial-card, .team-card').forEach(card => {
       const link = card.getAttribute('data-link');
       if (link) {
@@ -316,40 +370,40 @@
   </script>
 
   <!-- SOCIAL LINKS Script -->
- <script>
-(() => {
-  const ua = navigator.userAgent || navigator.vendor || "";
-  const isAndroid = /Android/i.test(ua);
-  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+  <script>
+  (() => {
+    const ua = navigator.userAgent || navigator.vendor || "";
+    const isAndroid = /Android/i.test(ua);
+    const isIOS = /iPhone|iPad|iPod/i.test(ua);
 
-  document.querySelectorAll('.social-deeplink').forEach(a => {
-    const web = a.dataset.web;
-    const androidIntent = a.dataset.androidIntent;
-    const iosScheme = a.dataset.iosScheme;
+    document.querySelectorAll('.social-deeplink').forEach(a => {
+      const web = a.dataset.web;
+      const androidIntent = a.dataset.androidIntent;
+      const iosScheme = a.dataset.iosScheme;
 
-    // Ensure desktop works out of the box
-    if (!isAndroid && !isIOS) {
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-    }
-
-    a.addEventListener('click', (e) => {
-      if (isAndroid && androidIntent) {
-        e.preventDefault();
-        window.location.href = androidIntent; // app first; intent includes web fallback
-      } else if (isIOS && iosScheme) {
-        e.preventDefault();
-        const start = Date.now();
-        window.location.href = iosScheme;     // try app
-        setTimeout(() => {
-          if (Date.now() - start < 1600) window.location.href = web; // fallback to web
-        }, 1000);
+      // Ensure desktop works out of the box
+      if (!isAndroid && !isIOS) {
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
       }
-      // desktop: let anchor's href open normally
-    }, { passive: false });
-  });
-})();
-</script>
+
+      a.addEventListener('click', (e) => {
+        if (isAndroid && androidIntent) {
+          e.preventDefault();
+          window.location.href = androidIntent; // app first; intent includes web fallback
+        } else if (isIOS && iosScheme) {
+          e.preventDefault();
+          const start = Date.now();
+          window.location.href = iosScheme;     // try app
+          setTimeout(() => {
+            if (Date.now() - start < 1600) window.location.href = web; // fallback to web
+          }, 1000);
+        }
+        // desktop: let anchor's href open normally
+      }, { passive: false });
+    });
+  })();
+  </script>
 
 </body>
 </html>
