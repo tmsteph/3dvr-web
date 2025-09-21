@@ -10,59 +10,63 @@
   <style>
     :root {
       --accent: #00ffc8;
+      --accent-soft: rgba(0, 255, 200, 0.18);
       --bg: linear-gradient(160deg, #0f2027, #203a43, #2c5364);
-      --panel: rgba(255,255,255,0.08);
-      --panel-hover: rgba(255,255,255,0.14);
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-hover: rgba(255, 255, 255, 0.14);
       --text: #fff;
       --muted: #d7e0e7;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); }
     a { color: var(--accent); text-decoration: none; }
-    header { display:flex; align-items:center; justify-content:space-between; padding: 1rem 1.25rem; background: rgba(0,0,0,0.5); position: sticky; top:0; backdrop-filter: blur(10px); z-index:10; }
-    header img { height:40px; }
-    header nav a { margin-left:1rem; font-weight:600; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: rgba(0, 0, 0, 0.5); position: sticky; top: 0; backdrop-filter: blur(10px); z-index: 10; }
+    header img { height: 40px; }
+    header nav a { margin-left: 1rem; font-weight: 600; }
     main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem 4rem; }
 
-    .hero {
-      text-align:center; padding: 2.5rem 1rem 1.5rem;
-    }
+    .hero { text-align: center; padding: 2.5rem 1rem 1.5rem; }
     .hero h1 { font-family: Poppins, sans-serif; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.75rem; }
     .hero p { color: var(--muted); font-size: 1.1rem; }
 
-    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
-    .card {
-      background: var(--panel); padding:1.25rem; border-radius: 14px; transition: .25s; position: relative;
-    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+    .card { background: var(--panel); padding: 1.25rem; border-radius: 14px; transition: 0.25s; position: relative; display: flex; flex-direction: column; min-height: 100%; }
     .card:hover { background: var(--panel-hover); transform: translateY(-3px); }
-    .card h2 { font-family: Poppins, sans-serif; font-size: 1.2rem; color: var(--accent); margin-bottom: 0.5rem; }
-    .price { font-size: 1.8rem; font-weight: 800; margin: .25rem 0 .75rem; }
+    .card h2 { font-family: Poppins, sans-serif; font-size: 1.2rem; color: var(--accent); margin-bottom: 0.4rem; }
+    .card .tagline { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.75rem; line-height: 1.5; }
+    .price { font-size: 1.8rem; font-weight: 800; margin: 0.25rem 0 0.75rem; }
     ul { margin-left: 1rem; }
-    li { margin: .4rem 0; }
+    li { margin: 0.4rem 0; }
 
-    .cta {
-      display:inline-block; margin-top:1rem; background: var(--accent); color:#000; padding:.65rem 1rem; border-radius: 10px; font-weight: 800;
-      box-shadow: 0 0 12px rgba(0,255,200,.35);
-    }
+    .actions { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .cta { display: inline-flex; align-items: center; justify-content: center; padding: 0.65rem 1.1rem; border-radius: 10px; font-weight: 700; letter-spacing: 0.01em; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; box-shadow: 0 0 12px rgba(0, 255, 200, 0.35); }
+    .cta.primary { background: var(--accent); color: #000; }
+    .cta.secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); box-shadow: 0 0 0 transparent; }
+    .cta.secondary:hover { background: var(--accent-soft); }
+    .cta:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
-    .notice {
-      margin-top: 1rem; font-size:.9rem; color: var(--muted);
-    }
+    .notice { margin-top: auto; font-size: 0.9rem; color: var(--muted); padding-top: 1.25rem; }
 
     .faq { margin-top: 3rem; }
-    .faq h3 { font-family:Poppins, sans-serif; font-size:1.5rem; margin-bottom: .75rem; }
-    details { background: var(--panel); border-radius: 12px; padding: .9rem 1rem; margin:.6rem 0; }
+    .faq h3 { font-family: Poppins, sans-serif; font-size: 1.5rem; margin-bottom: 0.75rem; }
+    details { background: var(--panel); border-radius: 12px; padding: 0.9rem 1rem; margin: 0.6rem 0; }
     details[open] { background: var(--panel-hover); }
-    summary { cursor:pointer; font-weight:700; }
+    summary { cursor: pointer; font-weight: 700; }
 
-    footer { text-align:center; color:#bfc9cf; padding: 2rem 1rem; }
+    footer { text-align: center; color: #bfc9cf; padding: 2rem 1rem; }
+
+    @media (max-width: 640px) {
+      header nav a { margin-left: 0.75rem; font-size: 0.95rem; }
+      .actions { flex-direction: column; align-items: flex-start; }
+      .cta { width: 100%; justify-content: center; }
+    }
   </style>
 </head>
 <body>
   <header>
-    <a href="index.html"><img src="../3DVR.png" alt="3dvr.tech logo" /></a>
+    <a href="../index.html"><img src="../3DVR.png" alt="3dvr.tech logo" /></a>
     <nav>
-      <a href="index.html">Home</a>
+      <a href="../index.html">Home</a>
       <a href="#plans">Plans</a>
       <a href="#faq">FAQ</a>
       <a href="https://3dvr-portal.vercel.app/" target="_blank" rel="noopener">Portal</a>
@@ -79,20 +83,24 @@
       <!-- FREE -->
       <article id="free" class="card">
         <h2>Free Plan</h2>
+        <p class="tagline">Kickstart your build with docs, templates, and regular project updates.</p>
         <div class="price">$0</div>
         <ul>
           <li>Access to public docs & starter templates</li>
           <li>Community updates & roadmap</li>
           <li>Open-source repos and experiments</li>
         </ul>
-        <!-- If you have a real free signup page, swap this href -->
-        <a class="cta" href="https://3dvr-portal.vercel.app/free-trial.html" target="_blank" rel="noopener">Join Free</a>
+        <div class="actions">
+          <a class="cta primary" href="https://3dvr-portal.vercel.app/free-trial.html" target="_blank" rel="noopener">Join Free</a>
+          <a class="cta secondary" href="free-plan.html">Plan details</a>
+        </div>
         <div class="notice">No credit card required.</div>
       </article>
 
       <!-- SUPPORTER -->
       <article id="supporter" class="card">
         <h2>Early Supporter</h2>
+        <p class="tagline">Fuel the roadmap, get early drops, and see your name listed as a founding supporter.</p>
         <div class="price">$5 / month</div>
         <ul>
           <li>All Free features</li>
@@ -100,14 +108,17 @@
           <li>Name/brand shout-outs (opt-in)</li>
           <li>Helps fund open development</li>
         </ul>
-        <!-- Stripe supporter link -->
-        <a class="cta" href="https://buy.stripe.com/28EcN599Q2dJbFdh2Qc7u07" target="_blank" rel="noopener">Become a Supporter</a>
+        <div class="actions">
+          <a class="cta primary" href="https://buy.stripe.com/28EcN599Q2dJbFdh2Qc7u07" target="_blank" rel="noopener">Become a Supporter</a>
+          <a class="cta secondary" href="early-supporter.html">Plan details</a>
+        </div>
         <div class="notice">Cancel anytime from your Stripe receipt/email.</div>
       </article>
 
       <!-- PRO -->
       <article id="pro" class="card">
         <h2>Full Access</h2>
+        <p class="tagline">Hands-on support, design, and builds so you can focus on launching faster.</p>
         <div class="price">$20 / month</div>
         <ul>
           <li>Done-for-you website & landing pages</li>
@@ -116,8 +127,10 @@
           <li>Personal consultations & roadmap help</li>
           <li>Access to the Builder Community</li>
         </ul>
-        <!-- Stripe main subscribe link -->
-        <a class="cta" href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank" rel="noopener">Subscribe Now</a>
+        <div class="actions">
+          <a class="cta primary" href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank" rel="noopener">Subscribe Now</a>
+          <a class="cta secondary" href="full-access.html">Plan details</a>
+        </div>
         <div class="notice">We’ll reach out after signup to get you moving fast.</div>
       </article>
     </section>
@@ -142,7 +155,7 @@
 
       <details>
         <summary>Where can I see examples?</summary>
-        <p class="answer">Check our <a href="index.html#testimonials">testimonials</a> and the <a href="https://3dvr-portal.vercel.app/" target="_blank" rel="noopener">portal</a> for in-progress experiments.</p>
+        <p class="answer">Check our <a href="../index.html#testimonials">testimonials</a> and the <a href="https://3dvr-portal.vercel.app/" target="_blank" rel="noopener">portal</a> for in-progress experiments.</p>
       </details>
     </section>
   </main>

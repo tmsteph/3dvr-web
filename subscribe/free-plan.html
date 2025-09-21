@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Free Plan | 3dvr.tech Subscriptions</title>
+  <link rel="icon" href="../3DVRfavicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #00ffc8;
+      --accent-soft: rgba(0, 255, 200, 0.18);
+      --bg: linear-gradient(160deg, #0f2027, #203a43, #2c5364);
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-alt: rgba(255, 255, 255, 0.1);
+      --text: #fff;
+      --muted: #d7e0e7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); }
+    a { color: var(--accent); text-decoration: none; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: rgba(0, 0, 0, 0.5); position: sticky; top: 0; backdrop-filter: blur(10px); z-index: 10; }
+    header img { height: 40px; }
+    header nav a { margin-left: 1rem; font-weight: 600; }
+
+    main { max-width: 900px; margin: 2.5rem auto 4rem; padding: 0 1.25rem; }
+
+    .hero { text-align: center; }
+    .hero .eyebrow { font-size: 0.85rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; display: inline-block; }
+    .hero h1 { font-family: Poppins, sans-serif; font-size: clamp(2.2rem, 5vw, 3.25rem); margin-bottom: 0.75rem; }
+    .hero p { color: var(--muted); font-size: 1.1rem; line-height: 1.6; max-width: 640px; margin: 0 auto; }
+    .hero .price { margin: 2rem auto 0; font-size: 2.5rem; font-weight: 800; }
+
+    .actions { margin-top: 2rem; display: flex; justify-content: center; gap: 0.9rem; flex-wrap: wrap; }
+    .cta { display: inline-flex; align-items: center; justify-content: center; padding: 0.7rem 1.4rem; border-radius: 999px; font-weight: 700; letter-spacing: 0.02em; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; box-shadow: 0 0 0 transparent; }
+    .cta.primary { background: var(--accent); color: #000; box-shadow: 0 0 15px rgba(0, 255, 200, 0.4); }
+    .cta.secondary { border: 1px solid var(--accent); color: var(--accent); background: transparent; }
+    .cta.secondary:hover { background: var(--accent-soft); }
+    .cta:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+    .panel { background: var(--panel); border-radius: 16px; padding: 1.75rem; margin-top: 2.25rem; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.22); }
+    .panel h2 { font-family: Poppins, sans-serif; font-size: 1.4rem; margin-bottom: 1rem; color: var(--accent); }
+    .panel p { color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+    .panel ul { margin-left: 1rem; }
+    .panel li { margin: 0.5rem 0; line-height: 1.5; }
+
+    .pill-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+    .pill { padding: 0.55rem 1.1rem; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.25); color: var(--muted); font-weight: 500; backdrop-filter: blur(8px); background: rgba(15, 32, 39, 0.4); }
+
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .step { background: var(--panel-alt); border-radius: 14px; padding: 1.2rem; }
+    .step h3 { font-family: Poppins, sans-serif; font-size: 1rem; margin-bottom: 0.5rem; color: var(--accent); }
+    .step p { margin: 0; color: var(--muted); line-height: 1.5; }
+
+    .faq { margin-top: 3rem; }
+    .faq h2 { font-family: Poppins, sans-serif; font-size: 1.4rem; margin-bottom: 1rem; color: var(--accent); }
+    details { background: var(--panel); border-radius: 12px; padding: 0.9rem 1rem; margin: 0.6rem 0; }
+    details[open] { background: rgba(255, 255, 255, 0.12); }
+    summary { cursor: pointer; font-weight: 700; }
+    details p { color: var(--muted); margin-top: 0.6rem; line-height: 1.5; }
+
+    footer { text-align: center; color: #bfc9cf; padding: 2rem 1rem; margin-top: 4rem; }
+
+    @media (max-width: 640px) {
+      header nav a { margin-left: 0.75rem; font-size: 0.95rem; }
+      .cta { width: 100%; }
+      .steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="../index.html"><img src="../3DVR.png" alt="3dvr.tech logo" /></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="index.html#plans">All plans</a>
+      <a href="https://3dvr-portal.vercel.app/" target="_blank" rel="noopener">Portal</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="eyebrow">Subscription</span>
+      <h1>Free Plan</h1>
+      <p>The easiest way to explore 3dvr.tech. Access the essential docs, starter kits, and community drops that power our open source mission.</p>
+      <div class="price">$0 / month</div>
+      <div class="actions">
+        <a class="cta primary" href="https://3dvr-portal.vercel.app/free-trial.html" target="_blank" rel="noopener">Join Free</a>
+        <a class="cta secondary" href="index.html#plans">Back to all plans</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>What you get</h2>
+      <p>Everything you need to start experimenting with immersive experiences and builder tooling—no credit card required.</p>
+      <ul class="feature-list">
+        <li>All public documentation, starter templates, and quick-start guides.</li>
+        <li>Regular community updates, roadmap previews, and open office recaps.</li>
+        <li>Access to our open-source repositories, experiments, and design kits.</li>
+        <li>Invites to community livestreams, hack sessions, and showcase events.</li>
+        <li>Email digest with highlights so you never miss a release.</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>Perfect for</h2>
+      <div class="pill-list">
+        <span class="pill">Solo builders & founders</span>
+        <span class="pill">Students & educators</span>
+        <span class="pill">Hackathon teams</span>
+        <span class="pill">Curious explorers</span>
+      </div>
+      <p>Use the Free plan to prototype concepts, follow along with development, and learn how we’re approaching VR-first web experiences.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Get started in minutes</h2>
+      <div class="steps">
+        <div class="step">
+          <h3>1. Create your portal login</h3>
+          <p>Tap the Join Free button to register. You’ll get instant access—no payment details required.</p>
+        </div>
+        <div class="step">
+          <h3>2. Grab a starter kit</h3>
+          <p>Clone a template, explore components, and remix anything in our open repositories.</p>
+        </div>
+        <div class="step">
+          <h3>3. Share what you build</h3>
+          <p>Drop into the community updates to show progress, ask questions, and see what others are shipping.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <h2>Free plan FAQ</h2>
+      <details>
+        <summary>Is the Free plan really free?</summary>
+        <p>Yes. The Free plan is our way to keep the community accessible. No credit card is ever required and you can stay as long as you like.</p>
+      </details>
+      <details>
+        <summary>How do I upgrade later?</summary>
+        <p>Whenever you’re ready for extra support or perks, head back to the <a href="index.html#plans">plans page</a> and pick the tier that fits. Upgrades happen instantly.</p>
+      </details>
+      <details>
+        <summary>Can I use the assets commercially?</summary>
+        <p>Absolutely. Everything in the Free plan is open for personal and commercial use under the repo licenses. Attribution is appreciated but not required.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 3dvr.tech — Open Source. Open Future.
+  </footer>
+</body>
+</html>
