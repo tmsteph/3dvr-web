@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Early Supporter Plan | 3dvr.tech Subscriptions</title>
+  <link rel="icon" href="../3DVRfavicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #00ffc8;
+      --accent-soft: rgba(0, 255, 200, 0.18);
+      --bg: linear-gradient(160deg, #0f2027, #203a43, #2c5364);
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-alt: rgba(255, 255, 255, 0.1);
+      --text: #fff;
+      --muted: #d7e0e7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); }
+    a { color: var(--accent); text-decoration: none; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: rgba(0, 0, 0, 0.5); position: sticky; top: 0; backdrop-filter: blur(10px); z-index: 10; }
+    header img { height: 40px; }
+    header nav a { margin-left: 1rem; font-weight: 600; }
+
+    main { max-width: 900px; margin: 2.5rem auto 4rem; padding: 0 1.25rem; }
+
+    .hero { text-align: center; }
+    .hero .eyebrow { font-size: 0.85rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; display: inline-block; }
+    .hero h1 { font-family: Poppins, sans-serif; font-size: clamp(2.2rem, 5vw, 3.25rem); margin-bottom: 0.75rem; }
+    .hero p { color: var(--muted); font-size: 1.1rem; line-height: 1.6; max-width: 640px; margin: 0 auto; }
+    .hero .price { margin: 2rem auto 0; font-size: 2.5rem; font-weight: 800; }
+
+    .actions { margin-top: 2rem; display: flex; justify-content: center; gap: 0.9rem; flex-wrap: wrap; }
+    .cta { display: inline-flex; align-items: center; justify-content: center; padding: 0.7rem 1.4rem; border-radius: 999px; font-weight: 700; letter-spacing: 0.02em; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; box-shadow: 0 0 0 transparent; }
+    .cta.primary { background: var(--accent); color: #000; box-shadow: 0 0 15px rgba(0, 255, 200, 0.4); }
+    .cta.secondary { border: 1px solid var(--accent); color: var(--accent); background: transparent; }
+    .cta.secondary:hover { background: var(--accent-soft); }
+    .cta:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+    .panel { background: var(--panel); border-radius: 16px; padding: 1.75rem; margin-top: 2.25rem; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.22); }
+    .panel h2 { font-family: Poppins, sans-serif; font-size: 1.4rem; margin-bottom: 1rem; color: var(--accent); }
+    .panel p { color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+    .panel ul { margin-left: 1rem; }
+    .panel li { margin: 0.5rem 0; line-height: 1.5; }
+
+    .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .impact { background: var(--panel-alt); border-radius: 14px; padding: 1.2rem; }
+    .impact h3 { font-family: Poppins, sans-serif; font-size: 1rem; margin-bottom: 0.5rem; color: var(--accent); }
+    .impact p { margin: 0; color: var(--muted); line-height: 1.5; }
+
+    .pill-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+    .pill { padding: 0.55rem 1.1rem; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.25); color: var(--muted); font-weight: 500; backdrop-filter: blur(8px); background: rgba(15, 32, 39, 0.4); }
+
+    .faq { margin-top: 3rem; }
+    .faq h2 { font-family: Poppins, sans-serif; font-size: 1.4rem; margin-bottom: 1rem; color: var(--accent); }
+    details { background: var(--panel); border-radius: 12px; padding: 0.9rem 1rem; margin: 0.6rem 0; }
+    details[open] { background: rgba(255, 255, 255, 0.12); }
+    summary { cursor: pointer; font-weight: 700; }
+    details p { color: var(--muted); margin-top: 0.6rem; line-height: 1.5; }
+
+    footer { text-align: center; color: #bfc9cf; padding: 2rem 1rem; margin-top: 4rem; }
+
+    @media (max-width: 640px) {
+      header nav a { margin-left: 0.75rem; font-size: 0.95rem; }
+      .cta { width: 100%; }
+      .impact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="../index.html"><img src="../3DVR.png" alt="3dvr.tech logo" /></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="index.html#plans">All plans</a>
+      <a href="https://3dvr-portal.vercel.app/" target="_blank" rel="noopener">Portal</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="eyebrow">Subscription</span>
+      <h1>Early Supporter</h1>
+      <p>Become part of the founding crew that keeps 3dvr.tech moving forward. Get first looks, special shout-outs, and influence the roadmap.</p>
+      <div class="price">$5 / month</div>
+      <div class="actions">
+        <a class="cta primary" href="https://buy.stripe.com/28EcN599Q2dJbFdh2Qc7u07" target="_blank" rel="noopener">Become a supporter</a>
+        <a class="cta secondary" href="index.html#plans">Back to all plans</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Supporter perks</h2>
+      <p>All the Free plan essentials, plus exclusive updates and visibility that only early supporters receive.</p>
+      <ul>
+        <li>Early access drops—test-drive new tools, prototypes, and experiments before anyone else.</li>
+        <li>Behind-the-scenes dev notes and video recaps showing how the platform is evolving.</li>
+        <li>Opt-in recognition: have your name or brand listed on upcoming supporter walls.</li>
+        <li>Priority Q&A in community meetups and roadmap sessions.</li>
+        <li>Special digital swag & supporter badge for social sharing.</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>Your impact</h2>
+      <p>Your $5 goes directly toward open-source maintenance, infrastructure, and experiment budgets. Here’s how it adds up:</p>
+      <div class="impact-grid">
+        <div class="impact">
+          <h3>Keep the lights on</h3>
+          <p>Cover hosting, rendering, and bandwidth for public demos so anyone can explore our builds.</p>
+        </div>
+        <div class="impact">
+          <h3>Fund experiments</h3>
+          <p>Prototype new interactions, ship research spikes, and publish learnings for the community.</p>
+        </div>
+        <div class="impact">
+          <h3>Amplify the community</h3>
+          <p>Enable more livestreams, guest sessions, and curated showcases highlighting what you create.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Perfect for</h2>
+      <div class="pill-list">
+        <span class="pill">Long-term believers</span>
+        <span class="pill">Studios watching the space</span>
+        <span class="pill">Creators who want visibility</span>
+        <span class="pill">Alumni & day-one members</span>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <h2>Supporter FAQ</h2>
+      <details>
+        <summary>Can I pause or cancel?</summary>
+        <p>Yes. You can cancel anytime via the Stripe receipt email you receive after checkout. You’re welcome back anytime.</p>
+      </details>
+      <details>
+        <summary>Do I still get Free plan access?</summary>
+        <p>Absolutely. Supporters get everything in the Free plan plus all the perks listed above.</p>
+      </details>
+      <details>
+        <summary>How do shout-outs work?</summary>
+        <p>After you join, we’ll send a quick form where you can choose how (or if) you’d like to be recognized. We respect privacy and only highlight what you approve.</p>
+      </details>
+      <details>
+        <summary>Need an invoice?</summary>
+        <p>No problem. Stripe automatically emails a receipt, and you can generate invoices through the customer portal linked in that email.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 3dvr.tech — Open Source. Open Future.
+  </footer>
+</body>
+</html>
