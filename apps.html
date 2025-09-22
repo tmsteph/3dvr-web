@@ -72,6 +72,18 @@
       z-index: 1001;
     }
 
+    @media (max-width: 640px) {
+      body {
+        padding-bottom: 140px;
+        padding-bottom: calc(140px + env(safe-area-inset-bottom));
+      }
+      .sticky-cta {
+        bottom: 90px;
+        bottom: calc(90px + env(safe-area-inset-bottom));
+        right: 16px;
+      }
+    }
+
     section {
       min-height: 100vh;
       padding: 6rem 2rem;

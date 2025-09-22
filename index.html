@@ -83,6 +83,18 @@
       box-shadow: 0 0 15px rgba(0,255,200,0.5); z-index: 1000;
     }
 
+    @media (max-width: 640px) {
+      body {
+        padding-bottom: 140px;
+        padding-bottom: calc(140px + env(safe-area-inset-bottom));
+      }
+      .sticky-cta {
+        bottom: 90px;
+        bottom: calc(90px + env(safe-area-inset-bottom));
+        right: 16px;
+      }
+    }
+
     section {
       min-height: 100vh; display: flex; flex-direction: column;
       justify-content: center; align-items: center; padding: 6rem 2rem; text-align: center;
