@@ -76,11 +76,27 @@
     }
 
     .sticky-cta {
-      position: fixed; bottom: 20px; right: 20px;
-      background: var(--accent); color: var(--text-dark);
-      padding: 0.9rem 1.6rem; border-radius: 10px; font-weight: bold;
-      text-decoration: none; font-size: 1.1rem;
-      box-shadow: 0 0 15px rgba(0,255,200,0.5); z-index: 1000;
+      --cta-base-gap: max(20px, calc(20px + env(safe-area-inset-bottom)));
+      position: fixed;
+      right: clamp(16px, 5vw, 24px);
+      bottom: var(--cta-offset, var(--cta-base-gap));
+      background: var(--accent);
+      color: var(--text-dark);
+      padding: 0.9rem 1.6rem;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 0 15px rgba(0,255,200,0.5);
+      z-index: 1001;
+      transition: bottom 0.25s ease;
+    }
+
+    @media (max-width: 640px) {
+      .sticky-cta {
+        font-size: 1rem;
+        padding: 0.85rem 1.4rem;
+      }
     }
 
     section {
@@ -300,6 +316,79 @@
     <p>&copy; 2025 <a href="https://3dvr.tech" target="_blank" style="color: var(--accent);">3dvr.tech</a> — Open Source. Open Future.</p>
     <p><a href="https://github.com/tmsteph/3dvr-web" target="_blank" style="color: var(--accent); text-decoration: none;">✏️ Edit this page on GitHub</a></p>
   </footer>
+
+  <script>
+    (function () {
+      const cta = document.querySelector('.sticky-cta');
+      const footer = document.querySelector('footer');
+
+      if (!cta || !footer) {
+        return;
+      }
+
+      const LIFT_BUFFER = 12;
+      let baseBottom = 0;
+      let ctaHeight = 0;
+      let rafId = null;
+
+      const measure = () => {
+        const previousOffset = cta.style.getPropertyValue('--cta-offset');
+        if (previousOffset) {
+          cta.style.removeProperty('--cta-offset');
+        }
+
+        const styles = window.getComputedStyle(cta);
+        baseBottom = parseFloat(styles.bottom) || 0;
+        ctaHeight = cta.getBoundingClientRect().height;
+
+        if (previousOffset) {
+          cta.style.setProperty('--cta-offset', previousOffset);
+        }
+      };
+
+      const update = () => {
+        rafId = null;
+        const footerRect = footer.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const distance = viewportHeight - footerRect.top;
+
+        if (distance <= 0) {
+          cta.style.removeProperty('--cta-offset');
+          return;
+        }
+
+        const desiredBottom = distance + LIFT_BUFFER;
+        if (desiredBottom <= baseBottom) {
+          cta.style.removeProperty('--cta-offset');
+          return;
+        }
+
+        const maxBottom = Math.max(baseBottom, viewportHeight - ctaHeight - LIFT_BUFFER);
+        const clampedBottom = Math.min(desiredBottom, maxBottom);
+
+        cta.style.setProperty('--cta-offset', `${clampedBottom.toFixed(2)}px`);
+      };
+
+      const requestUpdate = () => {
+        if (rafId === null) {
+          rafId = requestAnimationFrame(update);
+        }
+      };
+
+      const refresh = () => {
+        measure();
+        requestUpdate();
+      };
+
+      refresh();
+      window.addEventListener('load', refresh);
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', () => {
+        measure();
+        requestUpdate();
+      });
+    })();
+  </script>
 
   <!-- Main UI behaviors: mobile menu open/close, outside-click, ESC, and helpers -->
   <script>
