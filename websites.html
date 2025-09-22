@@ -58,9 +58,10 @@
     }
 
     .sticky-cta {
+      --cta-base-gap: max(20px, calc(20px + env(safe-area-inset-bottom)));
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      right: clamp(16px, 5vw, 24px);
+      bottom: var(--cta-offset, var(--cta-base-gap));
       background: var(--accent);
       color: var(--text-dark);
       padding: 0.9rem 1.6rem;
@@ -70,17 +71,13 @@
       font-size: 1.1rem;
       box-shadow: 0 0 15px rgba(0,255,200,0.5);
       z-index: 1001;
+      transition: bottom 0.25s ease;
     }
 
     @media (max-width: 640px) {
-      body {
-        padding-bottom: 140px;
-        padding-bottom: calc(140px + env(safe-area-inset-bottom));
-      }
       .sticky-cta {
-        bottom: 90px;
-        bottom: calc(90px + env(safe-area-inset-bottom));
-        right: 16px;
+        font-size: 1rem;
+        padding: 0.85rem 1.4rem;
       }
     }
 
@@ -161,6 +158,32 @@
   <footer>
     <p>&copy; 2025 <a href="https://3dvr.tech" target="_blank">3dvr.tech</a> — Open Source. Open Future.</p>
   </footer>
+
+  <script>
+    (function () {
+      const cta = document.querySelector('.sticky-cta');
+      const footer = document.querySelector('footer');
+
+      if (!cta || !footer || !('IntersectionObserver' in window)) {
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const overlap = Math.max(0, entry.intersectionRect.height);
+            cta.style.setProperty('--cta-offset', `calc(${overlap.toFixed(2)}px + var(--cta-base-gap))`);
+          } else {
+            cta.style.removeProperty('--cta-offset');
+          }
+        });
+      }, {
+        threshold: [0, 1],
+      });
+
+      observer.observe(footer);
+    })();
+  </script>
 
 </body>
 </html>
