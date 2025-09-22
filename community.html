@@ -164,24 +164,71 @@
       const cta = document.querySelector('.sticky-cta');
       const footer = document.querySelector('footer');
 
-      if (!cta || !footer || !('IntersectionObserver' in window)) {
+      if (!cta || !footer) {
         return;
       }
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const overlap = Math.max(0, entry.intersectionRect.height);
-            cta.style.setProperty('--cta-offset', `calc(${overlap.toFixed(2)}px + var(--cta-base-gap))`);
-          } else {
-            cta.style.removeProperty('--cta-offset');
-          }
-        });
-      }, {
-        threshold: [0, 1],
-      });
+      const LIFT_BUFFER = 12;
+      let baseBottom = 0;
+      let ctaHeight = 0;
+      let rafId = null;
 
-      observer.observe(footer);
+      const measure = () => {
+        const previousOffset = cta.style.getPropertyValue('--cta-offset');
+        if (previousOffset) {
+          cta.style.removeProperty('--cta-offset');
+        }
+
+        const styles = window.getComputedStyle(cta);
+        baseBottom = parseFloat(styles.bottom) || 0;
+        ctaHeight = cta.getBoundingClientRect().height;
+
+        if (previousOffset) {
+          cta.style.setProperty('--cta-offset', previousOffset);
+        }
+      };
+
+      const update = () => {
+        rafId = null;
+        const footerRect = footer.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const distance = viewportHeight - footerRect.top;
+
+        if (distance <= 0) {
+          cta.style.removeProperty('--cta-offset');
+          return;
+        }
+
+        const desiredBottom = distance + LIFT_BUFFER;
+        if (desiredBottom <= baseBottom) {
+          cta.style.removeProperty('--cta-offset');
+          return;
+        }
+
+        const maxBottom = Math.max(baseBottom, viewportHeight - ctaHeight - LIFT_BUFFER);
+        const clampedBottom = Math.min(desiredBottom, maxBottom);
+
+        cta.style.setProperty('--cta-offset', `${clampedBottom.toFixed(2)}px`);
+      };
+
+      const requestUpdate = () => {
+        if (rafId === null) {
+          rafId = requestAnimationFrame(update);
+        }
+      };
+
+      const refresh = () => {
+        measure();
+        requestUpdate();
+      };
+
+      refresh();
+      window.addEventListener('load', refresh);
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', () => {
+        measure();
+        requestUpdate();
+      });
     })();
   </script>
 
