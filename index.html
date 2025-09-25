@@ -117,19 +117,22 @@
       display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;
       max-width: 1400px; padding: 0 1rem; margin-top: 2rem;
     }
+    .card-grid { align-items: stretch; }
     .card {
       flex: 1 1 calc(20% - 2rem);
       min-width: 220px; max-width: 260px;
       background: rgba(255,255,255,0.08); border-radius: 14px; padding: 1.5rem;
       text-align: center; transition: all 0.3s ease; cursor: pointer;
       text-decoration: none; color: white; position: relative;
+      display: flex; flex-direction: column; align-items: center;
     }
     .card:hover { background: rgba(255,255,255,0.15); transform: translateY(-5px); }
     .card h3 { color: var(--accent); font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .card h3 .plan-name { white-space: nowrap; }
     .card p { font-size: 1rem; }
 
     .btn-like {
-      display: inline-block; margin-top: 1rem; font-weight: 700;
+      display: inline-block; margin-top: auto; font-weight: 700;
       background: var(--accent); color: var(--text-dark);
       padding: 0.6rem 1rem; border-radius: 10px; text-decoration: none;
       box-shadow: 0 0 12px rgba(0,255,200,0.35);
@@ -181,17 +184,17 @@
     <p>Start building your vision with the plan that fits you best. Upgrade anytime.</p>
     <div class="card-grid">
       <a href="subscribe/free-plan.html" class="card">
-        <h3>Free Plan</h3>
+        <h3><span class="plan-name">Free Plan</span><br><span class="plan-price">— Free!</span></h3>
         <p>Discover your vision and get started with a free website on a 3dvr.tech subdomain.</p>
         <span class="btn-like">Learn More</span>
       </a>
       <a href="subscribe/family-friends.html" class="card">
-        <h3>Family &amp; Friends Plan — $5 monthly</h3>
+        <h3><span class="plan-name">Family &amp; Friends Plan</span><br><span class="plan-price">— $5 monthly</span></h3>
         <p>Keep your free 3dvr.tech site and enjoy light monthly support for small updates and experiments. Try it free for 30 days.</p>
         <span class="btn-like">Learn More</span>
       </a>
       <a href="subscribe/founder-plan.html" class="card">
-        <h3>Founder Plan — $20 monthly</h3>
+        <h3><span class="plan-name">Founder Plan</span><br><span class="plan-price">— $20 monthly</span></h3>
         <p>Launch your brand with a custom domain (included if $10/yr or less) and get more support as your project grows.</p>
         <span class="btn-like">Learn More</span>
       </a>
