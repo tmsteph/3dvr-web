@@ -6,85 +6,236 @@
   <title>3DVR.tech Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --accent: #6ef9d6;
+      --surface: rgba(24, 24, 24, 0.92);
+      --surface-hover: rgba(32, 32, 32, 0.95);
+      --border: rgba(255, 255, 255, 0.1);
+      --text-muted: #a6a6a6;
+      --gradient: radial-gradient(circle at top, rgba(110, 249, 214, 0.18), transparent 55%),
+        linear-gradient(160deg, #050608 0%, #0d1018 45%, #030507 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Outfit', sans-serif;
-      background-color: #0a0a0a;
+      background: var(--gradient);
       color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     header {
-      background-color: #111;
-      padding: 1rem 2rem;
+      background: rgba(5, 6, 8, 0.85);
+      backdrop-filter: blur(12px);
+      padding: 1rem clamp(1.5rem, 6vw, 4rem);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     header h1 {
       margin: 0;
-      font-size: 1.8rem;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      letter-spacing: 0.08em;
+    }
+
+    nav {
+      display: flex;
+      gap: clamp(0.5rem, 2vw, 1.5rem);
+      flex-wrap: wrap;
     }
 
     nav a {
       color: #f0f0f0;
-      margin-left: 1rem;
       text-decoration: none;
       font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      padding-bottom: 0.2rem;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: var(--accent);
+      border-color: var(--accent);
     }
 
     .hero {
       text-align: center;
-      padding: 4rem 2rem;
-      background: radial-gradient(circle at center, #1a1a1a, #0a0a0a);
+      padding: clamp(3rem, 8vw, 6rem) 1.5rem 2rem;
     }
 
     .hero h2 {
-      font-size: 2.5rem;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
       margin-bottom: 1rem;
     }
 
     .hero p {
-      font-size: 1.2rem;
-      max-width: 600px;
+      font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+      max-width: 700px;
       margin: 0 auto;
+      color: var(--text-muted);
     }
 
     .projects {
-      padding: 3rem 2rem;
-      max-width: 1000px;
+      padding: 1rem clamp(1.5rem, 6vw, 4rem) clamp(4rem, 10vw, 6rem);
       margin: 0 auto;
+      width: min(1200px, 100%);
+    }
+
+    .project-intro {
+      text-align: center;
+      margin-bottom: clamp(2.5rem, 7vw, 4rem);
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: clamp(1.5rem, 4vw, 2.5rem);
     }
 
     .project {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      border-radius: 0.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: clamp(1.5rem, 4vw, 2rem);
+      border-radius: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .project::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(140deg, rgba(110, 249, 214, 0.35), transparent 60%);
+      -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .project:hover,
+    .project:focus-within {
+      transform: translateY(-6px);
+      border-color: rgba(110, 249, 214, 0.35);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+    }
+
+    .project:hover::before,
+    .project:focus-within::before {
+      opacity: 1;
     }
 
     .project h3 {
-      margin-top: 0;
+      margin: 0;
+      font-size: 1.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    .project p {
+      margin: 0;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: -0.25rem 0 0.5rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #0c1414;
+      background: rgba(110, 249, 214, 0.7);
+      padding: 0.35rem 0.55rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: auto;
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: gap 0.2s ease;
+    }
+
+    .cta-link span {
+      font-size: 1rem;
+    }
+
+    .cta-link:hover,
+    .cta-link:focus {
+      gap: 0.6rem;
     }
 
     footer {
       text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #888;
-      border-top: 1px solid #333;
+      padding: 2.5rem 1.5rem 3rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      margin-top: auto;
     }
 
-    @media (max-width: 600px) {
-      .hero h2 {
-        font-size: 2rem;
+    .contact-cta {
+      margin-top: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #101615;
+      background: var(--accent);
+      padding: 0.75rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: transform 0.2s ease;
+    }
+
+    .contact-cta:hover,
+    .contact-cta:focus {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
       }
 
       nav {
-        flex-direction: column;
-        align-items: flex-start;
+        width: 100%;
       }
     }
   </style>
@@ -105,41 +256,127 @@
   </section>
 
   <section id="projects" class="projects">
-    <div class="project">
-      <h3>Subscription Service</h3>
-      <p>Websites, app designs, and unlimited tech support for creators and small businesses.</p>
-      <a href="https://portal.3dvr.tech" target="_blank">Visit portal.3dvr.tech →</a>
-    </div>
+    <p class="project-intro">A snapshot of recent launches, community experiments, and passion projects we build for founders, artists, and educators across the globe.</p>
 
-    <div class="project">
-      <h3>GIF English App</h3>
-      <p>Immersive English-learning app with flashcards, dialogues, quizzes, and more – built with Gun.js and Vercel.</p>
-      <a href="https://3dvr-gif-lesson-1.vercel.app/" target="_blank">Visit GIF English App →</a>
-    </div>
+    <div class="project-grid">
+      <article class="project">
+        <h3>3DVR Subscription Portal</h3>
+        <p>Plan selection, onboarding, and support management for our core membership program. Built to scale rapid site launches and personal support.</p>
+        <div class="tag-list">
+          <span class="tag">Support</span>
+          <span class="tag">Automation</span>
+          <span class="tag">Vercel</span>
+        </div>
+        <a class="cta-link" href="https://portal.3dvr.tech" target="_blank" rel="noreferrer">
+          <span>Visit portal.3dvr.tech</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
 
-    <div class="project">
-      <h3>TommyOS</h3>
-      <p>A modular, open-source web OS that blends browser and desktop functionality. In progress with React and Gun.js.</p>
-      <a href="https://tommyos.vercel.app" target="_blank">Visit TommyOS →</a>
-    </div>
+      <article class="project">
+        <h3>GIF English App</h3>
+        <p>Immersive English-learning with GIF flashcards, dialogues, and quizzes. Powered by Gun.js real-time storage for collaborative lessons.</p>
+        <div class="tag-list">
+          <span class="tag">Education</span>
+          <span class="tag">Gun.js</span>
+          <span class="tag">Interactive</span>
+        </div>
+        <a class="cta-link" href="https://3dvr-gif-lesson-1.vercel.app/" target="_blank" rel="noreferrer">
+          <span>Explore the app</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
 
-    <div class="project">
-      <h3>Tmsteph Website</h3>
-      <p>this is the personal website for 3dvr.tech founder, Thomas Stephens</p>
-      <a href="https://tmsteph.com" target="_blank">Visit tmsteph.com →</a>
-    </div>
+      <article class="project">
+        <h3>TommyOS</h3>
+        <p>A modular, open-source web OS blending browser speed with desktop utility. Built with React, Gun.js, and a growing contributor community.</p>
+        <div class="tag-list">
+          <span class="tag">Open Source</span>
+          <span class="tag">React</span>
+          <span class="tag">R&D</span>
+        </div>
+        <a class="cta-link" href="https://tommyos.vercel.app" target="_blank" rel="noreferrer">
+          <span>Launch TommyOS</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
 
-    <div class="project">
-      <h3>thomas.3dvr.tech</h3>
-      <p>This is a portfolio site for Thomas made by David Martinez Rey</p>
-      <a href="https://thomas.3dvr.tech" target="_blank">Visit thomas.3dvr.tech →</a>
-    </div>
+      <article class="project">
+        <h3>Tmsteph Personal Site</h3>
+        <p>The digital home for 3DVR founder Thomas Stephens featuring writing, podcasts, and ongoing experiments with resilient tech.</p>
+        <div class="tag-list">
+          <span class="tag">Personal Brand</span>
+          <span class="tag">Storytelling</span>
+        </div>
+        <a class="cta-link" href="https://tmsteph.com" target="_blank" rel="noreferrer">
+          <span>Visit tmsteph.com</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
 
-    <!-- Add more projects here -->
+      <article class="project">
+        <h3>thomas.3dvr.tech</h3>
+        <p>A collaborative portfolio created with David Martinez Rey to spotlight Thomas’ work, collaborations, and community spaces.</p>
+        <div class="tag-list">
+          <span class="tag">Collaboration</span>
+          <span class="tag">Portfolio</span>
+        </div>
+        <a class="cta-link" href="https://thomas.3dvr.tech" target="_blank" rel="noreferrer">
+          <span>Open site</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
+
+      <article class="project">
+        <h3>Spac Studio</h3>
+        <p>Minimalist studio landing page for cutting-edge 3D and XR experiments. Highlights services, active prototypes, and a growing media showcase.</p>
+        <div class="tag-list">
+          <span class="tag">Studio</span>
+          <span class="tag">XR</span>
+          <span class="tag">Showcase</span>
+        </div>
+        <a class="cta-link" href="https://spacstudio.vercel.app/" target="_blank" rel="noreferrer">
+          <span>Visit Spac Studio</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
+
+      <article class="project">
+        <h3>Mark Wells STEM Tutoring</h3>
+        <p>Course pathways, testimonials, and lead capture for a multi-location tutoring service helping students thrive in STEM disciplines.</p>
+        <div class="tag-list">
+          <span class="tag">Education</span>
+          <span class="tag">Lead Gen</span>
+          <span class="tag">Local SEO</span>
+        </div>
+        <a class="cta-link" href="https://mark-wells-services-hub.vercel.app/college-stem-tutoring.html" target="_blank" rel="noreferrer">
+          <span>See the tutoring hub</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
+
+      <article class="project">
+        <h3>Marey Intro</h3>
+        <p>A vibrant welcome page for artist David Martinez Rey (MAREY) showcasing upcoming exhibitions, merch drops, and community projects.</p>
+        <div class="tag-list">
+          <span class="tag">Artist</span>
+          <span class="tag">Launch</span>
+          <span class="tag">Community</span>
+        </div>
+        <a class="cta-link" href="https://mareyintro.vercel.app/" target="_blank" rel="noreferrer">
+          <span>Enter the experience</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
+    </div>
   </section>
 
   <footer id="contact">
     <p>&copy; 2025 3DVR.tech. Built by open minds for an open world.</p>
+    <a class="contact-cta" href="mailto:hello@3dvr.tech">
+      <span>Start a build</span>
+      <span aria-hidden="true">→</span>
+    </a>
   </footer>
 </body>
 </html>
