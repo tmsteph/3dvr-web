@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <title>Edit Blog Draft | 3DVR</title>
+  <link rel="icon" href="../3DVRfavicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
+  <script src="session.js" defer></script>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --accent: #00ffc8;
+      --bg: radial-gradient(circle at top, #0f172a 0%, #1e293b 45%, #0f172a 100%);
+      --panel: rgba(11, 20, 35, 0.85);
+      --border: rgba(0, 255, 200, 0.25);
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.7);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(7, 15, 25, 0.85);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-wrapper a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .auth-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .auth-actions button,
+    .auth-actions a {
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.35);
+      color: var(--text);
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .auth-actions button:hover,
+    .auth-actions a:hover {
+      background: var(--accent);
+      color: #04121c;
+    }
+
+    main {
+      flex: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+      display: grid;
+      gap: 2rem;
+    }
+
+    .panels {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 2rem;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .panel h1, .panel h2 {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .panel h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+    }
+
+    .panel h2 {
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+    }
+
+    label {
+      font-weight: 600;
+      display: inline-flex;
+      margin-bottom: 0.35rem;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(3, 10, 20, 0.8);
+      color: var(--text);
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 160px;
+    }
+
+    .hint {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    button.primary {
+      background: var(--accent);
+      color: #04121c;
+      border: none;
+      padding: 0.6rem 1.6rem;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.6rem 1.6rem;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    pre {
+      background: rgba(0,0,0,0.45);
+      border-radius: 16px;
+      padding: 1.5rem;
+      overflow-x: auto;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .preview {
+      background: rgba(3, 10, 20, 0.7);
+      border: 1px solid rgba(0,255,200,0.15);
+      border-radius: 18px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .preview h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 4vw, 2.6rem);
+    }
+
+    .preview h2 {
+      font-family: 'Poppins', sans-serif;
+      margin-top: 1.5rem;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+    }
+
+    .preview p {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    [data-disabled="true"] {
+      pointer-events: none;
+      opacity: 0.5;
+      filter: grayscale(0.5);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: var(--muted);
+      background: rgba(7, 15, 25, 0.85);
+      font-size: 0.95rem;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 2.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="sr-only" href="#editor">Skip to editor</a>
+  <header>
+    <div class="nav-wrapper">
+      <a href="/">
+        <img src="../3DVR.png" alt="3DVR logo" width="120" height="40" />
+      </a>
+      <div class="auth-actions" aria-live="polite">
+        <span data-portal-greeting data-state="signed-out">Welcome, guest</span>
+        <a data-portal-signin data-redirect="https://3dvr.tech/blog/edit.html" href="https://portal.3dvr.tech/login">Sign in</a>
+        <button data-portal-signout type="button" hidden>Sign out</button>
+        <a data-portal-create href="https://portal.3dvr.tech/studio/blog/create" hidden>Open portal editor</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel" id="editor" data-portal-requires-auth>
+      <h1>Compose a blog draft</h1>
+      <p class="hint">Signed-in creators can use this space to structure a post before publishing through the portal editor. Drafts stay in your browser until you export them.</p>
+      <div class="grid">
+        <div>
+          <label for="draft-title">Title</label>
+          <input type="text" id="draft-title" placeholder="e.g. Launching volumetric streaming" />
+        </div>
+        <div>
+          <label for="draft-slug">Slug</label>
+          <input type="text" id="draft-slug" placeholder="e.g. volumetric-streaming-launch" />
+          <p class="hint">Used for the URL (https://3dvr.tech/blog/<span id="slug-preview">your-slug</span>.html).</p>
+        </div>
+        <div>
+          <label for="draft-excerpt">Meta description</label>
+          <textarea id="draft-excerpt" rows="3" placeholder="One or two sentences that summarize the story."></textarea>
+        </div>
+        <div>
+          <label for="draft-hero">Hero image URL</label>
+          <input type="text" id="draft-hero" placeholder="https://3dvr.tech/media/your-image.jpg" />
+        </div>
+        <div>
+          <label for="draft-content">Body (Markdown supported)</label>
+          <textarea id="draft-content" rows="12" placeholder="# Introduction\nShare your ideas with headings, lists, and paragraphs."></textarea>
+          <p class="hint">Use Markdown syntax for headings, emphasis, and lists. The preview updates in real time.</p>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="primary" type="button" id="save-draft">Save draft</button>
+        <button class="secondary" type="button" id="clear-draft">Clear</button>
+        <button class="secondary" type="button" id="copy-json" disabled>Copy JSON-LD</button>
+        <button class="secondary" type="button" id="copy-html" disabled>Copy HTML</button>
+      </div>
+      <p class="hint" id="draft-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Preview</h2>
+      <div class="preview" id="preview">
+        <p>The preview will appear here as you type.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>JSON-LD</h2>
+      <pre id="json-preview">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting"
+}</pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> 3DVR. Drafts remain local to your browser until you publish via the portal.</p>
+  </footer>
+
+  <script>
+    const elements = {
+      title: document.getElementById('draft-title'),
+      slug: document.getElementById('draft-slug'),
+      excerpt: document.getElementById('draft-excerpt'),
+      hero: document.getElementById('draft-hero'),
+      content: document.getElementById('draft-content'),
+      slugPreview: document.getElementById('slug-preview'),
+      preview: document.getElementById('preview'),
+      jsonPreview: document.getElementById('json-preview'),
+      status: document.getElementById('draft-status'),
+      save: document.getElementById('save-draft'),
+      clear: document.getElementById('clear-draft'),
+      copyJson: document.getElementById('copy-json'),
+      copyHtml: document.getElementById('copy-html')
+    };
+
+    const STORAGE_KEY = '3dvr.blog.draft';
+    const editorPanel = document.querySelector('[data-portal-requires-auth]');
+
+    function slugify(value) {
+      return value
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .trim()
+        .replace(/\s+/g, '-');
+    }
+
+    function markdownToHtml(markdown) {
+      const lines = markdown.split(/\r?\n/);
+      let html = '';
+      let inList = false;
+      lines.forEach((line) => {
+        if (!line.trim()) {
+          if (inList) {
+            html += '</ul>';
+            inList = false;
+          }
+          html += '<p></p>';
+          return;
+        }
+        if (/^###\s+/.test(line)) {
+          if (inList) {
+            html += '</ul>';
+            inList = false;
+          }
+          html += `<h3>${line.replace(/^###\s+/, '')}</h3>`;
+          return;
+        }
+        if (/^##\s+/.test(line)) {
+          if (inList) {
+            html += '</ul>';
+            inList = false;
+          }
+          html += `<h2>${line.replace(/^##\s+/, '')}</h2>`;
+          return;
+        }
+        if (/^#\s+/.test(line)) {
+          if (inList) {
+            html += '</ul>';
+            inList = false;
+          }
+          html += `<h1>${line.replace(/^#\s+/, '')}</h1>`;
+          return;
+        }
+        if (/^[-*]\s+/.test(line)) {
+          if (!inList) {
+            html += '<ul>';
+            inList = true;
+          }
+          html += `<li>${line.replace(/^[-*]\s+/, '')}</li>`;
+          return;
+        }
+        const formatted = line
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.+?)\*/g, '<em>$1</em>')
+          .replace(/`([^`]+)`/g, '<code>$1</code>');
+        html += `<p>${formatted}</p>`;
+      });
+      if (inList) {
+        html += '</ul>';
+      }
+      return html;
+    }
+
+    function updatePreview() {
+      const title = elements.title.value.trim();
+      const slug = elements.slug.value.trim() || slugify(title);
+      const excerpt = elements.excerpt.value.trim();
+      const hero = elements.hero.value.trim();
+      const content = elements.content.value.trim();
+
+      elements.slugPreview.textContent = slug || 'your-slug';
+
+      const previewHtml = `
+        ${title ? `<h1>${title}</h1>` : ''}
+        ${excerpt ? `<p>${excerpt}</p>` : ''}
+        ${hero ? `<figure><img src="${hero}" alt="" /><figcaption>${title || 'Hero image'}</figcaption></figure>` : ''}
+        ${markdownToHtml(content)}
+      `;
+      elements.preview.innerHTML = previewHtml || '<p>The preview will appear here as you type.</p>';
+
+      const publishedAt = new Date().toISOString();
+      const json = {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: title || 'Untitled draft',
+        description: excerpt || 'Add a description to improve SEO.',
+        datePublished: publishedAt,
+        dateModified: publishedAt,
+        image: hero || 'https://3dvr.tech/media/placeholder.jpg',
+        author: {
+          '@type': 'Person',
+          name: window.PortalSession?.getSession?.()?.user?.name || '3DVR Creator'
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: '3DVR',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://3dvr.tech/3DVR.png'
+          }
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': `https://3dvr.tech/blog/${slug || 'your-slug'}.html`
+        }
+      };
+      elements.jsonPreview.textContent = JSON.stringify(json, null, 2);
+
+      const hasContent = Boolean(title || excerpt || content);
+      elements.copyJson.disabled = !hasContent;
+      elements.copyHtml.disabled = !hasContent;
+    }
+
+    function saveDraft() {
+      const draft = {
+        title: elements.title.value,
+        slug: elements.slug.value,
+        excerpt: elements.excerpt.value,
+        hero: elements.hero.value,
+        content: elements.content.value,
+        updatedAt: Date.now()
+      };
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
+      elements.status.textContent = 'Draft saved locally. Copy the JSON-LD and HTML when you are ready to publish via the portal.';
+    }
+
+    function loadDraft() {
+      try {
+        const raw = window.localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const draft = JSON.parse(raw);
+        elements.title.value = draft.title || '';
+        elements.slug.value = draft.slug || '';
+        elements.excerpt.value = draft.excerpt || '';
+        elements.hero.value = draft.hero || '';
+        elements.content.value = draft.content || '';
+        updatePreview();
+      } catch (error) {
+        console.error('Failed to load draft', error);
+      }
+    }
+
+    function clearDraft() {
+      window.localStorage.removeItem(STORAGE_KEY);
+      elements.title.value = '';
+      elements.slug.value = '';
+      elements.excerpt.value = '';
+      elements.hero.value = '';
+      elements.content.value = '';
+      updatePreview();
+      elements.status.textContent = 'Draft cleared.';
+    }
+
+    function copyToClipboard(text, label) {
+      navigator.clipboard.writeText(text).then(() => {
+        elements.status.textContent = `${label} copied to clipboard.`;
+      }).catch(() => {
+        elements.status.textContent = `Unable to copy ${label}.`; 
+      });
+    }
+
+    elements.title.addEventListener('input', () => {
+      if (!elements.slug.value.trim()) {
+        elements.slug.value = slugify(elements.title.value);
+      }
+      updatePreview();
+    });
+    elements.slug.addEventListener('input', () => {
+      elements.slug.value = slugify(elements.slug.value);
+      updatePreview();
+    });
+    elements.excerpt.addEventListener('input', updatePreview);
+    elements.hero.addEventListener('input', updatePreview);
+    elements.content.addEventListener('input', updatePreview);
+
+    elements.save.addEventListener('click', (event) => {
+      event.preventDefault();
+      saveDraft();
+    });
+    elements.clear.addEventListener('click', (event) => {
+      event.preventDefault();
+      clearDraft();
+    });
+    elements.copyJson.addEventListener('click', (event) => {
+      event.preventDefault();
+      copyToClipboard(elements.jsonPreview.textContent, 'JSON-LD');
+    });
+    elements.copyHtml.addEventListener('click', (event) => {
+      event.preventDefault();
+      copyToClipboard(elements.preview.innerHTML, 'HTML preview');
+    });
+
+    if (window.PortalSession) {
+      window.PortalSession.onChange((session) => {
+        const isSignedIn = Boolean(session?.token);
+        if (editorPanel) {
+          editorPanel.querySelectorAll('input, textarea, button').forEach((control) => {
+            if (control.matches('[data-portal-signout]')) return;
+            control.disabled = !isSignedIn;
+          });
+        }
+        if (!isSignedIn) {
+          elements.status.textContent = 'Sign in via portal.3dvr.tech to unlock the draft workspace.';
+        } else if (!elements.status.textContent) {
+          elements.status.textContent = 'Drafts remain in your browser until you export them.';
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      loadDraft();
+      updatePreview();
+      if (!window.PortalSession?.getSession?.()?.token) {
+        elements.status.textContent = 'Sign in via portal.3dvr.tech to unlock the draft workspace.';
+      }
+    });
+  </script>
+</body>
+</html>
