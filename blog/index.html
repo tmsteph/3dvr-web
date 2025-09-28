@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Read the latest 3DVR product updates, immersive tech insights, and company news." />
+  <meta name="robots" content="index, follow" />
+  <title>3DVR Blog | Immersive Technology Insights</title>
+  <link rel="canonical" href="https://3dvr.tech/blog/" />
+  <link rel="icon" href="../3DVRfavicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="session.js" defer></script>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --accent: #00ffc8;
+      --bg: radial-gradient(circle at top, #141e30 0%, #243b55 45%, #141e30 100%);
+      --bg-card: rgba(13, 24, 40, 0.85);
+      --border: rgba(0, 255, 200, 0.25);
+      --text-light: #ffffff;
+      --text-muted: rgba(255,255,255,0.7);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text-light);
+      min-height: 100vh;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 15, 25, 0.75);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-wrapper a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .auth-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .auth-actions button, .auth-actions a {
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.35);
+      color: var(--text-light);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .auth-actions button:hover, .auth-actions a:hover {
+      background: var(--accent);
+      color: #04121c;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 5rem 1.5rem 3rem;
+    }
+
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2.5rem, 7vw, 3.8rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.8rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero-actions a.primary {
+      background: var(--accent);
+      color: #04121c;
+      box-shadow: 0 12px 30px rgba(0, 255, 200, 0.25);
+    }
+
+    .hero-actions a.secondary {
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+    }
+
+    .hero-actions a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 38px rgba(0, 255, 200, 0.3);
+    }
+
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto 4rem;
+      padding: 0 1.5rem;
+    }
+
+    article {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    article:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,255,200,0.55);
+    }
+
+    article h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.6rem;
+    }
+
+    article p {
+      color: var(--text-muted);
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .post-meta i {
+      color: var(--accent);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      background: rgba(7, 15, 25, 0.9);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+  </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "url": "https://3dvr.tech/blog/",
+      "name": "3DVR Blog",
+      "description": "Immersive technology insights and company news from 3DVR.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "3DVR",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://3dvr.tech/3DVR.png"
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <a class="sr-only" href="#content">Skip to content</a>
+  <header>
+    <div class="nav-wrapper">
+      <a href="/">
+        <img src="../3DVR.png" alt="3DVR logo" width="120" height="40" />
+      </a>
+      <div class="auth-actions" aria-live="polite">
+        <span data-portal-greeting data-state="signed-out">Welcome, guest</span>
+        <a data-portal-signin data-redirect="https://3dvr.tech/blog/" href="https://portal.3dvr.tech/login">Sign in</a>
+        <button data-portal-signout type="button" hidden>Sign out</button>
+        <a data-portal-create href="https://portal.3dvr.tech/studio/blog/create" hidden>Create a post</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero">
+      <h1>Immersive Insights &amp; Product Updates</h1>
+      <p>Stay up to date with the latest announcements from 3DVR, dive into creator spotlights, and explore hands-on guides to building virtual experiences.</p>
+      <div class="hero-actions">
+        <a class="primary" href="edit.html">Draft a post</a>
+        <a class="secondary" href="https://portal.3dvr.tech">Open portal</a>
+      </div>
+    </section>
+
+    <section class="post-grid" aria-label="Recent blog posts">
+      <article itemscope itemtype="https://schema.org/BlogPosting">
+        <header>
+          <a href="welcome-to-3dvr.html" itemprop="url">
+            <h2 itemprop="headline">Welcome to the 3DVR Blog</h2>
+          </a>
+        </header>
+        <div class="post-meta">
+          <i class="fa-regular fa-calendar"></i>
+          <time datetime="2024-05-20" itemprop="datePublished">May 20, 2024</time>
+          <span aria-hidden="true">•</span>
+          <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">3DVR Team</span>
+          </span>
+        </div>
+        <p itemprop="description">Discover how our immersive platform is evolving, what to expect from upcoming releases, and how the blog ties into the 3DVR creator community.</p>
+        <meta itemprop="dateModified" content="2024-05-20" />
+      </article>
+
+      <article itemscope itemtype="https://schema.org/BlogPosting">
+        <header>
+          <a href="creator-tools-roadmap.html" itemprop="url">
+            <h2 itemprop="headline">Creator Tools Roadmap for 2024</h2>
+          </a>
+        </header>
+        <div class="post-meta">
+          <i class="fa-regular fa-calendar"></i>
+          <time datetime="2024-06-04" itemprop="datePublished">June 4, 2024</time>
+          <span aria-hidden="true">•</span>
+          <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">Product Team</span>
+          </span>
+        </div>
+        <p itemprop="description">Peek into the features we are releasing to help builders ship immersive experiences faster, from collaborative editing to asset streaming improvements.</p>
+        <meta itemprop="dateModified" content="2024-06-04" />
+      </article>
+
+      <article itemscope itemtype="https://schema.org/BlogPosting">
+        <header>
+          <a href="community-highlights-may-2024.html" itemprop="url">
+            <h2 itemprop="headline">Community Highlights: May 2024</h2>
+          </a>
+        </header>
+        <div class="post-meta">
+          <i class="fa-regular fa-calendar"></i>
+          <time datetime="2024-05-28" itemprop="datePublished">May 28, 2024</time>
+          <span aria-hidden="true">•</span>
+          <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">Community Team</span>
+          </span>
+        </div>
+        <p itemprop="description">Celebrate standout worlds from the 3DVR community, including tips from the creators behind each experience and how they leveraged the portal.</p>
+        <meta itemprop="dateModified" content="2024-05-28" />
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> 3DVR. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
