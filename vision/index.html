@@ -21,6 +21,7 @@
     a { color: var(--accent); text-decoration: none }
     a:hover { text-decoration: underline }
     .wrap { display: grid; gap: 16px }
+    main.wrap { display: flex; flex-direction: column; gap: 16px; width: 100% }
     .hero {
       display: grid; gap: 12px; padding: 28px; border-radius: 18px; background: linear-gradient(180deg,#0f1824 0%, #0c121a 100%);
       border: 1px solid #1a2432; box-shadow: 0 10px 24px rgba(0,0,0,.35);
@@ -67,12 +68,14 @@
       .cta-row { flex-direction: column; align-items: stretch }
       .btn { width: 100%; justify-content: center }
       .grid { gap: 14px; grid-template-columns: 1fr }
-      #products { display: flex; flex-direction: column }
+      #products { display: block; width: 100% }
       .card.two { grid-template-columns: 1fr }
       #products .card {
         min-height: 240px;
         padding: 20px 20px 26px;
+        width: 100%;
       }
+      #products .card + .card { margin-top: 14px }
       #products .card .col {
         display: flex;
         flex-direction: column;
