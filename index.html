@@ -138,6 +138,168 @@
       box-shadow: 0 0 12px rgba(0,255,200,0.35);
     }
 
+    .vision-section {
+      background: var(--bg-about);
+      position: relative;
+      overflow: hidden;
+    }
+    .vision-section::before,
+    .vision-section::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      z-index: 0;
+      opacity: 0.6;
+    }
+    .vision-section::before {
+      width: 340px;
+      height: 340px;
+      top: -120px;
+      left: -120px;
+      background: radial-gradient(circle, rgba(0,255,200,0.55), rgba(0,255,200,0) 65%);
+      filter: blur(2px);
+    }
+    .vision-section::after {
+      width: 420px;
+      height: 420px;
+      bottom: -160px;
+      right: -160px;
+      background: radial-gradient(circle, rgba(95, 39, 205, 0.45), rgba(95, 39, 205, 0) 65%);
+      filter: blur(6px);
+    }
+    .vision-shape {
+      position: absolute;
+      z-index: 0;
+      opacity: 0.45;
+    }
+    .vision-shape--diamond {
+      top: 18%;
+      right: 12%;
+      width: 160px;
+      height: 160px;
+      background: linear-gradient(135deg, rgba(0,255,200,0.45), rgba(80, 227, 194, 0.05));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 28px;
+      transform: rotate(45deg);
+      box-shadow: 0 0 25px rgba(0,255,200,0.25);
+    }
+    .vision-shape--arc {
+      left: 8%;
+      bottom: 22%;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.15);
+      border-top-color: rgba(0,255,200,0.65);
+      border-right-color: rgba(0,255,200,0.3);
+      transform: rotate(-25deg);
+      box-shadow: 0 0 20px rgba(0,255,200,0.25);
+    }
+    .vision-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    .vision-tagline {
+      align-self: center;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(0,255,200,0.12);
+      color: var(--accent);
+      padding: 0.45rem 1.4rem;
+      border-radius: 999px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .vision-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.8rem;
+      width: 100%;
+      text-align: left;
+    }
+    .vision-card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 1.8rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+    .vision-card::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      pointer-events: none;
+    }
+    .vision-card h3 {
+      color: var(--accent);
+      font-size: 1.35rem;
+      margin-bottom: 0.75rem;
+    }
+    .vision-card p {
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+    .vision-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.6rem;
+    }
+    .vision-card li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: start;
+      gap: 0.6rem;
+      font-size: 1rem;
+    }
+    .vision-card li::before {
+      content: "◆";
+      color: var(--accent);
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+    }
+    .vision-footnote {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .vision-footnote p {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+    .vision-link {
+      align-self: center;
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      background: rgba(0,255,200,0.12);
+      padding: 0.7rem 1.5rem;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .vision-link:hover {
+      transform: translateY(-2px);
+      background: rgba(0,255,200,0.22);
+    }
+
     @keyframes fadeSlideIn { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
   </style>
@@ -181,23 +343,58 @@
       <p>Open-source tech for digital nomads, creators, and explorers.</p>
     </section>
 
-  <section id="vision" style="background: var(--bg-about);">
-    <h2>Our Vision</h2>
-    <p>
-      We believe technology should be owned by the people who build it and the communities who rely on it.
-      By creating an employee and customer owned company, we're replacing big tech gatekeepers with a
-      member-driven network where everyone has a voice and a stake in the future we create together.
-    </p>
-    <p>
-      Our long-term mission is to design tools that respect both people and the planet—repairable, reusable,
-      ergonomic, healthy, and sustainable laptops, phones, and more. Today, we're starting with websites and
-      tech support to help our community grow strong roots before we branch into hardware.
-    </p>
-    <p>
-      <a href="https://3dvr.tech/vision" style="color: var(--accent); font-weight: 600; text-decoration: underline;">
-        Find out more about our vision
-      </a>
-    </p>
+  <section id="vision" class="vision-section">
+    <div class="vision-shape vision-shape--diamond"></div>
+    <div class="vision-shape vision-shape--arc"></div>
+    <div class="vision-content">
+      <span class="vision-tagline">People-powered · Planet-minded</span>
+      <h2>Our Vision</h2>
+      <div class="vision-grid">
+        <article class="vision-card">
+          <h3>Shared Ownership</h3>
+          <p>
+            We believe technology should be owned by the people who build it and the communities who rely on it.
+          </p>
+          <ul>
+            <li>Creating an employee and customer owned company.</li>
+            <li>Replacing big tech gatekeepers with a member-driven network.</li>
+            <li>Amplifying every voice with a meaningful stake in our future.</li>
+          </ul>
+        </article>
+        <article class="vision-card">
+          <h3>Respectful Tools</h3>
+          <p>
+            Our long-term mission is to design tools that respect both people and the planet.
+          </p>
+          <ul>
+            <li>Repairable, reusable hardware built to last.</li>
+            <li>Ergonomic and healthy experiences that feel good to use.</li>
+            <li>Sustainable choices that reduce waste at every step.</li>
+          </ul>
+        </article>
+        <article class="vision-card">
+          <h3>Growing Together</h3>
+          <p>
+            Today, we're starting with websites and tech support to help our community grow strong roots.
+          </p>
+          <ul>
+            <li>Lifting up digital nomads, creators, and explorers.</li>
+            <li>Building momentum before we branch into hardware.</li>
+            <li>Cultivating a support network that keeps evolving.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="vision-footnote">
+        <p>
+          This is just the beginning. As we expand, we'll continue investing in open, cooperative systems that
+          balance innovation, accessibility, and care for the Earth.
+        </p>
+        <a class="vision-link" href="https://3dvr.tech/vision">
+          Find out more about our vision
+          <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
   </section>
 
   <section id="subscribe" style="background: var(--bg-subscribe);">
