@@ -60,6 +60,42 @@
     footer { color: #94a6bc; font-size: 13px }
     .tiny { font-size: 12px; color: #9db2c9 }
     .divider { height:1px; background:#1a2432; margin: 18px 0 }
+    @media (max-width: 720px) {
+      header, main, footer { padding: 22px 18px }
+      nav .row { padding: 12px 18px }
+      .hero { padding: 24px 20px }
+      .cta-row { flex-direction: column; align-items: stretch }
+      .btn { width: 100%; justify-content: center }
+      .grid { gap: 14px }
+      #products .card {
+        min-height: 240px;
+        padding: 20px 20px 26px;
+      }
+      #products .card .col {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      #products .card .col:last-child {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      #products .card .col:last-child .pill {
+        flex: 1 1 calc(50% - 10px);
+        text-align: center;
+        padding: 6px 10px;
+      }
+    }
+    @media (max-width: 520px) {
+      nav .row { flex-direction: column; align-items: flex-start; gap: 8px }
+      nav .wrap { display: flex; flex-wrap: wrap; gap: 10px; width: 100% }
+      nav .wrap a { padding: 4px 0 }
+      .hero h1 { font-size: clamp(24px, 8vw, 34px) }
+      .hero p { font-size: 15px; line-height: 1.6 }
+      .card { padding: 16px }
+    }
   </style>
 </head>
 <body>
