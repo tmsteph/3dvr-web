@@ -141,18 +141,29 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: minmax(320px, 1.1fr) minmax(260px, 0.9fr);
+      grid-template-areas:
+        "hero-intro hero-visual"
+        "hero-content hero-visual";
       gap: clamp(2.5rem, 5vw, 4rem);
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
       width: min(100%, 1200px);
     }
+    .hero-intro {
+      grid-area: hero-intro;
+      text-align: left;
+      align-self: end;
+      margin-bottom: 0.5rem;
+    }
     .hero-content {
+      grid-area: hero-content;
       text-align: left;
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+      margin-top: 0.5rem;
     }
     .hero-eyebrow {
       font-size: 0.95rem;
@@ -230,6 +241,7 @@
       color: rgba(255,255,255,0.7);
     }
     .hero-visual {
+      grid-area: hero-visual;
       position: relative;
       display: flex;
       justify-content: center;
@@ -291,7 +303,8 @@
         align-items: center;
         gap: clamp(2rem, 6vw, 3rem);
       }
-      .hero-content { text-align: center; align-items: center; }
+      .hero-intro { text-align: center; margin-bottom: 0; }
+      .hero-content { text-align: center; align-items: center; margin-top: 0; }
       .hero p { max-width: none; }
       .hero-buttons { justify-content: center; }
       .hero-vision-highlights { text-align: left; }
@@ -514,8 +527,20 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-content">
+      <div class="hero-intro">
         <p class="hero-eyebrow">People-first web & XR studio</p>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-logo-card">
+          <div class="hero-spark hero-spark--top"></div>
+          <div class="hero-spark hero-spark--bottom"></div>
+          <img src="3DVR.png" alt="" />
+          <p>
+            Open source. Cooperative powered. Focused on experiences that feel as visionary as they are sustainable.
+          </p>
+        </div>
+      </div>
+      <div class="hero-content">
         <h1>Build the future with your community</h1>
         <p>
           3dvr.tech is a cooperative lab crafting respectful tools that share ownership,
@@ -544,16 +569,6 @@
             <span class="hero-vision-copy">Training and services that uplift digital nomads and makers.</span>
           </li>
         </ul>
-      </div>
-      <div class="hero-visual" aria-hidden="true">
-        <div class="hero-logo-card">
-          <div class="hero-spark hero-spark--top"></div>
-          <div class="hero-spark hero-spark--bottom"></div>
-          <img src="3DVR.png" alt="" />
-          <p>
-            Open source. Cooperative powered. Focused on experiences that feel as visionary as they are sustainable.
-          </p>
-        </div>
       </div>
     </div>
   </section>
