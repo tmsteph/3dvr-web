@@ -236,7 +236,7 @@
     }
     .hero-logo-card {
       position: relative;
-      padding: 2rem;
+      padding: 2.4rem 2.2rem;
       border-radius: 24px;
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.12);
@@ -247,10 +247,10 @@
       align-items: center;
       gap: 1.2rem;
       text-align: center;
-      max-width: 320px;
+      max-width: 360px;
     }
     .hero-logo-card img {
-      width: min(200px, 60vw);
+      width: clamp(220px, 62vw, 300px);
       height: auto;
       filter: drop-shadow(0 0 28px rgba(0,255,200,0.45));
       opacity: 0;
@@ -285,10 +285,22 @@
       50% { transform: scale(1.15); opacity: 0.65; }
     }
     @media (max-width: 768px) {
+      .hero-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(2rem, 6vw, 3rem);
+      }
       .hero-content { text-align: center; align-items: center; }
       .hero p { max-width: none; }
       .hero-buttons { justify-content: center; }
       .hero-vision-highlights { text-align: left; }
+      .hero-visual { order: -1; }
+      .hero-logo-card {
+        width: min(92vw, 420px);
+        padding: 2.8rem 2.4rem;
+        gap: 1.4rem;
+      }
     }
 
     .card-grid {
