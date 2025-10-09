@@ -106,12 +106,214 @@
     section h2 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem; }
     section p { font-size: clamp(1.2rem, 2vw, 1.5rem); max-width: 800px; margin-bottom: 1.5rem; }
 
-    .hero img {
-      max-width: 90vw; max-height: 400px; height: auto; margin-bottom: 2rem;
-      opacity: 0; animation: fadeIn 3s ease-out forwards;
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at top left, rgba(0,255,200,0.2), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(95,39,205,0.18), transparent 50%),
+        var(--bg-hero);
     }
-    .hero h2 { font-size: clamp(3rem, 8vw, 5rem); }
-    .hero p { font-size: clamp(1.5rem, 2.5vw, 1.7rem); }
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      border-radius: 50%;
+      filter: blur(10px);
+      opacity: 0.65;
+      mix-blend-mode: screen;
+    }
+    .hero::before {
+      width: 420px;
+      height: 420px;
+      top: -160px;
+      right: -160px;
+      background: radial-gradient(circle, rgba(0,255,200,0.45), transparent 65%);
+    }
+    .hero::after {
+      width: 360px;
+      height: 360px;
+      bottom: -140px;
+      left: -120px;
+      background: radial-gradient(circle, rgba(95,39,205,0.35), transparent 70%);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(320px, 1.1fr) minmax(260px, 0.9fr);
+      grid-template-areas:
+        "hero-intro hero-visual"
+        "hero-content hero-visual";
+      gap: clamp(2.5rem, 5vw, 4rem);
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: min(100%, 1200px);
+    }
+    .hero-intro {
+      grid-area: hero-intro;
+      text-align: left;
+      align-self: end;
+      margin-bottom: 0.5rem;
+    }
+    .hero-content {
+      grid-area: hero-content;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.95rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 4.5rem);
+      line-height: 1.1;
+    }
+    .hero p {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: rgba(255,255,255,0.85);
+      max-width: 540px;
+    }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .hero-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.6rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      font-size: 1rem;
+    }
+    .hero-button--primary {
+      background: var(--accent);
+      color: var(--text-dark);
+      box-shadow: 0 12px 30px rgba(0,255,200,0.35);
+    }
+    .hero-button--primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(0,255,200,0.45);
+    }
+    .hero-button--ghost {
+      background: rgba(0,0,0,0.35);
+      color: var(--text-light);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .hero-button--ghost:hover {
+      background: rgba(0,0,0,0.5);
+      transform: translateY(-3px);
+    }
+    .hero-vision-highlights {
+      list-style: none;
+      padding: 1.5rem;
+      border-radius: 20px;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      gap: 0.9rem;
+      max-width: 520px;
+    }
+    .hero-vision-highlights li {
+      display: grid;
+      gap: 0.3rem;
+    }
+    .hero-vision-title {
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+    }
+    .hero-vision-copy {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+    }
+    .hero-visual {
+      grid-area: hero-visual;
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-logo-card {
+      position: relative;
+      padding: 2.4rem 2.2rem;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 25px 55px rgba(0,0,0,0.35);
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      text-align: center;
+      max-width: 360px;
+    }
+    .hero-logo-card img {
+      width: clamp(220px, 62vw, 300px);
+      height: auto;
+      filter: drop-shadow(0 0 28px rgba(0,255,200,0.45));
+      opacity: 0;
+      animation: fadeIn 3s ease-out forwards;
+    }
+    .hero-logo-card p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+      margin: 0;
+    }
+    .hero-spark {
+      position: absolute;
+      inset: auto;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,255,200,0.45), rgba(0,255,200,0));
+      opacity: 0.55;
+      filter: blur(2px);
+      animation: pulse 8s ease-in-out infinite;
+    }
+    .hero-spark--top {
+      top: -40px;
+      right: -20px;
+    }
+    .hero-spark--bottom {
+      bottom: -50px;
+      left: -30px;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(0.95); opacity: 0.4; }
+      50% { transform: scale(1.15); opacity: 0.65; }
+    }
+    @media (max-width: 768px) {
+      .hero-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(2rem, 6vw, 3rem);
+      }
+      .hero-intro { text-align: center; margin-bottom: 0; }
+      .hero-content { text-align: center; align-items: center; margin-top: 0; }
+      .hero p { max-width: none; }
+      .hero-buttons { justify-content: center; }
+      .hero-vision-highlights { text-align: left; }
+      .hero-logo-card {
+        width: min(92vw, 420px);
+        padding: 2.8rem 2.4rem;
+        gap: 1.4rem;
+      }
+    }
 
     .card-grid {
       display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;
@@ -323,11 +525,53 @@
 
   <a class="sticky-cta" href="subscribe/index.html">Subscribe</a>
 
-    <section class="hero">
-      <img src="3DVR.png" alt="3dvr.tech logo" />
-      <h2>Build the Future</h2>
-      <p>Open-source tech for digital nomads, creators, and explorers.</p>
-    </section>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-intro">
+        <p class="hero-eyebrow">People-first web & XR studio</p>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-logo-card">
+          <div class="hero-spark hero-spark--top"></div>
+          <div class="hero-spark hero-spark--bottom"></div>
+          <img src="3DVR.png" alt="" />
+          <p>
+            Open source. Cooperative powered. Focused on experiences that feel as visionary as they are sustainable.
+          </p>
+        </div>
+      </div>
+      <div class="hero-content">
+        <h1>Build the future with your community</h1>
+        <p>
+          3dvr.tech is a cooperative lab crafting respectful tools that share ownership,
+          honor the planet, and help creators grow together.
+        </p>
+        <div class="hero-buttons">
+          <a class="hero-button hero-button--primary" href="#vision">
+            Explore our vision
+            <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+          </a>
+          <a class="hero-button hero-button--ghost" href="#subscribe">
+            View membership plans
+          </a>
+        </div>
+        <ul class="hero-vision-highlights" aria-label="Highlights from our vision">
+          <li>
+            <span class="hero-vision-title">Shared Ownership</span>
+            <span class="hero-vision-copy">Member-guided roadmaps and transparent stewardship.</span>
+          </li>
+          <li>
+            <span class="hero-vision-title">Respectful Tools</span>
+            <span class="hero-vision-copy">Designs that protect people, data, and the planet.</span>
+          </li>
+          <li>
+            <span class="hero-vision-title">Growing Together</span>
+            <span class="hero-vision-copy">Training and services that uplift digital nomads and makers.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <section id="vision" class="vision-section">
     <div class="vision-shape vision-shape--diamond"></div>
