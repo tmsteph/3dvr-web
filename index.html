@@ -215,30 +215,30 @@
     .hero-inner {
       position: relative;
       z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(320px, 1.1fr) minmax(260px, 0.9fr);
-      grid-template-areas:
-        "hero-intro hero-visual"
-        "hero-content hero-visual";
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
       gap: clamp(2.5rem, 5vw, 4rem);
-      align-items: center;
       max-width: 1200px;
       margin: 0 auto;
       width: min(100%, 1200px);
     }
     .hero-intro {
-      grid-area: hero-intro;
       text-align: left;
-      align-self: start;
+      align-self: flex-start;
       margin-bottom: 0.5rem;
+      max-width: 680px;
+      width: 100%;
     }
     .hero-content {
-      grid-area: hero-content;
       text-align: left;
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
       margin-top: 0.5rem;
+      align-items: flex-start;
+      max-width: 720px;
+      width: 100%;
     }
     .hero-eyebrow {
       font-size: 0.95rem;
@@ -316,10 +316,10 @@
       color: rgba(255,255,255,0.7);
     }
     .hero-visual {
-      grid-area: hero-visual;
       position: relative;
       display: flex;
       justify-content: center;
+      width: 100%;
     }
     .hero-logo-card {
       position: relative;
@@ -387,6 +387,26 @@
         width: min(92vw, 420px);
         padding: 2.8rem 2.4rem;
         gap: 1.4rem;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .hero-inner {
+        align-items: flex-start;
+        gap: clamp(3rem, 6vw, 4.5rem);
+      }
+      .hero-intro,
+      .hero-content {
+        text-align: left;
+      }
+      .hero-content {
+        align-items: flex-start;
+      }
+      .hero-buttons { justify-content: flex-start; }
+      .hero-visual { justify-content: flex-start; }
+      .hero-logo-card {
+        max-width: 420px;
+        width: 100%;
       }
     }
 
