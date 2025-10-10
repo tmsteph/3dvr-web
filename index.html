@@ -517,13 +517,17 @@
       gap: 2.5rem;
     }
     .vision-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
       gap: 1.8rem;
       width: 100%;
       text-align: left;
     }
     .vision-card {
+      flex: 1 1 clamp(240px, 30%, 320px);
+      max-width: 320px;
       background: rgba(255,255,255,0.08);
       border-radius: 18px;
       padding: 1.8rem;

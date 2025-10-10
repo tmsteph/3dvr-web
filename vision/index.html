@@ -71,6 +71,16 @@
     nav .row { display:flex; gap:14px; align-items:center; justify-content: space-between; max-width: 1100px; margin:0 auto; padding:10px 24px }
     nav a { color: #d9e7f7; opacity: .9 }
     .grid { display:grid; gap:16px; grid-template-columns: repeat(12, minmax(0,1fr)) }
+    #products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+    #products .card {
+      flex: 1 1 clamp(320px, 48%, 520px);
+      max-width: 520px;
+    }
     .card {
       grid-column: span 12; padding:18px; border-radius:16px; background: var(--card); border:1px solid #1a2432;
       display:grid; gap:10px;
