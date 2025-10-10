@@ -121,12 +121,32 @@
 
     @media (max-width: 768px) {
       nav {
-        position: absolute; top: 100%; right: 0;
+        position: absolute;
+        top: calc(100% + 0.75rem);
+        right: clamp(0.75rem, 4vw, 1.5rem);
         background: rgba(44, 62, 80, 0.95);
-        flex-direction: column; display: none; width: 200px;
+        flex-direction: column;
+        display: none;
+        width: min(260px, 85vw);
+        padding-block: 0.5rem;
+        border-radius: 14px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+        overflow-y: auto;
+        max-height: calc(100vh - 96px);
+        overscroll-behavior: contain;
       }
       nav.active { display: flex; }
-      nav a { padding: 1rem; border-top: 1px solid rgba(255,255,255,0.1); }
+      @supports (height: 100dvh) {
+        nav {
+          max-height: calc(100dvh - 96px);
+        }
+      }
+      nav a {
+        padding: 0.85rem 1.15rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        font-size: 1rem;
+      }
+      nav a:first-of-type { border-top: none; }
       .menu-toggle { display: flex; }
     }
 
