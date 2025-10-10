@@ -238,10 +238,9 @@
     }
     .hero-intro {
       text-align: left;
-      align-self: flex-start;
       margin-bottom: 0.5rem;
       max-width: 680px;
-      width: 100%;
+      width: min(100%, 680px);
     }
     .hero-content {
       text-align: left;
@@ -250,9 +249,8 @@
       gap: 1.5rem;
       margin-top: 0.5rem;
       align-items: flex-start;
-      align-self: flex-start;
       max-width: 720px;
-      width: 100%;
+      width: min(100%, 720px);
     }
     .hero-eyebrow {
       font-size: 0.95rem;
@@ -333,8 +331,12 @@
       position: relative;
       display: flex;
       justify-content: center;
-      align-self: flex-start;
       width: 100%;
+    }
+    .hero-intro,
+    .hero-content,
+    .hero-visual {
+      margin-inline: auto;
     }
     .hero-logo-card {
       position: relative;
