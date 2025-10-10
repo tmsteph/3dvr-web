@@ -10,8 +10,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
   <style>
-    html { scroll-behavior: smooth; }
-
     :root {
       --accent: #00ffc8;
       --bg-hero: linear-gradient(to bottom, #2c3e50, #4ca1af);
@@ -24,12 +22,18 @@
       --text-dark: #000000;
     }
 
+    html {
+      scroll-behavior: smooth;
+      background: linear-gradient(to bottom, #2c3e50, #4ca1af);
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text-light);
       background: var(--bg-hero);
+      background-color: #2c3e50;
       line-height: 1.7;
     }
 
@@ -45,10 +49,11 @@
       position: sticky;
       top: 0;
       z-index: 1001;
-      opacity: 0;
-      transform: translateY(-20px);
-      animation: fadeSlideIn 1.8s ease-out forwards;
-      animation-delay: 1s;
+      /* TODO: Restore fadeSlideIn animation once the initial background flash is resolved. */
+      /* opacity: 0; */
+      /* transform: translateY(-20px); */
+      /* animation: fadeSlideIn 1.8s ease-out forwards; */
+      /* animation-delay: 1s; */
     }
 
     header img { height: 48px; max-width: 150px; }
