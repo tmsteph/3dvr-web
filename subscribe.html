@@ -72,6 +72,7 @@
     .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
     .card {
       background: var(--panel); padding:1.25rem; border-radius: 14px; transition: .25s; position: relative;
+      display:flex; flex-direction:column; min-height:100%;
     }
     .card:hover { background: var(--panel-hover); transform: translateY(-3px); }
     .card h2 { font-family: Poppins, sans-serif; font-size: 1.2rem; color: var(--accent); margin-bottom: 0.5rem; }
@@ -80,13 +81,17 @@
     ul { margin-left: 1rem; }
     li { margin: .4rem 0; }
 
+    .actions { margin-top: 1.25rem; display:flex; flex-wrap:wrap; gap:0.75rem; }
     .cta {
-      display:inline-block; margin-top:1rem; background: var(--accent); color:#000; padding:.65rem 1rem; border-radius: 10px; font-weight: 800;
-      box-shadow: 0 0 12px rgba(0,255,200,.35);
+      display:inline-flex; align-items:center; justify-content:center; padding:.65rem 1.1rem; border-radius: 10px; font-weight: 800;
+      letter-spacing:0.01em; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
+    .cta.primary { background: var(--accent); color:#000; box-shadow: 0 0 12px rgba(0,255,200,.35); }
+    .cta.secondary { background: transparent; color: var(--accent); border:1px solid var(--accent); box-shadow:0 0 0 transparent; }
+    .cta.secondary:hover { background: rgba(0,255,200,0.18); }
 
     .notice {
-      margin-top: 1rem; font-size:.9rem; color: var(--muted);
+      margin-top: auto; font-size:.9rem; color: var(--muted);
     }
 
     .faq { margin-top: 3rem; }
@@ -126,8 +131,11 @@
           <li>Community updates & roadmap</li>
           <li>Open-source repos and experiments</li>
         </ul>
-        <!-- If you have a real free signup page, swap this href -->
-        <a class="cta" href="https://3dvr-portal.vercel.app/free-trial.html" target="_blank" rel="noopener">✅ Start Free</a>
+        <div class="actions">
+          <!-- If you have a real free signup page, swap this href -->
+          <a class="cta primary" href="https://3dvr-portal.vercel.app/free-trial.html" target="_blank" rel="noopener">✅ Start Free</a>
+          <a class="cta secondary" href="subscribe/free-plan.html">Plan details</a>
+        </div>
         <div class="notice">No credit card required.</div>
       </article>
 
@@ -142,8 +150,11 @@
           <li>Name/brand shout-outs (opt-in)</li>
           <li>Helps fund open development</li>
         </ul>
-        <!-- Stripe supporter link -->
-        <a class="cta" href="https://buy.stripe.com/28EcN599Q2dJbFdh2Qc7u07" target="_blank" rel="noopener">✅ Start Free Trial</a>
+        <div class="actions">
+          <!-- Stripe supporter link -->
+          <a class="cta primary" href="https://buy.stripe.com/28EcN599Q2dJbFdh2Qc7u07" target="_blank" rel="noopener">✅ Start Free Trial</a>
+          <a class="cta secondary" href="subscribe/family-friends.html">Plan details</a>
+        </div>
         <div class="notice">30-day free trial. Cancel anytime from your Stripe receipt/email.</div>
       </article>
 
@@ -159,8 +170,11 @@
           <li>Personal consultations & roadmap help</li>
           <li>Access to the Builder Community</li>
         </ul>
-        <!-- Stripe main subscribe link -->
-        <a class="cta" href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank" rel="noopener">✅ Become a Founder</a>
+        <div class="actions">
+          <!-- Stripe main subscribe link -->
+          <a class="cta primary" href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank" rel="noopener">✅ Become a Founder</a>
+          <a class="cta secondary" href="subscribe/founder-plan.html">Plan details</a>
+        </div>
         <div class="notice">We’ll reach out after signup to get you moving fast.</div>
       </article>
     </section>
