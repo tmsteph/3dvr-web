@@ -115,6 +115,149 @@
 
     header img { height: 48px; max-width: 150px; }
 
+    body.logo-experience-open { overflow: hidden; }
+
+    .hero-logo-trigger {
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero-logo-trigger img {
+      display: block;
+      width: min(220px, 38vw);
+      height: auto;
+    }
+
+    .hero-logo-trigger:hover,
+    .hero-logo-trigger:focus-visible {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 18px 50px rgba(0, 255, 200, 0.22);
+      outline: none;
+    }
+
+    .logo-experience {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(1rem, 4vw, 3rem);
+      background: rgba(10, 14, 24, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 2000;
+    }
+
+    .logo-experience.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .logo-experience__content {
+      position: relative;
+      width: min(960px, 100%);
+      background: rgba(21, 27, 41, 0.92);
+      border-radius: 20px;
+      border: 1px solid rgba(0, 255, 200, 0.18);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+      padding: clamp(1.5rem, 4vw, 2.25rem);
+      display: grid;
+      gap: clamp(1.25rem, 3vw, 2rem);
+    }
+
+    .logo-experience__layout {
+      display: grid;
+      gap: clamp(1.25rem, 3vw, 2rem);
+    }
+
+    .logo-experience__stage {
+      position: relative;
+      border-radius: 18px;
+      background: radial-gradient(circle at 30% 20%, rgba(0, 255, 200, 0.12), transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(255, 170, 95, 0.18), transparent 60%),
+        rgba(6, 11, 23, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+      min-height: clamp(260px, 45vh, 520px);
+      aspect-ratio: 16 / 11;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+    }
+
+    .logo-experience__stage canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .logo-experience__instructions {
+      display: grid;
+      gap: 0.75rem;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .logo-experience__instructions h2 {
+      font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+      color: var(--accent);
+      margin: 0;
+    }
+
+    .logo-experience__instructions p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .logo-experience__hints {
+      display: grid;
+      gap: 0.35rem;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .logo-experience__close {
+      position: absolute;
+      top: clamp(0.75rem, 2vw, 1rem);
+      right: clamp(0.75rem, 2vw, 1rem);
+      border: none;
+      background: rgba(0, 0, 0, 0.35);
+      color: white;
+      padding: 0.45rem 0.65rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .logo-experience__close:hover,
+    .logo-experience__close:focus-visible {
+      background: rgba(0, 255, 200, 0.28);
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    @media (min-width: 900px) {
+      .logo-experience__layout {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+        align-items: center;
+      }
+    }
+
     nav {
       display: flex;
       gap: clamp(0.5rem, 1.6vw, 1.25rem);
@@ -825,7 +968,7 @@
 </head>
 <body id="top">
   <header>
-    <a href="#top"><img src="3DVR.png" alt="3dvr.tech logo" /></a>
+    <a href="#top" data-logo-experience-trigger aria-label="Open the interactive 3dvr logo experience"><img src="3DVR.png" alt="3dvr.tech logo" /></a>
 
     <!-- a11y & control bindings for mobile menu -->
     <div
@@ -854,6 +997,38 @@
     </nav>
   </header>
 
+  <div
+    class="logo-experience"
+    id="logoExperience"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-labelledby="logoExperienceTitle"
+  >
+    <div class="logo-experience__content">
+      <button
+        class="logo-experience__close"
+        type="button"
+        data-logo-experience-close
+        aria-label="Close interactive logo experience"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="logo-experience__layout">
+        <div class="logo-experience__stage" id="logoExperienceStage"></div>
+        <div class="logo-experience__instructions">
+          <h2 id="logoExperienceTitle">Explore the 3dvr logo</h2>
+          <p>Step into our interactive space and take the 3dvr mark for a spin.</p>
+          <div class="logo-experience__hints">
+            <span><strong>Drag</strong> to rotate the logo.</span>
+            <span><strong>Scroll</strong> to zoom and <strong>Shift + drag</strong> to pan.</span>
+            <span>Tap outside the stage or press <kbd>Esc</kbd> to close.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <a class="sticky-cta" href="subscribe/index.html">Subscribe</a>
 
   <section class="hero">
@@ -865,7 +1040,9 @@
         <div class="hero-logo-card">
           <div class="hero-spark hero-spark--top"></div>
           <div class="hero-spark hero-spark--bottom"></div>
-          <img src="3DVR.png" alt="" />
+          <button class="hero-logo-trigger" type="button" data-logo-experience-trigger aria-label="Open interactive 3D logo experience">
+            <img src="3DVR.png" alt="" />
+          </button>
           <p>
             Open source. Community powered. Focused on experiences that feel as visionary as they are sustainable.
           </p>
@@ -1332,6 +1509,252 @@
       }, { passive: false });
     });
   })();
+  </script>
+
+  <script type="module">
+    const overlay = document.getElementById('logoExperience');
+    const stage = document.getElementById('logoExperienceStage');
+    const triggers = document.querySelectorAll('[data-logo-experience-trigger]');
+
+    if (overlay && stage && triggers.length) {
+      const closeControls = overlay.querySelectorAll('[data-logo-experience-close]');
+      let lastFocusedElement = null;
+      let isOpen = false;
+      let animationId = null;
+      let THREE;
+      let GLTFLoader;
+      let OrbitControls;
+      let renderer;
+      let scene;
+      let camera;
+      let controls;
+      let resizeObserver;
+
+      const handleResize = () => {
+        if (!renderer || !camera) {
+          return;
+        }
+
+        const width = stage.clientWidth;
+        const height = stage.clientHeight;
+
+        if (width === 0 || height === 0) {
+          return;
+        }
+
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      };
+
+      const fitCameraToObject = (object) => {
+        if (!THREE || !camera || !controls) {
+          return;
+        }
+
+        const box = new THREE.Box3().setFromObject(object);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fitHeightDistance = maxDim / (2 * Math.tan((Math.PI * camera.fov) / 360));
+        const fitWidthDistance = fitHeightDistance / camera.aspect;
+        const distance = Math.max(fitHeightDistance, fitWidthDistance) * 1.6;
+        const direction = new THREE.Vector3(1, 0.85, 1).normalize().multiplyScalar(distance);
+
+        camera.position.copy(center).add(direction);
+        camera.near = Math.max(distance / 100, 0.01);
+        camera.far = distance * 100;
+        camera.lookAt(center);
+        camera.updateProjectionMatrix();
+
+        controls.target.copy(center);
+        controls.update();
+      };
+
+      const startAnimation = () => {
+        if (!renderer || !scene || !camera) {
+          return;
+        }
+
+        const renderFrame = () => {
+          if (!isOpen) {
+            return;
+          }
+
+          animationId = requestAnimationFrame(renderFrame);
+          if (controls) {
+            controls.update();
+          }
+          renderer.render(scene, camera);
+        };
+
+        cancelAnimationFrame(animationId);
+        animationId = requestAnimationFrame(renderFrame);
+      };
+
+      const stopAnimation = () => {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      };
+
+      const ensureResizeObserver = () => {
+        if (resizeObserver || !('ResizeObserver' in window)) {
+          return;
+        }
+
+        resizeObserver = new ResizeObserver(handleResize);
+        resizeObserver.observe(stage);
+      };
+
+      const initializeExperience = async () => {
+        if (renderer) {
+          return;
+        }
+
+        const threeModulePromise = THREE
+          ? Promise.resolve(THREE)
+          : import('https://cdn.jsdelivr.net/npm/three@0.161/build/three.module.js');
+        const loaderModulePromise = GLTFLoader
+          ? Promise.resolve({ GLTFLoader })
+          : import('https://cdn.jsdelivr.net/npm/three@0.161/examples/jsm/loaders/GLTFLoader.js');
+        const controlsModulePromise = OrbitControls
+          ? Promise.resolve({ OrbitControls })
+          : import('https://cdn.jsdelivr.net/npm/three@0.161/examples/jsm/controls/OrbitControls.js');
+
+        [THREE, { GLTFLoader }, { OrbitControls }] = await Promise.all([
+          threeModulePromise,
+          loaderModulePromise,
+          controlsModulePromise,
+        ]);
+
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+        renderer.setPixelRatio(window.devicePixelRatio || 1);
+        stage.appendChild(renderer.domElement);
+
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(45, 1, 0.1, 200);
+        camera.position.set(1.8, 1.4, 2.6);
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
+        scene.add(ambientLight);
+
+        const keyLight = new THREE.DirectionalLight(0xffffff, 1.15);
+        keyLight.position.set(3.5, 4.5, 6);
+        scene.add(keyLight);
+
+        const rimLight = new THREE.DirectionalLight(0x66ccff, 0.65);
+        rimLight.position.set(-4, -2.5, -5);
+        scene.add(rimLight);
+
+        controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.08;
+        controls.enablePan = true;
+        controls.panSpeed = 0.5;
+        controls.minDistance = 0.6;
+        controls.maxDistance = 6;
+
+        const loader = new GLTFLoader();
+        loader.load(
+          'media/3dvr-3d-logo.gltf',
+          (gltf) => {
+            const logo = gltf.scene;
+            logo.traverse((child) => {
+              if (child.isMesh) {
+                child.castShadow = true;
+                child.receiveShadow = true;
+              }
+            });
+            logo.scale.setScalar(1.4);
+            scene.add(logo);
+            handleResize();
+            fitCameraToObject(logo);
+          },
+          undefined,
+          (error) => {
+            console.error('Failed to load the 3dvr logo model.', error);
+            const hints = overlay.querySelector('.logo-experience__hints');
+            if (hints) {
+              const fallback = document.createElement('span');
+              fallback.textContent = 'We had trouble loading the 3D model. Refresh the page to try again.';
+              hints.appendChild(fallback);
+            }
+          }
+        );
+
+        ensureResizeObserver();
+        window.addEventListener('resize', handleResize);
+      };
+
+      const openExperience = async () => {
+        if (isOpen) {
+          return;
+        }
+
+        lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('logo-experience-open');
+
+        await initializeExperience();
+        handleResize();
+        requestAnimationFrame(handleResize);
+
+        isOpen = true;
+        startAnimation();
+
+        const closeButton = overlay.querySelector('[data-logo-experience-close]');
+        if (closeButton) {
+          closeButton.focus({ preventScroll: true });
+        }
+      };
+
+      const closeExperience = () => {
+        if (!isOpen) {
+          return;
+        }
+
+        isOpen = false;
+        stopAnimation();
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('logo-experience-open');
+
+        if (lastFocusedElement) {
+          lastFocusedElement.focus({ preventScroll: true });
+        }
+      };
+
+      triggers.forEach((trigger) => {
+        trigger.addEventListener('click', (event) => {
+          if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+            return;
+          }
+          event.preventDefault();
+          openExperience();
+        });
+      });
+
+      closeControls.forEach((button) => {
+        button.addEventListener('click', () => {
+          closeExperience();
+        });
+      });
+
+      overlay.addEventListener('click', (event) => {
+        if (event.target === overlay) {
+          closeExperience();
+        }
+      });
+
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && isOpen) {
+          event.preventDefault();
+          closeExperience();
+        }
+      });
+    }
   </script>
 
 </body>
