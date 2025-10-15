@@ -198,6 +198,123 @@
     section h2 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem; }
     section p { font-size: clamp(1.2rem, 2vw, 1.5rem); max-width: 800px; margin-bottom: 1.5rem; }
 
+    .about-content {
+      max-width: min(1100px, 92vw);
+      display: grid;
+      gap: clamp(2rem, 4vw, 3rem);
+      text-align: left;
+    }
+
+    .about-lead {
+      font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+      margin: 0 auto;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .about-panels {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: clamp(1.2rem, 2vw, 2rem);
+    }
+
+    .about-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: clamp(1.25rem, 2vw, 1.75rem);
+      border-radius: 18px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.25);
+    }
+
+    .about-card h3 {
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+      margin-bottom: 0.75rem;
+      color: var(--accent);
+    }
+
+    .about-card p {
+      font-size: clamp(1rem, 1.6vw, 1.1rem);
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: clamp(1rem, 2vw, 1.75rem);
+    }
+
+    .about-stat {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 16px;
+      padding: clamp(1.1rem, 2.5vw, 1.6rem);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .about-stat span {
+      display: block;
+      font-size: clamp(2rem, 5vw, 2.6rem);
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .about-stat p {
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .about-footnote {
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      color: rgba(255, 255, 255, 0.78);
+      text-align: center;
+    }
+
+    .about-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .about-actions a {
+      text-decoration: none;
+      color: var(--text-dark);
+      background: var(--accent);
+      padding: 0.85rem 1.6rem;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 12px 24px rgba(0, 255, 200, 0.25);
+    }
+
+    .about-actions a.secondary {
+      background: transparent;
+      color: var(--text-light);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: none;
+    }
+
+    .about-actions a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 30px rgba(0, 255, 200, 0.35);
+    }
+
+    .about-actions a.secondary:hover {
+      box-shadow: 0 12px 26px rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .about-content {
+        text-align: center;
+      }
+
+      .about-card {
+        text-align: left;
+      }
+    }
+
     .hero {
       position: relative;
       overflow: hidden;
@@ -1104,13 +1221,52 @@
   </section>
 
   <section id="about" style="background: var(--bg-about);">
-    <h2>About 3dvr.tech</h2>
-    <p style="max-width: 700px; margin: 1rem auto; font-size: 1.3rem;">
-      We believe everyone deserves the tools to build their digital life.<br />
-      We're creating an ecosystem of <strong>open-source</strong> hardware, software, and support—starting with $20/month personal services.<br />
-      Our mission is to empower creators, entrepreneurs, and digital nomads everywhere.<br />
-      Contributions welcome on <a href="https://github.com/tmsteph/3dvr-web" target="_blank" style="color: var(--accent);">GitHub</a>.
-    </p>
+    <div class="about-content">
+      <h2>About 3dvr.tech</h2>
+      <p class="about-lead">
+        We help emerging organizations build trust in the open web by pairing human-centered design with resilient infrastructure.
+        Our lab experiments in public, so every lesson turns into resources our community can reuse.
+      </p>
+
+      <div class="about-panels">
+        <div class="about-card">
+          <h3>Community-first process</h3>
+          <p>Co-create every milestone with the people who will live with the product. From discovery jams to async design reviews, feedback loops stay open.</p>
+        </div>
+        <div class="about-card">
+          <h3>Open toolchain</h3>
+          <p>We combine open-source frameworks, privacy-respecting analytics, and interoperable data models so your stack stays portable.</p>
+        </div>
+        <div class="about-card">
+          <h3>Sustainable support</h3>
+          <p>Membership tiers start at $20/month, covering site care, automation help, and ongoing mentorship for founders and teams.</p>
+        </div>
+      </div>
+
+      <div class="about-stats" role="list">
+        <div class="about-stat" role="listitem">
+          <span>15+</span>
+          <p>Community launches and digital migrations guided since 2020.</p>
+        </div>
+        <div class="about-stat" role="listitem">
+          <span>120 hrs</span>
+          <p>Average support time delivered to members each quarter.</p>
+        </div>
+        <div class="about-stat" role="listitem">
+          <span>100%</span>
+          <p>Open documentation—every playbook lives in shared repositories.</p>
+        </div>
+      </div>
+
+      <p class="about-footnote">
+        Everything we build is designed to be forkable, remixable, and owned by the communities we serve.
+      </p>
+
+      <div class="about-actions">
+        <a href="consulting.html">Explore services</a>
+        <a href="https://github.com/tmsteph/3dvr-web" target="_blank" rel="noopener" class="secondary">Contribute on GitHub</a>
+      </div>
+    </div>
   </section>
 
   <!-- SOCIAL LINKS SECTION (desktop href + mobile deep-link) -->
