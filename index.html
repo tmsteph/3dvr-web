@@ -65,7 +65,11 @@
       --bg-hero: linear-gradient(to bottom, #2c3e50, #4ca1af);
       --bg-subscribe: linear-gradient(160deg, #4ca1af 0%, #56ab2f 100%);
       --bg-features: linear-gradient(135deg, #1abc9c, #16a085);
-      --bg-testimonials: linear-gradient(135deg, #ff6e7f, #bfe9ff);
+      --bg-testimonials:
+        radial-gradient(circle at 12% 18%, rgba(0, 255, 200, 0.42) 0%, rgba(0, 255, 200, 0) 55%),
+        radial-gradient(circle at 84% 80%, rgba(255, 165, 92, 0.5) 0%, rgba(255, 165, 92, 0) 60%),
+        radial-gradient(circle at 78% 22%, rgba(95, 39, 205, 0.45) 0%, rgba(95, 39, 205, 0) 60%),
+        linear-gradient(140deg, rgba(76, 161, 175, 0.95) 0%, rgba(95, 39, 205, 0.92) 55%, rgba(255, 110, 127, 0.9) 100%);
       --bg-team: linear-gradient(135deg, #5c258d, #4389a2);
       --bg-about: linear-gradient(135deg, #232526, #414345);
       --text-light: #ffffff;
@@ -459,6 +463,63 @@
     .card h3 { color: var(--accent); font-size: 1.2rem; margin-bottom: 0.5rem; }
     .card h3 .plan-name { white-space: nowrap; }
     .card p { font-size: 1rem; }
+
+    #testimonials {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    #testimonials::before,
+    #testimonials::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      border-radius: 50%;
+      filter: blur(0.5px);
+      z-index: 0;
+    }
+    #testimonials::before {
+      width: clamp(240px, 40vw, 360px);
+      height: clamp(240px, 40vw, 360px);
+      top: -140px;
+      right: 12%;
+      background: radial-gradient(circle, rgba(0, 255, 200, 0.65) 0%, rgba(0, 255, 200, 0) 70%);
+      transform: translateZ(0);
+    }
+    #testimonials::after {
+      width: clamp(260px, 45vw, 420px);
+      height: clamp(260px, 45vw, 420px);
+      bottom: -180px;
+      left: 6%;
+      background: radial-gradient(circle, rgba(255, 110, 127, 0.6) 0%, rgba(255, 110, 127, 0) 72%);
+      transform: translateZ(0);
+    }
+    .testimonial-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.08));
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 18px 35px rgba(14, 32, 54, 0.25);
+      backdrop-filter: blur(14px);
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial-card::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: inherit;
+      background: linear-gradient(145deg, rgba(0, 255, 200, 0.12), rgba(255, 110, 127, 0.12));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+    .testimonial-card:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.14));
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 22px 45px rgba(14, 32, 54, 0.32);
+    }
+    .testimonial-card:hover::after {
+      opacity: 1;
+    }
 
     .btn-like {
       display: inline-block; margin-top: auto; font-weight: 700;
