@@ -65,7 +65,10 @@
       --bg-hero: linear-gradient(to bottom, #2c3e50, #4ca1af);
       --bg-subscribe: linear-gradient(160deg, #4ca1af 0%, #56ab2f 100%);
       --bg-features: linear-gradient(135deg, #1abc9c, #16a085);
-      --bg-testimonials: linear-gradient(135deg, #ff6e7f, #bfe9ff);
+      --bg-testimonials:
+        linear-gradient(160deg, rgba(12, 24, 38, 0.95) 0%, rgba(18, 52, 76, 0.9) 100%),
+        radial-gradient(circle at top left, rgba(0, 255, 200, 0.2) 0%, rgba(0, 255, 200, 0) 55%),
+        radial-gradient(circle at bottom right, rgba(255, 110, 127, 0.22) 0%, rgba(255, 110, 127, 0) 60%);
       --bg-team: linear-gradient(135deg, #5c258d, #4389a2);
       --bg-about: linear-gradient(135deg, #232526, #414345);
       --text-light: #ffffff;
@@ -459,6 +462,15 @@
     .card h3 { color: var(--accent); font-size: 1.2rem; margin-bottom: 0.5rem; }
     .card h3 .plan-name { white-space: nowrap; }
     .card p { font-size: 1rem; }
+
+    .testimonial-card {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+    }
+    .testimonial-card:hover {
+      background: rgba(0, 0, 0, 0.45);
+    }
 
     .btn-like {
       display: inline-block; margin-top: auto; font-weight: 700;
