@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>3dvr‑wellness • Technology that supports your nervous system</title>
+  <meta name="description" content="3dvr‑wellness is the human layer of the 3dvr ecosystem—calm interfaces, circadian‑friendly light, movement‑first hardware, and community tools." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-grad-1:#ecfdf5; /* emerald-50 */
+      --bg-grad-2:#ffffff;
+      --bg-grad-3:#f0f9ff; /* sky-50 */
+      --text:#0f172a;       /* slate-900 */
+      --muted:#475569;      /* slate-600 */
+      --muted-2:#64748b;    /* slate-500 */
+      --card:#ffffff;
+      --border:#e2e8f0;     /* slate-200 */
+      --brand:#059669;      /* emerald-600 */
+      --brand-2:#10b981;    /* emerald-500 */
+      --ring:rgba(5,150,105,.2);
+      --shadow:0 10px 24px rgba(2,6,23,.06), 0 2px 6px rgba(2,6,23,.04);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text); background:linear-gradient(180deg,var(--bg-grad-1),var(--bg-grad-2) 40%, var(--bg-grad-3));
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1120px; margin-inline:auto; padding:0 1rem}
+    .nav{position:sticky; top:0; backdrop-filter:saturate(140%) blur(8px); background:rgba(255,255,255,.7); border-bottom:1px solid rgba(0,0,0,.06); z-index:40}
+    .nav-wrap{height:64px; display:flex; align-items:center; justify-content:space-between}
+    .brand{display:flex; align-items:center; gap:.5rem; font-weight:700}
+    .badge{font-size:.75rem; padding:.2rem .5rem; border-radius:999px; background:#f1f5f9; border:1px solid #e2e8f0}
+    .nav-links{display:none; gap:1.25rem; font-size:.95rem}
+    @media (min-width:768px){.nav-links{display:flex}}
+    .btn{display:inline-flex; align-items:center; gap:.5rem; padding:.7rem 1rem; border-radius:12px; border:1px solid transparent; font-weight:600; cursor:pointer; box-shadow:none; background:var(--brand); color:white}
+    .btn:hover{filter:brightness(.96)}
+    .btn-outline{background:white; color:var(--text); border-color:#e2e8f0}
+    .btn-lg{padding:.9rem 1.25rem; font-size:1rem}
+    .hero{position:relative; overflow:hidden}
+    .blob{position:absolute; filter:blur(42px); opacity:.6; pointer-events:none}
+    .blob.one{inset:auto auto auto -6rem; width:18rem; height:18rem; background:#a7f3d0; border-radius:999px; top:-6rem}
+    .blob.two{right:-4rem; top:30%; width:18rem; height:18rem; background:#bae6fd; border-radius:999px}
+    .grid{display:grid; gap:2rem}
+    @media (min-width:1024px){.grid-2{grid-template-columns:1fr 1fr}}
+    h1{font-size:clamp(2rem, 6vw, 3.25rem); line-height:1.1; margin:1rem 0 0}
+    .lead{color:var(--muted); max-width:60ch}
+    .stack{display:flex; gap:.75rem; flex-wrap:wrap}
+    .meta{display:flex; gap:1rem; flex-wrap:wrap; color:#475569; font-size:.85rem; margin-top:.75rem}
+    .pill{display:inline-flex; align-items:center; gap:.5rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(5,150,105,.25); background:rgba(16,185,129,.1); color:#065f46; font-weight:600; font-size:.8rem}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:22px; box-shadow:var(--shadow)}
+    .card .card-h{padding:1.1rem 1.25rem; border-bottom:1px solid var(--border); font-weight:700}
+    .card .card-c{padding:1.25rem}
+    .list{list-style:none; padding:0; margin:0}
+    .list li{display:flex; gap:.75rem; align-items:flex-start; color:var(--muted);}
+    .list li svg{flex:0 0 auto; margin-top:.15rem}
+    .section{padding:4rem 0}
+    .section h2{font-size:clamp(1.4rem, 3.5vw, 2rem); margin:0 0 .25rem}
+    .section p.lead{margin-top:.5rem}
+    .features{display:grid; gap:1rem}
+    @media (min-width:640px){.features{grid-template-columns:repeat(2,1fr)}}
+    @media (min-width:1024px){.features{grid-template-columns:repeat(4,1fr)}}
+    .feature .card-c{min-height:120px}
+    .modules{display:grid; gap:1rem}
+    @media (min-width:768px){.modules{grid-template-columns:repeat(2,1fr)}}
+    @media (min-width:1120px){.modules{grid-template-columns:repeat(3,1fr)}}
+    .integrations{display:grid; gap:2rem}
+    @media (min-width:1024px){.integrations{grid-template-columns:1.1fr .9fr}}
+    .integrity{display:grid; gap:1rem}
+    @media (min-width:640px){.integrity{grid-template-columns:repeat(2,1fr)}}
+    .chips{display:grid; gap:.75rem}
+    .chip{display:flex; align-items:center; gap:.5rem; border:1px solid var(--border); border-radius:16px; padding:.7rem .9rem; font-size:.9rem}
+    .faq{max-width:720px; margin-inline:auto}
+    details{border-top:1px solid #e2e8f0; padding:1rem 0}
+    summary{display:flex; align-items:center; justify-content:space-between; list-style:none; cursor:pointer; font-weight:600}
+    footer{border-top:1px solid rgba(0,0,0,.06); padding:2.5rem 0; color:#64748b}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="3dvr‑wellness home">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l2.4 4.86 5.36.78-3.88 3.78.92 5.35L12 15.9 7.2 17.77l.92-5.35L4.24 8.64l5.36-.78L12 3z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        3dvr‑wellness <span class="badge">alpha</span>
+      </a>
+      <div class="nav-links" role="navigation" aria-label="Primary">
+        <a href="#principles">Principles</a>
+        <a href="#modules">Modules</a>
+        <a href="#integrations">Integrations</a>
+        <a href="#community">Community</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="stack">
+        <a class="btn btn-outline" href="https://3dvr.tech" target="_blank" rel="noreferrer">3dvr.tech</a>
+        <a class="btn" href="https://portal.3dvr.tech" target="_blank" rel="noreferrer">Open Portal
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="margin-inline-start:.25rem"><path d="M7 17L17 7M10 7h7v7" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="blob one" aria-hidden="true"></div>
+    <div class="blob two" aria-hidden="true"></div>
+    <div class="container section" style="padding-top:3.5rem">
+      <div class="grid grid-2">
+        <div>
+          <span class="pill">Wellness, baked into everything we build</span>
+          <h1>Technology that supports your <span style="color:var(--brand)">nervous system</span></h1>
+          <p class="lead">3dvr‑wellness is the human layer of the 3dvr ecosystem. Calm interfaces, circadian‑friendly light, movement‑first hardware, and community tools that help you feel better—online and off.</p>
+          <div class="stack" style="margin-top:1rem">
+            <a class="btn btn-lg" href="#join">Join the Alpha</a>
+            <a class="btn btn-outline btn-lg" href="#modules">Explore Modules</a>
+          </div>
+          <div class="meta">
+            <span class="chip">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12a8 8 0 1116 0v3a2 2 0 01-2 2h-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              Local‑first & encrypted
+            </span>
+            <span class="chip">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M8 13l2.5 2.5L16 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Open‑source friendly
+            </span>
+            <span class="chip">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              Lightweight by design
+            </span>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div class="card-h">Daily Alignment</div>
+            <div class="card-c">
+              <ul class="list" style="gap:.75rem">
+                <li>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                  <span>Sunlight timer & circadian nudges</span>
+                </li>
+                <li>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20c4.418 0 8-3.582 8-8S16.418 4 12 4 4 7.582 4 12c0 2 .75 3.824 1.98 5.22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                  <span>3‑minute breath + focus resets</span>
+                </li>
+                <li>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M12 7a5 5 0 015 5v4a3 3 0 01-3 3h-4a3 3 0 01-3-3v-4a5 5 0 015-5z" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                  <span>Optional HRV check‑ins</span>
+                </li>
+                <li>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 20s2-2 5-2 5 2 5 2M12 3v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="11" r="2" stroke="currentColor" stroke-width="1.6"/></svg>
+                  <span>Movement & posture micro‑goals</span>
+                </li>
+              </ul>
+              <div class="card" style="margin-top:1rem; border-color:rgba(5,150,105,.25); background:rgba(16,185,129,.06)">
+                <div class="card-c" style="padding:1rem">
+                  <p class="lead" style="font-size:.95rem">Earn community points by completing tiny wellness actions. Opt‑in only. You own your data.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PRINCIPLES -->
+  <section id="principles" class="section">
+    <div class="container" style="text-align:center">
+      <h2>Principles that make tech feel human</h2>
+      <p class="lead">We design for biology first: light, rhythm, posture, breath, and community. Then we add software.</p>
+    </div>
+    <div class="container features" style="margin-top:2rem">
+      <!-- 4 features -->
+      <div class="card feature"><div class="card-c"><strong>Circadian‑friendly</strong><p class="lead" style="font-size:.95rem">Interfaces and hardware that respect daylight cycles and reduce blue‑light strain.</p></div></div>
+      <div class="card feature"><div class="card-c"><strong>Calm by default</strong><p class="lead" style="font-size:.95rem">Minimal notifications, focus‑protecting UI, and tiny nudges instead of nags.</p></div></div>
+      <div class="card feature"><div class="card-c"><strong>You own the data</strong><p class="lead" style="font-size:.95rem">Local‑first storage with optional sync. Private by default, share when you choose.</p></div></div>
+      <div class="card feature"><div class="card-c"><strong>Move more</strong><p class="lead" style="font-size:.95rem">Micro‑breaks, posture hints, and hardware integrations to keep your body happy.</p></div></div>
+    </div>
+  </section>
+
+  <!-- MODULES -->
+  <section id="modules" class="section">
+    <div class="container" style="text-align:center">
+      <h2>Modular wellness, everywhere in 3dvr</h2>
+      <p class="lead">Start with a few essentials. Add more as your needs grow. Each module plugs into the 3dvr portal.</p>
+    </div>
+    <div class="container modules" style="margin-top:2rem">
+      <div class="card"><div class="card-c"><strong>Daily Alignment</strong><p class="lead" style="font-size:.95rem">Breathwork, light timer, gratitude log, and gentle check‑ins to reset your day.</p></div></div>
+      <div class="card"><div class="card-c"><strong>Focus Coach</strong><p class="lead" style="font-size:.95rem">Context‑aware focus sessions that mute distractions and set a clear intention.</p></div></div>
+      <div class="card"><div class="card-c"><strong>Movement</strong><p class="lead" style="font-size:.95rem">Micro‑stretches, posture nudges, and optional device posture sensing.</p></div></div>
+      <div class="card"><div class="card-c"><strong>Screen Health</strong><p class="lead" style="font-size:.95rem">Adaptive color temp, breaks, and reading mode for eye comfort.</p></div></div>
+      <div class="card"><div class="card-c"><strong>Energy</strong><p class="lead" style="font-size:.95rem">Track what actually energizes you: sunlight, water, movement, sleep.</p></div></div>
+      <div class="card"><div class="card-c"><strong>Community</strong><p class="lead" style="font-size:.95rem">Peer groups, challenges, and open workshops for sustainable habits.</p></div></div>
+    </div>
+  </section>
+
+  <!-- INTEGRATIONS -->
+  <section id="integrations" class="section">
+    <div class="container integrations">
+      <div>
+        <h2>Open integrations. Local‑first by default.</h2>
+        <p class="lead">Bring your own wearables and sensors—or use none. Data stays with you, and you decide what to share.</p>
+        <ul class="list" style="margin-top:1rem; gap:.6rem">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Gun.js encrypted sync (opt‑in)</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Browser sensors: light, motion, idle</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Wearables: HRV/heart rate via standard APIs</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> 3dvr devices: bike, desk, tent, laptop (future)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-h">Privacy posture</div>
+        <div class="card-c integrity">
+          <div class="card"><div class="card-c"><strong>Private by default</strong><p class="lead" style="font-size:.95rem">Everything works offline. Sync is opt‑in and end‑to‑end encrypted.</p></div></div>
+          <div class="card"><div class="card-c"><strong>Share on your terms</strong><p class="lead" style="font-size:.95rem">Export and share partial data with friends, coaches, or your community.</p></div></div>
+          <div class="card"><div class="card-c"><strong>Open, transparent</strong><p class="lead" style="font-size:.95rem">Open‑source friendly licensing and readable data formats.</p></div></div>
+          <div class="card"><div class="card-c"><strong>No dark patterns</strong><p class="lead" style="font-size:.95rem">We help you leave screens, not stick to them.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section id="community" class="section">
+    <div class="container" style="text-align:center">
+      <h2>Builders who take care of builders</h2>
+      <p class="lead">Join open challenges, weekly reset calls, and co‑working sprints designed to prevent burnout and keep momentum.</p>
+    </div>
+    <div class="container modules" style="margin-top:2rem">
+      <div class="card"><div class="card-c"><strong>Weekly Reset</strong><p class="lead" style="font-size:.95rem">A 30‑minute ritual: breath, reflect, plan. End the week grounded, start the next with clarity.</p></div></div>
+      <div class="card"><div class="card-c"><strong>30‑Day Flow</strong><p class="lead" style="font-size:.95rem">Tiny daily actions that compound: sunlight, water, movement, one deep focus block.</p></div></div>
+      <div class="card"><div class="card-c"><strong>Open Playbooks</strong><p class="lead" style="font-size:.95rem">Ergonomics, lighting, breaks, and workflow guides you can remix for your setup.</p></div></div>
+    </div>
+  </section>
+
+  <!-- JOIN / EMAIL CAPTURE -->
+  <section id="join" class="section">
+    <div class="container">
+      <div class="card">
+        <div class="card-c" style="padding:2rem">
+          <div class="grid" style="gap:2rem">
+            <div>
+              <h3 style="font-size:1.5rem; margin:0">Get early access</h3>
+              <p class="lead">Be first to try 3dvr‑wellness, share feedback, and help shape the roadmap.</p>
+              <form id="signup" class="stack" style="margin-top:1rem; gap:.75rem" autocomplete="on">
+                <label class="sr-only" for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@planet.xyz" required
+                       style="height:44px; padding:.6rem .8rem; border-radius:12px; border:1px solid var(--border); outline:none; box-shadow:none; width:min(420px, 100%);" />
+                <button class="btn" type="submit">Request Invite</button>
+              </form>
+              <p class="lead" style="font-size:.85rem; color:var(--muted-2); margin-top:.5rem">We only email about launches and community events. Unsubscribe anytime.</p>
+            </div>
+            <div class="chips">
+              <div class="chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M8 13l2.5 2.5L16 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Local‑first & encrypted</div>
+              <div class="chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M8 13l2.5 2.5L16 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Open‑source friendly</div>
+              <div class="chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Designed for circadian health</div>
+              <div class="chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Community‑powered habits</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container faq">
+      <h2 style="text-align:center">FAQ</h2>
+      <details>
+        <summary>Do I need a wearable?
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="lead">No. Everything works without hardware. Wearables can enhance insights but are optional.</p>
+      </details>
+      <details>
+        <summary>Where is my data?
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="lead">Stored locally in your browser or device. You choose if/when to sync via encrypted peers (Gun.js).</p>
+      </details>
+      <details>
+        <summary>Is this a separate app?
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="lead">It lives inside the 3dvr portal and becomes a foundation across all 3dvr products.</p>
+      </details>
+      <details>
+        <summary>Can communities run their own?
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="lead">Yes. We aim to provide self‑host guides and open modules you can remix.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container" style="display:flex; gap:1rem; align-items:center; justify-content:space-between; flex-wrap:wrap">
+      <p>© <span id="year"></span> 3dvr.tech • Wellness, built‑in</p>
+      <div class="stack">
+        <a href="https://3dvr.tech" target="_blank" rel="noreferrer">Website</a>
+        <a href="https://portal.3dvr.tech" target="_blank" rel="noreferrer">Portal</a>
+        <a href="#">Docs</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // smooth scroll for hash links (native CSS works in modern browsers; this is a tiny fallback for older ones)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href');
+        if(id && id.length>1){
+          const el = document.querySelector(id);
+          if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+        }
+      });
+    });
+
+    // demo signup handler – replace with your real endpoint (e.g., fetch to Vercel serverless or Stripe/Gun.js flow)
+    document.getElementById('signup').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const email = (document.getElementById('email').value || '').trim();
+      if(!email) return;
+      // TODO: Hook into your actual portal signup. For now just show a toast.
+      alert('Thanks! We\'ll be in touch at '+email+' as we open the alpha.');
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
