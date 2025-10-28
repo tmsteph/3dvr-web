@@ -1194,7 +1194,7 @@
   <script defer src="/_vercel/insights/script.js"></script>
 
   <script>
-    (function () {
+    document.addEventListener('DOMContentLoaded', () => {
       const cta = document.querySelector('.sticky-cta');
       const footer = document.querySelector('footer');
 
@@ -1263,109 +1263,123 @@
         measure();
         requestUpdate();
       });
-    })();
+    });
   </script>
 
   <!-- Main UI behaviors: mobile menu open/close, outside-click, ESC, and helpers -->
   <script>
-    const toggle = document.getElementById('mobileMenuToggle');
-    const nav = document.getElementById('mainNav');
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('mobileMenuToggle');
+      const nav = document.getElementById('mainNav');
 
-    function openMenu() {
-      nav.classList.add('active');
-      toggle.setAttribute('aria-expanded', 'true');
-    }
-    function closeMenu() {
-      if (nav.classList.contains('active')) {
-        nav.classList.remove('active');
-        toggle.setAttribute('aria-expanded', 'false');
+      if (!toggle || !nav) {
+        return;
       }
-    }
-    function toggleMenu(e) {
-      e.stopPropagation();
-      const willOpen = !nav.classList.contains('active');
-      if (willOpen) openMenu(); else closeMenu();
-    }
 
-    toggle.addEventListener('click', toggleMenu);
-    // also allow keyboard activation of the hamburger
-    toggle.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleMenu(e);
+      function openMenu() {
+        nav.classList.add('active');
+        toggle.setAttribute('aria-expanded', 'true');
       }
-    });
-
-    // Close when a nav item is clicked
-    document.querySelectorAll('#mainNav a').forEach(link => {
-      link.addEventListener('click', () => closeMenu());
-    });
-
-    // Prevent clicks inside the nav from bubbling to the document
-    nav.addEventListener('click', (e) => e.stopPropagation());
-
-    // Close when clicking/tapping outside the nav/toggle
-    ['click','touchstart'].forEach(evt => {
-      document.addEventListener(evt, (e) => {
-        const clickInsideNav = nav.contains(e.target);
-        const clickOnToggle = toggle.contains(e.target);
-        if (!clickInsideNav && !clickOnToggle) closeMenu();
-      }, { passive: true });
-    });
-
-    // Close on Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenu();
-    });
-
-    // Close if resizing out of mobile layout
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) closeMenu();
-    });
-
-    // Clickable cards for testimonials/team
-    document.querySelectorAll('.testimonial-card, .team-card').forEach(card => {
-      const link = card.getAttribute('data-link');
-      if (link) {
-        card.addEventListener('click', () => window.open(link, '_blank'));
+      function closeMenu() {
+        if (nav.classList.contains('active')) {
+          nav.classList.remove('active');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
       }
+      function toggleMenu(e) {
+        e.stopPropagation();
+        const willOpen = !nav.classList.contains('active');
+        if (willOpen) openMenu(); else closeMenu();
+      }
+
+      toggle.addEventListener('click', toggleMenu);
+      // also allow keyboard activation of the hamburger
+      toggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleMenu(e);
+        }
+      });
+
+      // Close when a nav item is clicked
+      document.querySelectorAll('#mainNav a').forEach(link => {
+        link.addEventListener('click', () => closeMenu());
+      });
+
+      // Prevent clicks inside the nav from bubbling to the document
+      nav.addEventListener('click', (e) => e.stopPropagation());
+
+      // Close when clicking/tapping outside the nav/toggle
+      ['click','touchstart'].forEach(evt => {
+        document.addEventListener(evt, (e) => {
+          const clickInsideNav = nav.contains(e.target);
+          const clickOnToggle = toggle.contains(e.target);
+          if (!clickInsideNav && !clickOnToggle) closeMenu();
+        }, { passive: true });
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      // Close if resizing out of mobile layout
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) closeMenu();
+      });
+
+      // Clickable cards for testimonials/team
+      document.querySelectorAll('.testimonial-card, .team-card').forEach(card => {
+        const link = card.getAttribute('data-link');
+        if (link) {
+          card.addEventListener('click', () => window.open(link, '_blank'));
+        }
+      });
     });
   </script>
 
   <!-- SOCIAL LINKS Script -->
   <script>
-  (() => {
-    const ua = navigator.userAgent || navigator.vendor || "";
-    const isAndroid = /Android/i.test(ua);
-    const isIOS = /iPhone|iPad|iPod/i.test(ua);
+    document.addEventListener('DOMContentLoaded', () => {
+      const ua = navigator.userAgent || navigator.vendor || "";
+      const isAndroid = /Android/i.test(ua);
+      const isIOS = /iPhone|iPad|iPod/i.test(ua);
 
-    document.querySelectorAll('.social-deeplink').forEach(a => {
-      const web = a.dataset.web;
-      const androidIntent = a.dataset.androidIntent;
-      const iosScheme = a.dataset.iosScheme;
+      document.querySelectorAll('.social-deeplink').forEach(a => {
+        const web = a.dataset.web;
+        const androidIntent = a.dataset.androidIntent;
+        const iosScheme = a.dataset.iosScheme;
 
-      // Ensure desktop works out of the box
-      if (!isAndroid && !isIOS) {
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-      }
-
-      a.addEventListener('click', (e) => {
-        if (isAndroid && androidIntent) {
-          e.preventDefault();
-          window.location.href = androidIntent; // app first; intent includes web fallback
-        } else if (isIOS && iosScheme) {
-          e.preventDefault();
-          const start = Date.now();
-          window.location.href = iosScheme;     // try app
-          setTimeout(() => {
-            if (Date.now() - start < 1600) window.location.href = web; // fallback to web
-          }, 1000);
+        // Ensure desktop works out of the box
+        if (!isAndroid && !isIOS) {
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
         }
-        // desktop: let anchor's href open normally
-      }, { passive: false });
+
+        a.addEventListener('click', (e) => {
+          if (isAndroid && androidIntent) {
+            e.preventDefault();
+            window.location.href = androidIntent; // app first; intent includes web fallback
+          } else if (isIOS && iosScheme) {
+            e.preventDefault();
+            const start = Date.now();
+            window.location.href = iosScheme;     // try app
+            setTimeout(() => {
+              if (Date.now() - start < 1600) window.location.href = web; // fallback to web
+            }, 1000);
+          }
+          // desktop: let anchor's href open normally
+        }, { passive: false });
+      });
     });
-  })();
+  </script>
+
+  <script>
+    function testScriptPlacement() {
+      console.log('Test function executed: scripts at end of index.html are running.');
+    }
+
+    testScriptPlacement();
   </script>
 </body>
 </html>
