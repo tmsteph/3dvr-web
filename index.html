@@ -134,28 +134,28 @@
     nav a:hover { background: rgba(255,255,255,0.1); }
 
     .qr-invite {
-      margin-top: 0.4rem;
+      margin-top: 0.25rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.25rem;
     }
 
     .qr-invite img {
-      width: clamp(128px, 16vw, 168px);
-      height: clamp(128px, 16vw, 168px);
+      width: clamp(120px, 15vw, 160px);
+      height: clamp(120px, 15vw, 160px);
       background: #fff;
-      padding: 0.375rem;
-      border-radius: 16px;
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.32);
+      padding: 0.25rem;
+      border-radius: 14px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
       image-rendering: pixelated;
     }
 
     .qr-invite p {
-      max-width: 320px;
-      color: #cfcfcf;
-      font-size: 0.95rem;
-      line-height: 1.35;
+      max-width: 280px;
+      color: #d5d5d5;
+      font-size: 0.92rem;
+      line-height: 1.3;
       margin: 0;
     }
 
@@ -1140,7 +1140,7 @@
   </section>
 
   <!-- SOCIAL LINKS SECTION (desktop href + mobile deep-link) -->
-  <section id="social" style="background: #111; padding: 3rem 1rem 1.6rem; text-align: center;">
+  <section id="social" style="background: #1a1a1a; padding: 3rem 1rem 1.75rem; text-align: center;">
     <h2 style="color: var(--accent); margin-bottom: 1rem;">Follow Us</h2>
     <p style="color: #ccc; margin-bottom: 2rem;">Connect with us on social media.</p>
 
@@ -1178,15 +1178,12 @@
         <i class="fab fa-instagram" aria-hidden="true"></i>
       </a>
     </div>
-  </section>
-
-  <section aria-labelledby="qr-invite-heading"
-           style="background: #111; text-align: center; padding: 0.85rem 1rem 1rem; border-top: 1px solid rgba(255, 255, 255, 0.06);">
-    <div class="qr-invite" role="group" aria-labelledby="qr-invite-heading">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAAFKAQAAAABTUiuoAAACCklEQVR4nO2bwY3bMBBF30QCfJQAF+BSqNZS0nZglrIdiEcDFH4OJLXeJAjkBLIV7MxBEol3+MBgyPkkZGJjxG9bSXDUUUcdddTRPVGr0WNT6oFkZlNq09PuAhzdFH15hStAOqN4yRh0GVKXAbA9BTj6F2iqJWRTMpPmpQ7N+ucIcHRD9D+NRTrn9vUMAY7+CxovGeLY/erDjqf1y6GttgYBCQwMBYGFN7jP2cu1OlrRaGZmIxDmTrUxZCkt4TMEOLolSm19lJDi2AEsps+VdQCtjla/tbqsMhtHsInFIPXYtLsARx9B47gYDBkYbqYrAKmHeLn5SngYdO0y5mqCw/tJFrT0Ku44neTu+IhokAQspu9jJ5tKqWVqqR1K69dEkSTpCkjz6rKGXLpDSRJBkq4v1+poQ9c6KumZKa0GsPi+dTDUJjoRzazkKFpPTZmd9AndR4Cjm6L5rWQQSl6WnvB2zlbKapib7Xq5Vkfr0rc2Ex/bWImg3OZertXRgpYGI0i6uyKpLWInm3YX4OgD6MfdMQw3q4lK/W/QfQQ4+ggaJEkzSO8n3R9tsJj7raOh7e6YOC7tqx2/l+FxtDq6Rpg7lQdDXQ69to6Kml1y8VvSvBjxkrHpiQIc/VPcnS2pHDXlVmDKbUPzDv4YaPNbJbrSstelb5B0Hfyc8Dio+V8LjjrqqKOO/kfoD7tFBlENSDCFAAAAAElFTkSuQmCC" alt="QR code linking to 3dvr.tech" loading="lazy" />
+    <div class="qr-invite" role="group" aria-labelledby="qr-invite-heading" style="margin: 1.15rem auto 0;">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAAFKAQAAAABTUiuoAAACCklEQVR4nO2bwY3bMBBF30QCfJQAF+BSqNZS0nZglrIdiEcDFH4OJLXeJAjkBLIV7MxBEol3+MBgyPkkZGJjxG9bSXDUUUcdddTRPVGr0WNT6oFkZlNq09PuAhzdFH15hStAOqN4yRh0GVKXAbA9BTj6F2iqJWRTMpPmpQ7N+cIcHRD9D+NRTrn9vUMAY7+CxovGeLY/erDjqf1y6GttgYBCQwMBYGFN7jP2cu1OlrRaGZmIxDmTrUxZCkt4TMEOLolSm19lJDi2AEsps+VdQCtjla/tbqsMhtHsInFIPXYtLsARx9B47gYDBkYbqYrAKmHeLn5SngYdO0y5mqCw/tJFrT0Ku44neTu+IhokAQspu9jJ5tKqWVqqR1K69dEkSTpCkjz6rKGXLpDSRJBkq4v1+poQ9c6KumZKa0GsPi+dTDUJjoRzazkKFpPTZmd9AndR4Cjm6L5rWQQSl6WnvB2zlbKapib7Xq5Vkfr0rc2Ex/bWImg3OZertXRgpYGI0i6uyKpLWInm3YX4OgD6MfdMQw3q4lK/W/QfQQ4+ggaJEkzSO8n3R9tsJj7raOh7e6YOC7tqx2/l+FxtDq6Rpg7lQdDXQ69to6Kml1y8VvSvBjxkrHpiQIc/VPcnS2pHDXlVmDKbUPzDv4YaPNbJbrSstelb5B0Hfyc8Dio+V8LjjrqqKOO/kfoD7tFBlENSDCFAAAAAElFTkSuQmCC" alt="QR code linking to 3dvr.tech" loading="lazy" />
       <p id="qr-invite-heading">Show this QR code to friends and collaborators to share 3dvr.tech instantly.</p>
     </div>
   </section>
+
 
   <footer style="background: #111; color: #aaa; text-align: center; padding: 2rem 1rem; font-size: 0.95rem;">
     <p style="margin-top: 0;">&copy; 2025 <a href="https://3dvr.tech" target="_blank" style="color: var(--accent);">3dvr.tech</a> — Open Source. Open Future.</p>
