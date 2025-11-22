@@ -1,5 +1,5 @@
 (function() {
-  if (!('serviceWorker' in navigator)) return;
+  const supportsServiceWorker = 'serviceWorker' in navigator;
 
   let deferredPrompt = null;
   const installButtons = new Set();
@@ -24,6 +24,7 @@
       'pointer-events: none',
       'filter: grayscale(0.25)'
     ].join(';');
+    button.title = supportsServiceWorker ? 'Install 3dvr on this device' : 'Installing is not supported by this browser';
 
     button.addEventListener('focus', () => button.style.boxShadow = '0 14px 32px rgba(0,0,0,0.22)');
     button.addEventListener('blur', () => button.style.boxShadow = '0 12px 30px rgba(0,0,0,0.18)');
@@ -115,9 +116,14 @@
     updateButtonState();
   });
 
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js').catch((error) => {
-      console.error('Service worker registration failed:', error);
+  if (supportsServiceWorker) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js').catch((error) => {
+        console.error('Service worker registration failed:', error);
+      });
     });
-  });
+  } else {
+    ensureButtonExists();
+    updateButtonState();
+  }
 })();
