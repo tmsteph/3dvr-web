@@ -19,9 +19,10 @@
       'letter-spacing: 0.02em',
       'cursor: pointer',
       'box-shadow: 0 12px 30px rgba(0,0,0,0.18)',
-      'transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.25s ease',
-      'opacity: 0',
-      'pointer-events: none'
+      'transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.25s ease, filter 0.25s ease',
+      'opacity: 0.7',
+      'pointer-events: none',
+      'filter: grayscale(0.25)'
     ].join(';');
 
     button.addEventListener('focus', () => button.style.boxShadow = '0 14px 32px rgba(0,0,0,0.22)');
@@ -39,8 +40,10 @@
   const updateButtonState = () => {
     installButtons.forEach((button) => {
       const ready = Boolean(deferredPrompt);
-      button.style.opacity = ready ? '1' : '0';
+      button.style.opacity = ready ? '1' : '0.7';
       button.style.pointerEvents = ready ? 'auto' : 'none';
+      button.style.filter = ready ? 'none' : 'grayscale(0.25)';
+      button.style.cursor = ready ? 'pointer' : 'not-allowed';
       button.disabled = !ready;
     });
   };
