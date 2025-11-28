@@ -1,0 +1,176 @@
+/* ------------------------------------------------------
+ Global Fonts & Variables
+------------------------------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --sage-500: #6b8d65;
+    --teal-500: #4e7477;
+    --cream-200: #f5f1e8;
+}
+
+/* Typography */
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.75;
+}
+
+.font-serif {
+    font-family: 'Fraunces', serif;
+}
+
+/* Section helpers */
+.section-kicker {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: #4e7477;
+    font-weight: 600;
+}
+
+/* Pills used in hero */
+.pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 9999px;
+    background-color: rgba(248, 246, 240, 0.9);
+    border: 1px solid rgba(184, 217, 219, 0.7);
+}
+
+.pill-badge i {
+    width: 0.9rem;
+    height: 0.9rem;
+}
+
+/* Dots active state */
+.testimonial-dot.active {
+    background-color: var(--teal-500);
+    transform: scale(1.05);
+}
+
+/* FAQ open state */
+.faq-item.open {
+    border: 1px solid rgba(75, 85, 99, 0.18);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+/* ------------------------------------------------------
+ Scroll Behavior
+------------------------------------------------------ */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ------------------------------------------------------
+ Animations
+------------------------------------------------------ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-fadeInUp {
+    animation: fadeInUp 0.9s ease-out forwards;
+}
+
+/* Blob animation */
+@keyframes blob {
+    0%   { transform: translate(0,0) scale(1); }
+    33%  { transform: translate(30px,-20px) scale(1.1); }
+    66%  { transform: translate(-20px,20px) scale(0.9); }
+    100% { transform: translate(0,0) scale(1); }
+}
+.animate-blob {
+    animation: blob 7s infinite;
+}
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+/* ------------------------------------------------------
+ Services & FAQ (Accordions)
+------------------------------------------------------ */
+.service-details,
+.faq-answer {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.35s ease;
+}
+
+.service-details:not(.hidden),
+.faq-answer:not(.hidden) {
+    max-height: 600px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.testimonial {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+.testimonial:not(.hidden) {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ------------------------------------------------------
+ Buttons / Interaction
+------------------------------------------------------ */
+button,
+a {
+    transition: all 0.25s ease;
+}
+
+/* Focus States */
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(135,168,120,0.28);
+}
+
+/* ------------------------------------------------------
+ Visual Helpers
+------------------------------------------------------ */
+.glass-effect {
+    background: rgba(255,255,255,0.25);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.32);
+}
+
+.text-shadow-sm {
+    text-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* Cards hover refinement */
+.service-card,
+.resource-card,
+.process-step {
+    will-change: transform, box-shadow;
+}
+
+.service-card:hover,
+.resource-card:hover,
+.process-step:hover {
+    transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------
+ Media Queries
+------------------------------------------------------ */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+}
