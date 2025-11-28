@@ -162,6 +162,27 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     }
 
+    .template-preview {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(0, 255, 200, 0.08), rgba(255, 110, 127, 0.08));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    }
+
+    .template-preview iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      transform: scale(1);
+    }
+
     .template-label {
       display: inline-block;
       padding: 0.35rem 0.65rem;
@@ -252,6 +273,13 @@
           <span class="template-label">Wellness</span>
           <h2>Mindful Harmony</h2>
           <p>A calming single-page design for wellness studios or mindful retreats with component-based sections.</p>
+          <div class="template-preview">
+            <iframe
+              title="Mindful Harmony live preview"
+              src="mindful%20harmony/index.html"
+              loading="lazy"
+            ></iframe>
+          </div>
           <div class="template-actions">
             <a class="action-link" href="mindful%20harmony/index.html">Live preview</a>
             <a class="action-link" href="mindful%20harmony/">Browse files</a>
@@ -262,9 +290,16 @@
           <span class="template-label">Hospitality</span>
           <h2>Pasta La Vista</h2>
           <p>A vibrant restaurant landing page featuring menu highlights, chef notes, and playful gradients.</p>
+          <div class="template-preview">
+            <iframe
+              title="Pasta La Vista live preview"
+              src="pasta%20la%20vista/index.html"
+              loading="lazy"
+            ></iframe>
+          </div>
           <div class="template-actions">
             <a class="action-link" href="pasta%20la%20vista/index.html">Live preview</a>
-            <a class="action-link" href="pasta%20la%20vista.zip">Download ZIP</a>
+            <a class="action-link" href="pasta%20la%20vista/">Browse files</a>
           </div>
         </article>
       </div>
