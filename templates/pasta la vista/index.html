@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pasta La Vista | Modern Italian Trattoria</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pasta La Vista is a modern Italian trattoria serving fresh handmade pasta, seasonal specials and good wine in a cozy, candle-lit atmosphere." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;900&family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            terracotta: {
+              50: '#fdf5f1',
+              100: '#f7ded2',
+              300: '#e49f7b',
+              500: '#c4603d', // main
+              600: '#a64f32',
+              800: '#6f311f',
+            },
+            espresso: '#3a2c28',
+            basil: '#6a8c69',
+            brass: '#c8a063',
+            cream: '#faf6ed',
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            ui: ['Montserrat', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .menu-active {
+      border-color: #c4603d;
+      color: #c4603d;
+      background-color: #fdf5f1;
+    }
+    .menu-panel {
+      display: none;
+    }
+    .menu-panel.active {
+      display: grid;
+    }
+    .lightbox-backdrop {
+      backdrop-filter: blur(6px);
+    }
+  </style>
+</head>
+<body class="bg-cream text-espresso antialiased scroll-smooth">
+
+  <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 right-0 z-30 bg-cream/90 border-b border-neutral-200/70 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 sm:h-20">
+      <a href="#top" class="flex items-center gap-2">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-brass/60 bg-cream">
+          <span class="font-display text-xl text-terracotta-600">P</span>
+        </span>
+        <div class="leading-tight">
+          <p class="font-display text-lg sm:text-xl tracking-tight">Pasta La Vista</p>
+          <p class="text-xs text-neutral-500 uppercase tracking-[0.2em]">Modern Trattoria</p>
+        </div>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-6 font-ui text-sm">
+        <a href="#menu" class="hover:text-terracotta-500">Menu</a>
+        <a href="#story" class="hover:text-terracotta-500">Our Story</a>
+        <a href="#specials" class="hover:text-terracotta-500">Chef’s Specials</a>
+        <a href="#gallery" class="hover:text-terracotta-500">Gallery</a>
+        <a href="#events" class="hover:text-terracotta-500">Events</a>
+        <a href="#location" class="hover:text-terracotta-500">Location</a>
+      </nav>
+
+      <div class="hidden md:flex items-center gap-3">
+        <a href="#reservations" class="text-xs font-ui tracking-[0.18em] uppercase text-neutral-500 hover:text-terracotta-600">Book a table</a>
+        <a href="#delivery" class="inline-flex items-center justify-center px-4 py-2 rounded-full bg-terracotta-500 hover:bg-terracotta-600 text-white font-ui text-sm shadow-sm transition">
+          Order online
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button id="mobileMenuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-neutral-300 bg-white">
+        <i data-feather="menu" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Mobile nav -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-neutral-200 bg-cream">
+      <nav class="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-2 font-ui text-sm">
+        <a href="#menu" class="py-2 border-b border-neutral-200/60">Menu</a>
+        <a href="#story" class="py-2 border-b border-neutral-200/60">Our Story</a>
+        <a href="#specials" class="py-2 border-b border-neutral-200/60">Chef’s Specials</a>
+        <a href="#gallery" class="py-2 border-b border-neutral-200/60">Gallery</a>
+        <a href="#events" class="py-2 border-b border-neutral-200/60">Events</a>
+        <a href="#location" class="py-2 border-b border-neutral-200/60">Location</a>
+        <div class="pt-2 flex flex-col gap-2">
+          <a href="#reservations" class="w-full text-center px-4 py-2 text-xs font-ui tracking-[0.18em] uppercase border border-terracotta-500 text-terracotta-600 rounded-full">Book a table</a>
+          <a href="#delivery" class="w-full text-center px-4 py-2 rounded-full bg-terracotta-500 text-white font-ui text-sm">Order online</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="pt-20 sm:pt-24">
+
+    <!-- HERO -->
+    <section class="relative overflow-hidden bg-espresso text-cream">
+      <div class="absolute inset-0">
+        <img src="https://images.pexels.com/photos/3298637/pexels-photo-3298637.jpeg?auto=compress&cs=tinysrgb&w=1600"
+             alt="Fresh pasta served with wine" class="w-full h-full object-cover opacity-40" />
+        <div class="absolute inset-0 bg-gradient-to-r from-espresso via-espresso/90 to-espresso/60"></div>
+      </div>
+
+      <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 lg:py-28 grid lg:grid-cols-[1.15fr,0.9fr] gap-10 lg:gap-16 items-center">
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 rounded-full bg-espresso/70 border border-brass/40 px-4 py-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <p class="text-[11px] font-ui uppercase tracking-[0.2em] text-brass">Tonight’s Chef Special</p>
+          </div>
+
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight tracking-tight">
+            Handmade pasta, candle-lit nights, good wine.
+          </h1>
+
+          <p class="max-w-xl text-sm sm:text-base text-cream/90">
+            At <span class="font-semibold">Pasta La Vista</span> we roll fresh pasta every morning, simmer sauces for hours,
+            and serve it all in a modern trattoria with warm lighting, vinyl playing, and glasses never half empty.
+          </p>
+
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href="#reservations" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-terracotta-500 hover:bg-terracotta-600 text-white font-ui text-sm shadow-md">
+              Book a table
+              <i data-feather="calendar" class="w-4 h-4 ml-2"></i>
+            </a>
+            <a href="#menu" class="inline-flex items-center justify-center px-5 py-3 rounded-full border border-cream/70 text-cream font-ui text-sm hover:bg-cream hover:text-espresso transition">
+              View menu
+              <i data-feather="arrow-down" class="w-4 h-4 ml-1"></i>
+            </a>
+          </div>
+
+          <div class="flex flex-wrap gap-6 pt-4 text-xs sm:text-sm">
+            <div class="flex items-center gap-2">
+              <i data-feather="star" class="w-4 h-4 text-brass"></i>
+              <span>Rated 4.8 / 5 · 320+ reviews</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-feather="clock" class="w-4 h-4 text-brass"></i>
+              <span>Open today · <span id="today-hours">5:30 PM – 11:00 PM</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero side card: fake WhatsApp + special -->
+        <aside class="bg-cream/95 text-espresso rounded-3xl shadow-2xl border border-terracotta-100/70 p-6 sm:p-7 space-y-4">
+          <div>
+            <p class="text-xs font-ui uppercase tracking-[0.18em] text-terracotta-500">Chef’s pick</p>
+            <h2 class="font-display text-2xl mt-1">Truffle Tagliatelle</h2>
+            <p class="text-sm text-neutral-700 mt-2">
+              Fresh egg tagliatelle tossed in Parmigiano cream, black truffle, and a hint of lemon zest.
+            </p>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="font-ui text-sm font-semibold">Tonight only</p>
+              <p class="text-xs text-neutral-500">Limited portions available</p>
+            </div>
+            <p class="font-ui text-lg font-semibold text-terracotta-600">$24</p>
+          </div>
+
+          <div class="border-t border-neutral-200 pt-4 space-y-3">
+            <p class="text-xs uppercase tracking-[0.18em] text-neutral-500">Fake ordering demo</p>
+            <a href="https://wa.me/0000000000?text=Hi%20Pasta%20La%20Vista%2C%20I%27d%20like%20to%20order%20Truffle%20Tagliatelle"
+               target="_blank"
+               class="inline-flex items-center justify-center w-full px-4 py-2.5 rounded-full bg-basil text-white font-ui text-sm hover:bg-basil/90">
+              Order via WhatsApp (demo)
+              <i data-feather="message-circle" class="w-4 h-4 ml-2"></i>
+            </a>
+            <p class="text-[11px] text-neutral-500 text-center">
+              This is a portfolio demo — the WhatsApp number is not real.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section id="story" class="bg-cream py-14 sm:py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div class="relative">
+          <div class="absolute -top-4 -left-4 w-32 h-32 rounded-full border border-brass/60"></div>
+          <div class="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-terracotta-100/70"></div>
+          <div class="relative rounded-3xl overflow-hidden shadow-xl border border-neutral-200">
+            <img src="https://images.pexels.com/photos/6287526/pexels-photo-6287526.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                 alt="Chef preparing fresh pasta" class="w-full h-72 sm:h-80 lg:h-[22rem] object-cover" />
+          </div>
+        </div>
+        <div>
+          <p class="text-xs font-ui uppercase tracking-[0.22em] text-terracotta-500 mb-2">Our story</p>
+          <h2 class="font-display text-3xl sm:text-4xl mb-4 tracking-tight">From family table to city nights.</h2>
+          <p class="text-sm sm:text-base text-neutral-700 mb-4">
+            Pasta La Vista started as Sunday dinners in a tiny kitchen, where nonna rolled pasta by hand
+            and every seat was taken. Today, we bring that same spirit to a modern trattoria: loud laughter,
+            generous plates, and a wine list that doesn’t take itself too seriously.
+          </p>
+          <p class="text-sm sm:text-base text-neutral-700 mb-6">
+            Our chefs blend traditional Italian recipes with seasonal ingredients from local markets.
+            The result: food that feels like home, even if you’ve never been to Italy.
+          </p>
+
+          <dl class="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <dt class="font-ui font-semibold">Founded</dt>
+              <dd class="text-neutral-600">2016 · Family-run</dd>
+            </div>
+            <div>
+              <dt class="font-ui font-semibold">Fresh pasta</dt>
+              <dd class="text-neutral-600">Rolled daily, in-house</dd>
+            </div>
+            <div>
+              <dt class="font-ui font-semibold">Seats</dt>
+              <dd class="text-neutral-600">40 inside · 16 terrace</dd>
+            </div>
+            <div>
+              <dt class="font-ui font-semibold">Diet friendly</dt>
+              <dd class="text-neutral-600">Vegan & gluten-free options</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section id="menu" class="bg-white py-14 sm:py-16 border-y border-neutral-200/60">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+          <div>
+            <p class="text-xs font-ui uppercase tracking-[0.22em] text-terracotta-500 mb-2">Menu</p>
+            <h2 class="font-display text-3xl sm:text-4xl mb-2 tracking-tight">Seasonal Italian plates.</h2>
+            <p class="text-sm sm:text-base text-neutral-700 max-w-lg">
+              Our menu changes with the seasons. These are some of the dishes guests fall in love with.
+            </p>
+          </div>
+          <a href="#" class="inline-flex items-center text-xs font-ui uppercase tracking-[0.2em] text-neutral-500 hover:text-terracotta-600">
+            Download full menu (PDF)
+            <i data-feather="download" class="w-4 h-4 ml-2"></i>
+          </a>
+        </div>
+
+        <!-- Menu tabs -->
+        <div class="flex gap-2 overflow-x-auto pb-2 mb-6">
+          <button class="menu-tab menu-active text-xs font-ui uppercase tracking-[0.2em] px-3 py-2 rounded-full border border-neutral-300 bg-white"
+                  data-target="starters">
+            Starters
+          </button>
+          <button class="menu-tab text-xs font-ui uppercase tracking-[0.2em] px-3 py-2 rounded-full border border-neutral-300 bg-white"
+                  data-target="pasta">
+            Pasta
+          </button>
+          <button class="menu-tab text-xs font-ui uppercase tracking-[0.2em] px-3 py-2 rounded-full border border-neutral-300 bg-white"
+                  data-target="mains">
+            Mains
+          </button>
+          <button class="menu-tab text-xs font-ui uppercase tracking-[0.2em] px-3 py-2 rounded-full border border-neutral-300 bg-white"
+                  data-target="desserts">
+            Desserts
+          </button>
+          <button class="menu-tab text-xs font-ui uppercase tracking-[0.2em] px-3 py-2 rounded-full border border-neutral-300 bg-white"
+                  data-target="drinks">
+            Drinks
+          </button>
+        </div>
+
+        <!-- Allergy filters (demo only) -->
+        <div class="flex flex-wrap gap-2 mb-6 text-[11px] font-ui uppercase tracking-[0.2em] text-neutral-500">
+          <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-neutral-300">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Vegetarian
+          </span>
+          <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-neutral-300">
+            <span class="w-2 h-2 rounded-full bg-basil"></span> Vegan
+          </span>
+          <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-neutral-300">
+            <span class="w-2 h-2 rounded-full bg-amber-400"></span> Spicy
+          </span>
+          <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-neutral-300">
+            <span class="w-2 h-2 rounded-full bg-blue-400"></span> Gluten-free option
+          </span>
+        </div>
+
+        <!-- Starters -->
+        <div id="menu-starters" class="menu-panel active grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <article class="border border-neutral-200 rounded-2xl p-4 sm:p-5 hover:border-terracotta-300 shadow-sm hover:shadow-md transition">
+            <div class="flex justify-between gap-3 mb-1">
+              <h3 class="font-ui font-semibold text-sm sm:text-base">Burrata & Roasted Tomatoes</h3>
+              <p class="font-ui text-sm font-semibold text-terracotta-600">$14</p>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-600 mb-2">
+              Creamy burrata, slow-roasted cherry tomatoes, basil oil, grilled sourdough.
+            </p>
+            <p class="text-[11px] text-neutral-500 uppercase tracking-[0.18em]">Vegetarian · Most loved</p>
+          </article>
+
+          <article class="border border-neutral-200 rounded-2xl p-4 sm:p-5 hover:border-terracotta-300 shadow-sm hover:shadow-md transition">
+            <div class="flex justify-between gap-3 mb-1">
+              <h3 class="font-ui font-semibold text-sm sm:text-base">Truffle Arancini</h3>
+              <p class="font-ui text-sm font-semibold text-terracotta-600">$12</p>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-600 mb-2">
+              Crispy risotto balls with mozzarella, porcini, and black truffle aioli.
+            </p>
+            <p class="text-[11px] text-neutral-500 uppercase tracking-[0.18em]">Contains gluten</p>
+          </article>
+
+          <article class="border border-neutral-200 rounded-2xl p-4 sm:p-5 hover:border-terracotta-300 shadow-sm hover:shadow-md transition">
+            <div class="flex justify-between gap-3 mb-1">
+              <h3 class="font-ui font-semibold text-sm sm:text-base">Citrus Fennel Salad</h3>
+              <p class="font-ui text-sm font-semibold text-terracotta-600">$11</p>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-600 mb-2">
+              Shaved fennel, orange segments, toasted almonds, lemon vinaigrette.
+            </p>
+            <p class="text-[11px] text-neutral-500 uppercase tracking-[0.18em]">Vegan · Gluten-free</p>
+          </article>
+
+          <article class="border border-neutral-200 rounded-2xl p-4 sm:p-5 hover:border-terracotta-300 shadow-sm hover:shadow-md transition">
+            <div class="flex justify-between gap-3 mb-1">
+              <h3 class="font-ui font-semibold text-sm sm:text-base">Garlic Prawns</h3>
+              <p class="font-ui text-sm font-semibold text-terracotta-600">$16</p>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-600 mb-2">
+              Tiger prawns sautéed in garlic, chili, white wine, and parsley.
+            </p>
+            <p class="text-[11px] text-neutral-500 uppercase tracking-[0.18em]">Spicy · Gluten-free</p>
+          </article>
+        </div>
+
+        <!-- Pasta -->
+        <div id="menu-pasta" class="menu-panel grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <article class="border border-neutral-200 rounded-2xl p-4 sm:p-5 hover:border-terracotta-300 shadow-sm hover:shadow-md transition">
+            <div class="flex justify-between gap-3 mb-1">
+              <h3 class="font-ui font-semibold text-sm sm:text-base">Cacio e Pepe</h3>
+              <p class="font-ui text-sm font-semibold text-terracotta-600">$19</p>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-600 mb-2">
+              Fresh tonnarelli, Pecorino Romano, cracked black pepper, pasta water magic.
+            </p>
+            <p class="text-[11px] text-neutral-500 uppercase tracking-[0.18em]">Classic Roman · Vegetarian</p>
+          </article>
+
+          <article class="border border-neutral-200 rounded-2xl p-4 sm:p-5 hover:border-terracotta-300 shadow-sm hover:shadow-md transition">
+            <div class="flex justify-between gap-3 mb-1">
+              <h3 class="font-ui font-semibold text-sm sm:text-base">Truffle Tagliatelle</h3>
+              <p class="font-ui text-sm font-semibold text-terracotta-600">$24</p>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-600 mb-2">
+              Egg tagliatelle, Parmigiano cream, black truffle, lemon zest.
+            </p>
+            <p class="text-[11px] text-neutral-500 uppercase tracking-[0.18em]">Chef’s special</p>
+          </article>
+
+          <article class="border border-neutral-200 rounded-2xl p-4 sm:p-5 hover:border-terracotta-300 shadow-sm hover:shadow-md transition">
+            <div class="flex justify-between gap-3 mb-1">
+              <h3 class="font-ui font-semibold text-sm sm:text-base">Spicy Vodka Rigatoni</h3>
+              <p class="font-ui text-sm font-semibold text-terracotta-600">$20</p>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-600 mb-2">
+              Tomato-vodka cream sauce, chili flakes, basil, Parmigiano.
+            </p>
+            <p class="text-[11px] text-neutral-500 uppercase tracking-[0.18em]">Spicy · Most ordered</p>
+          </article>
+
+          <article class="border border-neutral-200 rounded-2xl p-4 sm:p-5 hover:border-terracotta-300 shadow-sm hover:shadow-md transition">
+            <div class="flex justify-between gap-3 mb-1">
+              <h3 class="font-ui font-semibold text-sm sm:text-base">Pistachio Pesto Trofie</h3>
+              <p class="font-ui text-sm font-semibold text-terracotta-600">$21</p>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-600 mb-2">
+              Trofie pasta, pistachio-basil pesto, lemon, mint, toasted pistachios.
+            </p>
+            <p class="text-[11px] text-neutral-500 uppercase tracking-[0.18em]">Vegetarian · Nut allergy</p>
+          </article>
+        </div>
+
+        <!-- Mains -->
+        <div id="menu-mains" class="menu-panel grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <article class="border border-neutral-200 rounded-2xl p-4 sm:p-5 hover:border-terracotta-300 shadow-sm hover:shadow-md transition">
+            <div class="flex justify-between gap-3 mb-1">
+              <h3 class="font-ui font-semibold text-sm sm:text-base">Slow-braised Short Rib</h3>
+              <p class="font-ui text-sm font-semibold text-terracotta-600">$29</p>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-600 mb-2">
+              Red wine braised short rib, creamy polenta, roasted carrots.
+            </p>
+            <p class="text-[11px] text-neutral-500 uppercase tracking-[0.18em]">Gluten-free</p>
+          </article>
+
+          <article class="border border-neutral-200 rounded-2xl p-4 sm:p-5 hover:border-terracotta-300 shadow-sm hover:shadow-md transition">
+            <div class="flex justify-between gap-3 mb-1">
+              <h3 class="font-ui font-semibold text-sm sm:text-base">Sea Bass al Limone</h3>
+              <p class="font-ui text-sm font-semibold text-terracotta-600">$27</p>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-600 mb-2">
+              Pan-seared sea bass, lemon caper butter, wilted spinach.
+            </p>
+            <p class="text-[11px] text-neutral-500 uppercase tracking-[0.18em]">Gluten-free · Light</p>
+          </article>
+        </div>
+
+        <!-- Desserts -->
+        <div id="menu-desserts" class="menu-panel grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <article class="border border-neutral-200 rounded-2xl p-4 sm:p-5 hover:border-terracotta-300 shadow-sm hover:shadow-md transition">
+            <div class="flex justify-between gap-3 mb-1">
+              <h3 class="font-ui font-semibold text-sm sm:text-base">Classic Tiramisu</h3>
+              <p class="font-ui text-sm font-semibold text-terracotta-600">$10</p>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-600 mb-2">
+              Espresso-soaked ladyfingers, mascarpone cream, cocoa.
+            </p>
+            <p class="text-[11px] text-neutral-500 uppercase tracking-[0.18em]">Signature dessert</p>
+          </article>
+
+          <article class="border border-neutral-200 rounded-2xl p-4 sm:p-5 hover:border-terracotta-300 shadow-sm hover:shadow-md transition">
+            <div class="flex justify-between gap-3 mb-1">
+              <h3 class="font-ui font-semibold text-sm sm:text-base">Lemon Olive Oil Cake</h3>
+              <p class="font-ui text-sm font-semibold text-terracotta-600">$9</p>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-600 mb-2">
+              Moist lemon cake, whipped mascarpone, candied citrus.
+            </p>
+            <p class="text-[11px] text-neutral-500 uppercase tracking-[0.18em]">Can be served warm</p>
+          </article>
+        </div>
+
+        <!-- Drinks -->
+        <div id="menu-drinks" class="menu-panel grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <article class="border border-neutral-200 rounded-2xl p-4 sm:p-5">
+            <h3 class="font-ui font-semibold text-sm sm:text-base mb-2">House Wine Selection</h3>
+            <p class="text-xs sm:text-sm text-neutral-600 mb-1">
+              Rotating selection of Italian reds and whites by the glass.
+            </p>
+            <p class="text-[11px] text-neutral-500 uppercase tracking-[0.18em]">Ask your server</p>
+          </article>
+          <article class="border border-neutral-200 rounded-2xl p-4 sm:p-5">
+            <h3 class="font-ui font-semibold text-sm sm:text-base mb-2">Negroni & Spritzes</h3>
+            <p class="text-xs sm:text-sm text-neutral-600 mb-1">
+              Classic Negroni, Sbagliato, and seasonal spritzes.
+            </p>
+            <p class="text-[11px] text-neutral-500 uppercase tracking-[0.18em]">Aperitivo style</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHEF SPECIALS & MOST LOVED -->
+    <section id="specials" class="bg-cream py-14 sm:py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-[1.1fr,1fr] gap-10 lg:gap-16 items-start">
+        <div>
+          <p class="text-xs font-ui uppercase tracking-[0.22em] text-terracotta-500 mb-2">Chef’s table</p>
+          <h2 class="font-display text-3xl sm:text-4xl mb-3 tracking-tight">Weekly chef’s special.</h2>
+          <p class="text-sm sm:text-base text-neutral-700 mb-5">
+            Every week, our chefs design a limited-edition dish inspired by what’s fresh at
+            the market. It’s never on the printed menu — when it’s gone, it’s gone.
+          </p>
+
+          <div class="border border-neutral-200 rounded-3xl p-4 sm:p-5 bg-white shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6">
+            <img src="https://images.pexels.com/photos/1438672/pexels-photo-1438672.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 alt="Chef’s special pasta dish" class="w-full sm:w-40 h-40 object-cover rounded-2xl" />
+            <div class="space-y-2">
+              <p class="inline-flex items-center gap-2 text-[11px] font-ui uppercase tracking-[0.2em] text-terracotta-500">
+                Limited · This week only
+              </p>
+              <h3 class="font-ui font-semibold text-lg">Wild Mushroom Pappardelle</h3>
+              <p class="text-sm text-neutral-700">
+                House-made pappardelle, forest mushrooms, garlic, thyme, Parmigiano, and a splash of Marsala.
+              </p>
+              <div class="flex items-center justify-between pt-1">
+                <p class="font-ui text-sm font-semibold text-terracotta-600">$23</p>
+                <button class="inline-flex items-center text-xs font-ui uppercase tracking-[0.2em] text-neutral-500 hover:text-terracotta-600">
+                  Add to “fake” order
+                  <i data-feather="plus" class="w-3 h-3 ml-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Most loved list -->
+        <div>
+          <p class="text-xs font-ui uppercase tracking-[0.22em] text-terracotta-500 mb-2">Most loved</p>
+          <ul class="space-y-3 text-sm text-neutral-700">
+            <li class="flex items-start justify-between gap-4 border-b border-neutral-200 pb-3">
+              <div>
+                <p class="font-ui font-semibold">Spicy Vodka Rigatoni</p>
+                <p class="text-xs text-neutral-500">Our most photographed plate on Instagram.</p>
+              </div>
+              <span class="text-[11px] bg-terracotta-500/10 text-terracotta-600 rounded-full px-3 py-1 font-ui uppercase tracking-[0.18em]">Top pick</span>
+            </li>
+            <li class="flex items-start justify-between gap-4 border-b border-neutral-200 pb-3">
+              <div>
+                <p class="font-ui font-semibold">Classic Tiramisu</p>
+                <p class="text-xs text-neutral-500">Guests order “for the table” and never regret it.</p>
+              </div>
+              <span class="text-[11px] bg-amber-500/10 text-amber-700 rounded-full px-3 py-1 font-ui uppercase tracking-[0.18em]">Sweet spot</span>
+            </li>
+            <li class="flex items-start justify-between gap-4 border-b border-neutral-200 pb-3">
+              <div>
+                <p class="font-ui font-semibold">Burrata & Roasted Tomatoes</p>
+                <p class="text-xs text-neutral-500">Best way to start the night, especially with wine.</p>
+              </div>
+              <span class="text-[11px] bg-basil/10 text-basil rounded-full px-3 py-1 font-ui uppercase tracking-[0.18em]">Shareable</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="bg-white py-14 sm:py-16 border-y border-neutral-200/60">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+          <div>
+            <p class="text-xs font-ui uppercase tracking-[0.22em] text-terracotta-500 mb-2">Gallery</p>
+            <h2 class="font-display text-3xl sm:text-4xl mb-2 tracking-tight">Plates, places & details.</h2>
+            <p class="text-sm sm:text-base text-neutral-700 max-w-lg">
+              A quick peek at what evenings at Pasta La Vista feel like — from steaming plates to candle-lit tables.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+          <!-- Image items (use data-full for lightbox) -->
+          <button class="relative group rounded-2xl overflow-hidden">
+            <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 data-full="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                 alt="Pasta dish" class="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition-transform" />
+            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+              <span class="text-white text-xs font-ui uppercase tracking-[0.2em]">View</span>
+            </div>
+          </button>
+
+          <button class="relative group rounded-2xl overflow-hidden">
+            <img src="https://images.pexels.com/photos/3298180/pexels-photo-3298180.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 data-full="https://images.pexels.com/photos/3298180/pexels-photo-3298180.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                 alt="Restaurant interior" class="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition-transform" />
+            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+              <span class="text-white text-xs font-ui uppercase tracking-[0.2em]">View</span>
+            </div>
+          </button>
+
+          <button class="relative group rounded-2xl overflow-hidden">
+            <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 data-full="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                 alt="Wine and pasta" class="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition-transform" />
+            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+              <span class="text-white text-xs font-ui uppercase tracking-[0.2em]">View</span>
+            </div>
+          </button>
+
+          <button class="relative group rounded-2xl overflow-hidden">
+            <img src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 data-full="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                 alt="Dessert" class="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition-transform" />
+            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+              <span class="text-white text-xs font-ui uppercase tracking-[0.2em]">View</span>
+            </div>
+          </button>
+
+          <button class="relative group rounded-2xl overflow-hidden">
+            <img src="https://images.pexels.com/photos/3296542/pexels-photo-3296542.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 data-full="https://images.pexels.com/photos/3296542/pexels-photo-3296542.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                 alt="Table setting" class="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition-transform" />
+            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+              <span class="text-white text-xs font-ui uppercase tracking-[0.2em]">View</span>
+            </div>
+          </button>
+
+          <button class="relative group rounded-2xl overflow-hidden">
+            <img src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 data-full="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                 alt="Dessert plate" class="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition-transform" />
+            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+              <span class="text-white text-xs font-ui uppercase tracking-[0.2em]">View</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lightbox -->
+      <div id="lightbox" class="hidden fixed inset-0 z-40 bg-black/60 lightbox-backdrop items-center justify-center p-4">
+        <div class="relative max-w-3xl w-full">
+          <button id="lightboxClose" class="absolute -top-10 right-0 text-white">
+            <i data-feather="x" class="w-6 h-6"></i>
+          </button>
+          <img id="lightboxImage" src="" alt="Enlarged dish" class="w-full rounded-3xl shadow-2xl border border-neutral-700" />
+        </div>
+      </div>
+    </section>
+
+    <!-- RESERVATIONS & EVENTS -->
+    <section id="reservations" class="bg-cream py-14 sm:py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-[1.1fr,1fr] gap-10 lg:gap-16 items-start">
+        <div>
+          <p class="text-xs font-ui uppercase tracking-[0.22em] text-terracotta-500 mb-2">Reservations</p>
+          <h2 class="font-display text-3xl sm:text-4xl mb-3 tracking-tight">Reserve your table.</h2>
+          <p class="text-sm sm:text-base text-neutral-700 mb-5">
+            For small groups, you can use the form below. For larger gatherings, events or buy-outs,
+            we recommend sending us a message — we’ll reply within one business day.
+          </p>
+
+          <form class="space-y-3 text-sm">
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block mb-1 font-ui text-xs uppercase tracking-[0.2em] text-neutral-600">Name</label>
+                <input type="text" class="w-full px-3 py-2 border border-neutral-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-terracotta-300 bg-white" placeholder="Your name" />
+              </div>
+              <div>
+                <label class="block mb-1 font-ui text-xs uppercase tracking-[0.2em] text-neutral-600">Email</label>
+                <input type="email" class="w-full px-3 py-2 border border-neutral-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-terracotta-300 bg-white" placeholder="you@example.com" />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-3 gap-3">
+              <div>
+                <label class="block mb-1 font-ui text-xs uppercase tracking-[0.2em] text-neutral-600">Date</label>
+                <input type="date" class="w-full px-3 py-2 border border-neutral-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-terracotta-300 bg-white" />
+              </div>
+              <div>
+                <label class="block mb-1 font-ui text-xs uppercase tracking-[0.2em] text-neutral-600">Time</label>
+                <select class="w-full px-3 py-2 border border-neutral-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-terracotta-300 bg-white">
+                  <option>5:30 PM</option>
+                  <option>6:00 PM</option>
+                  <option>7:00 PM</option>
+                  <option>8:00 PM</option>
+                  <option>9:00 PM</option>
+                </select>
+              </div>
+              <div>
+                <label class="block mb-1 font-ui text-xs uppercase tracking-[0.2em] text-neutral-600">Guests</label>
+                <select class="w-full px-3 py-2 border border-neutral-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-terracotta-300 bg-white">
+                  <option>2</option>
+                  <option>3–4</option>
+                  <option>5–6</option>
+                  <option>7–8</option>
+                  <option>9+</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block mb-1 font-ui text-xs uppercase tracking-[0.2em] text-neutral-600">Occasion (optional)</label>
+              <select class="w-full px-3 py-2 border border-neutral-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-terracotta-300 bg-white">
+                <option>Just dinner</option>
+                <option>Birthday</option>
+                <option>Anniversary</option>
+                <option>Date night</option>
+                <option>Business</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block mb-1 font-ui text-xs uppercase tracking-[0.2em] text-neutral-600">Notes</label>
+              <textarea rows="3" class="w-full px-3 py-2 border border-neutral-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-terracotta-300 bg-white" placeholder="Allergies, preferred seating, etc."></textarea>
+            </div>
+
+            <button type="button" class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-terracotta-500 hover:bg-terracotta-600 text-white font-ui text-sm shadow-md">
+              Submit request (demo)
+            </button>
+
+            <p class="text-[11px] text-neutral-500">
+              This is a portfolio demo. Submitting this form won’t make a real reservation.
+            </p>
+          </form>
+        </div>
+
+        <!-- Events -->
+        <div id="events" class="bg-white border border-neutral-200 rounded-3xl p-5 shadow-sm">
+          <p class="text-xs font-ui uppercase tracking-[0.22em] text-terracotta-500 mb-2">Private events</p>
+          <h3 class="font-display text-xl mb-2">Group dinners & celebrations.</h3>
+          <p class="text-sm text-neutral-700 mb-3">
+            We love hosting birthdays, anniversaries, team dinners and intimate celebrations. The entire trattoria
+            or just the back room can be reserved for your group.
+          </p>
+          <ul class="text-sm text-neutral-700 space-y-1 mb-3">
+            <li>• Seated dinners up to 24 guests</li>
+            <li>• Family-style menus available</li>
+            <li>• Vegetarian & gluten-free friendly</li>
+          </ul>
+          <p class="text-xs text-neutral-500 mb-3">
+            For events, contact us using the form above and mention “Private Event”.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DELIVERY / CONTACT OPTIONS -->
+    <section id="delivery" class="bg-white py-14 sm:py-16 border-y border-neutral-200/60">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+          <div>
+            <p class="text-xs font-ui uppercase tracking-[0.22em] text-terracotta-500 mb-2">Takeout & delivery</p>
+            <h2 class="font-display text-3xl sm:text-4xl mb-2 tracking-tight">Bring Pasta La Vista home.</h2>
+            <p class="text-sm sm:text-base text-neutral-700 max-w-lg">
+              For this demo, buttons are just placeholders — but in a real project, they could connect to delivery platforms or your own ordering system.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-5">
+          <!-- Card 1 -->
+          <article class="border border-neutral-200 rounded-2xl p-5 bg-cream/70 flex flex-col gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-terracotta-500/10 flex items-center justify-center">
+                <i data-feather="shopping-bag" class="w-5 h-5 text-terracotta-600"></i>
+              </div>
+              <h3 class="font-ui font-semibold text-sm">Order for pickup</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-700">
+              In a real site, this would open an online ordering page connected to your POS system.
+            </p>
+            <button class="mt-auto inline-flex items-center justify-center px-3 py-2 rounded-full border border-terracotta-500 text-terracotta-600 text-xs font-ui uppercase tracking-[0.2em]">
+              Demo button
+            </button>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="border border-neutral-200 rounded-2xl p-5 bg-cream/70 flex flex-col gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-basil/10 flex items-center justify-center">
+                <i data-feather="smartphone" class="w-5 h-5 text-basil"></i>
+              </div>
+              <h3 class="font-ui font-semibold text-sm">Order via WhatsApp</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-700">
+              This demo link shows how an order message could be pre-filled for faster checkout.
+            </p>
+            <a href="https://wa.me/0000000000?text=Hi%20Pasta%20La%20Vista%2C%20I%27d%20like%20to%20place%20a%20takeout%20order."
+               target="_blank"
+               class="mt-auto inline-flex items-center justify-center px-3 py-2 rounded-full bg-basil text-white text-xs font-ui uppercase tracking-[0.2em]">
+              WhatsApp (demo)
+            </a>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="border border-neutral-200 rounded-2xl p-5 bg-cream/70 flex flex-col gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-brass/10 flex items-center justify-center">
+                <i data-feather="truck" class="w-5 h-5 text-brass"></i>
+              </div>
+              <h3 class="font-ui font-semibold text-sm">Delivery platforms</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-700">
+              In production, these logos would link to Uber Eats, DoorDash, etc. For now, they’re just placeholders.
+            </p>
+            <div class="flex gap-2 mt-auto">
+              <span class="px-2 py-1 rounded-full bg-white border border-neutral-200 text-[11px]">Uber Eats</span>
+              <span class="px-2 py-1 rounded-full bg-white border border-neutral-200 text-[11px]">DoorDash</span>
+              <span class="px-2 py-1 rounded-full bg-white border border-neutral-200 text-[11px]">Local app</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="bg-cream py-14 sm:py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+          <div>
+            <p class="text-xs font-ui uppercase tracking-[0.22em] text-terracotta-500 mb-2">Reviews</p>
+            <h2 class="font-display text-3xl sm:text-4xl mb-2 tracking-tight">What guests say.</h2>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-4 sm:gap-5 text-sm">
+          <article class="bg-white border border-neutral-200 rounded-2xl p-4 sm:p-5 shadow-sm">
+            <div class="flex items-center gap-1 text-amber-400 mb-2">
+              <i data-feather="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-feather="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-feather="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-feather="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-feather="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+            <p class="italic text-neutral-700 mb-3">
+              “The pasta tastes like someone’s nonna is in the kitchen. Cozy, buzzing atmosphere and the tiramisu is non-negotiable.”
+            </p>
+            <p class="font-ui font-semibold">María G.</p>
+            <p class="text-[11px] text-neutral-500">Google reviews · Sample text</p>
+          </article>
+
+          <article class="bg-white border border-neutral-200 rounded-2xl p-4 sm:p-5 shadow-sm">
+            <div class="flex items-center gap-1 text-amber-400 mb-2">
+              <i data-feather="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-feather="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-feather="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-feather="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-feather="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+            <p class="italic text-neutral-700 mb-3">
+              “Perfect date spot: great music, candle light, and a wine list that doesn’t require a sommelier degree.”
+            </p>
+            <p class="font-ui font-semibold">Emily R.</p>
+            <p class="text-[11px] text-neutral-500">Google reviews · Sample text</p>
+          </article>
+
+          <article class="bg-white border border-neutral-200 rounded-2xl p-4 sm:p-5 shadow-sm">
+            <div class="flex items-center gap-1 text-amber-400 mb-2">
+              <i data-feather="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-feather="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-feather="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-feather="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-feather="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+            <p class="italic text-neutral-700 mb-3">
+              “We celebrated a birthday here and the team made it feel like our own living room, just with better pasta.”
+            </p>
+            <p class="font-ui font-semibold">The López family</p>
+            <p class="text-[11px] text-neutral-500">Google reviews · Sample text</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section id="location" class="bg-white py-14 sm:py-16 border-t border-neutral-200/60">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-[1.05fr,1fr] gap-10 lg:gap-16 items-start">
+        <div class="rounded-3xl overflow-hidden border border-neutral-200 shadow-sm h-72 sm:h-80 lg:h-96">
+          <iframe
+            title="Pasta La Vista location (demo)"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.093022095314!2d-122.420679!3d37.774929!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ2JzMwLjAiTiAxMjLCsDI1JzE0LjQiVw!5e0!3m2!1sen!2sus!4v1700000000000"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div>
+          <p class="text-xs font-ui uppercase tracking-[0.22em] text-terracotta-500 mb-2">Find us</p>
+          <h2 class="font-display text-3xl sm:text-4xl mb-3 tracking-tight">In the heart of the city.</h2>
+
+          <div class="space-y-3 text-sm text-neutral-700 mb-5">
+            <p class="flex items-start gap-2">
+              <i data-feather="map-pin" class="w-4 h-4 mt-0.5 text-terracotta-600"></i>
+              <span>123 Sample Street, Neighborhood, City · This is demo copy for portfolio use.</span>
+            </p>
+            <p class="flex items-start gap-2">
+              <i data-feather="phone" class="w-4 h-4 mt-0.5 text-terracotta-600"></i>
+              <span>(000) 000-0000 · Not a real phone number.</span>
+            </p>
+            <p class="flex items-start gap-2">
+              <i data-feather="mail" class="w-4 h-4 mt-0.5 text-terracotta-600"></i>
+              <span>hello@pastalavista.demo · Not a real email.</span>
+            </p>
+          </div>
+
+          <div class="mb-5 text-sm">
+            <p class="font-ui font-semibold mb-1">Hours</p>
+            <div class="grid grid-cols-2 gap-x-6 gap-y-1 text-neutral-700">
+              <p>Mon–Thu</p><p>5:30 PM – 10:00 PM</p>
+              <p>Fri–Sat</p><p>5:30 PM – 11:00 PM</p>
+              <p>Sunday</p><p>5:00 PM – 9:30 PM</p>
+            </div>
+            <p class="mt-2 text-xs text-neutral-500">
+              <span id="open-status" class="font-semibold text-basil"></span>
+            </p>
+          </div>
+
+          <a href="https://maps.google.com" target="_blank" class="inline-flex items-center text-xs font-ui uppercase tracking-[0.2em] text-neutral-500 hover:text-terracotta-600">
+            Open in Google Maps (demo)
+            <i data-feather="external-link" class="w-4 h-4 ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-espresso text-cream py-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-4 gap-6 text-sm">
+      <div class="space-y-2">
+        <p class="font-display text-lg">Pasta La Vista</p>
+        <p class="text-xs text-cream/70">Modern Italian trattoria · Portfolio demo project.</p>
+      </div>
+      <div>
+        <p class="font-ui font-semibold mb-2 text-xs uppercase tracking-[0.18em] text-cream/70">Explore</p>
+        <ul class="space-y-1 text-cream/80">
+          <li><a href="#menu" class="hover:text-white">Menu</a></li>
+          <li><a href="#reservations" class="hover:text-white">Reservations</a></li>
+          <li><a href="#gallery" class="hover:text-white">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-ui font-semibold mb-2 text-xs uppercase tracking-[0.18em] text-cream/70">Contact</p>
+        <p class="text-cream/80">This is not a real restaurant — all details are placeholders for portfolio purposes.</p>
+      </div>
+      <div>
+        <p class="font-ui font-semibold mb-2 text-xs uppercase tracking-[0.18em] text-cream/70">Credits</p>
+        <p class="text-cream/80 text-xs">
+          Designed & coded By 3DVR. <br />
+        </p>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 mt-6 pt-4 border-t border-cream/15 text-[11px] text-cream/60 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <p>© 2025 Pasta La Vista .</p>
+      <p>Designed with ♥ By 3DVR.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Feather icons
+    feather.replace();
+
+    // Mobile menu
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn?.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', isOpen);
+      mobileBtn.innerHTML = isOpen ? '<i data-feather="menu" class="w-5 h-5"></i>' : '<i data-feather="x" class="w-5 h-5"></i>';
+      feather.replace();
+    });
+
+    // Menu tabs
+    const menuTabs = document.querySelectorAll('.menu-tab');
+    const panels = {
+      starters: document.getElementById('menu-starters'),
+      pasta: document.getElementById('menu-pasta'),
+      mains: document.getElementById('menu-mains'),
+      desserts: document.getElementById('menu-desserts'),
+      drinks: document.getElementById('menu-drinks')
+    };
+
+    menuTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.target;
+        menuTabs.forEach(t => t.classList.remove('menu-active'));
+        tab.classList.add('menu-active');
+        Object.keys(panels).forEach(key => {
+          if (key === target) {
+            panels[key].classList.add('active');
+          } else {
+            panels[key].classList.remove('active');
+          }
+        });
+      });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImage');
+    const lightboxClose = document.getElementById('lightboxClose');
+    document.querySelectorAll('#gallery img[data-full]').forEach(img => {
+      img.parentElement.addEventListener('click', () => {
+        lightboxImg.src = img.dataset.full;
+        lightbox.classList.remove('hidden');
+        lightbox.classList.add('flex');
+        feather.replace();
+      });
+    });
+    lightboxClose?.addEventListener('click', () => {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+    });
+    lightbox?.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.add('hidden');
+        lightbox.classList.remove('flex');
+      }
+    });
+
+    // "Open now" status demo (simple fake logic: assume open in evenings)
+    const statusEl = document.getElementById('open-status');
+    if (statusEl) {
+      const now = new Date();
+      const hour = now.getHours();
+      const isOpen = hour >= 17 && hour <= 23; // 5PM-11PM demo
+      statusEl.textContent = isOpen ? 'We appear as “Open now” in this demo.' : 'We appear as “Closed” at this time in this demo.';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Brand tokens */
+:root {
+  --color-terracotta: #c4603d;
+  --color-terracotta-soft: #fdf5f1;
+  --color-espresso: #3a2c28;
+}
+
+/* Legacy font helpers (por si los usas en otro lado) */
+.font-serif {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-sans {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Open Sans', sans-serif;
+}
+
+/* Menu Tabs (para variantes sin Tailwind inline) */
+.menu-tab {
+  position: relative;
+  border-radius: 9999px;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(55, 65, 81, 0.9);
+  border: 1px solid rgba(156, 163, 175, 0.5);
+  background-color: #ffffff;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.menu-tab:hover:not(.menu-active) {
+  color: var(--color-terracotta);
+  border-color: rgba(196, 96, 61, 0.6);
+}
+
+.menu-tab.menu-active {
+  color: var(--color-terracotta);
+  border-color: var(--color-terracotta);
+  background-color: var(--color-terracotta-soft);
+}
+
+/* Para configuraciones donde uses .menu-category/.menu-panel */
+.menu-category,
+.menu-panel {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.menu-category.active,
+.menu-panel.active {
+  display: grid;
+}
+
+/* Animación de aparición suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gallery Items (por si se usan como clase adicional) */
+.gallery-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img {
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Scroll Reveal genérico */
+.reveal {
+  position: relative;
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.reveal.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Clase usada por el script: animate-fadeInUp */
+.animate-fadeInUp {
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Inputs, selects y textareas un poco más suaves */
+input,
+select,
+textarea {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: rgba(196, 96, 61, 0.8);
+  box-shadow: 0 0 0 1px rgba(196, 96, 61, 0.45);
+}
+
+/* Rotating Chef Image (sutil, por si lo necesitas en otra página) */
+.rotate-chef {
+  animation: rotateChef 26s linear infinite;
+}
+
+@keyframes rotateChef {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
