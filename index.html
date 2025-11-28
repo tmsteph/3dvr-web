@@ -135,6 +135,19 @@
     }
     nav a:hover { background: rgba(255,255,255,0.1); }
 
+    .nav-cta {
+      background: var(--accent);
+      color: var(--text-dark);
+      box-shadow: 0 10px 25px rgba(0, 255, 200, 0.35);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+    }
+
+    .nav-cta:hover {
+      background: #7bffe5;
+      color: #0a0a0a;
+    }
+
     .qr-invite {
       margin-top: 0.2rem;
       display: flex;
@@ -474,6 +487,145 @@
       }
     }
 
+    .signup-section {
+      background: radial-gradient(circle at 10% 10%, rgba(0, 255, 200, 0.2), transparent 40%),
+        radial-gradient(circle at 85% 20%, rgba(255, 110, 127, 0.18), transparent 45%),
+        var(--bg-subscribe);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .signup-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: clamp(2rem, 4vw, 3rem);
+      align-items: start;
+      width: min(1100px, 100%);
+    }
+
+    .signup-copy {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: clamp(1.5rem, 3vw, 2.2rem);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .signup-eyebrow {
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+    }
+
+    .signup-steps {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      margin-top: 0.5rem;
+    }
+
+    .step-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 1rem;
+      display: grid;
+      gap: 0.5rem;
+      align-content: start;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .step-number {
+      display: inline-flex;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(0, 255, 200, 0.15);
+      color: var(--accent);
+      font-weight: 700;
+      border: 1px solid rgba(0, 255, 200, 0.4);
+    }
+
+    .signup-form-card {
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      padding: clamp(1.6rem, 3vw, 2.4rem);
+      text-align: left;
+      display: grid;
+      gap: 0.85rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .signup-form {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .signup-form label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .signup-form input,
+    .signup-form textarea,
+    .signup-form select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.35);
+      color: white;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .signup-form textarea { min-height: 100px; resize: vertical; }
+
+    .signup-form button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: var(--text-dark);
+      border: none;
+      padding: 0.95rem 1.6rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(0, 255, 200, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      width: 100%;
+    }
+
+    .signup-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(0, 255, 200, 0.45);
+    }
+
+    .form-footnote {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    @media (max-width: 960px) {
+      .signup-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .card-grid {
       display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;
       max-width: 1400px; padding: 0 1rem; margin-top: 2rem;
@@ -491,6 +643,148 @@
     .card h3 { color: var(--accent); font-size: 1.2rem; margin-bottom: 0.5rem; }
     .card h3 .plan-name { white-space: nowrap; }
     .card p { font-size: 1rem; }
+
+    .examples-section {
+      background: var(--bg-testimonials);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      width: min(1100px, 100%);
+      margin-top: 2rem;
+    }
+
+    .example-card {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 16px;
+      padding: 1.25rem;
+      display: grid;
+      gap: 0.85rem;
+      text-align: left;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+    }
+
+    .example-visual {
+      height: 150px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(0, 255, 200, 0.18), rgba(95, 39, 205, 0.18)),
+        linear-gradient(120deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .example-meta {
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .example-client {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+
+    .pricing-section {
+      background: var(--bg-subscribe);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      width: min(1100px, 100%);
+      margin-top: 2rem;
+      align-items: stretch;
+    }
+
+    .pricing-card {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: left;
+      display: grid;
+      gap: 0.75rem;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+      position: relative;
+    }
+
+    .pricing-card.highlight {
+      border-color: rgba(0, 255, 200, 0.6);
+      box-shadow: 0 20px 40px rgba(0, 255, 200, 0.18);
+    }
+
+    .plan-tag {
+      display: inline-flex;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(0, 255, 200, 0.15);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .plan-price {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: white;
+    }
+
+    .pricing-points {
+      list-style: none;
+      display: grid;
+      gap: 0.45rem;
+      padding-left: 0;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .pricing-points li::before {
+      content: "✓";
+      color: var(--accent);
+      margin-right: 0.5rem;
+    }
+
+    .pricing-actions {
+      display: grid;
+      gap: 0.35rem;
+      margin-top: auto;
+    }
+
+    .pricing-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      background: var(--accent);
+      color: var(--text-dark);
+      border-radius: 12px;
+      padding: 0.8rem 1rem;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 12px 30px rgba(0, 255, 200, 0.35);
+    }
+
+    .pricing-secondary {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .plan-footnote {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+      margin-top: 1rem;
+    }
 
     #features {
       position: relative;
@@ -869,25 +1163,20 @@
     </div>
 
     <nav id="mainNav">
-      <a href="#top">Home</a>
-      <a href="subscribe/index.html">Subscribe</a>
-      <a href="/blog/">Blog</a>
-      <a href="#features">Features</a>
-      <a href="#vision">Vision</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#team">Team</a>
+      <a href="#signup">How it Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#examples">Examples</a>
       <a href="#about">About</a>
-      <a href="pages/portfolio.html">Portfolio</a>
-      <a href="https://portal.3dvr.tech">Portal</a>
+      <a class="nav-cta" href="#signup">Start Free</a>
     </nav>
   </header>
 
-  <a class="sticky-cta" href="subscribe/index.html">Subscribe</a>
+  <a class="sticky-cta" href="#signup">Start Free</a>
 
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-intro">
-        <p class="hero-eyebrow">People-first web & XR studio</p>
+        <p class="hero-eyebrow">Launch your site with a team in your corner</p>
       </div>
       <div class="hero-visual" aria-hidden="true">
         <div class="hero-logo-card">
@@ -901,104 +1190,88 @@
       </div>
       <div class="hero-content">
         <h1 class="hero-headline">
-          <span class="hero-headline-primary">Build the future.</span>
+          <span class="hero-headline-primary">Launch your website in a weekend</span>
           <span class="hero-headline-divider" aria-hidden="true"></span>
-          <span class="hero-headline-secondary">3dvr.tech</span>
+          <span class="hero-headline-secondary">with a team that has your back.</span>
         </h1>
         <p>
-          3dvr.tech is a collaborative lab shaping respectful tools that return ownership,
-          honor the planet, and help creators grow together.
+          Get a modern site on a 3dvr.tech subdomain, plus ongoing tech support and a builder community.
+          Start free. No credit card required.
         </p>
         <div class="hero-buttons">
-          <a class="hero-button hero-button--primary" href="#vision">
-            Explore our vision
-            <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+          <a class="hero-button hero-button--primary" href="#signup">
+            Start Free – Get My Site Online
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
           </a>
-          <a class="hero-button hero-button--ghost" href="#subscribe">
-            View membership plans
+          <a class="hero-button hero-button--ghost" href="#examples">
+            See examples first
           </a>
         </div>
         <ul class="hero-vision-highlights" aria-label="Highlights from our vision">
           <li>
-            <span class="hero-vision-title">Own What You Build</span>
-            <span class="hero-vision-copy">Product decisions led by the people building and relying on them.</span>
+            <span class="hero-vision-title">Start fast</span>
+            <span class="hero-vision-copy">We set up your starter site on a 3dvr.tech subdomain within days.</span>
           </li>
           <li>
-            <span class="hero-vision-title">Design for Longevity</span>
-            <span class="hero-vision-copy">Human-centered design that respects privacy and the planet.</span>
+            <span class="hero-vision-title">Stay supported</span>
+            <span class="hero-vision-copy">Ongoing tech help, walkthroughs, and updates are included.</span>
           </li>
           <li>
-            <span class="hero-vision-title">Grow Together</span>
-            <span class="hero-vision-copy">Training and services that create pathways for makers everywhere.</span>
+            <span class="hero-vision-title">Upgrade anytime</span>
+            <span class="hero-vision-copy">Keep your free site or scale with paid plans when you’re ready.</span>
           </li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section id="vision" class="vision-section">
-    <div class="vision-shape vision-shape--diamond"></div>
-    <div class="vision-shape vision-shape--arc"></div>
-    <div class="vision-content">
-      <h2>Our Vision</h2>
-      <div class="vision-grid">
-        <article class="vision-card">
-          <h3>Shared Stewardship</h3>
-          <p>Technology stays rooted in the people who contribute to it and the communities who depend on it.</p>
-          <ul>
-            <li>Employee and customer owners shaping strategy together.</li>
-            <li>Transparent governance that keeps value circulating locally.</li>
-          </ul>
-        </article>
-        <article class="vision-card">
-          <h3>Regenerative Craft</h3>
-          <p>We design systems that protect people, their data, and the environments they call home.</p>
-          <ul>
-            <li>Repairable hardware paired with healthy, joyful experiences.</li>
-            <li>Sustainable choices embedded into every release.</li>
-          </ul>
-        </article>
-        <article class="vision-card">
-          <h3>Pathways for Makers</h3>
-          <p>Our services help members thrive today while preparing for the next wave of innovation.</p>
-          <ul>
-            <li>Websites and support that lift up nomads, creators, and explorers.</li>
-            <li>Training pathways that equip and employ the world in member-led tech work.</li>
-          </ul>
-        </article>
+  <section id="signup" class="signup-section">
+    <div class="signup-layout">
+      <div class="signup-copy">
+        <p class="signup-eyebrow">Start Free in 3 Steps</p>
+        <h2>Get your 3dvr site online this weekend.</h2>
+        <p>Share what you want to build, we stand up your starter site on a 3dvr.tech subdomain, and we refine it together with ongoing support.</p>
+        <div class="signup-steps">
+          <div class="step-card">
+            <span class="step-number">1</span>
+            <h3>Tell us who you are</h3>
+            <p>Name your project and what you want to launch.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-number">2</span>
+            <h3>We set up your starter site</h3>
+            <p>We reserve your 3dvr.tech subdomain and ship a modern, mobile-ready layout.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-number">3</span>
+            <h3>Customize together</h3>
+            <p>Collaborate with us, ship updates fast, and upgrade anytime.</p>
+          </div>
+        </div>
       </div>
-      <div class="vision-footnote">
-        <p>
-          This is only the starting point. We'll keep investing in open, community-owned systems that balance innovation,
-          accessibility, and care for the Earth.
-        </p>
-        <a class="vision-link" href="https://3dvr.tech/vision">
-          Find out more about our vision
-          <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-        </a>
+      <div class="signup-form-card">
+        <h3>Claim your free 3dvr.tech site</h3>
+        <p>Tell us what you're building. We'll reserve your subdomain and reply with next steps.</p>
+        <form class="signup-form" action="#" method="POST">
+          <div>
+            <label for="signup-name">Your name</label>
+            <input id="signup-name" name="name" type="text" placeholder="Ada Lovelace" autocomplete="name" required />
+          </div>
+          <div>
+            <label for="signup-email">Email</label>
+            <input id="signup-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+          <div>
+            <label for="signup-project">What do you want to build?</label>
+            <textarea id="signup-project" name="project" placeholder="Portfolio, landing page, mini product, or something else" required></textarea>
+          </div>
+          <button type="submit">
+            Create My Free 3dvr Site
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </form>
+        <p class="form-footnote">No credit card needed. We typically respond within one business day.</p>
       </div>
-    </div>
-  </section>
-
-  <section id="subscribe" style="background: var(--bg-subscribe);">
-    <h2>Choose Your Plan</h2>
-    <p>Start building your vision with the plan that fits you best. Upgrade anytime.</p>
-    <div class="card-grid">
-      <a href="subscribe/free-plan.html" class="card">
-        <h3><span class="plan-name">Free Plan</span><br><span class="plan-price">Free!</span></h3>
-        <p>Discover your vision and get started with a free website on a 3dvr.tech subdomain.</p>
-        <span class="btn-like">Learn More</span>
-      </a>
-      <a href="subscribe/family-friends.html" class="card">
-        <h3><span class="plan-name">Family &amp; Friends Plan</span><br><span class="plan-price">$5 monthly</span></h3>
-        <p>Keep your free 3dvr.tech site and enjoy light monthly support for small updates and experiments. Try it free for 30 days.</p>
-        <span class="btn-like">Learn More</span>
-      </a>
-      <a href="subscribe/founder-plan.html" class="card">
-        <h3><span class="plan-name">Founder Plan</span><br><span class="plan-price">$20 monthly</span></h3>
-        <p>Launch your brand with a custom domain (included if $10/yr or less) and get more support as your project grows.</p>
-        <span class="btn-like">Learn More</span>
-      </a>
     </div>
   </section>
 
@@ -1076,6 +1349,133 @@
           <span class="feature-cta">Join fellow builders →</span>
         </div>
       </a>
+    </div>
+  </section>
+
+  <section id="examples" class="examples-section">
+    <h2>What we've already built</h2>
+    <p>Recent sites and prototypes we've launched with creators and small teams.</p>
+    <div class="examples-grid">
+      <div class="example-card">
+        <div class="example-visual" aria-hidden="true"></div>
+        <div class="example-meta">
+          <span class="example-client">Brenda, Author &amp; Librarian</span>
+          <p>From no site to a book-ready author page in under two weeks with clear navigation and events.</p>
+        </div>
+      </div>
+      <div class="example-card">
+        <div class="example-visual" aria-hidden="true"></div>
+        <div class="example-meta">
+          <span class="example-client">GIF English</span>
+          <p>Online lesson platform prototype so students could practice outside the classroom and pay securely.</p>
+        </div>
+      </div>
+      <div class="example-card">
+        <div class="example-visual" aria-hidden="true"></div>
+        <div class="example-meta">
+          <span class="example-client">SD Vanlife</span>
+          <p>Lead-gen landing page for van conversions with booking links, photo galleries, and testimonials.</p>
+        </div>
+      </div>
+      <div class="example-card">
+        <div class="example-visual" aria-hidden="true"></div>
+        <div class="example-meta">
+          <span class="example-client">Cruisers Garage</span>
+          <p>Showcase for custom motorcycles highlighting builds, workshop services, and easy quote requests.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="pricing-section">
+    <h2>Pricing built for momentum</h2>
+    <p>Start with the free plan, launch quickly, and only upgrade when you need more hands-on help.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card highlight">
+        <span class="plan-tag">Best place to start</span>
+        <h3>Free</h3>
+        <p class="plan-price">$0 / month</p>
+        <p>Get online fast with a 3dvr.tech subdomain, basic support, and our builder community.</p>
+        <ul class="pricing-points">
+          <li>Starter site set up for you</li>
+          <li>Guided onboarding &amp; launch checklist</li>
+          <li>Community access and basic support</li>
+        </ul>
+        <div class="pricing-actions">
+          <a class="pricing-primary" href="#signup">Start with Free</a>
+          <a class="pricing-secondary" href="subscribe/free-plan.html">See plan details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="pricing-card">
+        <h3>Family &amp; Friends</h3>
+        <p class="plan-price">$5 / month</p>
+        <p>Keep your site growing with light monthly tweaks and more hands-on help.</p>
+        <ul class="pricing-points">
+          <li>Everything in Free</li>
+          <li>Monthly updates and copy edits</li>
+          <li>Personalized recommendations</li>
+        </ul>
+        <div class="pricing-actions">
+          <a class="pricing-primary" href="#signup">Start with Free, upgrade later</a>
+          <a class="pricing-secondary" href="subscribe/family-friends.html">See plan details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="pricing-card">
+        <h3>Founder Plan</h3>
+        <p class="plan-price">$20 / month</p>
+        <p>Priority support, launch help, and strategy sessions for founders and growing teams.</p>
+        <ul class="pricing-points">
+          <li>Everything in Family &amp; Friends</li>
+          <li>Custom domain assistance included*</li>
+          <li>Priority support and strategy calls</li>
+        </ul>
+        <div class="pricing-actions">
+          <a class="pricing-primary" href="#signup">Start with Free, upgrade later</a>
+          <a class="pricing-secondary" href="subscribe/founder-plan.html">See plan details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+    <p class="plan-footnote">*Custom domain registration covered when cost is $10/year or less.</p>
+  </section>
+
+  <section id="vision" class="vision-section">
+    <div class="vision-shape vision-shape--diamond"></div>
+    <div class="vision-shape vision-shape--arc"></div>
+    <div class="vision-content">
+      <h2>Our Vision</h2>
+      <div class="vision-grid">
+        <article class="vision-card">
+          <h3>Shared stewardship</h3>
+          <p>We build in the open so creators and customers guide the roadmap.</p>
+          <ul>
+            <li>Co-owned decisions and transparent governance.</li>
+            <li>Value that stays with the people using the tools.</li>
+          </ul>
+        </article>
+        <article class="vision-card">
+          <h3>Regenerative craft</h3>
+          <p>Every release balances innovation with care for people and the planet.</p>
+          <ul>
+            <li>Privacy-respecting, repairable, and durable experiences.</li>
+            <li>Accessible by default with ethical data practices.</li>
+          </ul>
+        </article>
+        <article class="vision-card">
+          <h3>Pathways for makers</h3>
+          <p>We open doors for freelancers, nomads, and explorers to ship real work.</p>
+          <ul>
+            <li>Training, mentorship, and paid opportunities in the open web.</li>
+            <li>Services that evolve with you—from first launch to scale.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="vision-footnote">
+        <p>We keep investing in community-owned systems that balance speed, sustainability, and long-term ownership.</p>
+        <a class="vision-link" href="https://3dvr.tech/vision">
+          Find out more about our vision
+          <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
   </section>
 
