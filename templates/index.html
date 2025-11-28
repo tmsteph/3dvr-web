@@ -57,6 +57,7 @@
       color: var(--text-light);
       line-height: 1.7;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     header {
@@ -165,8 +166,8 @@
     .template-preview {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 3;
-      min-height: clamp(220px, 70vw, 380px);
+      aspect-ratio: 3 / 4;
+      min-height: clamp(320px, 110vw, 560px);
       border-radius: 14px;
       overflow: hidden;
       border: 1px solid var(--border);
@@ -262,6 +263,7 @@
 
       .template-preview {
         border-radius: 12px;
+        min-height: clamp(420px, 135vw, 640px);
       }
     }
   </style>
