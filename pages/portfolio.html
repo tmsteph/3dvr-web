@@ -143,118 +143,6 @@
       font-size: 1.05rem;
     }
 
-    .preview-area {
-      width: min(1200px, 100%);
-      margin: 0 auto clamp(2rem, 6vw, 3rem);
-      padding: clamp(1.5rem, 4vw, 2rem);
-      border: 1px solid var(--border);
-      border-radius: 1.1rem;
-      background: linear-gradient(120deg, rgba(110, 249, 214, 0.05), rgba(15, 15, 15, 0.95));
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .preview-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .preview-eyebrow {
-      font-size: 0.8rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 0 0 0.35rem;
-      font-weight: 700;
-    }
-
-    .preview-title {
-      margin: 0 0 0.25rem;
-      font-size: 1.4rem;
-    }
-
-    .preview-note {
-      margin: 0;
-      color: var(--text-muted);
-      max-width: 720px;
-      line-height: 1.5;
-    }
-
-    .preview-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .preview-open {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #101615;
-      background: var(--accent);
-      padding: 0.65rem 1.2rem;
-      border-radius: 999px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .preview-open:hover,
-    .preview-open:focus-visible {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-    }
-
-    .preview-open[aria-disabled="true"] {
-      opacity: 0.6;
-      cursor: not-allowed;
-      box-shadow: none;
-      transform: none;
-      pointer-events: none;
-    }
-
-    .preview-frame {
-      position: relative;
-      border-radius: 0.9rem;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: radial-gradient(circle at top left, rgba(110, 249, 214, 0.07), transparent 45%),
-        #0a0d12;
-      min-height: clamp(320px, 45vw, 520px);
-    }
-
-    .preview-placeholder {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 0.6rem;
-      color: var(--text-muted);
-      text-align: center;
-      padding: 1.5rem;
-      background: linear-gradient(160deg, rgba(15, 15, 15, 0.8), rgba(10, 13, 18, 0.9));
-      border-radius: inherit;
-      border: 1px dashed var(--border);
-      transition: opacity 0.2s ease;
-      pointer-events: none;
-    }
-
-    .preview-placeholder strong {
-      color: #f0f0f0;
-      letter-spacing: 0.02em;
-    }
-
     iframe {
       width: 100%;
       height: 100%;
@@ -338,6 +226,22 @@
       font-weight: 600;
     }
 
+    .project-preview {
+      position: relative;
+      border-radius: 0.9rem;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top left, rgba(110, 249, 214, 0.07), transparent 45%),
+        #0a0d12;
+      min-height: 320px;
+      max-height: 520px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .project-preview iframe {
+      min-height: 320px;
+    }
+
     .cta-link {
       display: inline-flex;
       align-items: center;
@@ -350,31 +254,9 @@
       transition: gap 0.2s ease;
     }
 
-    .preview-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: rgba(110, 249, 214, 0.12);
-      color: #e7fff8;
-      border: 1px solid rgba(110, 249, 214, 0.4);
-      padding: 0.55rem 0.85rem;
-      border-radius: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      text-decoration: none;
-      transition: background 0.2s ease, transform 0.2s ease;
-      cursor: pointer;
-    }
-
-    .preview-button:hover,
-    .preview-button:focus-visible {
-      background: rgba(110, 249, 214, 0.22);
-      transform: translateY(-2px);
-    }
-
-    .cta-link span {
-      font-size: 1rem;
-    }
+      .cta-link span {
+        font-size: 1rem;
+      }
 
     .cta-link:hover,
     .cta-link:focus {
@@ -439,49 +321,30 @@
   </section>
 
   <section id="projects" class="projects">
-    <p class="project-intro">A snapshot of recent launches, community experiments, and passion projects we build for founders, artists, and educators across the globe.</p>
-
-    <div class="preview-area" aria-labelledby="preview-title">
-      <div class="preview-header">
-        <div>
-          <p class="preview-eyebrow">Live preview</p>
-          <h3 class="preview-title" id="preview-title">Preview portfolio sites without leaving the page</h3>
-          <p class="preview-note" id="preview-status">Click “Preview in page” on any project card to load it below. Some partners block embedding, so a new tab link is always available.</p>
-        </div>
-        <div class="preview-actions">
-          <a class="preview-open" id="preview-open" href="#" aria-disabled="true" rel="noreferrer" target="_blank">
-            <span>Open selected site</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </div>
-      <div class="preview-frame" aria-live="polite">
-        <div class="preview-placeholder" id="preview-placeholder">
-          <strong>Select a project to preview it here</strong>
-          <span>Use the “Preview in page” button on any project card. If embedding is blocked, use the open link instead.</span>
-        </div>
-        <iframe id="preview-frame" title="Portfolio site preview" allowfullscreen sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads"></iframe>
-      </div>
-    </div>
+    <p class="project-intro">A snapshot of recent launches, community experiments, and passion projects we build for founders, artists, and educators across the globe. Each card now includes a live iframe preview so you can see the site without leaving the page.</p>
 
     <div class="project-grid">
       <article class="project">
         <h3>3DVR Subscription Portal</h3>
         <p>Plan selection, onboarding, and support management for our core membership program. Built to scale rapid site launches and personal support.</p>
-        <div class="tag-list">
-          <span class="tag">Support</span>
-          <span class="tag">Automation</span>
-          <span class="tag">Vercel</span>
-        </div>
-        <button class="preview-button" type="button" data-preview-url="https://portal.3dvr.tech" data-project-name="3DVR Subscription Portal">
-          <span>Preview in page</span>
-          <span aria-hidden="true">▶</span>
-        </button>
-        <a class="cta-link" href="https://portal.3dvr.tech" target="_blank" rel="noreferrer">
-          <span>Visit portal.3dvr.tech</span>
-          <span aria-hidden="true">→</span>
-        </a>
-      </article>
+      <div class="tag-list">
+        <span class="tag">Support</span>
+        <span class="tag">Automation</span>
+        <span class="tag">Vercel</span>
+      </div>
+      <div class="project-preview">
+        <iframe
+          src="https://portal.3dvr.tech"
+          title="3DVR Subscription Portal preview"
+          loading="lazy"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <a class="cta-link" href="https://portal.3dvr.tech" target="_blank" rel="noreferrer">
+        <span>Visit portal.3dvr.tech</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </article>
 
       <article class="project">
         <h3>GIF English App</h3>
@@ -491,10 +354,14 @@
           <span class="tag">Gun.js</span>
           <span class="tag">Interactive</span>
         </div>
-        <button class="preview-button" type="button" data-preview-url="https://3dvr-gif-lesson-1.vercel.app/" data-project-name="GIF English App">
-          <span>Preview in page</span>
-          <span aria-hidden="true">▶</span>
-        </button>
+        <div class="project-preview">
+          <iframe
+            src="https://3dvr-gif-lesson-1.vercel.app/"
+            title="GIF English App preview"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        </div>
         <a class="cta-link" href="https://3dvr-gif-lesson-1.vercel.app/" target="_blank" rel="noreferrer">
           <span>Explore the app</span>
           <span aria-hidden="true">→</span>
@@ -509,10 +376,14 @@
           <span class="tag">React</span>
           <span class="tag">R&D</span>
         </div>
-        <button class="preview-button" type="button" data-preview-url="https://tommyos.vercel.app" data-project-name="TommyOS">
-          <span>Preview in page</span>
-          <span aria-hidden="true">▶</span>
-        </button>
+        <div class="project-preview">
+          <iframe
+            src="https://tommyos.vercel.app"
+            title="TommyOS preview"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        </div>
         <a class="cta-link" href="https://tommyos.vercel.app" target="_blank" rel="noreferrer">
           <span>Launch TommyOS</span>
           <span aria-hidden="true">→</span>
@@ -526,10 +397,14 @@
           <span class="tag">Personal Brand</span>
           <span class="tag">Storytelling</span>
         </div>
-        <button class="preview-button" type="button" data-preview-url="https://tmsteph.com" data-project-name="Tmsteph Personal Site">
-          <span>Preview in page</span>
-          <span aria-hidden="true">▶</span>
-        </button>
+        <div class="project-preview">
+          <iframe
+            src="https://tmsteph.com"
+            title="Tmsteph Personal Site preview"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        </div>
         <a class="cta-link" href="https://tmsteph.com" target="_blank" rel="noreferrer">
           <span>Visit tmsteph.com</span>
           <span aria-hidden="true">→</span>
@@ -543,10 +418,14 @@
           <span class="tag">Collaboration</span>
           <span class="tag">Portfolio</span>
         </div>
-        <button class="preview-button" type="button" data-preview-url="https://thomas.3dvr.tech" data-project-name="thomas.3dvr.tech">
-          <span>Preview in page</span>
-          <span aria-hidden="true">▶</span>
-        </button>
+        <div class="project-preview">
+          <iframe
+            src="https://thomas.3dvr.tech"
+            title="thomas.3dvr.tech preview"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        </div>
         <a class="cta-link" href="https://thomas.3dvr.tech" target="_blank" rel="noreferrer">
           <span>Open site</span>
           <span aria-hidden="true">→</span>
@@ -561,10 +440,14 @@
           <span class="tag">XR</span>
           <span class="tag">Showcase</span>
         </div>
-        <button class="preview-button" type="button" data-preview-url="https://spacstudio.vercel.app/" data-project-name="Spac Studio">
-          <span>Preview in page</span>
-          <span aria-hidden="true">▶</span>
-        </button>
+        <div class="project-preview">
+          <iframe
+            src="https://spacstudio.vercel.app/"
+            title="Spac Studio preview"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        </div>
         <a class="cta-link" href="https://spacstudio.vercel.app/" target="_blank" rel="noreferrer">
           <span>Visit Spac Studio</span>
           <span aria-hidden="true">→</span>
@@ -579,10 +462,14 @@
           <span class="tag">Lead Gen</span>
           <span class="tag">Local SEO</span>
         </div>
-        <button class="preview-button" type="button" data-preview-url="https://mark-wells-services-hub.vercel.app/college-stem-tutoring.html" data-project-name="Mark Wells STEM Tutoring">
-          <span>Preview in page</span>
-          <span aria-hidden="true">▶</span>
-        </button>
+        <div class="project-preview">
+          <iframe
+            src="https://mark-wells-services-hub.vercel.app/college-stem-tutoring.html"
+            title="Mark Wells STEM Tutoring preview"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        </div>
         <a class="cta-link" href="https://mark-wells-services-hub.vercel.app/college-stem-tutoring.html" target="_blank" rel="noreferrer">
           <span>See the tutoring hub</span>
           <span aria-hidden="true">→</span>
@@ -597,10 +484,14 @@
           <span class="tag">Launch</span>
           <span class="tag">Community</span>
         </div>
-        <button class="preview-button" type="button" data-preview-url="https://mareyintro.vercel.app/" data-project-name="Marey Intro">
-          <span>Preview in page</span>
-          <span aria-hidden="true">▶</span>
-        </button>
+        <div class="project-preview">
+          <iframe
+            src="https://mareyintro.vercel.app/"
+            title="Marey Intro preview"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        </div>
         <a class="cta-link" href="https://mareyintro.vercel.app/" target="_blank" rel="noreferrer">
           <span>Enter the experience</span>
           <span aria-hidden="true">→</span>
@@ -616,32 +507,6 @@
       <span aria-hidden="true">→</span>
     </a>
   </footer>
-  <script>
-    const previewButtons = document.querySelectorAll('.preview-button');
-    const previewFrame = document.getElementById('preview-frame');
-    const previewPlaceholder = document.getElementById('preview-placeholder');
-    const previewStatus = document.getElementById('preview-status');
-    const previewOpen = document.getElementById('preview-open');
-
-    const setPreview = (url, name) => {
-      if (!url) return;
-      previewFrame.src = url;
-      previewFrame.setAttribute('title', `${name} live preview`);
-      previewPlaceholder.style.display = 'none';
-      previewStatus.textContent = `Now previewing ${name}. If the site blocks embedding, use the open link to view it in a new tab.`;
-      previewOpen.href = url;
-      previewOpen.setAttribute('aria-disabled', 'false');
-      previewOpen.innerHTML = `<span>Open ${name}</span><span aria-hidden="true">↗</span>`;
-    };
-
-    previewButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const url = button.getAttribute('data-preview-url');
-        const name = button.getAttribute('data-project-name');
-        setPreview(url, name);
-      });
-    });
-  </script>
   <script src="/pwa.js"></script>
 </body>
 </html>
