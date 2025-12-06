@@ -492,6 +492,79 @@
     .card h3 .plan-name { white-space: nowrap; }
     .card p { font-size: 1rem; }
 
+    /* Brand Collective */
+    .section.brands {
+      min-height: auto;
+      display: block;
+      padding: 4rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section.brands h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .section.brands .section-intro,
+    .section.brands .section-outro {
+      max-width: 700px;
+      margin: 0.5rem auto 2rem auto;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .brand-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      text-align: left;
+    }
+
+    .brand-card {
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(8px);
+    }
+
+    .brand-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .brand-owner {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .brand-copy {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .brand-tag {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .brand-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      text-decoration: underline;
+    }
+
+    /* Two columns on larger screens */
+    @media (min-width: 800px) {
+      .brand-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
     #features {
       position: relative;
       overflow: hidden;
@@ -874,6 +947,7 @@
       <a href="/blog/">Blog</a>
       <a href="#features">Features</a>
       <a href="#vision">Vision</a>
+      <a href="#brands">Brands</a>
       <a href="#testimonials">Testimonials</a>
       <a href="#team">Team</a>
       <a href="#about">About</a>
@@ -1078,6 +1152,47 @@
         </div>
       </a>
     </div>
+  </section>
+
+  <section id="brands" class="section brands">
+    <h2>Brand Collective</h2>
+    <p class="section-intro">
+      Explore a few of the experiences we’ve launched alongside members of the 3dvr.tech community.
+    </p>
+    <div class="brand-grid">
+      <article class="brand-card">
+        <p class="brand-tag">Education · Accessibility</p>
+        <h3>SC Librarian</h3>
+        <p class="brand-owner">Library advocacy project</p>
+        <p class="brand-copy">Built a modern, accessible resource hub with program highlights and booking support.</p>
+        <a class="brand-link" href="https://www.brendadyestephens.com/" target="_blank" rel="noreferrer">Visit SC Librarian →</a>
+      </article>
+      <article class="brand-card">
+        <p class="brand-tag">Automotive · Landing Page</p>
+        <h3>Cruisers Garage</h3>
+        <p class="brand-owner">Custom motorcycles</p>
+        <p class="brand-copy">Designed a fast-loading showcase with calls to action for shop visits and custom builds.</p>
+        <a class="brand-link" href="https://cruisersgarage.com/" target="_blank" rel="noreferrer">Explore Cruisers Garage →</a>
+      </article>
+      <article class="brand-card">
+        <p class="brand-tag">Learning · Scheduling</p>
+        <h3>GIF English</h3>
+        <p class="brand-owner">Online English education</p>
+        <p class="brand-copy">Created lesson pathways, video embeds, and scheduling to welcome new students.</p>
+        <a class="brand-link" href="https://www.gif.edu.gt/" target="_blank" rel="noreferrer">See GIF English →</a>
+      </article>
+      <article class="brand-card">
+        <p class="brand-tag">Travel · Services</p>
+        <h3>SD Vanlife</h3>
+        <p class="brand-owner">Van conversion studio</p>
+        <p class="brand-copy">Launched a mobile-friendly story that guides visitors from inspiration to consultation.</p>
+        <a class="brand-link" href="https://www.sdvanlife.com/" target="_blank" rel="noreferrer">Visit SD Vanlife →</a>
+      </article>
+    </div>
+    <p class="section-outro">
+      Want to see your brand featured next? Let’s design and launch it together.
+      <a class="brand-link" href="subscribe/index.html">Start a project →</a>
+    </p>
   </section>
 
   <section id="testimonials" style="background: var(--bg-testimonials);">
