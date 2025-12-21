@@ -770,6 +770,22 @@
       color: rgba(255, 255, 255, 0.8);
       font-size: 0.95rem;
     }
+    @media (max-width: 640px) {
+      #partners {
+        padding-bottom: calc(6rem + 5rem);
+      }
+      .partners-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+      .partner-card {
+        align-items: center;
+        text-align: center;
+      }
+      .partner-mark {
+        align-self: center;
+      }
+    }
 
     .btn-like {
       display: inline-block; margin-top: auto; font-weight: 700;
