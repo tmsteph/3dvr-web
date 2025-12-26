@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#0f0f0f" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="A calm, no-pressure way for friends, family, and coworkers to stay connected with 3DVR.Tech and support ongoing work."
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://3dvr.tech/friends.html" />
+  <title>Friends, Family &amp; Coworkers | 3DVR.Tech</title>
+  <link rel="icon" href="3DVRfavicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="3dvr.tech" />
+  <meta property="og:title" content="Friends, Family &amp; Coworkers | 3DVR.Tech" />
+  <meta
+    property="og:description"
+    content="Stay connected with 3DVR.Tech in a calm, no-pressure way. Choose free updates or gentle support for ongoing projects."
+  />
+  <meta property="og:url" content="https://3dvr.tech/friends.html" />
+  <meta property="og:image" content="https://3dvr.tech/3DVR.png" />
+  <meta property="og:image:alt" content="3dvr.tech logomark" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Friends, Family &amp; Coworkers | 3DVR.Tech" />
+  <meta
+    name="twitter:description"
+    content="A gentle way for friends, family, and coworkers to stay connected with 3DVR.Tech."
+  />
+  <meta name="twitter:image" content="https://3dvr.tech/3DVR.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://3dvr.tech/#organization",
+      "name": "3dvr.tech",
+      "url": "https://3dvr.tech/",
+      "logo": "https://3dvr.tech/3DVR.png",
+      "sameAs": [
+        "https://www.facebook.com/3dvr.facebook/",
+        "https://www.linkedin.com/company/3dvrtech",
+        "https://www.instagram.com/3dvr.tech/",
+        "https://github.com/tmsteph/3dvr-web"
+      ]
+    }
+  </script>
+  <style>
+    :root {
+      --accent: #00ffc8;
+      --bg-main: linear-gradient(to bottom, #2c3e50, #4ca1af);
+      --text-light: #ffffff;
+      --text-dark: #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header img {
+      height: 48px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-left: 1.5rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      padding: 4.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .section-inner {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .hero {
+      padding-top: 6rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 4rem);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.1);
+      color: var(--accent);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .anchor-links {
+      font-size: 0.98rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .anchor-links a {
+      color: var(--accent);
+      text-decoration: none;
+      margin: 0 0.4rem;
+    }
+
+    .anchor-links a:hover {
+      text-decoration: underline;
+    }
+
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      flex: 1 1 calc(30% - 2rem);
+      min-width: 240px;
+      max-width: 320px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 2rem 1.6rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .card:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      color: var(--accent);
+      font-size: 1.3rem;
+    }
+
+    .card p {
+      font-size: 1.02rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .price-tag {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .promise {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .faq-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin-top: 2rem;
+    }
+
+    .faq-item {
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1.4rem;
+      text-align: left;
+    }
+
+    .faq-item h4 {
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+      font-size: 1.05rem;
+    }
+
+    footer {
+      background: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.95rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html"><img src="3DVR.png" alt="3dvr.tech logo" /></a>
+    <nav>
+      <a href="index.html#features">← 3dvr.tech</a>
+    </nav>
+  </header>
+
+  <!-- Stripe checkout placeholders: replace REPLACE_ME_FREE, REPLACE_ME_5, and REPLACE_ME_20 with live Stripe checkout URLs. -->
+
+  <section class="hero">
+    <div class="section-inner">
+      <h1>A Friendly Way to Stay Connected with 3DVR.Tech</h1>
+      <p>
+        If you're a friend, family member, or coworker, this is a gentle way to stay in the loop and
+        offer support—no pressure, no awkwardness, just a steady connection.
+      </p>
+      <div class="button-row">
+        <a class="btn" href="REPLACE_ME_FREE">Start Free</a>
+        <a class="btn" href="REPLACE_ME_5">Try $5 (First Month Free)</a>
+        <a class="btn" href="REPLACE_ME_20">Builder Support</a>
+      </div>
+      <div class="anchor-links">
+        Jump to plan details:
+        <a href="#free">Free</a> ·
+        <a href="#supporter">Supporter</a> ·
+        <a href="#builder">Builder Support</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-inner">
+      <h2>What this is</h2>
+      <p>
+        This page is for the people who want to stay connected while I build. It’s a small, calm way to
+        keep up with what’s happening and offer support at a pace that feels good.
+      </p>
+      <p>
+        Whether you want updates, a little extra help on a project, or ongoing guidance, the goal is the
+        same: keep relationships first and make it easy to opt in or step back anytime.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-inner">
+      <h2>Plans</h2>
+      <div class="card-grid">
+        <article class="card" id="free">
+          <h3>Stay in the Loop</h3>
+          <div class="price-tag">Free</div>
+          <p>Community access, periodic updates, and shared resources to stay close to the work.</p>
+          <a class="btn" href="REPLACE_ME_FREE">Start Free</a>
+        </article>
+        <article class="card" id="supporter">
+          <h3>Supporter</h3>
+          <div class="price-tag">$5/month · First Month Free</div>
+          <p>Light support, early peeks, and a bit more access when you need a faster reply.</p>
+          <a class="btn" href="REPLACE_ME_5">Try $5 (First Month Free)</a>
+        </article>
+        <article class="card" id="builder">
+          <h3>Builder Support</h3>
+          <div class="price-tag">$20/month</div>
+          <p>For active projects that benefit from ongoing guidance, check-ins, and thoughtful feedback.</p>
+          <a class="btn" href="REPLACE_ME_20">Builder Support</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="promise">
+    <div class="section-inner">
+      <h2>No-pressure promise</h2>
+      <p>
+        Cancel anytime, no questions asked. We can stay connected in whatever way feels comfortable—
+        relationships first, always.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-inner">
+      <h2>FAQ</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>Can I cancel anytime?</h4>
+          <p>Yes. You can stop or switch plans whenever you want.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Is the first month of $5 really free?</h4>
+          <p>Yes. It’s a simple way to try it without any pressure.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What kind of help is included?</h4>
+          <p>$5 is light help and faster replies. $20 is deeper, ongoing guidance.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Is this a contract?</h4>
+          <p>No. It’s month-to-month and easy to change.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 <a href="https://3dvr.tech" target="_blank">3dvr.tech</a> — Open Source. Open Future.</p>
+    <p><a href="friends.html">Friends &amp; Family</a></p>
+  </footer>
+
+</body>
+</html>
