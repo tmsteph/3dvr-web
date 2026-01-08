@@ -731,8 +731,13 @@
       position: relative;
       z-index: 1;
       max-width: 1000px;
+      justify-items: center;
       justify-content: center;
       margin: 0 auto;
+    }
+    .partners-grid > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      justify-self: center;
     }
     .partner-card {
       background: rgba(255, 255, 255, 0.12);
