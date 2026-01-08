@@ -726,12 +726,18 @@
     }
     .partners-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
       gap: 1.5rem;
       position: relative;
       z-index: 1;
       max-width: 1000px;
+      justify-items: center;
+      justify-content: center;
       margin: 0 auto;
+    }
+    .partners-grid > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      justify-self: center;
     }
     .partner-card {
       background: rgba(255, 255, 255, 0.12);
@@ -743,6 +749,8 @@
       flex-direction: column;
       gap: 0.75rem;
       align-items: flex-start;
+      text-decoration: none;
+      color: inherit;
       transition: transform 0.3s ease, background 0.3s ease;
     }
     .partner-card:hover {
@@ -1197,36 +1205,36 @@
       who build with us and keep the community moving forward.
     </p>
     <div class="partners-grid">
-      <div class="partner-card">
+      <a class="partner-card" href="https://mark-wells-services-hub.vercel.app/college-stem-tutoring.html" target="_blank" rel="noopener">
+        <span class="partner-mark" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></span>
+        <h3>Mark Wells Services Hub</h3>
+        <p>College STEM tutoring that supports learners with confidence and clarity.</p>
+      </a>
+      <a class="partner-card" href="https://marcos-transport.3dvr.tech/" target="_blank" rel="noopener">
+        <span class="partner-mark" aria-hidden="true"><i class="fa-solid fa-truck-fast"></i></span>
+        <h3>Marcos Transport</h3>
+        <p>Reliable logistics and transport services with a modern customer-first flow.</p>
+      </a>
+      <a class="partner-card" href="https://spacstudio.vercel.app/" target="_blank" rel="noopener">
+        <span class="partner-mark" aria-hidden="true"><i class="fa-solid fa-cube"></i></span>
+        <h3>SPAC Studio</h3>
+        <p>Minimalist studio portfolio highlighting immersive design and XR ideas.</p>
+      </a>
+      <a class="partner-card" href="https://mareyintro.vercel.app/" target="_blank" rel="noopener">
         <span class="partner-mark" aria-hidden="true"><i class="fa-solid fa-seedling"></i></span>
-        <h3>Bloom Circuit</h3>
-        <p>Regenerative wellness collective crafting mindful digital experiences.</p>
-      </div>
-      <div class="partner-card">
-        <span class="partner-mark" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span>
-        <h3>Signal Grove Academy</h3>
-        <p>Community-led learning hub for future-ready educators.</p>
-      </div>
-      <div class="partner-card">
-        <span class="partner-mark" aria-hidden="true"><i class="fa-solid fa-mountain-sun"></i></span>
-        <h3>Horizon Atlas</h3>
-        <p>Outdoor storytellers building immersive, map-first journeys.</p>
-      </div>
-      <div class="partner-card">
-        <span class="partner-mark" aria-hidden="true"><i class="fa-solid fa-bolt"></i></span>
-        <h3>Nova Roots Studio</h3>
-        <p>Design-forward product lab bringing sustainable brands online.</p>
-      </div>
-      <div class="partner-card">
-        <span class="partner-mark" aria-hidden="true"><i class="fa-solid fa-water"></i></span>
-        <h3>Riverline Mobility</h3>
-        <p>Electric transport collective empowering local makers.</p>
-      </div>
-      <div class="partner-card">
-        <span class="partner-mark" aria-hidden="true"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
-        <h3>Bright Harbor</h3>
-        <p>Creative tech studio spotlighting bold, inclusive storytelling.</p>
-      </div>
+        <h3>Marey</h3>
+        <p>Creative brand storytelling and visuals crafted for a bold, memorable launch.</p>
+      </a>
+      <a class="partner-card" href="https://esai-gamboa.vercel.app/" target="_blank" rel="noopener">
+        <span class="partner-mark" aria-hidden="true"><i class="fa-solid fa-eye"></i></span>
+        <h3>Third Eye Print Co.</h3>
+        <p>San Diego screen printing and embroidery for artists and bold brands.</p>
+      </a>
+      <a class="partner-card" href="https://www.brendadyestephens.com/" target="_blank" rel="noopener">
+        <span class="partner-mark" aria-hidden="true"><i class="fa-solid fa-book-open-reader"></i></span>
+        <h3>Brenda Dye Stephens</h3>
+        <p>Library leader spotlighting community programs and educator resources.</p>
+      </a>
     </div>
   </section>
 
