@@ -143,6 +143,14 @@
       font-size: 1.05rem;
     }
 
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      border-radius: inherit;
+    }
+
     .project-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -218,6 +226,22 @@
       font-weight: 600;
     }
 
+    .project-preview {
+      position: relative;
+      border-radius: 0.9rem;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top left, rgba(110, 249, 214, 0.07), transparent 45%),
+        #0a0d12;
+      min-height: 320px;
+      max-height: 520px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .project-preview iframe {
+      min-height: 320px;
+    }
+
     .cta-link {
       display: inline-flex;
       align-items: center;
@@ -230,9 +254,9 @@
       transition: gap 0.2s ease;
     }
 
-    .cta-link span {
-      font-size: 1rem;
-    }
+      .cta-link span {
+        font-size: 1rem;
+      }
 
     .cta-link:hover,
     .cta-link:focus {
@@ -297,22 +321,30 @@
   </section>
 
   <section id="projects" class="projects">
-    <p class="project-intro">A snapshot of recent launches, community experiments, and passion projects we build for founders, artists, and educators across the globe.</p>
+    <p class="project-intro">A snapshot of recent launches, community experiments, and passion projects we build for founders, artists, and educators across the globe. Each card now includes a live iframe preview so you can see the site without leaving the page.</p>
 
     <div class="project-grid">
       <article class="project">
         <h3>3DVR Subscription Portal</h3>
         <p>Plan selection, onboarding, and support management for our core membership program. Built to scale rapid site launches and personal support.</p>
-        <div class="tag-list">
-          <span class="tag">Support</span>
-          <span class="tag">Automation</span>
-          <span class="tag">Vercel</span>
-        </div>
-        <a class="cta-link" href="https://portal.3dvr.tech" target="_blank" rel="noreferrer">
-          <span>Visit portal.3dvr.tech</span>
-          <span aria-hidden="true">→</span>
-        </a>
-      </article>
+      <div class="tag-list">
+        <span class="tag">Support</span>
+        <span class="tag">Automation</span>
+        <span class="tag">Vercel</span>
+      </div>
+      <div class="project-preview">
+        <iframe
+          src="https://portal.3dvr.tech"
+          title="3DVR Subscription Portal preview"
+          loading="lazy"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <a class="cta-link" href="https://portal.3dvr.tech" target="_blank" rel="noreferrer">
+        <span>Visit portal.3dvr.tech</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </article>
 
       <article class="project">
         <h3>GIF English App</h3>
@@ -321,6 +353,14 @@
           <span class="tag">Education</span>
           <span class="tag">Gun.js</span>
           <span class="tag">Interactive</span>
+        </div>
+        <div class="project-preview">
+          <iframe
+            src="https://3dvr-gif-lesson-1.vercel.app/"
+            title="GIF English App preview"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
         </div>
         <a class="cta-link" href="https://3dvr-gif-lesson-1.vercel.app/" target="_blank" rel="noreferrer">
           <span>Explore the app</span>
@@ -336,6 +376,14 @@
           <span class="tag">React</span>
           <span class="tag">R&D</span>
         </div>
+        <div class="project-preview">
+          <iframe
+            src="https://tommyos.vercel.app"
+            title="TommyOS preview"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        </div>
         <a class="cta-link" href="https://tommyos.vercel.app" target="_blank" rel="noreferrer">
           <span>Launch TommyOS</span>
           <span aria-hidden="true">→</span>
@@ -349,6 +397,14 @@
           <span class="tag">Personal Brand</span>
           <span class="tag">Storytelling</span>
         </div>
+        <div class="project-preview">
+          <iframe
+            src="https://tmsteph.com"
+            title="Tmsteph Personal Site preview"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        </div>
         <a class="cta-link" href="https://tmsteph.com" target="_blank" rel="noreferrer">
           <span>Visit tmsteph.com</span>
           <span aria-hidden="true">→</span>
@@ -361,6 +417,14 @@
         <div class="tag-list">
           <span class="tag">Collaboration</span>
           <span class="tag">Portfolio</span>
+        </div>
+        <div class="project-preview">
+          <iframe
+            src="https://thomas.3dvr.tech"
+            title="thomas.3dvr.tech preview"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
         </div>
         <a class="cta-link" href="https://thomas.3dvr.tech" target="_blank" rel="noreferrer">
           <span>Open site</span>
@@ -376,6 +440,14 @@
           <span class="tag">XR</span>
           <span class="tag">Showcase</span>
         </div>
+        <div class="project-preview">
+          <iframe
+            src="https://spacstudio.vercel.app/"
+            title="Spac Studio preview"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        </div>
         <a class="cta-link" href="https://spacstudio.vercel.app/" target="_blank" rel="noreferrer">
           <span>Visit Spac Studio</span>
           <span aria-hidden="true">→</span>
@@ -390,6 +462,14 @@
           <span class="tag">Lead Gen</span>
           <span class="tag">Local SEO</span>
         </div>
+        <div class="project-preview">
+          <iframe
+            src="https://mark-wells-services-hub.vercel.app/college-stem-tutoring.html"
+            title="Mark Wells STEM Tutoring preview"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        </div>
         <a class="cta-link" href="https://mark-wells-services-hub.vercel.app/college-stem-tutoring.html" target="_blank" rel="noreferrer">
           <span>See the tutoring hub</span>
           <span aria-hidden="true">→</span>
@@ -403,6 +483,14 @@
           <span class="tag">Artist</span>
           <span class="tag">Launch</span>
           <span class="tag">Community</span>
+        </div>
+        <div class="project-preview">
+          <iframe
+            src="https://mareyintro.vercel.app/"
+            title="Marey Intro preview"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
         </div>
         <a class="cta-link" href="https://mareyintro.vercel.app/" target="_blank" rel="noreferrer">
           <span>Enter the experience</span>
