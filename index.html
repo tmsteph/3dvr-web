@@ -412,6 +412,21 @@
       text-align: center;
       max-width: 360px;
     }
+    .hero-logo-card--interactive {
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      cursor: pointer;
+    }
+    .hero-logo-card--interactive:hover,
+    .hero-logo-card--interactive:focus-visible {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+    }
+    .hero-logo-card--interactive:focus-visible {
+      outline: 2px solid rgba(0,255,200,0.65);
+      outline-offset: 4px;
+    }
     .hero-logo-card img {
       width: clamp(220px, 62vw, 300px);
       height: auto;
@@ -960,7 +975,9 @@
 </head>
 <body id="top">
   <header>
-    <a href="#top"><img src="3DVR.png" alt="3dvr.tech logo" /></a>
+    <a href="logo-3d.html" target="_blank" rel="noopener" aria-label="Open the 3dvr.tech logo in an interactive 3D viewer">
+      <img src="3DVR.png" alt="3dvr.tech logo" />
+    </a>
 
     <!-- a11y & control bindings for mobile menu -->
     <div
@@ -998,15 +1015,21 @@
       <div class="hero-intro">
         <p class="hero-eyebrow">People-first web & XR studio</p>
       </div>
-      <div class="hero-visual" aria-hidden="true">
-        <div class="hero-logo-card">
+      <div class="hero-visual">
+        <a
+          class="hero-logo-card hero-logo-card--interactive"
+          href="logo-3d.html"
+          target="_blank"
+          rel="noopener"
+          aria-label="Open an interactive 3D version of the 3dvr.tech logo"
+        >
           <div class="hero-spark hero-spark--top"></div>
           <div class="hero-spark hero-spark--bottom"></div>
           <img src="3DVR.png" alt="" />
           <p>
             Open source. Community powered. Focused on experiences that feel as visionary as they are sustainable.
           </p>
-        </div>
+        </a>
       </div>
       <div class="hero-content">
         <h1 class="hero-headline">
