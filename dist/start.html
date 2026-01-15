@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Get Started — 3dvr.tech</title>
+  <meta name="description" content="Start your 3dvr.tech journey. Share your project goals and get a custom launch plan instantly." />
+  <meta property="og:title" content="Get Started with 3dvr.tech" />
+  <meta property="og:description" content="A quick wizard that turns your goals into a launch plan." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://3dvr.tech/start" />
+  <meta property="og:image" content="assets/portal-preview.svg" />
+  <link rel="icon" href="assets/logo.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="logo" href="index.html">
+        <img src="assets/logo.svg" alt="3dvr.tech logo" loading="lazy" />
+        <span>3dvr.tech</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="https://portal.3dvr.tech">Portal</a>
+        <a class="button secondary" href="start.html">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="badge">Get Started</span>
+          <h1>Tell us about your project.</h1>
+          <p>
+            This quick wizard creates a starter plan you can copy, download, and bring to the portal.
+          </p>
+        </div>
+        <div class="card">
+          <h3>What happens next?</h3>
+          <p>We review your intake within 24 hours and deliver a first draft in 3-5 days.</p>
+          <a class="button primary" href="https://portal.3dvr.tech">Go to Portal</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <form class="card form-grid" data-wizard-form>
+          <div>
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" placeholder="Jamie Lee" />
+          </div>
+          <div>
+            <label for="project">Business / project name</label>
+            <input id="project" name="project" type="text" placeholder="Bright Trail Studio" />
+          </div>
+          <div>
+            <label>What do you need?</label>
+            <div class="checkbox-group">
+              <label><input type="checkbox" name="needs" value="Website refresh" /> Website refresh</label>
+              <label><input type="checkbox" name="needs" value="Landing page" /> Landing page</label>
+              <label><input type="checkbox" name="needs" value="Automation setup" /> Automation setup</label>
+              <label><input type="checkbox" name="needs" value="Community hub" /> Community hub</label>
+              <label><input type="checkbox" name="needs" value="Consulting" /> Consulting</label>
+            </div>
+          </div>
+          <div>
+            <label>Style vibe (choose one)</label>
+            <div class="radio-group">
+              <label><input type="radio" name="vibe" value="minimal-luxe" checked /> Minimal luxe</label>
+              <label><input type="radio" name="vibe" value="playful-maker" /> Playful maker</label>
+              <label><input type="radio" name="vibe" value="bold-tech" /> Bold tech</label>
+              <label><input type="radio" name="vibe" value="warm-community" /> Warm community</label>
+              <label><input type="radio" name="vibe" value="nature-digital" /> Nature + digital</label>
+              <label><input type="radio" name="vibe" value="retro-future" /> Retro future</label>
+            </div>
+          </div>
+          <div>
+            <label for="email">Contact email</label>
+            <input id="email" name="email" type="email" placeholder="you@email.com" />
+          </div>
+          <div>
+            <label for="notes">Optional notes</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Share any references or must-haves."></textarea>
+          </div>
+        </form>
+        <div class="card">
+          <h2>Your launch plan</h2>
+          <p class="lead">We’ll turn this into a clear roadmap once you enter the portal.</p>
+          <div class="plan-output" data-plan-output></div>
+          <div class="hero-cta" style="margin-top: 16px;">
+            <button class="button secondary" type="button" data-copy-plan>Copy this plan</button>
+            <button class="button secondary" type="button" data-download-plan>Download as .txt</button>
+          </div>
+          <div class="hero-cta" style="margin-top: 16px;">
+            <a class="button primary" href="https://portal.3dvr.tech">Go to Portal</a>
+            <a class="button secondary" href="pricing.html">Choose a plan</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="logo">
+          <img src="assets/logo.svg" alt="3dvr.tech logo" loading="lazy" />
+          <span>3dvr.tech</span>
+        </div>
+        <p class="lead">Open-source makers building calm, trustworthy digital experiences.</p>
+        <button class="toggle" type="button" data-motion-toggle aria-pressed="false">Motion: On</button>
+      </div>
+      <div class="footer-links">
+        <strong>Explore</strong>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="start.html">Get Started</a>
+        <a href="https://portal.3dvr.tech">Portal</a>
+      </div>
+      <div class="footer-links">
+        <strong>Existing Links</strong>
+        <a href="https://3dvr.tech/community.html">Community</a>
+        <a href="https://3dvr.tech/blog">Blog</a>
+        <a href="https://3dvr.tech/support.html">Support</a>
+      </div>
+      <div>
+        <strong>Newsletter</strong>
+        <p class="lead">Monthly updates on open-source growth, no spam.</p>
+        <input type="email" placeholder="you@email.com" aria-label="Email address" />
+      </div>
+    </div>
+  </footer>
+
+  <div class="sticky-cta">
+    <a class="button primary" href="https://portal.3dvr.tech">Open Portal</a>
+  </div>
+  <div class="floating-help">
+    <button type="button" data-help-button>Need help?</button>
+  </div>
+  <div class="modal" data-help-modal aria-hidden="true" role="dialog">
+    <div class="modal-content">
+      <h3>Talk with the 3dvr team</h3>
+      <p>Reach us via the portal or email, and we’ll respond within a day.</p>
+      <div class="hero-cta">
+        <a class="button primary" href="https://portal.3dvr.tech">Open Portal</a>
+        <a class="button secondary" href="mailto:hello@3dvr.tech">Email us</a>
+      </div>
+      <button class="button secondary" type="button" data-help-close style="margin-top: 16px;">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
