@@ -8,31 +8,31 @@
   <meta name="color-scheme" content="dark light" />
   <meta
     name="description"
-    content="3dvr.tech builds, hosts, updates, and supports websites for artists, local businesses, and community builders. Start free, upgrade to light support, or get full service."
+    content="3dvr.tech delivers community-first websites, apps, and digital strategy so emerging organizations can build trust and grow in the open web."
   />
-  <meta name="keywords" content="3dvr, 3dvr tech, website support subscription, community web design, open web lab" />
+  <meta name="keywords" content="3dvr, 3dvr tech, 3dvr websites, community web design, open web lab" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://3dvr.tech/" />
-  <title>3dvr.tech | Websites, hosting, and support</title>
+  <title>3dvr.tech</title>
   <link rel="icon" href="3DVRfavicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="3dvr.tech" />
-  <meta property="og:title" content="3dvr.tech | Websites, hosting, and support" />
+  <meta property="og:title" content="3dvr.tech | Community-first web lab" />
   <meta
     property="og:description"
-    content="Get a website live with 3dvr.tech through a simple ladder: free entry, light support, and full-service launch help."
+    content="Partner with 3dvr.tech to launch human-centered websites, apps, and immersive experiences backed by open source principles."
   />
   <meta property="og:url" content="https://3dvr.tech/" />
   <meta property="og:image" content="https://3dvr.tech/3DVR.png" />
   <meta property="og:image:alt" content="3dvr.tech logomark" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="3dvr.tech | Websites, hosting, and support" />
+  <meta name="twitter:title" content="3dvr.tech | Community-first web lab" />
   <meta
     name="twitter:description"
-    content="Get a website live with 3dvr.tech through a simple ladder: free entry, light support, and full-service launch help."
+    content="Partner with 3dvr.tech to launch human-centered websites, apps, and immersive experiences backed by open source principles."
   />
   <meta name="twitter:image" content="https://3dvr.tech/3DVR.png" />
 
@@ -44,7 +44,7 @@
       "name": "3dvr.tech",
       "url": "https://3dvr.tech/",
       "logo": "https://3dvr.tech/3DVR.png",
-      "description": "3dvr.tech builds, hosts, updates, and supports websites for artists, local businesses, and community builders.",
+      "description": "3dvr.tech delivers community-first websites, apps, and digital strategy for emerging organizations.",
       "sameAs": [
         "https://www.facebook.com/3dvr.facebook/",
         "https://www.linkedin.com/company/3dvrtech",
@@ -97,121 +97,44 @@
     h1, h2, h3 { font-family: 'Poppins', sans-serif; }
 
     header {
-      background: rgba(7, 10, 19, 0.76);
-      backdrop-filter: blur(18px);
-      padding: clamp(0.8rem, 2vw, 1rem) clamp(1rem, 4vw, 2rem);
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      padding: clamp(0.85rem, 2vw, 1rem) clamp(1rem, 4vw, 2rem);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
       position: sticky;
       top: 0;
       z-index: 1001;
       width: min(100%, 100vw);
       margin-inline: auto;
       overflow: visible;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 18px 36px rgba(2, 8, 18, 0.22);
+      /* TODO: Restore fadeSlideIn animation once the initial background flash is resolved. */
+      /* opacity: 0; */
+      /* transform: translateY(-20px); */
+      /* animation: fadeSlideIn 1.8s ease-out forwards; */
+      /* animation-delay: 1s; */
     }
 
-    .brand-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.9rem;
-      color: inherit;
-      text-decoration: none;
-      min-width: 0;
-      flex: 0 1 auto;
-    }
-
-    .brand-link img {
-      height: 48px;
-      width: auto;
-      flex-shrink: 0;
-    }
-
-    .brand-lockup {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      text-align: left;
-    }
-
-    .brand-name {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.05rem;
-      line-height: 1.05;
-      color: #fff;
-    }
-
-    .brand-tag {
-      font-size: 0.74rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.62);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-top: 0.2rem;
-    }
+    header img { height: 48px; max-width: 150px; }
 
     nav {
       display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 1rem;
+      gap: clamp(0.5rem, 1.6vw, 1.25rem);
       flex: 1 1 auto;
+      justify-content: flex-end;
       min-width: 0;
     }
 
-    .nav-primary,
-    .nav-actions {
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-primary {
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 0.3rem;
-    }
-
-    .nav-actions {
-      gap: 0.75rem;
-      margin-left: 0.75rem;
-    }
-
     nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.96rem;
-      padding: 0.55rem 0.82rem;
-      border-radius: 999px;
-      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-      flex-shrink: 0;
+      color: white; text-decoration: none; font-weight: 600;
+      font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+      padding: 0.5rem clamp(0.55rem, 1.1vw, 0.75rem);
+      border-radius: 6px; transition: background 0.3s;
+      flex-shrink: 1;
+      min-width: 0;
     }
-
-    nav a:hover { background: rgba(255,255,255,0.12); }
-
-    .nav-link-muted {
-      color: rgba(255,255,255,0.84);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-
-    .nav-cta {
-      background: var(--accent);
-      color: var(--text-dark);
-      box-shadow: 0 12px 28px rgba(0,255,200,0.25);
-    }
-
-    .nav-cta:hover {
-      background: #7dffe2;
-      color: #031312;
-      transform: translateY(-2px);
-      box-shadow: 0 18px 36px rgba(0,255,200,0.32);
-    }
+    nav a:hover { background: rgba(255,255,255,0.1); }
 
     .qr-invite {
       margin-top: 0.2rem;
@@ -239,46 +162,21 @@
       margin: 0;
     }
 
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      gap: 4px;
-      width: 44px;
-      height: 44px;
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 12px;
-      background: rgba(255,255,255,0.05);
-    }
+    .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 4px; }
+    .menu-toggle span { width: 25px; height: 3px; background: white; }
 
-    .menu-toggle span {
-      width: 20px;
-      height: 2px;
-      background: white;
-      border-radius: 999px;
-    }
-
-    @media (max-width: 1180px) {
-      .brand-tag { display: none; }
-    }
-
-    @media (max-width: 1120px) {
+    @media (max-width: 1024px) {
       nav {
         position: absolute;
         top: calc(100% + 0.75rem);
         right: clamp(0.75rem, 4vw, 1.5rem);
-        background: rgba(8, 14, 24, 0.97);
+        background: rgba(44, 62, 80, 0.95);
         flex-direction: column;
         display: none;
-        align-items: stretch;
-        gap: 0.2rem;
-        width: min(340px, 90vw);
-        padding: 0.85rem;
-        border-radius: 18px;
-        border: 1px solid rgba(255,255,255,0.08);
-        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.38);
+        width: min(260px, 85vw);
+        padding-block: 0.5rem;
+        border-radius: 14px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
         overflow-y: auto;
         max-height: calc(100vh - 96px);
         overscroll-behavior: contain;
@@ -290,36 +188,12 @@
         }
       }
       nav a {
-        padding: 0.9rem 1rem;
-        border-radius: 12px;
+        padding: 0.85rem 1.15rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
         font-size: 1rem;
       }
-      .nav-primary,
-      .nav-actions {
-        width: 100%;
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .nav-actions {
-        margin-left: 0;
-        margin-top: 0.55rem;
-        padding-top: 0.75rem;
-        border-top: 1px solid rgba(255,255,255,0.1);
-      }
-      .nav-link-muted {
-        text-align: center;
-        justify-content: center;
-      }
-      .nav-cta {
-        text-align: center;
-        justify-content: center;
-      }
+      nav a:first-of-type { border-top: none; }
       .menu-toggle { display: flex; }
-    }
-
-    @media (max-width: 640px) {
-      .brand-link img { height: 42px; }
-      .brand-name { font-size: 0.98rem; }
     }
 
     .sticky-cta {
@@ -347,30 +221,18 @@
     }
 
     section {
-      min-height: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: clamp(5rem, 8vw, 6.5rem) 2rem;
-      text-align: center;
-      scroll-margin-top: 96px;
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; padding: 6rem 2rem; text-align: center;
     }
     section h2 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem; }
     section p { font-size: clamp(1.2rem, 2vw, 1.5rem); max-width: 800px; margin-bottom: 1.5rem; }
 
     .hero {
-      min-height: 100vh;
       position: relative;
       overflow: hidden;
       background: radial-gradient(circle at top left, rgba(0,255,200,0.2), transparent 55%),
         radial-gradient(circle at bottom right, rgba(95,39,205,0.18), transparent 50%),
         var(--bg-hero);
-    }
-    @supports (height: 100dvh) {
-      .hero {
-        min-height: 100dvh;
-      }
     }
     .hero::before,
     .hero::after {
@@ -399,97 +261,76 @@
     .hero-inner {
       position: relative;
       z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 1.12fr) minmax(300px, 420px);
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: clamp(2.5rem, 6vw, 5rem);
+      gap: clamp(2.5rem, 5vw, 4rem);
       max-width: 1200px;
       margin: 0 auto;
       width: min(100%, 1200px);
     }
-    .hero-copy {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.5rem;
-      min-width: 0;
-    }
     .hero-intro {
-      text-align: left;
-      margin-bottom: 0;
-      max-width: 720px;
-      width: 100%;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      max-width: 680px;
+      width: min(100%, 680px);
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 0.8rem;
+      align-items: center;
+      gap: 0.4rem;
     }
     .hero-content {
-      text-align: left;
+      text-align: center;
       display: flex;
       flex-direction: column;
-      gap: 1.4rem;
-      margin-top: 0;
-      align-items: flex-start;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+      align-items: center;
       max-width: 720px;
-      width: 100%;
+      width: min(100%, 720px);
     }
     .hero-eyebrow {
-      font-size: 0.82rem;
-      letter-spacing: 0.18em;
+      font-size: 0.95rem;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      font-weight: 700;
-      color: rgba(255,255,255,0.78);
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
       display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-align: left;
-    }
-    .hero-eyebrow::before {
-      content: "";
-      width: 42px;
-      height: 1px;
-      background: rgba(255,255,255,0.35);
-      flex-shrink: 0;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
     }
     .hero h1 {
-      font-size: clamp(3.1rem, 6vw, 5.2rem);
-      line-height: 1.02;
+      font-size: clamp(3rem, 7vw, 4.5rem);
+      line-height: 1.1;
     }
     .hero-headline {
-      display: flex;
+      display: inline-flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 0.85rem;
+      align-items: center;
+      gap: clamp(0.6rem, 1.5vw, 1rem);
     }
     .hero-headline-primary,
     .hero-headline-secondary {
       display: block;
     }
-    .hero-headline-secondary {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(1.12rem, 2vw, 1.45rem);
-      font-weight: 600;
-      color: rgba(255,255,255,0.78);
-      max-width: 30ch;
-    }
     .hero-headline-divider {
-      width: clamp(64px, 14vw, 120px);
+      width: clamp(60px, 14vw, 120px);
       height: 4px;
       border-radius: 999px;
-      background: linear-gradient(90deg, rgba(0,255,200,0.9), rgba(255,255,255,0.78));
+      background: linear-gradient(90deg, rgba(0,255,200,0.85), rgba(255,255,255,0.8));
       box-shadow: 0 6px 20px rgba(0, 255, 200, 0.35);
     }
     .hero p {
-      font-size: clamp(1.06rem, 1.8vw, 1.22rem);
-      color: rgba(255,255,255,0.84);
-      max-width: 38rem;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: rgba(255,255,255,0.85);
+      max-width: 540px;
     }
     .hero-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.9rem;
-      justify-content: flex-start;
+      gap: 1rem;
+      justify-content: center;
     }
     .hero-button {
       display: inline-flex;
@@ -523,31 +364,27 @@
     }
     .hero-vision-highlights {
       list-style: none;
+      padding: 1.5rem;
+      border-radius: 20px;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.08);
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 0.9rem;
-      width: 100%;
-      max-width: 760px;
-      padding: 0;
+      max-width: 520px;
     }
     .hero-vision-highlights li {
       display: grid;
       gap: 0.3rem;
-      padding: 1rem 1.05rem;
-      border-radius: 18px;
-      background: rgba(0,0,0,0.28);
-      border: 1px solid rgba(255,255,255,0.08);
-      text-align: left;
     }
     .hero-vision-title {
-      font-weight: 700;
+      font-weight: 600;
       color: var(--accent);
-      font-size: 1rem;
+      font-size: 1.05rem;
       letter-spacing: 0.04em;
     }
     .hero-vision-copy {
-      font-size: 0.92rem;
-      color: rgba(255,255,255,0.72);
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
     }
     .hero-visual {
       position: relative;
@@ -555,138 +392,86 @@
       justify-content: center;
       width: 100%;
     }
-    .hero-offer-card {
+    .hero-intro,
+    .hero-content,
+    .hero-visual {
+      margin-inline: auto;
+    }
+    .hero-logo-card {
       position: relative;
-      width: min(100%, 420px);
-      padding: 1.6rem;
-      border-radius: 26px;
-      background: linear-gradient(160deg, rgba(6, 18, 28, 0.88), rgba(18, 53, 70, 0.78));
+      padding: 2.4rem 2.2rem;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.12);
       box-shadow: 0 25px 55px rgba(0,0,0,0.35);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(8px);
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
-      text-align: left;
-      overflow: hidden;
-    }
-    .hero-offer-card::before {
-      content: "";
-      position: absolute;
-      inset: auto -60px -80px auto;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,255,200,0.24), rgba(0,255,200,0));
-      pointer-events: none;
-    }
-    .hero-panel-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.64);
-      margin: 0;
-    }
-    .hero-offer-title {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.85rem;
-      line-height: 1.1;
-      margin: 0;
-    }
-    .hero-offer-lede {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.78);
-      margin: 0;
-    }
-    .hero-plan-stack {
-      display: grid;
-      gap: 0.85rem;
-      width: 100%;
-    }
-    .hero-plan-row {
-      position: relative;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0.9rem;
-      align-items: start;
-      padding: 1rem;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-    .hero-plan-price {
-      min-width: 76px;
-      padding: 0.6rem 0.75rem;
-      border-radius: 14px;
-      background: rgba(0,255,200,0.14);
-      color: var(--accent);
-      font-weight: 700;
+      align-items: center;
+      gap: 1.2rem;
       text-align: center;
-      box-shadow: inset 0 0 0 1px rgba(0,255,200,0.22);
+      max-width: 360px;
     }
-    .hero-plan-meta {
-      display: grid;
-      gap: 0.25rem;
+    .hero-logo-card img {
+      width: clamp(220px, 62vw, 300px);
+      height: auto;
+      filter: drop-shadow(0 0 28px rgba(0,255,200,0.45));
+      opacity: 0;
+      animation: fadeIn 3s ease-out forwards;
     }
-    .hero-plan-name {
-      font-weight: 700;
-      color: #fff;
-      font-size: 1rem;
-    }
-    .hero-plan-copy {
+    .hero-logo-card p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
       margin: 0;
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.72);
-      max-width: none;
     }
-    .hero-note {
-      margin: 0;
-      padding-top: 0.35rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.68);
-      max-width: none;
+    .hero-spark {
+      position: absolute;
+      inset: auto;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,255,200,0.45), rgba(0,255,200,0));
+      opacity: 0.55;
+      filter: blur(2px);
+      animation: pulse 8s ease-in-out infinite;
+    }
+    .hero-spark--top {
+      top: -40px;
+      right: -20px;
+    }
+    .hero-spark--bottom {
+      bottom: -50px;
+      left: -30px;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(0.95); opacity: 0.4; }
+      50% { transform: scale(1.15); opacity: 0.65; }
     }
     @media (max-width: 768px) {
       .hero-inner {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         gap: clamp(2rem, 6vw, 3rem);
       }
-      .hero-copy,
-      .hero-intro,
-      .hero-content {
-        align-items: center;
-        text-align: center;
-      }
-      .hero-eyebrow {
-        justify-content: center;
-        text-align: center;
-      }
-      .hero-eyebrow::before {
-        display: none;
-      }
-      .hero-headline {
-        align-items: center;
-      }
-      .hero-buttons {
-        justify-content: center;
-      }
-      .hero p {
-        max-width: none;
-      }
-      .hero-vision-highlights {
-        grid-template-columns: 1fr;
-        width: min(100%, 540px);
-      }
-      .hero-offer-card {
+      .hero-intro { text-align: center; margin-bottom: 0; align-self: center; }
+      .hero-content { text-align: center; align-items: center; margin-top: 0; }
+      .hero p { max-width: none; }
+      .hero-vision-highlights { text-align: left; }
+      .hero-logo-card {
         width: min(92vw, 420px);
+        padding: 2.8rem 2.4rem;
+        gap: 1.4rem;
       }
     }
 
     @media (min-width: 900px) {
       .hero-inner {
         gap: clamp(3rem, 6vw, 4.5rem);
+      }
+      .hero-logo-card {
+        max-width: 420px;
+        width: 100%;
       }
     }
 
@@ -760,7 +545,6 @@
       padding: clamp(1.9rem, 2.8vw, 2.4rem);
       align-items: flex-start;
       text-align: left;
-      cursor: default;
       background: linear-gradient(150deg, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0.15));
       border: 1px solid rgba(255, 255, 255, 0.18);
       box-shadow: 0 18px 36px rgba(8, 25, 35, 0.35);
@@ -838,20 +622,6 @@
       letter-spacing: 0.02em;
     }
     .feature-card:hover .feature-cta { color: #f9f9f9; }
-
-    .section-actions {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2.25rem;
-    }
-
-    #portal .card {
-      cursor: default;
-    }
 
     @media (max-width: 1024px) {
       .feature-card { max-width: min(48%, 360px); }
@@ -1190,13 +960,7 @@
 </head>
 <body id="top">
   <header>
-    <a class="brand-link" href="#top">
-      <img src="3DVR.png" alt="3dvr.tech logo" />
-      <span class="brand-lockup">
-        <span class="brand-name">3dvr.tech</span>
-        <span class="brand-tag">Websites, hosting, updates, and support</span>
-      </span>
-    </a>
+    <a href="#top"><img src="3DVR.png" alt="3dvr.tech logo" /></a>
 
     <!-- a11y & control bindings for mobile menu -->
     <div
@@ -1211,93 +975,72 @@
       <span></span><span></span><span></span>
     </div>
 
-    <nav id="mainNav" aria-label="Primary">
-      <div class="nav-primary">
-        <a href="#subscribe">Plans</a>
-        <a href="#vision">How It Works</a>
-        <a href="#testimonials">Proof</a>
-        <a href="#about">About</a>
-      </div>
-      <div class="nav-actions">
-        <a class="nav-link-muted" href="https://portal.3dvr.tech">Portal</a>
-        <a class="nav-cta" href="subscribe/free-plan.html">Start Free</a>
-      </div>
+    <nav id="mainNav">
+      <a href="#top">Home</a>
+      <a href="subscribe/index.html">Subscribe</a>
+      <a href="/blog/">Blog</a>
+      <a href="#features">Features</a>
+      <a href="#vision">Vision</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#partners">Partners</a>
+      <a href="#team">Team</a>
+      <a href="#about">About</a>
+      <a href="templates/index.html">Templates</a>
+      <a href="pages/portfolio.html">Portfolio</a>
+      <a href="https://portal.3dvr.tech">Portal</a>
     </nav>
   </header>
 
-  <a class="sticky-cta" href="subscribe/free-plan.html">Start Free</a>
+  <a class="sticky-cta" href="subscribe/index.html">Subscribe</a>
 
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-copy">
-        <div class="hero-intro">
-          <p class="hero-eyebrow">Simple website service, clearer upgrade path</p>
-        </div>
-        <div class="hero-content">
-          <h1 class="hero-headline">
-            <span class="hero-headline-primary">Launch your site without hiring a full agency.</span>
-            <span class="hero-headline-divider" aria-hidden="true"></span>
-            <span class="hero-headline-secondary">Start free, move to $5/month support, or get full hands-on service at $20/month.</span>
-          </h1>
+      <div class="hero-intro">
+        <p class="hero-eyebrow">People-first web & XR studio</p>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-logo-card">
+          <div class="hero-spark hero-spark--top"></div>
+          <div class="hero-spark hero-spark--bottom"></div>
+          <img src="3DVR.png" alt="" />
           <p>
-            3dvr.tech builds, hosts, updates, and supports websites for artists, local businesses,
-            educators, and community builders who need something real, simple, and sustainable.
+            Open source. Community powered. Focused on experiences that feel as visionary as they are sustainable.
           </p>
-          <div class="hero-buttons">
-            <a class="hero-button hero-button--primary" href="subscribe/free-plan.html">
-              Start free
-              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-            </a>
-            <a class="hero-button hero-button--ghost" href="#vision">
-              See how it works
-            </a>
-          </div>
-          <ul class="hero-vision-highlights" aria-label="Pricing ladder highlights">
-            <li>
-              <span class="hero-vision-title">Free Entry</span>
-              <span class="hero-vision-copy">An easy first yes for referrals, friends, and anyone testing an idea.</span>
-            </li>
-            <li>
-              <span class="hero-vision-title">$5 Monthly Support</span>
-              <span class="hero-vision-copy">Light ongoing help for people who want to stay active without jumping straight to full service.</span>
-            </li>
-            <li>
-              <span class="hero-vision-title">$20 Full Service</span>
-              <span class="hero-vision-copy">Website, hosting, updates, support, and launch help bundled into one practical offer.</span>
-            </li>
-          </ul>
         </div>
       </div>
-      <div class="hero-visual" aria-label="Pricing ladder summary">
-        <div class="hero-offer-card">
-          <p class="hero-panel-label">Current focus</p>
-          <p class="hero-offer-title">One service. Three ways in.</p>
-          <p class="hero-offer-lede">Keep the offer obvious and the jump between plans small enough that upgrades feel natural.</p>
-          <div class="hero-plan-stack">
-            <div class="hero-plan-row">
-              <span class="hero-plan-price">Free</span>
-              <div class="hero-plan-meta">
-                <span class="hero-plan-name">Easy first yes</span>
-                <p class="hero-plan-copy">Launch on a 3dvr.tech subdomain and get into the network without a price objection.</p>
-              </div>
-            </div>
-            <div class="hero-plan-row">
-              <span class="hero-plan-price">$5/mo</span>
-              <div class="hero-plan-meta">
-                <span class="hero-plan-name">Supporter step</span>
-                <p class="hero-plan-copy">Keep the site live, request small updates, and stay close to the team at a low-friction price.</p>
-              </div>
-            </div>
-            <div class="hero-plan-row">
-              <span class="hero-plan-price">$20/mo</span>
-              <div class="hero-plan-meta">
-                <span class="hero-plan-name">Hands-on service</span>
-                <p class="hero-plan-copy">Get the full website service: build, hosting, updates, troubleshooting, and launch support.</p>
-              </div>
-            </div>
-          </div>
-          <p class="hero-note">Roadmap direction for 2026: prove the service first, then build tools from repeated customer needs.</p>
+      <div class="hero-content">
+        <h1 class="hero-headline">
+          <span class="hero-headline-primary">Build the future.</span>
+          <span class="hero-headline-divider" aria-hidden="true"></span>
+          <span class="hero-headline-secondary">3dvr.tech</span>
+        </h1>
+        <p>
+          3dvr.tech is a collaborative lab shaping respectful tools that return ownership,
+          honor the planet, and help creators grow together.
+        </p>
+        <div class="hero-buttons">
+          <a class="hero-button hero-button--primary" href="#vision">
+            Explore our vision
+            <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+          </a>
+          <a class="hero-button hero-button--ghost" href="#subscribe">
+            View membership plans
+          </a>
         </div>
+        <ul class="hero-vision-highlights" aria-label="Highlights from our vision">
+          <li>
+            <span class="hero-vision-title">Own What You Build</span>
+            <span class="hero-vision-copy">Product decisions led by the people building and relying on them.</span>
+          </li>
+          <li>
+            <span class="hero-vision-title">Design for Longevity</span>
+            <span class="hero-vision-copy">Human-centered design that respects privacy and the planet.</span>
+          </li>
+          <li>
+            <span class="hero-vision-title">Grow Together</span>
+            <span class="hero-vision-copy">Training and services that create pathways for makers everywhere.</span>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
@@ -1306,39 +1049,40 @@
     <div class="vision-shape vision-shape--diamond"></div>
     <div class="vision-shape vision-shape--arc"></div>
     <div class="vision-content">
-      <h2>How the ladder works</h2>
+      <h2>Our Vision</h2>
       <div class="vision-grid">
         <article class="vision-card">
-          <h3>Free is the easy first yes</h3>
-          <p>The free plan makes it simple for referrals, experiments, and community members to get started.</p>
+          <h3>Shared Stewardship</h3>
+          <p>Technology stays rooted in the people who contribute to it and the communities who depend on it.</p>
           <ul>
-            <li>Launch on a 3dvr.tech subdomain without waiting on a full budget.</li>
-            <li>Use it to validate the idea before paying for more custom work.</li>
+            <li>Employee and customer owners shaping strategy together.</li>
+            <li>Transparent governance that keeps value circulating locally.</li>
           </ul>
         </article>
         <article class="vision-card">
-          <h3>$5 keeps the relationship warm</h3>
-          <p>The middle plan gives price-sensitive supporters a realistic paid step instead of forcing an all-or-nothing choice.</p>
+          <h3>Regenerative Craft</h3>
+          <p>We design systems that protect people, their data, and the environments they call home.</p>
           <ul>
-            <li>Cover small updates, light support, and ongoing maintenance.</li>
-            <li>Keep the upgrade path alive for members who are not ready for $20 yet.</li>
+            <li>Repairable hardware paired with healthy, joyful experiences.</li>
+            <li>Sustainable choices embedded into every release.</li>
           </ul>
         </article>
         <article class="vision-card">
-          <h3>$20 funds the actual service</h3>
-          <p>The top plan is the core business: practical website help for people who want a trusted partner, not a huge agency process.</p>
+          <h3>Pathways for Makers</h3>
+          <p>Our services help members thrive today while preparing for the next wave of innovation.</p>
           <ul>
-            <li>Bundle the work people repeatedly need: website setup, hosting, updates, and launch guidance.</li>
-            <li>Use customer wins as proof before investing in larger product bets.</li>
+            <li>Websites and support that lift up nomads, creators, and explorers.</li>
+            <li>Training pathways that equip and employ the world in member-led tech work.</li>
           </ul>
         </article>
       </div>
       <div class="vision-footnote">
         <p>
-          The immediate goal is simple: make the offer obvious, help real people launch, and learn from the same customer needs repeating.
+          This is only the starting point. We'll keep investing in open, community-owned systems that balance innovation,
+          accessibility, and care for the Earth.
         </p>
-        <a class="vision-link" href="https://portal.3dvr.tech/roadmap/" target="_blank" rel="noopener">
-          Read the current roadmap
+        <a class="vision-link" href="https://3dvr.tech/vision">
+          Find out more about our vision
           <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
         </a>
       </div>
@@ -1346,87 +1090,108 @@
   </section>
 
   <section id="subscribe" style="background: var(--bg-subscribe);">
-    <h2>Pick your way in</h2>
-    <p>Free keeps the door open. $5 keeps the relationship warm. $20 covers the hands-on website service.</p>
+    <h2>Choose Your Plan</h2>
+    <p>Start building your vision with the plan that fits you best. Upgrade anytime.</p>
     <div class="card-grid">
       <a href="subscribe/free-plan.html" class="card">
         <h3><span class="plan-name">Free Plan</span><br><span class="plan-price">Free!</span></h3>
-        <p>Get online fast with a free 3dvr.tech subdomain and an easy way to test your idea before paying for more.</p>
-        <span class="btn-like">Start here</span>
+        <p>Discover your vision and get started with a free website on a 3dvr.tech subdomain.</p>
+        <span class="btn-like">Learn More</span>
       </a>
       <a href="subscribe/family-friends.html" class="card">
         <h3><span class="plan-name">Family &amp; Friends Plan</span><br><span class="plan-price">$5 monthly</span></h3>
-        <p>Keep your site active, get light monthly support, and make small updates without jumping all the way to full service.</p>
-        <span class="btn-like">See support plan</span>
+        <p>Keep your free 3dvr.tech site and enjoy light monthly support for small updates and experiments. Try it free for 30 days.</p>
+        <span class="btn-like">Learn More</span>
       </a>
       <a href="subscribe/founder-plan.html" class="card">
         <h3><span class="plan-name">Founder Plan</span><br><span class="plan-price">$20 monthly</span></h3>
-        <p>Get the full website package: custom domain help, hosting, updates, launch support, and a team that stays with you.</p>
-        <span class="btn-like">See full service</span>
+        <p>Launch your brand with a custom domain (included if $10/yr or less) and get more support as your project grows.</p>
+        <span class="btn-like">Learn More</span>
       </a>
     </div>
   </section>
 
   <section id="features" style="background: var(--bg-features);">
-    <h2>What full service includes</h2>
-    <p class="section-lede">When someone upgrades to the $20 plan, these are the core outcomes we focus on instead of splitting attention across unrelated offers.</p>
+    <h2>What You Get</h2>
+    <p class="section-lede">From first sketch to ongoing support, every engagement unlocks these core experiences.</p>
     <div class="card-grid features-grid">
-      <article class="card feature-card">
+      <a href="websites.html" class="card feature-card">
         <div class="feature-icon" aria-hidden="true">
           <i class="fa-solid fa-globe"></i>
         </div>
         <div class="feature-content">
-          <h3>Launch-ready website</h3>
-          <p>A focused site built to explain what you do, look credible on mobile, and give people a clear next step.</p>
+          <h3>Websites &amp; Landing Pages</h3>
+          <p>Beautiful, responsive sites tailored to your brand and goals.</p>
           <ul class="feature-list">
-            <li>Page structure, visual direction, and copy polish around one clear offer.</li>
-            <li>Accessibility, SEO basics, and launch guidance included from the start.</li>
+            <li>Accessibility-first layouts, copy, and SEO foundations.</li>
+            <li>Launch guidance covering hosting, analytics, and security.</li>
           </ul>
-          <span class="feature-cta">Built to ship, not sit in draft →</span>
+          <span class="feature-cta">See website work →</span>
         </div>
-      </article>
-      <article class="card feature-card">
+      </a>
+      <a href="apps.html" class="card feature-card">
         <div class="feature-icon" aria-hidden="true">
-          <i class="fa-solid fa-server"></i>
+          <i class="fa-solid fa-mobile-screen"></i>
         </div>
         <div class="feature-content">
-          <h3>Hosting and upkeep</h3>
-          <p>The site stays online and usable without you having to become your own web department.</p>
+          <h3>App Designs</h3>
+          <p>Mobile-ready UI/UX design systems that engage and convert.</p>
           <ul class="feature-list">
-            <li>Domain setup, hosting guidance, and routine updates handled with you.</li>
-            <li>Small fixes, maintenance, and practical launch support built into the service.</li>
+            <li>Prototype flows, component libraries, and motion specs.</li>
+            <li>Hand-off ready files for dev teams or no-code builders.</li>
           </ul>
-          <span class="feature-cta">Support designed for real operations →</span>
+          <span class="feature-cta">Preview app flows →</span>
         </div>
-      </article>
-      <article class="card feature-card">
+      </a>
+      <a href="support.html" class="card feature-card">
         <div class="feature-icon" aria-hidden="true">
           <i class="fa-solid fa-headset"></i>
         </div>
         <div class="feature-content">
-          <h3>Hands-on support</h3>
-          <p>When something is unclear or broken, you can ask a human who already knows the project.</p>
+          <h3>Unlimited Tech Support</h3>
+          <p>Ask anything—no limits. We're here to help you build.</p>
           <ul class="feature-list">
-            <li>Async troubleshooting, launch prep, and next-step advice without agency overhead.</li>
-            <li>Room to grow into a longer-term builder relationship as the work gets more serious.</li>
+            <li>Async walkthroughs, screen recordings, and bug triage.</li>
+            <li>Automation, integrations, and systems advice on demand.</li>
           </ul>
-          <span class="feature-cta">Trust built through direct help →</span>
+          <span class="feature-cta">Meet the support desk →</span>
         </div>
-      </article>
-    </div>
-    <div class="section-actions">
-      <a class="hero-button hero-button--primary" href="subscribe/founder-plan.html">See the full-service plan</a>
-      <a class="hero-button hero-button--ghost" href="pages/portfolio.html">View recent work</a>
+      </a>
+      <a href="consulting.html" class="card feature-card">
+        <div class="feature-icon" aria-hidden="true">
+          <i class="fa-solid fa-lightbulb"></i>
+        </div>
+        <div class="feature-content">
+          <h3>Personal Consultations</h3>
+          <p>We'll meet with you to brainstorm, refine, and launch ideas.</p>
+          <ul class="feature-list">
+            <li>Strategy sessions to prioritize, scope, and plan next steps.</li>
+            <li>Documentation, templates, and resource recommendations.</li>
+          </ul>
+          <span class="feature-cta">Book a session →</span>
+        </div>
+      </a>
+      <a href="community.html" class="card feature-card">
+        <div class="feature-icon" aria-hidden="true">
+          <i class="fa-solid fa-people-group"></i>
+        </div>
+        <div class="feature-content">
+          <h3>Builder Community</h3>
+          <p>Join a community of creators, developers, and dreamers.</p>
+          <ul class="feature-list">
+            <li>Monthly build-alongs and office hours with the 3dvr.tech team.</li>
+            <li>Private channels to trade feedback, templates, and wins.</li>
+          </ul>
+          <span class="feature-cta">Join fellow builders →</span>
+        </div>
+      </a>
     </div>
   </section>
 
   <section id="testimonials" style="background: var(--bg-testimonials);">
-    <h2>Proof from recent launches</h2>
-    <p class="partners-lede">
-      The fastest way to explain 3dvr.tech is still customer work. These launches show the kinds of people and projects already trusting the team.
-    </p>
+    <h2>What Our Clients Say</h2>
     <div class="card-grid">
-      <div class="card testimonial-card" data-link="https://www.brendadyestephens.com/"><h3>Brenda Dye Stephens</h3><p>“3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.”</p></div>
+      <div class="card testimonial-card" data-link="https://www.brendadyestephens.com/"><h3>SC Librarian</h3><p>“3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.”</p></div>
       <div class="card testimonial-card" data-link="https://cruisersgarage.com/"><h3>Cruisers Garage</h3><p>“They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.”</p></div>
       <div class="card testimonial-card" data-link="https://www.gif.edu.gt/"><h3>GIF English</h3><p>“We needed a site that could handle English lessons, scheduling, and videos. 3dvr.tech delivered exactly what we imagined.”</p></div>
       <div class="card testimonial-card" data-link="https://www.sdvanlife.com/"><h3>SD Vanlife</h3><p>“Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”</p></div>
@@ -1434,9 +1199,10 @@
   </section>
 
   <section id="partners" style="background: var(--bg-partners);">
-    <h2>Recent launches and member brands</h2>
+    <h2>Member Brands & Partners</h2>
     <p class="partners-lede">
-      Tutors, transport teams, studios, educators, and print shops are already using 3dvr.tech as a practical launch partner.
+      Our members span wellness, education, mobility, and creative tech. We celebrate the brands
+      who build with us and keep the community moving forward.
     </p>
     <div class="partners-grid">
       <a class="partner-card" href="https://mark-wells-services-hub.vercel.app/college-stem-tutoring.html" target="_blank" rel="noopener">
@@ -1459,7 +1225,7 @@
         <h3>Marey</h3>
         <p>Creative brand storytelling and visuals crafted for a bold, memorable launch.</p>
       </a>
-      <a class="partner-card" href="https://thirdeyeprintco.com/" target="_blank" rel="noopener">
+      <a class="partner-card" href="https://esai-gamboa.vercel.app/" target="_blank" rel="noopener">
         <span class="partner-mark" aria-hidden="true"><i class="fa-solid fa-eye"></i></span>
         <h3>Third Eye Print Co.</h3>
         <p>San Diego screen printing and embroidery for artists and bold brands.</p>
@@ -1473,7 +1239,7 @@
   </section>
 
   <section id="team" style="background: var(--bg-team);">
-    <h2>Small team, hands-on service</h2>
+    <h2>Meet the Team</h2>
     <div class="card-grid">
       <div class="card team-card" data-link="https://tmsteph.com">
         <img src="media/Thomas_Stephens.jpg" alt="Thomas Stephens" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
@@ -1493,7 +1259,7 @@
         <p><strong>Lead Developer</strong></p>
         <p>Crafting immersive 3D and web experiences.</p>
       </div>
-      <div class="card team-card" data-link="https://thirdeyeprintco.com/">
+      <div class="card team-card" data-link="https://esai-gamboa.vercel.app/">
         <img src="media/Esai_Gamboa.jpg" alt="Esai Gamboa" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
         <h3>Esai Gamboa</h3>
         <p><strong>Financial Specialist</strong></p>
@@ -1517,36 +1283,35 @@
   <section id="about" style="background: var(--bg-about);">
     <h2>About 3dvr.tech</h2>
     <p style="max-width: 700px; margin: 1rem auto; font-size: 1.3rem;">
-      We believe everyone deserves a credible digital home without agency overhead or lock-in.<br />
-      Right now that means focusing 3dvr.tech on one clear service: websites, hosting, updates, and support.<br />
-      The open-source mission still matters, but the immediate work is practical: help people launch, keep them online, and earn trust through execution.<br />
+      We believe everyone deserves the tools to build their digital life.<br />
+      We're creating an ecosystem of <strong>open-source</strong> hardware, software, and support—starting with $20/month personal services.<br />
+      Our mission is to empower creators, entrepreneurs, and digital nomads everywhere.<br />
       Contributions welcome on <a href="https://github.com/tmsteph/3dvr-web" target="_blank" style="color: var(--accent);">GitHub</a>.
     </p>
   </section>
 
   <section id="portal" style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); text-align: center;">
-    <h2>Portal: roadmap, tools, and progress</h2>
+    <h2>Check out the Portal</h2>
     <p style="max-width: 820px; margin: 1rem auto 2rem; font-size: 1.15rem; color: #e5f7f3;">
-      The portal is where we document the current roadmap, track experiments, and keep the member-side tooling visible while the service model gets sharper.
+      Peek behind the curtain and explore the experiments we're building with the community. The portal gives you self-serve access to work-in-progress demos, analytics snapshots, and the tools that power our launch plans.
     </p>
     <div class="card-grid" style="margin-bottom: 2rem;">
       <div class="card" style="background: rgba(0, 0, 0, 0.35); text-align: left;">
-        <h3 style="color: var(--accent);">Roadmap notes</h3>
-        <p>See how the current focus is being reduced to one service with a simple free, $5, and $20 pricing ladder.</p>
-      </div>
-      <div class="card" style="background: rgba(0, 0, 0, 0.35); text-align: left;">
-        <h3 style="color: var(--accent);">Member tools</h3>
-        <p>Sign in to access studio shortcuts, publishing tools, and workflows that support active projects and launches.</p>
-      </div>
-      <div class="card" style="background: rgba(0, 0, 0, 0.35); text-align: left;">
         <h3 style="color: var(--accent);">Live experiments</h3>
-        <p>Browse prototypes, dashboards, and in-progress builds as internal tools start emerging from repeated customer work.</p>
+        <p>Browse prototypes, VR scenes, and micro-apps shipping soon. We share changelogs so you can track how your feedback shapes the next release.</p>
+      </div>
+      <div class="card" style="background: rgba(0, 0, 0, 0.35); text-align: left;">
+        <h3 style="color: var(--accent);">Creator shortcuts</h3>
+        <p>Sign in once to unlock studio tools, asset uploads, and publishing pipelines that connect directly to your projects.</p>
+      </div>
+      <div class="card" style="background: rgba(0, 0, 0, 0.35); text-align: left;">
+        <h3 style="color: var(--accent);">Progress dashboards</h3>
+        <p>Follow milestone updates, performance snapshots, and roadmap notes as we ship new builds across web and XR.</p>
       </div>
     </div>
-    <div class="section-actions">
-      <a class="hero-button hero-button--primary" href="https://portal.3dvr.tech" target="_blank" rel="noopener">Open the portal</a>
-      <a class="hero-button hero-button--ghost" href="https://portal.3dvr.tech/roadmap/" target="_blank" rel="noopener">Read the roadmap</a>
-    </div>
+    <a class="cta" href="https://portal.3dvr.tech" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+      Visit portal.3dvr.tech <i class="fas fa-arrow-right" aria-hidden="true"></i>
+    </a>
   </section>
 
   <!-- SOCIAL LINKS SECTION (desktop href + mobile deep-link) -->
@@ -1791,11 +1556,9 @@
         if (e.key === 'Escape') closeMenu();
       });
 
-      const desktopNavBreakpoint = 1120;
-
       // Close if resizing out of mobile layout
       window.addEventListener('resize', () => {
-        if (window.innerWidth > desktopNavBreakpoint) closeMenu();
+        if (window.innerWidth > 768) closeMenu();
       });
 
       // Clickable cards for testimonials/team
