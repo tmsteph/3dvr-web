@@ -86,8 +86,8 @@
     <a href="../index.html"><img src="../3DVR.png" alt="3dvr.tech logo" /></a>
     <nav>
       <a href="../index.html">Home</a>
-      <a href="index.html#plans">All plans</a>
-      <a href="https://portal.3dvr.tech/" target="_blank" rel="noopener">Portal</a>
+      <a data-preserve-portal-origin href="index.html#plans">All plans</a>
+      <a data-portal-path="/" href="https://portal.3dvr.tech/" target="_blank" rel="noopener">Portal</a>
     </nav>
   </header>
 
@@ -102,8 +102,8 @@
       <div class="price">$50 / month</div>
       <p class="hero-note">Managed through the portal billing center so upgrades and downgrades switch the existing plan instead of stacking a second one.</p>
       <div class="actions">
-        <a class="cta primary" href="https://portal.3dvr.tech/billing/?plan=builder" target="_blank" rel="noopener">✅ Choose Builder</a>
-        <a class="cta secondary" href="index.html#plans">Back to all plans</a>
+        <a class="cta primary" data-portal-path="/billing/?plan=builder" href="https://portal.3dvr.tech/billing/?plan=builder" target="_blank" rel="noopener">✅ Choose Builder</a>
+        <a class="cta secondary" data-preserve-portal-origin href="index.html#plans">Back to all plans</a>
       </div>
     </section>
 
@@ -157,5 +157,6 @@
     © 2025 3dvr.tech — Open Source. Open Future.
   </footer>
   <script src="/pwa.js"></script>
+  <script src="./portal-links.js"></script>
 </body>
 </html>
