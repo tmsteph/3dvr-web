@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#0f0f0f" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <meta
+    name="description"
+    content="Step into the 3dvr.tech Builder Plan for deeper product partnership, faster execution, and higher portal limits."
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://3dvr.tech/subscribe/builder-plan.html" />
+  <title>Builder Plan | 3dvr.tech Subscriptions</title>
+  <link rel="icon" href="../3DVRfavicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="3dvr.tech" />
+  <meta property="og:title" content="3dvr.tech Builder Plan" />
+  <meta
+    property="og:description"
+    content="Deep product partnership, faster execution, and a stronger lane for custom roadmap work."
+  />
+  <meta property="og:url" content="https://3dvr.tech/subscribe/builder-plan.html" />
+  <meta property="og:image" content="https://3dvr.tech/3DVR.png" />
+  <meta property="og:image:alt" content="3dvr.tech logomark" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="3dvr.tech Builder Plan" />
+  <meta
+    name="twitter:description"
+    content="Deep product partnership, faster execution, and a stronger lane for custom roadmap work."
+  />
+  <meta name="twitter:image" content="https://3dvr.tech/3DVR.png" />
+  <style>
+    :root {
+      --accent: #00ffc8;
+      --accent-soft: rgba(0, 255, 200, 0.18);
+      --bg: linear-gradient(160deg, #0f2027, #203a43, #2c5364);
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-alt: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --muted: #d7e0e7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: rgba(0, 0, 0, 0.5); position: sticky; top: 0; backdrop-filter: blur(10px); z-index: 10; }
+    header img { height: 40px; }
+    header nav a { margin-left: 1rem; font-weight: 600; }
+    main { max-width: 960px; margin: 2.5rem auto 4rem; padding: 0 1.25rem; }
+    .hero { text-align: center; }
+    .hero .eyebrow { font-size: 0.85rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; display: inline-block; }
+    .hero h1 { font-family: Poppins, sans-serif; font-size: clamp(2.2rem, 5vw, 3.25rem); margin-bottom: 0.75rem; }
+    .hero p { color: var(--muted); font-size: 1.1rem; line-height: 1.6; max-width: 720px; margin: 0 auto; }
+    .hero .price { margin: 2rem auto 0; font-size: 2.6rem; font-weight: 800; }
+    .hero-note { color: var(--muted); margin-top: 0.75rem; font-size: 1rem; }
+    .actions { margin-top: 2rem; display: flex; justify-content: center; gap: 0.9rem; flex-wrap: wrap; }
+    .cta { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.6rem; border-radius: 999px; font-weight: 700; letter-spacing: 0.02em; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; box-shadow: 0 0 0 transparent; }
+    .cta.primary { background: var(--accent); color: #000; box-shadow: 0 0 18px rgba(0, 255, 200, 0.45); }
+    .cta.secondary { border: 1px solid rgba(255, 255, 255, 0.28); background: rgba(255, 255, 255, 0.06); color: var(--text); }
+    .panel { background: var(--panel); border-radius: 18px; padding: 1.9rem; margin-top: 2.5rem; box-shadow: 0 24px 55px rgba(0, 0, 0, 0.24); }
+    .panel h2 { font-family: Poppins, sans-serif; font-size: 1.45rem; margin-bottom: 0.9rem; }
+    .panel p { color: var(--muted); line-height: 1.6; }
+    .panel ul { margin-top: 1rem; padding-left: 1.15rem; color: var(--muted); }
+    .panel li { margin: 0.6rem 0; line-height: 1.6; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.1rem; margin-top: 1.5rem; }
+    .card { background: var(--panel-alt); border-radius: 16px; padding: 1.3rem; }
+    .card h3 { font-family: Poppins, sans-serif; font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--accent); }
+    .card p { margin: 0; color: var(--muted); line-height: 1.5; }
+    details { background: var(--panel); border-radius: 12px; padding: 0.95rem 1.05rem; margin: 0.6rem 0; }
+    details[open] { background: rgba(255, 255, 255, 0.14); }
+    summary { cursor: pointer; font-weight: 700; }
+    details p { color: var(--muted); margin-top: 0.6rem; line-height: 1.55; }
+    footer { text-align: center; padding: 2rem 1rem 2.5rem; color: rgba(255, 255, 255, 0.72); }
+
+    @media (max-width: 640px) {
+      header nav a { margin-left: 0.75rem; font-size: 0.95rem; }
+      .cta { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="../index.html"><img src="../3DVR.png" alt="3dvr.tech logo" /></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="index.html#plans">All plans</a>
+      <a href="https://portal.3dvr.tech/" target="_blank" rel="noopener">Portal</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="eyebrow">Subscription</span>
+      <h1>Builder Plan</h1>
+      <p>
+        Step into a deeper partnership when you need more than light support or founder guidance. This plan is built
+        for heavier execution, stronger portal access, and faster movement on custom work.
+      </p>
+      <div class="price">$50 / month</div>
+      <p class="hero-note">Managed through the portal billing center so upgrades and downgrades switch the existing plan instead of stacking a second one.</p>
+      <div class="actions">
+        <a class="cta primary" href="https://portal.3dvr.tech/billing/?plan=builder" target="_blank" rel="noopener">✅ Choose Builder</a>
+        <a class="cta secondary" href="index.html#plans">Back to all plans</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>What’s included</h2>
+      <p>The Builder Plan is for clients and collaborators who want a more active lane across design, development, product decisions, and internal portal tooling.</p>
+      <ul>
+        <li>Everything in the Founder Plan plus a stronger execution lane.</li>
+        <li>Higher shared limits across premium portal tools and builder workflows.</li>
+        <li>Priority response for roadmap coordination, experiments, and implementation batches.</li>
+        <li>Better fit for recurring custom work that would feel cramped inside a lighter monthly plan.</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>Where the extra depth goes</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Execution capacity</h3>
+          <p>More room for actual implementation, not just guidance and quick fixes.</p>
+        </div>
+        <div class="card">
+          <h3>Portal leverage</h3>
+          <p>Higher limits for the tools that support drafts, publishing, and collaboration across the portal.</p>
+        </div>
+        <div class="card">
+          <h3>Custom roadmap work</h3>
+          <p>Better path when your project needs ongoing product shaping or heavier delivery.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Builder Plan FAQ</h2>
+      <details>
+        <summary>Should I start here?</summary>
+        <p>If you already know you need deeper execution and a tighter collaboration loop, yes. Otherwise the Founder Plan is a cleaner place to begin and you can switch later.</p>
+      </details>
+      <details>
+        <summary>Can this still include one-time custom work?</summary>
+        <p>Yes. Monthly collaboration and scoped one-time projects can coexist. When something should be handled as a separate deposit or custom checkout, we can do that through the portal billing center too.</p>
+      </details>
+      <details>
+        <summary>What if I only need a single project?</summary>
+        <p>Use the custom one-time option from the main pricing page after we agree on the scope and amount.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 3dvr.tech — Open Source. Open Future.
+  </footer>
+  <script src="/pwa.js"></script>
+</body>
+</html>
