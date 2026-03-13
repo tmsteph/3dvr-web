@@ -1,12 +1,16 @@
 const DEFAULT_PORTAL_ORIGIN = 'https://portal.3dvr.tech';
+const PREVIEW_PORTAL_ORIGIN_BY_WEB_HOST = {
+  // These PRs currently use different branch slugs, so a simple host rename is not enough.
+  '3dvr-web-git-feature-billing-center-links-tmstephs-projects.vercel.app':
+    'https://3dvr-portal-git-feature-stripe-billing-portal-tmstephs-projects.vercel.app'
+};
 
 function trimTrailingSlash(value = '') {
   return String(value || '').trim().replace(/\/+$/, '');
 }
 
-function resolveOverrideOrigin() {
-  const params = new URLSearchParams(window.location.search);
-  const candidate = params.get('portalOrigin');
+function normalizeOrigin(value = '') {
+  const candidate = String(value || '').trim();
   if (!candidate) {
     return '';
   }
@@ -27,6 +31,49 @@ function resolveOverrideOrigin() {
   }
 }
 
+function resolveQueryOverrideOrigin() {
+  const params = new URLSearchParams(window.location.search);
+  return normalizeOrigin(params.get('portalOrigin'));
+}
+
+function resolveDocumentOrigin() {
+  const fromHtml = document.documentElement?.dataset?.portalOrigin || '';
+  if (fromHtml) {
+    return normalizeOrigin(fromHtml);
+  }
+
+  const meta = document.querySelector('meta[name="3dvr:portal-origin"]');
+  return normalizeOrigin(meta?.content || '');
+}
+
+function inferPreviewPortalOrigin(currentOrigin = window.location.origin) {
+  const normalizedCurrent = normalizeOrigin(currentOrigin);
+  if (!normalizedCurrent) {
+    return '';
+  }
+
+  try {
+    const currentUrl = new URL(normalizedCurrent);
+    const host = String(currentUrl.hostname || '').trim().toLowerCase();
+    if (!host.endsWith('.vercel.app')) {
+      return '';
+    }
+
+    return normalizeOrigin(PREVIEW_PORTAL_ORIGIN_BY_WEB_HOST[host]);
+  } catch (error) {
+    return '';
+  }
+}
+
+function resolvePortalOrigin() {
+  return (
+    resolveQueryOverrideOrigin()
+    || resolveDocumentOrigin()
+    || inferPreviewPortalOrigin()
+    || DEFAULT_PORTAL_ORIGIN
+  );
+}
+
 function setPortalLinks(portalOrigin) {
   document.querySelectorAll('[data-portal-path]').forEach(link => {
     const path = String(link.dataset.portalPath || '').trim();
@@ -38,8 +85,8 @@ function setPortalLinks(portalOrigin) {
   });
 }
 
-function preservePortalOrigin(overrideOrigin) {
-  if (!overrideOrigin) {
+function preservePortalOrigin(portalOrigin) {
+  if (normalizeOrigin(portalOrigin) === normalizeOrigin(DEFAULT_PORTAL_ORIGIN)) {
     return;
   }
 
@@ -55,7 +102,7 @@ function preservePortalOrigin(overrideOrigin) {
         return;
       }
 
-      nextUrl.searchParams.set('portalOrigin', overrideOrigin);
+      nextUrl.searchParams.set('portalOrigin', portalOrigin);
       link.href = `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`;
     } catch (error) {
       // Ignore malformed hrefs and leave the authored fallback intact.
@@ -64,10 +111,9 @@ function preservePortalOrigin(overrideOrigin) {
 }
 
 function initPortalLinks() {
-  const overrideOrigin = resolveOverrideOrigin();
-  const portalOrigin = overrideOrigin || DEFAULT_PORTAL_ORIGIN;
+  const portalOrigin = resolvePortalOrigin();
   setPortalLinks(portalOrigin);
-  preservePortalOrigin(overrideOrigin);
+  preservePortalOrigin(portalOrigin);
 }
 
 initPortalLinks();
