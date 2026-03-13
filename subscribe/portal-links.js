@@ -1,8 +1,10 @@
 const DEFAULT_PORTAL_ORIGIN = 'https://portal.3dvr.tech';
+const DEFAULT_PREVIEW_PORTAL_ORIGIN =
+  'https://3dvr-portal-git-feature-stripe-billing-portal-tmstephs-projects.vercel.app';
 const PREVIEW_PORTAL_ORIGIN_BY_WEB_HOST = {
   // These PRs currently use different branch slugs, so a simple host rename is not enough.
   '3dvr-web-git-feature-billing-center-links-tmstephs-projects.vercel.app':
-    'https://3dvr-portal-git-feature-stripe-billing-portal-tmstephs-projects.vercel.app'
+    DEFAULT_PREVIEW_PORTAL_ORIGIN
 };
 
 function trimTrailingSlash(value = '') {
@@ -59,7 +61,7 @@ function inferPreviewPortalOrigin(currentOrigin = window.location.origin) {
       return '';
     }
 
-    return normalizeOrigin(PREVIEW_PORTAL_ORIGIN_BY_WEB_HOST[host]);
+    return normalizeOrigin(PREVIEW_PORTAL_ORIGIN_BY_WEB_HOST[host] || DEFAULT_PREVIEW_PORTAL_ORIGIN);
   } catch (error) {
     return '';
   }
