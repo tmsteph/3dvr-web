@@ -72,6 +72,7 @@
     .hero h1 { font-family: Poppins, sans-serif; font-size: clamp(2.2rem, 5vw, 3.25rem); margin-bottom: 0.75rem; }
     .hero p { color: var(--muted); font-size: 1.1rem; line-height: 1.6; max-width: 720px; margin: 0 auto; }
     .hero .price { margin: 2rem auto 0; font-size: 2.6rem; font-weight: 800; }
+    .hero-note { color: var(--muted); margin-top: 0.85rem; font-size: 1rem; }
 
     .actions { margin-top: 2rem; display: flex; justify-content: center; gap: 0.9rem; flex-wrap: wrap; }
     .cta { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.6rem; border-radius: 999px; font-weight: 700; letter-spacing: 0.02em; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; box-shadow: 0 0 0 transparent; }
@@ -132,6 +133,9 @@
       <h1>Founder Plan</h1>
       <p>Launch your brand with a custom domain (included if $10/yr or less) and get more support as your project grows.</p>
       <div class="price">$20 / month</div>
+      <p class="hero-note">
+        Already subscribed? <a data-portal-path="/billing/" href="https://portal.3dvr.tech/billing/" target="_blank" rel="noopener">Open billing instead</a>.
+      </p>
       <div class="actions">
         <a class="cta primary" data-portal-path="/billing/?plan=pro" href="https://portal.3dvr.tech/billing/?plan=pro" target="_blank" rel="noopener">✅ Choose Founder</a>
         <a class="cta secondary" data-preserve-portal-origin href="index.html#plans">Back to all plans</a>

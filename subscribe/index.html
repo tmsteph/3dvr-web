@@ -69,6 +69,12 @@
     .hero { text-align: center; padding: 2.5rem 1rem 1.5rem; }
     .hero h1 { font-family: Poppins, sans-serif; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.75rem; }
     .hero p { color: var(--muted); font-size: 1.1rem; }
+    .hero-helper {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+    .hero-helper a { font-weight: 700; }
 
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
     .card { background: var(--panel); padding: 1.25rem; border-radius: 14px; transition: 0.25s; position: relative; display: flex; flex-direction: column; min-height: 100%; }
@@ -118,6 +124,9 @@
     <section class="hero">
       <h1>Choose Your 3dvr.tech Plan</h1>
       <p>Start free, support the mission at $5, grow with $20, or move into a $50 builder lane and custom scoped work.</p>
+      <p class="hero-helper">
+        Already subscribed or returning? <a data-portal-path="/billing/" href="https://portal.3dvr.tech/billing/" target="_blank" rel="noopener">Open the billing center</a>.
+      </p>
     </section>
 
     <section id="plans" class="grid">
