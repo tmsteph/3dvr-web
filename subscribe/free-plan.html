@@ -72,6 +72,7 @@
     .hero h1 { font-family: Poppins, sans-serif; font-size: clamp(2.2rem, 5vw, 3.25rem); margin-bottom: 0.75rem; }
     .hero p { color: var(--muted); font-size: 1.1rem; line-height: 1.6; max-width: 640px; margin: 0 auto; }
     .hero .price { margin: 2rem auto 0; font-size: 2.5rem; font-weight: 800; }
+    .hero-note { color: var(--muted); margin-top: 0.85rem; font-size: 1rem; }
 
     .actions { margin-top: 2rem; display: flex; justify-content: center; gap: 0.9rem; flex-wrap: wrap; }
     .cta { display: inline-flex; align-items: center; justify-content: center; padding: 0.7rem 1.4rem; border-radius: 999px; font-weight: 700; letter-spacing: 0.02em; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; box-shadow: 0 0 0 transparent; }
@@ -115,8 +116,8 @@
     <a href="../index.html"><img src="../3DVR.png" alt="3dvr.tech logo" /></a>
     <nav>
       <a href="../index.html">Home</a>
-      <a href="index.html#plans">All plans</a>
-      <a href="https://portal.3dvr.tech/" target="_blank" rel="noopener">Portal</a>
+      <a data-preserve-portal-origin href="index.html#plans">All plans</a>
+      <a data-portal-path="/" href="https://portal.3dvr.tech/" target="_blank" rel="noopener">Portal</a>
     </nav>
   </header>
 
@@ -126,9 +127,12 @@
       <h1>Free Plan</h1>
       <p>Discover your vision and get started with a free landing page on a 3dvr.tech subdomain.</p>
       <div class="price">$0 / month</div>
+      <p class="hero-note">
+        Already subscribed to a paid plan? <a data-portal-path="/billing/" href="https://portal.3dvr.tech/billing/" target="_blank" rel="noopener">Open billing instead</a>.
+      </p>
       <div class="actions">
-        <a class="cta primary" href="https://portal.3dvr.tech/free-trial.html" target="_blank" rel="noopener">✅ Start Free</a>
-        <a class="cta secondary" href="index.html#plans">Back to all plans</a>
+        <a class="cta primary" data-portal-path="/free-trial.html" href="https://portal.3dvr.tech/free-trial.html" target="_blank" rel="noopener">✅ Start Free</a>
+        <a class="cta secondary" data-preserve-portal-origin href="index.html#plans">Back to all plans</a>
       </div>
     </section>
 
@@ -196,5 +200,6 @@
     © 2025 3dvr.tech — Open Source. Open Future.
   </footer>
   <script src="/pwa.js"></script>
+  <script src="./portal-links.js"></script>
 </body>
 </html>

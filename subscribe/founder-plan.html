@@ -72,6 +72,7 @@
     .hero h1 { font-family: Poppins, sans-serif; font-size: clamp(2.2rem, 5vw, 3.25rem); margin-bottom: 0.75rem; }
     .hero p { color: var(--muted); font-size: 1.1rem; line-height: 1.6; max-width: 720px; margin: 0 auto; }
     .hero .price { margin: 2rem auto 0; font-size: 2.6rem; font-weight: 800; }
+    .hero-note { color: var(--muted); margin-top: 0.85rem; font-size: 1rem; }
 
     .actions { margin-top: 2rem; display: flex; justify-content: center; gap: 0.9rem; flex-wrap: wrap; }
     .cta { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.6rem; border-radius: 999px; font-weight: 700; letter-spacing: 0.02em; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; box-shadow: 0 0 0 transparent; }
@@ -121,8 +122,8 @@
     <a href="../index.html"><img src="../3DVR.png" alt="3dvr.tech logo" /></a>
     <nav>
       <a href="../index.html">Home</a>
-      <a href="index.html#plans">All plans</a>
-      <a href="https://portal.3dvr.tech/" target="_blank" rel="noopener">Portal</a>
+      <a data-preserve-portal-origin href="index.html#plans">All plans</a>
+      <a data-portal-path="/" href="https://portal.3dvr.tech/" target="_blank" rel="noopener">Portal</a>
     </nav>
   </header>
 
@@ -132,9 +133,12 @@
       <h1>Founder Plan</h1>
       <p>Launch your brand with a custom domain (included if $10/yr or less) and get more support as your project grows.</p>
       <div class="price">$20 / month</div>
+      <p class="hero-note">
+        Already subscribed? <a data-portal-path="/billing/" href="https://portal.3dvr.tech/billing/" target="_blank" rel="noopener">Open billing instead</a>.
+      </p>
       <div class="actions">
-        <a class="cta primary" href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank" rel="noopener">✅ Become a Founder</a>
-        <a class="cta secondary" href="index.html#plans">Back to all plans</a>
+        <a class="cta primary" data-portal-path="/billing/?plan=pro" href="https://portal.3dvr.tech/billing/?plan=pro" target="_blank" rel="noopener">✅ Choose Founder</a>
+        <a class="cta secondary" data-preserve-portal-origin href="index.html#plans">Back to all plans</a>
       </div>
     </section>
 
@@ -201,7 +205,7 @@
       </details>
       <details>
         <summary>Is there a contract?</summary>
-        <p>No long-term commitment. You’re billed monthly through Stripe and can cancel whenever you like.</p>
+        <p>No long-term commitment. You’re billed monthly through Stripe, and the portal billing center is now the main path for switching or canceling plans.</p>
       </details>
       <details>
         <summary>What if I need more than a month?</summary>
@@ -218,5 +222,6 @@
     © 2025 3dvr.tech — Open Source. Open Future.
   </footer>
   <script src="/pwa.js"></script>
+  <script src="./portal-links.js"></script>
 </body>
 </html>

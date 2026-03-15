@@ -116,8 +116,8 @@
     <a href="../index.html"><img src="../3DVR.png" alt="3dvr.tech logo" /></a>
     <nav>
       <a href="../index.html">Home</a>
-      <a href="index.html#plans">All plans</a>
-      <a href="https://portal.3dvr.tech/" target="_blank" rel="noopener">Portal</a>
+      <a data-preserve-portal-origin href="index.html#plans">All plans</a>
+      <a data-portal-path="/" href="https://portal.3dvr.tech/" target="_blank" rel="noopener">Portal</a>
     </nav>
   </header>
 
@@ -127,10 +127,13 @@
       <h1>Family &amp; Friends</h1>
       <p>Keep your free 3dvr.tech site and enjoy light monthly support for small updates and experiments. Try it free for 30 days.</p>
       <div class="price">$5 / month</div>
-      <p class="hero-note">30-day free trial. Cancel anytime from your Stripe receipt/email.</p>
+      <p class="hero-note">Managed through the portal billing center so you can move up later without stacking a second monthly subscription.</p>
+      <p class="hero-note">
+        Already subscribed? <a data-portal-path="/billing/" href="https://portal.3dvr.tech/billing/" target="_blank" rel="noopener">Open billing instead</a>.
+      </p>
       <div class="actions">
-        <a class="cta primary" href="https://buy.stripe.com/28EcN599Q2dJbFdh2Qc7u07" target="_blank" rel="noopener">✅ Start Free Trial</a>
-        <a class="cta secondary" href="index.html#plans">Back to all plans</a>
+        <a class="cta primary" data-portal-path="/billing/?plan=starter" href="https://portal.3dvr.tech/billing/?plan=starter" target="_blank" rel="noopener">✅ Choose $5</a>
+        <a class="cta secondary" data-preserve-portal-origin href="index.html#plans">Back to all plans</a>
       </div>
     </section>
 
@@ -179,7 +182,7 @@
       <h2>Family &amp; Friends FAQ</h2>
       <details>
         <summary>Can I pause or cancel?</summary>
-        <p>Yes. You can cancel anytime via the Stripe receipt email you receive after checkout. You’re welcome back whenever you’re ready.</p>
+        <p>Yes. The portal billing center is the main path for plan changes now, and Stripe receipts still work as a fallback if you need them.</p>
       </details>
       <details>
         <summary>Do I keep my Free Plan benefits?</summary>
@@ -191,7 +194,7 @@
       </details>
       <details>
         <summary>Need an invoice?</summary>
-        <p>No problem. Stripe automatically emails a receipt, and you can generate invoices through the customer portal linked in that email.</p>
+        <p>No problem. Stripe still emails a receipt, and billing stays attached to the same customer record so invoices and future upgrades stay in one place.</p>
       </details>
     </section>
   </main>
@@ -200,5 +203,6 @@
     © 2025 3dvr.tech — Open Source. Open Future.
   </footer>
   <script src="/pwa.js"></script>
+  <script src="./portal-links.js"></script>
 </body>
 </html>

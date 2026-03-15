@@ -8,7 +8,7 @@
   <meta name="color-scheme" content="dark light" />
   <meta
     name="description"
-    content="Find the right 3dvr.tech membership for ongoing collaboration, including launch support, design retainers, and family plans."
+    content="Find the right 3dvr.tech plan for ongoing collaboration, from free access to $5, $20, $50, and custom one-time work."
   />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://3dvr.tech/subscribe/" />
@@ -20,7 +20,7 @@
   <meta property="og:title" content="3dvr.tech Memberships" />
   <meta
     property="og:description"
-    content="Compare 3dvr.tech membership tiers for website launches, growth support, and community access."
+    content="Compare 3dvr.tech plans for website launches, growth support, deeper builder partnership, and custom project work."
   />
   <meta property="og:url" content="https://3dvr.tech/subscribe/" />
   <meta property="og:image" content="https://3dvr.tech/3DVR.png" />
@@ -29,7 +29,7 @@
   <meta name="twitter:title" content="3dvr.tech Memberships" />
   <meta
     name="twitter:description"
-    content="Compare 3dvr.tech membership tiers for website launches, growth support, and community access."
+    content="Compare 3dvr.tech plans for website launches, growth support, deeper builder partnership, and custom project work."
   />
   <meta name="twitter:image" content="https://3dvr.tech/3DVR.png" />
   <script type="application/ld+json">
@@ -69,6 +69,12 @@
     .hero { text-align: center; padding: 2.5rem 1rem 1.5rem; }
     .hero h1 { font-family: Poppins, sans-serif; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.75rem; }
     .hero p { color: var(--muted); font-size: 1.1rem; }
+    .hero-helper {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+    .hero-helper a { font-weight: 700; }
 
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
     .card { background: var(--panel); padding: 1.25rem; border-radius: 14px; transition: 0.25s; position: relative; display: flex; flex-direction: column; min-height: 100%; }
@@ -110,14 +116,17 @@
       <a href="../index.html">Home</a>
       <a href="#plans">Plans</a>
       <a href="#faq">FAQ</a>
-      <a href="https://portal.3dvr.tech/" target="_blank" rel="noopener">Portal</a>
+      <a data-portal-path="/" href="https://portal.3dvr.tech/" target="_blank" rel="noopener">Portal</a>
     </nav>
   </header>
 
   <main>
     <section class="hero">
       <h1>Choose Your 3dvr.tech Plan</h1>
-      <p>Start free, support the mission, or go all-in with full-service help. Upgrade or cancel anytime.</p>
+      <p>Start free, support the mission at $5, grow with $20, or move into a $50 builder lane and custom scoped work.</p>
+      <p class="hero-helper">
+        Already subscribed or returning? <a data-portal-path="/billing/" href="https://portal.3dvr.tech/billing/" target="_blank" rel="noopener">Open the billing center</a>.
+      </p>
     </section>
 
     <section id="plans" class="grid">
@@ -133,8 +142,8 @@
           <li>Open-source repos and experiments</li>
         </ul>
         <div class="actions">
-          <a class="cta primary" href="https://portal.3dvr.tech/free-trial.html" target="_blank" rel="noopener">✅ Start Free</a>
-          <a class="cta secondary" href="/subscribe/free-plan.html">Plan details</a>
+          <a class="cta primary" data-portal-path="/free-trial.html" href="https://portal.3dvr.tech/free-trial.html" target="_blank" rel="noopener">✅ Start Free</a>
+          <a class="cta secondary" data-preserve-portal-origin href="/subscribe/free-plan.html">Plan details</a>
         </div>
         <div class="notice">No credit card required.</div>
       </article>
@@ -151,10 +160,10 @@
           <li>Helps fund open development</li>
         </ul>
         <div class="actions">
-          <a class="cta primary" href="https://buy.stripe.com/28EcN599Q2dJbFdh2Qc7u07" target="_blank" rel="noopener">✅ Start Free Trial</a>
-          <a class="cta secondary" href="/subscribe/family-friends.html">Plan details</a>
+          <a class="cta primary" data-portal-path="/billing/?plan=starter" href="https://portal.3dvr.tech/billing/?plan=starter" target="_blank" rel="noopener">✅ Choose $5</a>
+          <a class="cta secondary" data-preserve-portal-origin href="/subscribe/family-friends.html">Plan details</a>
         </div>
-        <div class="notice">30-day free trial. Cancel anytime from your Stripe receipt/email.</div>
+        <div class="notice">Managed through the portal billing center so future upgrades switch plans instead of stacking a second subscription.</div>
       </article>
 
       <!-- PRO -->
@@ -170,10 +179,46 @@
           <li>Access to the Builder Community</li>
         </ul>
         <div class="actions">
-          <a class="cta primary" href="https://buy.stripe.com/9AQ7uvfne7FZb1SaEE" target="_blank" rel="noopener">✅ Become a Founder</a>
-          <a class="cta secondary" href="/subscribe/founder-plan.html">Plan details</a>
+          <a class="cta primary" data-portal-path="/billing/?plan=pro" href="https://portal.3dvr.tech/billing/?plan=pro" target="_blank" rel="noopener">✅ Choose $20</a>
+          <a class="cta secondary" data-preserve-portal-origin href="/subscribe/founder-plan.html">Plan details</a>
         </div>
         <div class="notice">We’ll reach out after signup to get you moving fast.</div>
+      </article>
+
+      <!-- BUILDER -->
+      <article id="builder" class="card">
+        <h2>Builder Plan</h2>
+        <p class="tagline">For deeper partnership, heavier execution, and a faster lane for roadmap work across the portal and client projects.</p>
+        <div class="price">$50 / month</div>
+        <ul>
+          <li>Everything in the Founder Plan</li>
+          <li>Higher usage limits across premium portal tools</li>
+          <li>Priority planning and implementation support</li>
+          <li>Faster access for heavier design and product work</li>
+        </ul>
+        <div class="actions">
+          <a class="cta primary" data-portal-path="/billing/?plan=builder" href="https://portal.3dvr.tech/billing/?plan=builder" target="_blank" rel="noopener">✅ Choose $50</a>
+          <a class="cta secondary" data-preserve-portal-origin href="/subscribe/builder-plan.html">Plan details</a>
+        </div>
+        <div class="notice">Best fit when you want an ongoing builder relationship instead of occasional fixes.</div>
+      </article>
+
+      <!-- CUSTOM -->
+      <article id="custom" class="card">
+        <h2>Custom One-Time</h2>
+        <p class="tagline">When the work is scoped upfront, we can use a one-time Stripe checkout or project deposit instead of a recurring plan.</p>
+        <div class="price">Quoted</div>
+        <ul>
+          <li>Custom sprints and project deposits</li>
+          <li>Portal-linked billing without a recurring subscription</li>
+          <li>Good for launches, migrations, and concentrated build phases</li>
+          <li>Scoped before payment so the amount stays clear</li>
+        </ul>
+        <div class="actions">
+          <a class="cta primary" data-portal-path="/billing/?plan=custom" href="https://portal.3dvr.tech/billing/?plan=custom" target="_blank" rel="noopener">💳 Open custom checkout</a>
+          <a class="cta secondary" data-preserve-portal-origin href="/launch-your-site.html">Talk through scope</a>
+        </div>
+        <div class="notice">Use this after we agree on the amount and deliverables.</div>
       </article>
     </section>
 
@@ -182,7 +227,7 @@
 
       <details>
         <summary>Can I change plans later?</summary>
-        <p class="answer">Yes—upgrade, downgrade, or cancel anytime. Your Stripe receipt/email includes a self-serve portal.</p>
+        <p class="answer">Yes. Paid plans now route through the portal billing center, so switching plans updates the existing subscription instead of starting a second monthly one.</p>
       </details>
 
       <details>
@@ -192,12 +237,12 @@
 
       <details>
         <summary>Do you build custom projects?</summary>
-        <p class="answer">Yep. The $20/month plan gets you rolling. If you need heavy lifting, we’ll propose a scoped add-on with clear timelines.</p>
+        <p class="answer">Yes. The $20 and $50 plans cover recurring collaboration, and we can also use a custom one-time checkout or deposit once the scope and amount are agreed.</p>
       </details>
 
       <details>
         <summary>Where can I see examples?</summary>
-        <p class="answer">Check our <a href="../index.html#testimonials">testimonials</a> and the <a href="https://portal.3dvr.tech/" target="_blank" rel="noopener">portal</a> for in-progress experiments.</p>
+        <p class="answer">Check our <a href="../index.html#testimonials">testimonials</a> and the <a data-portal-path="/" href="https://portal.3dvr.tech/" target="_blank" rel="noopener">portal</a> for in-progress experiments.</p>
       </details>
     </section>
   </main>
@@ -206,5 +251,6 @@
     © 2025 3dvr.tech — Open Source. Open Future.
   </footer>
   <script src="/pwa.js"></script>
+  <script src="./portal-links.js"></script>
 </body>
 </html>
