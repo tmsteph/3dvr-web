@@ -33,7 +33,7 @@ Keep `3dvr-web` and `3dvr-portal` on the same branch matrix so subscription link
 
 1. `?portalOrigin=https://...`
 2. `data-portal-origin` on `<html>` or `meta[name="3dvr:portal-origin"]`
-3. `PREVIEW_PORTAL_ORIGIN_BY_WEB_HOST` for known web-preview to portal-preview pairings
+3. Known host pairings in `subscribe/portal-links.js` for staging domains and preview-to-preview mappings
 4. Production fallback: `https://portal.3dvr.tech`
 
 Operational rules:

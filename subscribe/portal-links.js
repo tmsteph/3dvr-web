@@ -1,7 +1,12 @@
 const DEFAULT_PORTAL_ORIGIN = 'https://portal.3dvr.tech';
+const DEFAULT_STAGING_PORTAL_ORIGIN = 'https://portal-staging.3dvr.tech';
 const DEFAULT_PREVIEW_PORTAL_ORIGIN =
   'https://3dvr-portal-git-feature-stripe-billing-portal-tmstephs-projects.vercel.app';
-const PREVIEW_PORTAL_ORIGIN_BY_WEB_HOST = {
+const DEFAULT_STAGING_PREVIEW_PORTAL_ORIGIN =
+  'https://3dvr-portal-git-staging-tmstephs-projects.vercel.app';
+const PORTAL_ORIGIN_BY_WEB_HOST = {
+  'staging.3dvr.tech': DEFAULT_STAGING_PORTAL_ORIGIN,
+  '3dvr-web-git-staging-tmstephs-projects.vercel.app': DEFAULT_STAGING_PREVIEW_PORTAL_ORIGIN,
   // These PRs currently use different branch slugs, so a simple host rename is not enough.
   '3dvr-web-git-feature-billing-center-links-tmstephs-projects.vercel.app':
     DEFAULT_PREVIEW_PORTAL_ORIGIN
@@ -48,7 +53,7 @@ function resolveDocumentOrigin() {
   return normalizeOrigin(meta?.content || '');
 }
 
-function inferPreviewPortalOrigin(currentOrigin = window.location.origin) {
+function inferPortalOrigin(currentOrigin = window.location.origin) {
   const normalizedCurrent = normalizeOrigin(currentOrigin);
   if (!normalizedCurrent) {
     return '';
@@ -57,11 +62,16 @@ function inferPreviewPortalOrigin(currentOrigin = window.location.origin) {
   try {
     const currentUrl = new URL(normalizedCurrent);
     const host = String(currentUrl.hostname || '').trim().toLowerCase();
+    const mappedOrigin = normalizeOrigin(PORTAL_ORIGIN_BY_WEB_HOST[host] || '');
+    if (mappedOrigin) {
+      return mappedOrigin;
+    }
+
     if (!host.endsWith('.vercel.app')) {
       return '';
     }
 
-    return normalizeOrigin(PREVIEW_PORTAL_ORIGIN_BY_WEB_HOST[host] || DEFAULT_PREVIEW_PORTAL_ORIGIN);
+    return normalizeOrigin(DEFAULT_PREVIEW_PORTAL_ORIGIN);
   } catch (error) {
     return '';
   }
@@ -71,7 +81,7 @@ function resolvePortalOrigin() {
   return (
     resolveQueryOverrideOrigin()
     || resolveDocumentOrigin()
-    || inferPreviewPortalOrigin()
+    || inferPortalOrigin()
     || DEFAULT_PORTAL_ORIGIN
   );
 }
