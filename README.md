@@ -26,6 +26,8 @@ Keep `3dvr-web` and `3dvr-portal` on the same branch matrix so subscription link
 - Use PR previews for test-mode signup, checkout, and plan-switch QA.
 - Use `staging` to verify real existing subscribers before merging to production.
 - Do not treat a Stripe test preview as evidence about live subscribers. Test mode cannot see live customers.
+- After each new `staging` deploy, run `npm run vercel:alias-staging` from `3dvr-portal` so `https://staging.3dvr.tech` and `https://portal-staging.3dvr.tech` stay attached to the current staging previews.
+- A healthy protected staging domain returns `401` from Vercel auth. `404 DEPLOYMENT_NOT_FOUND` means the staging alias is broken.
 
 ## Portal Billing Link Rules
 
