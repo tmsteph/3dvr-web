@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3DVR Focus</title>
+  <meta
+    name="description"
+    content="A simple focus page for 3DVR: sell first, build second, keep it simple."
+  >
+  <style>
+    :root {
+      --bg-1: #061018;
+      --bg-2: #0d1b2d;
+      --line: rgba(0, 255, 204, 0.24);
+      --text: #dffef8;
+      --accent: #00ffcc;
+      --muted: #8bb8b2;
+      --panel: rgba(4, 16, 25, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at top, rgba(0, 255, 204, 0.12), transparent 35%),
+        linear-gradient(160deg, var(--bg-1), var(--bg-2));
+      color: var(--text);
+      font-family: "IBM Plex Mono", "Fira Code", monospace;
+      text-align: center;
+    }
+
+    main {
+      width: min(100%, 820px);
+      padding: 40px 28px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 7vw, 5rem);
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .subcopy {
+      max-width: 42rem;
+      margin: 28px auto 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.3vw, 1.2rem);
+      line-height: 1.7;
+    }
+
+    .rules {
+      margin: 32px auto 0;
+      padding: 18px 20px;
+      max-width: 36rem;
+      border: 1px solid rgba(0, 255, 204, 0.18);
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.15);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .rules strong {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">3DVR Focus</p>
+    <h1>
+      Sell First.<br>
+      Build Second.<br>
+      Keep It Simple.
+    </h1>
+    <p class="subcopy">
+      3DVR wins by helping real people build presence, income, and community. The shortest path there is one clear
+      offer, one paying customer, and one clean delivery loop at a time.
+    </p>
+    <p class="rules">
+      <strong>Decision filter:</strong><br>
+      Does this help get a paying customer today?<br>
+      Does this help deliver for a paying customer today?
+    </p>
+  </main>
+</body>
+</html>

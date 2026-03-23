@@ -3,6 +3,17 @@
 ## Mission
 Keep the marketing site and billing entry points aligned with the portal environment they are supposed to target. Subscription links must be predictable across production, staging, and previews.
 
+## Focus Rule
+- Default to the shortest path that helps win or serve a paying customer.
+- Keep this operating rule visible in planning and reviews: `Sell first. Build second. Keep it simple.`
+- Avoid speculative feature work unless it directly supports an active offer, customer delivery, or billing flow.
+
+## Git Workflow
+- Do not work directly on `main` for substantive changes. Create a branch first.
+- Open a pull request for changes that should be kept, reviewed, or deployed. Treat the PR as the project memory for why the change exists.
+- Use concise PR descriptions that state the user-facing goal, the environment impact, and any billing or portal-link risks.
+- Keep branches and PRs scoped narrowly so they are easy to review and revert if needed.
+
 ## Deployment Topology
 - Keep `3dvr-web` and `3dvr-portal` on the same branch matrix:
   - `main` -> `https://3dvr.tech` and `https://portal.3dvr.tech`
