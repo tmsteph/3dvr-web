@@ -332,6 +332,13 @@
       gap: 1rem;
       justify-content: center;
     }
+    .hero-note {
+      font-size: 0.98rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.72);
+      max-width: 620px;
+      margin-top: -0.25rem;
+    }
     .hero-button {
       display: inline-flex;
       align-items: center;
@@ -959,6 +966,7 @@
   </style>
 
   <script defer src="/_vercel/insights/script.js"></script>
+  <script defer src="/experiments/homepage-ab.js"></script>
 </head>
 <body id="top">
   <header>
@@ -1007,13 +1015,13 @@
       </div>
       <div class="hero-content">
         <h1 class="hero-headline">
-          <span class="hero-headline-primary">Build the future.</span>
+          <span class="hero-headline-primary" data-homepage-copy="headline">Build the future.</span>
           <span class="hero-headline-divider" aria-hidden="true"></span>
           <span class="hero-headline-secondary">3dvr.tech</span>
         </h1>
-        <p>
-          3dvr.tech is a collaborative lab shaping respectful tools that return ownership,
-          honor the planet, and help creators grow together.
+        <p data-homepage-copy="body">
+          3dvr.tech is a collaborative lab shaping respectful tools that return ownership, honor the planet,
+          and help creators grow together.
         </p>
         <div class="hero-buttons">
           <a class="hero-button hero-button--primary" href="#vision">
@@ -1024,6 +1032,9 @@
             View membership plans
           </a>
         </div>
+        <p class="hero-note" data-homepage-copy="note">
+          Build your presence, your income, and your community without giving up what makes the work human.
+        </p>
         <ul class="hero-vision-highlights" aria-label="Highlights from our vision">
           <li>
             <span class="hero-vision-title">Own What You Build</span>

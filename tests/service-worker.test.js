@@ -3,8 +3,11 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 import vm from 'node:vm';
+import { fileURLToPath } from 'node:url';
 
-const serviceWorkerPath = '/data/data/com.termux/files/home/3dvr-web-billing-center/service-worker.js';
+const testDir = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.resolve(testDir, '..');
+const serviceWorkerPath = path.join(repoRoot, 'service-worker.js');
 
 async function loadServiceWorker({
   cacheMatch,

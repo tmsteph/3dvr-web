@@ -40,6 +40,30 @@ Get the first 1 to 5 paying customers for a simple website offer before expandin
 4. Delivery workflow
 5. Testimonials and examples
 
+## Experimentation Track
+
+Keep experiments small, measurable, and tied to business outcomes.
+
+1. Test homepage headline and supporting offer copy.
+2. Test CTA wording on the main homepage and subscribe page.
+3. Test one pricing presentation at a time, not the whole business model at once.
+4. Keep one control and one variant until traffic justifies more complexity.
+
+## Testing Stack
+
+- `Vercel`: host preview deployments and route experiment variants safely
+- `GitHub`: keep each experiment on a branch with a PR and clear notes
+- `Playwright`: catch UI regressions and snapshot important flows before rollout
+- `Analytics / experiment provider`: measure conversion, clicks, and sign-up behavior
+
+## Next Step
+
+Start with one homepage A/B test:
+
+- Control: practical 3dvr positioning
+- Variant: soul-trip framing with grounded practical subcopy
+- Metric: clicks to `Subscribe` and clicks to `Launch Your Site`
+
 ## Do Not Do Yet
 
 - large platform rebuilds
