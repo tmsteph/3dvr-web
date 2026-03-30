@@ -7,7 +7,7 @@ test('free plan copy points to Life inside the portal', async () => {
   const plansHtml = await readFile(new URL('../subscribe/index.html', import.meta.url), 'utf8');
   const freeHtml = await readFile(new URL('../subscribe/free-plan.html', import.meta.url), 'utf8');
 
-  assert.match(homeHtml, /Feel lost or stuck\? Start with Life inside the portal and get one clear next step\./);
+  assert.match(homeHtml, /Start with Life for a daily check-in, weekly reflection, and one clear next action\./);
   assert.match(plansHtml, /Find your passions, organize your life, and start with Life inside the portal\./);
   assert.match(plansHtml, /Life starter for daily check-ins and weekly reflection/);
   assert.match(plansHtml, /Start free with Life/);
