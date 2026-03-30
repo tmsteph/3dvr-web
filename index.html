@@ -332,6 +332,49 @@
       gap: 1rem;
       justify-content: center;
     }
+    .hero-plan-dock {
+      display: grid;
+      gap: 0.85rem;
+      width: min(100%, 760px);
+    }
+    .hero-plan-dock__label {
+      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+    }
+    .hero-plan-dock__grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.8rem;
+      width: 100%;
+    }
+    .hero-plan-chip {
+      display: grid;
+      gap: 0.3rem;
+      padding: 0.95rem 1rem;
+      border-radius: 18px;
+      text-decoration: none;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: var(--text-light);
+      text-align: left;
+      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+    }
+    .hero-plan-chip:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(0,255,200,0.35);
+    }
+    .hero-plan-chip strong {
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .hero-plan-chip span {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.78);
+    }
     .hero-button {
       display: inline-flex;
       align-items: center;
@@ -457,6 +500,7 @@
       .hero-intro { text-align: center; margin-bottom: 0; align-self: center; }
       .hero-content { text-align: center; align-items: center; margin-top: 0; }
       .hero p { max-width: none; }
+      .hero-plan-dock__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .hero-vision-highlights { text-align: left; }
       .hero-logo-card {
         width: min(92vw, 420px);
@@ -1023,11 +1067,32 @@
             <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
           </a>
           <a class="hero-button hero-button--ghost" href="#subscribe">
-            View membership plans
+            Explore paid plans
           </a>
           <a class="hero-button hero-button--ghost" href="launch-your-site.html">
             Talk through scope
           </a>
+        </div>
+        <div class="hero-plan-dock" aria-label="Quick plan links">
+          <span class="hero-plan-dock__label">Quick plan links</span>
+          <div class="hero-plan-dock__grid">
+            <a class="hero-plan-chip" href="subscribe/free-plan.html">
+              <strong>Free</strong>
+              <span>Life starter</span>
+            </a>
+            <a class="hero-plan-chip" href="subscribe/family-friends.html">
+              <strong>$5</strong>
+              <span>Family &amp; Friends</span>
+            </a>
+            <a class="hero-plan-chip" href="subscribe/founder-plan.html">
+              <strong>$20</strong>
+              <span>Founder</span>
+            </a>
+            <a class="hero-plan-chip" href="subscribe/builder-plan.html">
+              <strong>$50</strong>
+              <span>Builder</span>
+            </a>
+          </div>
         </div>
         <ul class="hero-vision-highlights" aria-label="Highlights from our vision">
           <li>
