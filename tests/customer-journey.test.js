@@ -7,14 +7,14 @@ describe('3dvr-web customer journey copy', () => {
     const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
     assert.match(html, /Choose your path/);
     assert.match(html, /Pick a plan on 3dvr\.tech, create your portal account once, and continue inside portal\.3dvr\.tech\./);
-    assert.match(html, /Start free, find what matters to you, and organize your life with one portal account\./);
+    assert.match(html, /Find your passions, organize your life, and start with the Life starter inside the portal\./);
   });
 
   it('makes the main plans page explicit about continuing in the portal', async () => {
     const html = await readFile(new URL('../subscribe/index.html', import.meta.url), 'utf8');
-    assert.match(html, /create one portal account/);
-    assert.match(html, /Use the same portal account for free access, upgrades, invoices, and support\./);
-    assert.match(html, /Find your passions, organize your life, and start with a free portal-backed space\./);
+    assert.match(html, /Start free with Life, support the mission at \$5, grow with \$20, or move into a \$50 builder lane and custom scoped work\./);
+    assert.match(html, /Find your passions, organize your life, and start with Life inside the portal\./);
+    assert.match(html, /Life starter for daily check-ins and weekly reflection/);
     assert.match(html, /No credit card required\. Create one portal account and start organizing what matters\./);
     assert.match(html, /Start Free in Portal/);
     assert.match(html, /Continue to Portal for \$5/);
@@ -25,10 +25,11 @@ describe('3dvr-web customer journey copy', () => {
 
   it('keeps the free plan detail page aligned with the portal onboarding flow', async () => {
     const html = await readFile(new URL('../subscribe/free-plan.html', import.meta.url), 'utf8');
-    assert.match(html, /Choose Free on 3dvr\.tech, create your portal account once, and use it to find your passions and organize your life inside portal\.3dvr\.tech\./);
-    assert.match(html, /Start Free in Portal/);
-    assert.match(html, /find your passions, organize your life/);
-    assert.match(html, /Organize your life/);
+    assert.match(html, /Find your passions, organize your life, and open Life inside the portal\./);
+    assert.match(html, /The free plan starts with Life, the app for daily check-ins and weekly reflection\./);
+    assert.match(html, /Start Free/);
+    assert.match(html, /Open Life/);
+    assert.match(html, /Clone a template, open Life, and personalize the way you track and organize your day\./);
   });
 
   it('keeps paid plan detail pages explicit about the portal billing handoff', async () => {
