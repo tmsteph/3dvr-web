@@ -9,9 +9,14 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Start with one clear step\./);
     assert.match(html, /3dvr\.tech helps you do three concrete things: check in daily, find a small group,/);
     assert.match(html, /Start Here/);
+    assert.match(html, /Quick plan links/);
+    assert.match(html, /\$5/);
+    assert.match(html, /\$20/);
+    assert.match(html, /\$50/);
     assert.match(html, /Pick a clear starting point/);
     assert.match(html, /Choose one of three lanes: a daily check-in, a small support group, or direct help launching a project or offer\./);
     assert.match(html, /Start with Life for a daily check-in, weekly reflection, and one clear next action\./);
+    assert.match(html, /Explore paid plans/);
     assert.match(html, /Talk through scope/);
   });
 
