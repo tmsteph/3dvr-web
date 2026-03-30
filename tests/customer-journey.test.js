@@ -8,6 +8,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Choose your path/);
     assert.match(html, /Pick a plan on 3dvr\.tech, create your portal account once, and continue inside portal\.3dvr\.tech\./);
     assert.match(html, /Find your passions, organize your life, and start with the Life starter inside the portal\./);
+    assert.match(html, /Talk through scope/);
   });
 
   it('makes the main plans page explicit about continuing in the portal', async () => {
@@ -39,5 +40,12 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(starterHtml, /Continue to Portal for \$5/);
     assert.match(founderHtml, /Continue to Portal for Founder/);
     assert.match(builderHtml, /Continue to Portal for Builder/);
+  });
+
+  it('keeps the campaign page exposed for higher-intent buyers', async () => {
+    const html = await readFile(new URL('../launch-your-site.html', import.meta.url), 'utf8');
+    assert.match(html, /Launch your site without hiring a full agency\./);
+    assert.match(html, /Talk through scope/);
+    assert.match(html, /mailto:hello@3dvr\.tech\?subject=3DVR%20Website%20Scope/);
   });
 });
