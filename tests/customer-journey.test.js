@@ -3,11 +3,15 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
 describe('3dvr-web customer journey copy', () => {
-  it('keeps the homepage subscribe section tied to the portal handoff', async () => {
+  it('keeps the homepage focused on direction, community, and the portal start path', async () => {
     const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-    assert.match(html, /Choose your path/);
-    assert.match(html, /Pick a plan on 3dvr\.tech, create your portal account once, and continue inside portal\.3dvr\.tech\./);
-    assert.match(html, /Find your passions, organize your life, and start with the Life starter inside the portal\./);
+    assert.match(html, /Find your direction\./);
+    assert.match(html, /Start your thing\./);
+    assert.match(html, /3dvr\.tech helps people who feel stuck get clear, get organized, and move with\s+other people/);
+    assert.match(html, /Start Here/);
+    assert.match(html, /Find your path/);
+    assert.match(html, /Start free with Life, join community when you want accountability, and move into paid support when you need help building what comes next\./);
+    assert.match(html, /Feel lost or stuck\? Start with Life inside the portal and get one clear next step\./);
     assert.match(html, /Talk through scope/);
   });
 
