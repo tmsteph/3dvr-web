@@ -375,6 +375,50 @@
       font-size: 0.82rem;
       color: rgba(255,255,255,0.78);
     }
+    .hero-buyer-dock {
+      display: grid;
+      gap: 0.85rem;
+      width: min(100%, 760px);
+    }
+    .hero-buyer-dock__label {
+      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+    }
+    .hero-buyer-dock__grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+      width: 100%;
+    }
+    .hero-buyer-chip {
+      display: grid;
+      gap: 0.35rem;
+      padding: 1rem 1rem 0.95rem;
+      border-radius: 18px;
+      text-decoration: none;
+      background: rgba(0,0,0,0.28);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text-light);
+      text-align: left;
+      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+    }
+    .hero-buyer-chip:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(0,255,200,0.35);
+    }
+    .hero-buyer-chip strong {
+      font-size: 0.96rem;
+      color: var(--text-light);
+    }
+    .hero-buyer-chip span {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.45;
+    }
     .hero-button {
       display: inline-flex;
       align-items: center;
@@ -501,6 +545,7 @@
       .hero-content { text-align: center; align-items: center; margin-top: 0; }
       .hero p { max-width: none; }
       .hero-plan-dock__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero-buyer-dock__grid { grid-template-columns: 1fr; }
       .hero-vision-highlights { text-align: left; }
       .hero-logo-card {
         width: min(92vw, 420px);
@@ -1090,6 +1135,23 @@
             <a class="hero-plan-chip" href="subscribe/builder-plan.html">
               <strong>$50</strong>
               <span>Builder</span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-buyer-dock" aria-label="Buyer segments">
+          <span class="hero-buyer-dock__label">For paying buyers</span>
+          <div class="hero-buyer-dock__grid">
+            <a class="hero-buyer-chip" href="subscribe/professional-services.html">
+              <strong>Professional services</strong>
+              <span>For consultants, agencies, and studios that need tighter follow-up.</span>
+            </a>
+            <a class="hero-buyer-chip" href="subscribe/local-services.html">
+              <strong>Local services</strong>
+              <span>For contractors and owner-operators handling live quotes, calls, and jobs.</span>
+            </a>
+            <a class="hero-buyer-chip" href="subscribe/support-teams.html">
+              <strong>Support teams</strong>
+              <span>For service teams that need cleaner intake, scheduling, and shared follow-through.</span>
             </a>
           </div>
         </div>
