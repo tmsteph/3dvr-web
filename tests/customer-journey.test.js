@@ -36,6 +36,10 @@ describe('3dvr-web customer journey copy', () => {
     const html = await readFile(new URL('../subscribe/index.html', import.meta.url), 'utf8');
     assert.match(html, /Start free to get organized, support the mission at \$5, grow with \$20, or move into a \$50 builder lane and custom scoped work\./);
     assert.match(html, /Get organized, sort out your next steps, and start using the portal without paying first\./);
+    assert.match(html, /Choose by business type/);
+    assert.match(html, /See professional-services fit/);
+    assert.match(html, /See local-service fit/);
+    assert.match(html, /See team fit/);
     assert.match(html, /Daily check-ins and weekly reflection/);
     assert.match(html, /No credit card required\. Create one portal account and start organizing what matters\./);
     assert.match(html, /Start Free in Portal/);
@@ -65,6 +69,22 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(starterHtml, /Continue to Portal for \$5/);
     assert.match(founderHtml, /Continue to Portal for Founder/);
     assert.match(builderHtml, /Continue to Portal for Builder/);
+  });
+
+  it('ships segment pages for the three paid wedges', async () => {
+    const professionalHtml = await readFile(new URL('../subscribe/professional-services.html', import.meta.url), 'utf8');
+    const localHtml = await readFile(new URL('../subscribe/local-services.html', import.meta.url), 'utf8');
+    const supportHtml = await readFile(new URL('../subscribe/support-teams.html', import.meta.url), 'utf8');
+
+    assert.match(professionalHtml, /For Professional Services/);
+    assert.match(professionalHtml, /Keep warm leads moving without building a giant sales stack\./);
+    assert.match(professionalHtml, /Continue to Portal for Builder/);
+    assert.match(localHtml, /For Local Services/);
+    assert.match(localHtml, /Stop letting calls, quotes, and follow-up slip through the cracks\./);
+    assert.match(localHtml, /Continue to Portal for Builder/);
+    assert.match(supportHtml, /For Support Teams/);
+    assert.match(supportHtml, /Give the team one calmer system for people, follow-up, and weekly action\./);
+    assert.match(supportHtml, /Continue to Portal for Embedded/);
   });
 
   it('keeps the campaign page exposed for higher-intent buyers', async () => {

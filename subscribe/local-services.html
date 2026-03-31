@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#0f0f0f" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <meta
+    name="description"
+    content="3dvr.tech for local services: capture leads faster, keep estimates moving, and run the week from one simple desk."
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://3dvr.tech/subscribe/local-services.html" />
+  <title>For Local Services | 3dvr.tech</title>
+  <link rel="icon" href="../3DVRfavicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="3dvr.tech" />
+  <meta property="og:title" content="3dvr.tech for Local Services" />
+  <meta
+    property="og:description"
+    content="A lightweight sales-and-ops desk for local service businesses that need faster follow-up without a giant software stack."
+  />
+  <meta property="og:url" content="https://3dvr.tech/subscribe/local-services.html" />
+  <meta property="og:image" content="https://3dvr.tech/3DVR.png" />
+  <meta property="og:image:alt" content="3dvr.tech logomark" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="3dvr.tech for Local Services" />
+  <meta
+    name="twitter:description"
+    content="Stop letting quote requests, follow-up, and jobs in motion slip through the cracks."
+  />
+  <meta name="twitter:image" content="https://3dvr.tech/3DVR.png" />
+  <style>
+    :root {
+      --accent: #f7d774;
+      --accent-soft: rgba(247, 215, 116, 0.18);
+      --bg: linear-gradient(160deg, #1c1307, #3e2b13, #5b4723);
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-alt: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --muted: #e5dccc;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      background: rgba(0, 0, 0, 0.45);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+    header img { height: 40px; }
+    header nav a { margin-left: 1rem; font-weight: 600; }
+    main { max-width: 980px; margin: 2.5rem auto 4rem; padding: 0 1.25rem; }
+    .hero { text-align: center; }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero h1 {
+      font-family: Poppins, sans-serif;
+      font-size: clamp(2.3rem, 5vw, 3.4rem);
+      margin-bottom: 0.9rem;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.65;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .hero .price {
+      margin-top: 1.8rem;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .hero-note { margin-top: 0.75rem; }
+    .actions {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .cta.primary {
+      background: var(--accent);
+      color: #1c1307;
+      box-shadow: 0 0 18px rgba(247, 215, 116, 0.32);
+    }
+    .cta.secondary {
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .cta:hover { transform: translateY(-1px); }
+    .panel {
+      background: var(--panel);
+      border-radius: 20px;
+      padding: 1.8rem;
+      margin-top: 2rem;
+      box-shadow: 0 22px 55px rgba(0, 0, 0, 0.22);
+    }
+    .panel h2 {
+      font-family: Poppins, sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+    .panel p { color: var(--muted); line-height: 1.6; }
+    .panel ul { margin-top: 1rem; padding-left: 1.15rem; color: var(--muted); }
+    .panel li { margin: 0.6rem 0; line-height: 1.55; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+    .card {
+      background: var(--panel-alt);
+      border-radius: 16px;
+      padding: 1.2rem;
+    }
+    .card h3 {
+      font-family: Poppins, sans-serif;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+    .card p { color: var(--muted); font-size: 0.98rem; line-height: 1.55; }
+    details {
+      background: var(--panel);
+      border-radius: 12px;
+      padding: 0.95rem 1.05rem;
+      margin: 0.6rem 0;
+    }
+    details[open] { background: rgba(255, 255, 255, 0.14); }
+    summary { cursor: pointer; font-weight: 700; }
+    details p { color: var(--muted); margin-top: 0.6rem; line-height: 1.55; }
+    footer { text-align: center; padding: 2rem 1rem 2.5rem; color: rgba(255, 255, 255, 0.72); }
+
+    @media (max-width: 640px) {
+      header nav a { margin-left: 0.75rem; font-size: 0.95rem; }
+      .cta { width: 100%; }
+    }
+  </style>
+
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+  <header>
+    <a href="../index.html"><img src="../3DVR.png" alt="3dvr.tech logo" /></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a data-preserve-portal-origin href="index.html#segments">By business</a>
+      <a data-preserve-portal-origin href="index.html#plans">All plans</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="eyebrow">For Local Services</span>
+      <h1>Stop letting calls, quotes, and follow-up slip through the cracks.</h1>
+      <p>
+        3dvr fits contractors, installers, cleaners, repair operators, and other local service businesses that need
+        faster follow-up, clearer intake, and one operating lane for jobs already in motion.
+      </p>
+      <div class="price">Builder $50 / month</div>
+      <p class="hero-note">Best fit when the work is real, the owner is busy, and the main problem is keeping the week organized.</p>
+      <div class="actions">
+        <a class="cta primary" data-portal-path="/billing/?plan=builder" href="https://portal.3dvr.tech/billing/?plan=builder" target="_blank" rel="noopener">Continue to Portal for Builder</a>
+        <a class="cta secondary" href="../launch-your-site.html">Talk through intake and follow-up</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>What gets simpler</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Lead flow</h3>
+          <p>Track new inquiries, quote requests, and next touches before they get buried in calls and texts.</p>
+        </article>
+        <article class="card">
+          <h3>Follow-up</h3>
+          <p>Keep estimates and callbacks moving so leads do not go cold while you are on the job.</p>
+        </article>
+        <article class="card">
+          <h3>Operating rhythm</h3>
+          <p>Run scheduling, payments, and next actions from one clear desk instead of scattered notes.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Best fit</h2>
+      <ul>
+        <li>You handle real estimates, bookings, or service requests every week.</li>
+        <li>You are still in the field, so software needs to stay lightweight and obvious.</li>
+        <li>You need one clear next-action loop for leads, jobs, and payments.</li>
+        <li>You want Builder as the main lane, with scoped sprint help when heavier setup is worth it.</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>Common pains this page is built for</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Missed quote requests</h3>
+          <p>New inquiries come in, but the next touch happens too late or not at all.</p>
+        </article>
+        <article class="card">
+          <h3>Field chaos</h3>
+          <p>You are doing real work, so follow-up and scheduling get squeezed to the edge of the day.</p>
+        </article>
+        <article class="card">
+          <h3>Payment lag</h3>
+          <p>Invoices and collection are not attached tightly enough to the work already in motion.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>FAQ</h2>
+      <details>
+        <summary>Is Builder enough for a small local business?</summary>
+        <p>Usually yes. Builder is the right lane when the owner is still close to the work and needs tighter follow-up, scheduling, and payment rhythm.</p>
+      </details>
+      <details>
+        <summary>What if I want help setting it up fast?</summary>
+        <p>That is where scoped one-time work helps. We can use Builder as the monthly lane and pair it with a setup sprint when needed.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 3dvr.tech — Open Source. Open Future.
+  </footer>
+  <script src="/pwa.js"></script>
+  <script src="./portal-links.js"></script>
+</body>
+</html>
