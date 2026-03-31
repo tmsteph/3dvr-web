@@ -35,6 +35,7 @@
     content="Start with Life for clarity, join community through Cells, and grow into builder support when you are ready to start something real."
   />
   <meta name="twitter:image" content="https://3dvr.tech/3DVR.png" />
+  <script defer src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
 
   <script type="application/ld+json">
     {
@@ -331,6 +332,49 @@
       flex-wrap: wrap;
       gap: 1rem;
       justify-content: center;
+    }
+    .hero-feedback {
+      width: min(100%, 760px);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 0.95rem 1rem;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.28);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+    }
+    .hero-feedback__prompt {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.84);
+      font-weight: 600;
+    }
+    .hero-feedback__buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      justify-content: center;
+    }
+    .hero-feedback__button {
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.1);
+      color: var(--text-light);
+      border-radius: 999px;
+      padding: 0.55rem 1rem;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+    .hero-feedback__button:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.16);
+    }
+    .hero-feedback__status {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.66);
     }
     .hero-plan-dock {
       display: grid;
@@ -1059,6 +1103,7 @@
   </style>
 
   <script defer src="/_vercel/insights/script.js"></script>
+  <script defer src="growth/homepage-experiment.js"></script>
 </head>
 <body id="top">
   <header>
@@ -1094,7 +1139,7 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-intro">
-        <p class="hero-eyebrow">Get organized, find support, start something real</p>
+        <p id="heroEyebrow" class="hero-eyebrow">Get organized, find support, start something real</p>
       </div>
       <div class="hero-visual" aria-hidden="true">
         <div class="hero-logo-card">
@@ -1108,42 +1153,50 @@
       </div>
       <div class="hero-content">
         <h1 class="hero-headline">
-          <span class="hero-headline-primary">Get clear on your next move.</span>
+          <span id="heroHeadlinePrimary" class="hero-headline-primary">Get clear on your next move.</span>
           <span class="hero-headline-divider" aria-hidden="true"></span>
-          <span class="hero-headline-secondary">Start with one clear step.</span>
+          <span id="heroHeadlineSecondary" class="hero-headline-secondary">Start with one clear step.</span>
         </h1>
-        <p>
+        <p id="heroBody">
           3dvr helps you get organized, stay accountable, and get help launching a project,
           service, or small business.
         </p>
         <div class="hero-buttons">
-          <a class="hero-button hero-button--primary" href="https://portal.3dvr.tech/start/" target="_blank" rel="noopener">
+          <a class="hero-button hero-button--primary" data-growth-cta="start-here" href="https://portal.3dvr.tech/start/" target="_blank" rel="noopener">
             Start Here
             <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
           </a>
-          <a class="hero-button hero-button--ghost" href="#subscribe">
+          <a class="hero-button hero-button--ghost" data-growth-cta="explore-paid-plans" href="#subscribe">
             Explore paid plans
           </a>
-          <a class="hero-button hero-button--ghost" href="launch-your-site.html">
+          <a class="hero-button hero-button--ghost" data-growth-cta="talk-through-scope" href="launch-your-site.html">
             Talk through scope
           </a>
+        </div>
+        <div class="hero-feedback" aria-label="Homepage clarity feedback">
+          <span id="heroFeedbackPrompt" class="hero-feedback__prompt">Is this clear enough?</span>
+          <div class="hero-feedback__buttons">
+            <button type="button" class="hero-feedback__button" data-growth-feedback="clear">Yes, clear</button>
+            <button type="button" class="hero-feedback__button" data-growth-feedback="unclear">Still vague</button>
+          </div>
+          <span id="heroFeedbackStatus" class="hero-feedback__status">Anonymous feedback helps tune the homepage.</span>
         </div>
         <div class="hero-plan-dock" aria-label="Quick plan links">
           <span class="hero-plan-dock__label">Quick plan links</span>
           <div class="hero-plan-dock__grid">
-            <a class="hero-plan-chip" href="subscribe/free-plan.html">
+            <a class="hero-plan-chip" data-growth-cta="plan-free" href="subscribe/free-plan.html">
               <strong>Free</strong>
               <span>Get started</span>
             </a>
-            <a class="hero-plan-chip" href="subscribe/family-friends.html">
+            <a class="hero-plan-chip" data-growth-cta="plan-5" href="subscribe/family-friends.html">
               <strong>$5</strong>
               <span>Family &amp; Friends</span>
             </a>
-            <a class="hero-plan-chip" href="subscribe/founder-plan.html">
+            <a class="hero-plan-chip" data-growth-cta="plan-20" href="subscribe/founder-plan.html">
               <strong>$20</strong>
               <span>Founder</span>
             </a>
-            <a class="hero-plan-chip" href="subscribe/builder-plan.html">
+            <a class="hero-plan-chip" data-growth-cta="plan-50" href="subscribe/builder-plan.html">
               <strong>$50</strong>
               <span>Builder</span>
             </a>
@@ -1152,16 +1205,16 @@
         <div class="hero-buyer-dock" aria-label="Buyer segments">
           <span class="hero-buyer-dock__label">For paying buyers • current wedge</span>
           <div class="hero-buyer-dock__grid">
-            <a class="hero-buyer-chip hero-buyer-chip--featured" href="subscribe/professional-services.html">
+            <a class="hero-buyer-chip hero-buyer-chip--featured" data-growth-cta="segment-professional-services" href="subscribe/professional-services.html">
               <span class="hero-buyer-chip__eyebrow">Start here first</span>
               <strong>Professional services</strong>
               <span>For consultants, agencies, and studios that need tighter follow-up.</span>
             </a>
-            <a class="hero-buyer-chip" href="subscribe/local-services.html">
+            <a class="hero-buyer-chip" data-growth-cta="segment-local-services" href="subscribe/local-services.html">
               <strong>Local services</strong>
               <span>For contractors and owner-operators handling live quotes, calls, and jobs.</span>
             </a>
-            <a class="hero-buyer-chip" href="subscribe/support-teams.html">
+            <a class="hero-buyer-chip" data-growth-cta="segment-support-teams" href="subscribe/support-teams.html">
               <strong>Support teams</strong>
               <span>For service teams that need cleaner intake, scheduling, and shared follow-through.</span>
             </a>
