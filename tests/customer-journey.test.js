@@ -5,9 +5,10 @@ import { readFile } from 'node:fs/promises';
 describe('3dvr-web customer journey copy', () => {
   it('keeps the homepage focused on concrete first steps and the portal start path', async () => {
     const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+    assert.match(html, /Clarity, community, and launch support/);
     assert.match(html, /Get clear on your next move\./);
     assert.match(html, /Start with one clear step\./);
-    assert.match(html, /3dvr\.tech helps you do three concrete things: check in daily, find a small group,/);
+    assert.match(html, /Start with Life for daily clarity, join Cell for real support, and get paid help/);
     assert.match(html, /Start Here/);
     assert.match(html, /Quick plan links/);
     assert.match(html, /\$5/);
