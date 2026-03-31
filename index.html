@@ -405,10 +405,21 @@
       transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
       box-shadow: 0 12px 28px rgba(0,0,0,0.18);
     }
+    .hero-buyer-chip--featured {
+      background: rgba(0,255,200,0.12);
+      border-color: rgba(0,255,200,0.28);
+      box-shadow: 0 16px 34px rgba(0,255,200,0.12);
+    }
     .hero-buyer-chip:hover {
       transform: translateY(-3px);
       background: rgba(255,255,255,0.12);
       border-color: rgba(0,255,200,0.35);
+    }
+    .hero-buyer-chip__eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.66);
     }
     .hero-buyer-chip strong {
       font-size: 0.96rem;
@@ -1139,9 +1150,10 @@
           </div>
         </div>
         <div class="hero-buyer-dock" aria-label="Buyer segments">
-          <span class="hero-buyer-dock__label">For paying buyers</span>
+          <span class="hero-buyer-dock__label">For paying buyers • current wedge</span>
           <div class="hero-buyer-dock__grid">
-            <a class="hero-buyer-chip" href="subscribe/professional-services.html">
+            <a class="hero-buyer-chip hero-buyer-chip--featured" href="subscribe/professional-services.html">
+              <span class="hero-buyer-chip__eyebrow">Start here first</span>
               <strong>Professional services</strong>
               <span>For consultants, agencies, and studios that need tighter follow-up.</span>
             </a>
