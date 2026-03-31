@@ -5,7 +5,7 @@ import { readFile } from 'node:fs/promises';
 describe('3dvr-web customer journey copy', () => {
   it('keeps the homepage focused on concrete first steps and the portal start path', async () => {
     const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-    assert.match(html, /Feeling stuck\?/);
+    assert.match(html, /Get clear on your next move\./);
     assert.match(html, /Start with one clear step\./);
     assert.match(html, /3dvr\.tech helps you do three concrete things: check in daily, find a small group,/);
     assert.match(html, /Start Here/);
