@@ -51,7 +51,20 @@ Keep the marketing site and billing entry points aligned with the portal environ
 - Use two spaces for indentation in HTML, CSS, JavaScript, and JSON.
 - Keep copy direct and operational. Prefer concrete environment names over vague "test" or "preview" language.
 
+## Debian `proot` On Android
+- When Linux-only tooling is flaky or unsupported in native Termux, switch early to Debian `proot` instead of fighting the Android environment.
+- Standard setup:
+  - `pkg install proot-distro`
+  - `proot-distro install debian`
+  - `proot-distro login debian`
+- Prefer repo wrappers when they exist instead of inventing one-off Debian commands.
+- Typical triggers for Debian `proot` in this repo:
+  - browser automation or screenshot tooling
+  - Linux-native CLI dependencies that fail under Termux
+  - toolchains that expect a standard glibc userland
+
 ## Testing & Verification
 - After changing any billing CTA or portal-origin logic, verify the main paid plan links at minimum.
 - Test both a production-like path and a preview-paired path when touching `subscribe/portal-links.js`.
 - If a link bug only reproduces on Vercel previews, verify the preview host map and any `portalOrigin` overrides before changing production defaults.
+- If browser automation or Linux-only tooling is unreliable in native Termux, use Debian `proot` instead of forcing a Termux-only workaround.
