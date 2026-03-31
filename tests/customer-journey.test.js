@@ -8,6 +8,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Clarity, community, and launch support/);
     assert.match(html, /Get clear on your next move\./);
     assert.match(html, /Start with one clear step\./);
+    assert.match(html, /Daily clarity, real support, and help launching something of your own\./);
     assert.match(html, /Start with Life for daily clarity, join Cell for real support, and get paid help/);
     assert.match(html, /Start Here/);
     assert.match(html, /Quick plan links/);
