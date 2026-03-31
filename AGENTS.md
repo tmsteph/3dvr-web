@@ -46,6 +46,8 @@ Keep the marketing site and billing entry points aligned with the portal environ
 - Subscription CTAs must make it clear when the user is leaving the marketing site for portal billing.
 - Preserve the resolved portal origin across internal subscribe/detail links so plan cards stay in the same environment.
 - Avoid dead-end states where a preview page links into a production billing route that does not exist yet.
+- Use `3dvr.tech@gmail.com` as the canonical 3DVR contact email in copy, CTAs, and support links.
+- Do not introduce `hello@3dvr.tech`.
 
 ## Formatting
 - Use two spaces for indentation in HTML, CSS, JavaScript, and JSON.
