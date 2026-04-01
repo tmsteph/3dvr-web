@@ -25,19 +25,19 @@
   const VARIANTS = Object.freeze({
     clarity: Object.freeze({
       key: 'clarity',
-      eyebrow: 'Plan your week. Get support. Launch work.',
-      primary: 'Get clear on your next move.',
-      secondary: 'Start with one clear step.',
-      body: 'Use 3dvr to plan your next step, stay accountable, and get direct help launching a project, service, or small business.',
-      feedbackPrompt: 'Is this clear enough?',
+      eyebrow: 'Websites. Apps. Real support.',
+      primary: 'I help small businesses actually launch.',
+      secondary: 'Not just plan. Not just think about it.',
+      body: 'Get a site, landing page, or simple business system with direct help from idea to launch.',
+      feedbackPrompt: 'Does this explain the offer clearly?',
     }),
     traction: Object.freeze({
       key: 'traction',
-      eyebrow: 'Stop drifting. Build momentum. Start earning.',
-      primary: 'Turn scattered effort into real traction.',
-      secondary: 'Get organized and move work toward income.',
-      body: '3dvr helps you keep the next task visible, get support when you need it, and turn an idea into a real offer people can buy.',
-      feedbackPrompt: 'Does this version feel more concrete?',
+      eyebrow: 'Launch faster. Look real. Start selling.',
+      primary: 'Get your website, offer, or project live.',
+      secondary: 'And keep moving with real support.',
+      body: '3dvr helps small businesses and creators launch pages, apps, and follow-up systems without getting stuck in tech.',
+      feedbackPrompt: 'Does this version make you want to reach out?',
     }),
   });
 
