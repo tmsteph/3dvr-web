@@ -97,8 +97,14 @@ describe('3dvr-web customer journey copy', () => {
 
   it('keeps the campaign page exposed for higher-intent buyers', async () => {
     const html = await readFile(new URL('../launch-your-site.html', import.meta.url), 'utf8');
-    assert.match(html, /Launch your site without hiring a full agency\./);
-    assert.match(html, /Talk through scope/);
-    assert.match(html, /mailto:3dvr\.tech@gmail\.com\?subject=3DVR%20Website%20Scope/);
+    assert.match(html, /Launch your website, offer, or project without getting stuck in tech\./);
+    assert.match(html, /Message me/);
+    assert.match(html, /A simple offer people can understand and say yes to\./);
+    assert.match(html, /Start with direct help, move into Builder when the business is real/);
+    assert.match(html, /Builder/);
+    assert.match(html, /Custom/);
+    assert.match(html, /mailto:3dvr\.tech@gmail\.com\?subject=3DVR%20Project%20Inquiry/);
+    assert.doesNotMatch(html, /Talk through scope/);
+    assert.doesNotMatch(html, /Why is there a \$5 plan/);
   });
 });
