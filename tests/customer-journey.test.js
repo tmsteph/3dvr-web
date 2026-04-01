@@ -5,10 +5,10 @@ import { readFile } from 'node:fs/promises';
 describe('3dvr-web customer journey copy', () => {
   it('keeps the homepage focused on concrete first steps and the portal start path', async () => {
     const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-    assert.match(html, /Websites\. Apps\. Real support\./);
+    assert.match(html, /Websites\. Apps\. Direct support\./);
     assert.match(html, /I help small businesses actually launch\./);
     assert.match(html, /Not just plan\. Not just think about it\./);
-    assert.match(html, /A real place to land when you need a site, support, or a launch plan\./);
+    assert.match(html, /A clear place to land when you need a site, support, or a launch plan\./);
     assert.match(html, /Get a site, landing page, or simple business system with direct help from idea to launch\./);
     assert.match(html, /Message me/);
     assert.match(html, /mailto:3dvr\.tech@gmail\.com\?subject=3DVR%20Project%20Inquiry/);
@@ -32,7 +32,10 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Simple ways to work together/);
     assert.match(html, /Start free if you need structure\. Start at \$20\/month if you want direct launch help\./);
     assert.match(html, /Get ongoing help shaping the idea, page, or offer and getting it launched\./);
-    assert.match(html, /Best for real businesses that need a site, follow-up, updates, and calmer operations\./);
+    assert.match(html, /Best for growing businesses that need a site, follow-up, updates, and calmer operations\./);
+    assert.doesNotMatch(html, /Websites\. Apps\. Real support\./);
+    assert.doesNotMatch(html, /A real place to land when you need a site, support, or a launch plan\./);
+    assert.doesNotMatch(html, /Best for real businesses that need a site, follow-up, updates, and calmer operations\./);
     assert.match(html, /Trusted by friends, family, and small businesses/);
     assert.match(html, /See plans and services/);
     assert.match(html, /See plans/);

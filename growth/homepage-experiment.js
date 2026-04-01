@@ -25,7 +25,7 @@
   const VARIANTS = Object.freeze({
     clarity: Object.freeze({
       key: 'clarity',
-      eyebrow: 'Websites. Apps. Real support.',
+      eyebrow: 'Websites. Apps. Direct support.',
       primary: 'I help small businesses actually launch.',
       secondary: 'Not just plan. Not just think about it.',
       body: 'Get a site, landing page, or simple business system with direct help from idea to launch.',
@@ -33,9 +33,9 @@
     }),
     traction: Object.freeze({
       key: 'traction',
-      eyebrow: 'Launch faster. Look real. Start selling.',
+      eyebrow: 'Launch faster. Look credible. Start selling.',
       primary: 'Get your website, offer, or project live.',
-      secondary: 'And keep moving with real support.',
+      secondary: 'And keep moving with direct support.',
       body: '3dvr helps small businesses and creators launch pages, apps, and follow-up systems without getting stuck in tech.',
       feedbackPrompt: 'Does this version make you want to reach out?',
     }),
