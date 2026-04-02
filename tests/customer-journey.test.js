@@ -10,8 +10,9 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Not just plan\. Not just think about it\./);
     assert.match(html, /A clear place to land when you need a site, support, or a launch plan\./);
     assert.match(html, /Get a site, landing page, or simple business system with direct help from idea to launch\./);
-    assert.match(html, /Message me/);
-    assert.match(html, /mailto:3dvr\.tech@gmail\.com\?subject=3DVR%20Project%20Inquiry/);
+    assert.match(html, /Start Free/);
+    assert.match(html, /Start free/);
+    assert.match(html, /subscribe\/free-plan\.html/);
     assert.match(html, /Ways to work together/);
     assert.match(html, /Built for/);
     assert.match(html, /Get organized/);
@@ -40,6 +41,8 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /See plans and services/);
     assert.match(html, /See plans/);
     assert.match(html, /For service businesses/);
+    assert.doesNotMatch(html, /Message me/i);
+    assert.doesNotMatch(html, /mailto:3dvr\.tech@gmail\.com\?subject=3DVR%20Project%20Inquiry/);
     assert.doesNotMatch(html, /Plan your week\. Get support\. Launch work\./);
   });
 
