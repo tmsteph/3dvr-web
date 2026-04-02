@@ -9,7 +9,12 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /3DVR 3D Homepage World/);
     assert.match(html, /Build the 3DVR homepage as a world that works on any device\./);
     assert.match(html, /A framed 3D homepage and world/);
+    assert.match(html, /Portal HUD glow/);
     assert.match(html, /CSS layers, SVG-like shapes, motion fallback, no WebGL requirement\./);
+    assert.match(html, /id="zoneMetrics"/);
+    assert.match(html, /id="zoneDepthFill"/);
+    assert.match(html, /scene-radar/);
+    assert.match(html, /telemetry-panel/);
     assert.match(html, /data-zone="arrival"/);
     assert.match(html, /data-zone="arena"/);
     assert.match(html, /data-zone="studio"/);
@@ -27,7 +32,14 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /perspective:\s*1800px/);
     assert.match(css, /\.club-frame/);
     assert.match(css, /transform-style:\s*preserve-3d/);
+    assert.match(css, /\.frame-hud__panel/);
+    assert.match(css, /\.zone-detail__meter-fill/);
+    assert.match(css, /\.scene-radar/);
     assert.match(js, /const zones = \{/);
+    assert.match(js, /zoneMetrics/);
+    assert.match(js, /zoneDepthFill/);
+    assert.match(js, /metrics:/);
+    assert.match(js, /depth:/);
     assert.match(js, /renderZone\('arrival'\)/);
     assert.match(js, /pointermove/);
   });
