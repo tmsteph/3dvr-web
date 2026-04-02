@@ -103,7 +103,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Launch your website, offer, or project without getting stuck in tech\./);
     assert.match(html, /Message me/);
     assert.match(html, /A simple offer people can understand and say yes to\./);
-    assert.match(html, /Start with direct help, move into Builder when the business is real/);
+    assert.match(html, /Start with direct help, move into Builder when the business is active/);
     assert.match(html, /Builder/);
     assert.match(html, /Custom/);
     assert.match(html, /mailto:3dvr\.tech@gmail\.com\?subject=3DVR%20Project%20Inquiry/);
