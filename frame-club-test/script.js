@@ -7,7 +7,7 @@
   const zoneDepthValue = document.getElementById('zoneDepthValue');
   const zoneDepthFill = document.getElementById('zoneDepthFill');
   const statusPill = document.getElementById('statusPill');
-  const buttons = Array.from(document.querySelectorAll('[data-zone-button], [data-zone]'));
+  const buttons = Array.from(document.querySelectorAll('button[data-zone-button], button[data-zone]'));
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (!frame || !zoneDetail || !zoneMetrics || !zoneDepthValue || !zoneDepthFill || !statusPill) {

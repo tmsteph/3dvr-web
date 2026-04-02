@@ -42,8 +42,8 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /See plans/);
     assert.match(html, /For service businesses/);
     assert.match(html, /frame-club-test\//);
-    assert.match(html, /Open the 3DVR world prototype/);
-    assert.match(html, /portal-style HUD graphics and device-safe depth/);
+    assert.match(html, /Open the full-screen 3DVR world prototype/);
+    assert.match(html, /full-screen 3DVR world prototype, now pushed further with portal-style HUD graphics and device-safe depth/);
     assert.doesNotMatch(html, /Message me/i);
     assert.doesNotMatch(html, /mailto:3dvr\.tech@gmail\.com\?subject=3DVR%20Project%20Inquiry/);
     assert.doesNotMatch(html, /Plan your week\. Get support\. Launch work\./);
