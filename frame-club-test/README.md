@@ -1,12 +1,12 @@
-# 3DVR Frame Club Test
+# 3DVR 3D Homepage World
 
-This route is a prototype for one of the earlier 3DVR ideas: a 3D-feeling website that still works across phones, tablets, and desktop browsers.
+This route is a prototype for turning the 3DVR homepage into a 3D-feeling world that still works across phones, tablets, and desktop browsers.
 
 ## Direction
 
-- KODE Sports Club inspired the spatial club-map feeling.
-- This version avoids a browser-fragile 3D stack by using a framed CSS scene instead of WebGL.
+- The goal is a homepage that feels spatial without becoming a fragile WebGL demo.
 - The frame is the 3D stage. The rest of the page stays normal HTML.
+- The zones can later map to work, experiments, portal paths, and support.
 
 ## Files
 
@@ -20,4 +20,4 @@ This route is a prototype for one of the earlier 3DVR ideas: a 3D-feeling websit
 
 ## Why this matters
 
-The goal is to prove that 3DVR can build immersive sites without shipping an experience that breaks on older phones or low-power browsers.
+The goal is to prove that 3DVR can build immersive sites and worlds without shipping an experience that breaks on older phones or low-power browsers.
