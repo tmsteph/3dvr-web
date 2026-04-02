@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>3DVR Frame Club Test</title>
+  <title>3DVR 3D Homepage World</title>
   <meta
     name="description"
-    content="A 3DVR prototype for device-safe 3D websites using a framed CSS scene instead of fragile browser-specific 3D stacks."
+    content="A 3DVR prototype for a device-safe 3D homepage and world using a framed CSS scene instead of fragile browser-specific 3D stacks."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,18 +20,18 @@
   <main class="club-app">
     <section class="hero-shell">
       <div class="hero-copy">
-        <p class="eyebrow">3dvr lab / frame-first 3d web</p>
-        <h1>Build a 3D website that still works on any device.</h1>
+        <p class="eyebrow">3dvr lab / device-safe 3d world</p>
+        <h1>Build the 3DVR homepage as a world that works on any device.</h1>
         <p class="intro">
-          This prototype takes the KODE Sports Club instinct of entering a spatial club map,
-          but rebuilds it as a framed CSS scene so it can ship on phones, tablets, and desktop
-          without depending on heavy WebGL support.
+          This prototype turns the 3DVR homepage into a framed world: headline in front,
+          layered space behind it, and direct paths deeper into the site. It stays usable on
+          phones, tablets, and desktop without depending on heavy WebGL support.
         </p>
 
         <div class="signal-grid" aria-label="Prototype goals">
           <article class="signal-card">
             <p class="signal-card__label">Frame system</p>
-            <h2>One framed stage</h2>
+            <h2>One framed world</h2>
             <p>Use one responsive viewport as the 3D shell instead of building a separate experience for each device.</p>
           </article>
           <article class="signal-card">
@@ -41,13 +41,13 @@
           </article>
           <article class="signal-card">
             <p class="signal-card__label">Direction</p>
-            <h2>Club map, not gimmick</h2>
+            <h2>Homepage as world</h2>
             <p>Zones feel spatial and dramatic, but the content still acts like a usable website with clear next steps.</p>
           </article>
         </div>
 
         <div class="hero-actions">
-          <a class="button button--primary" href="#frame-lab">Enter the frame</a>
+          <a class="button button--primary" href="#frame-lab">Enter the world</a>
           <a class="button button--ghost" href="#notes">Read the system</a>
         </div>
       </div>
@@ -62,17 +62,17 @@
         <section id="frame-lab" class="frame-lab" aria-labelledby="frame-title">
           <div class="frame-lab__header">
             <div>
-              <p class="eyebrow">club map test</p>
-              <h2 id="frame-title">A framed 3D sports-club website</h2>
+              <p class="eyebrow">3dvr world test</p>
+              <h2 id="frame-title">A framed 3D homepage and world</h2>
             </div>
-            <p class="status-pill" id="statusPill">Focus: Arrival deck</p>
+            <p class="status-pill" id="statusPill">Focus: Home layer</p>
           </div>
 
           <div class="zone-switcher" role="tablist" aria-label="Choose a focus zone">
-            <button class="zone-switcher__button is-active" type="button" data-zone-button="arrival">Arrival</button>
-            <button class="zone-switcher__button" type="button" data-zone-button="arena">Arena</button>
+            <button class="zone-switcher__button is-active" type="button" data-zone-button="arrival">Home</button>
+            <button class="zone-switcher__button" type="button" data-zone-button="arena">World</button>
             <button class="zone-switcher__button" type="button" data-zone-button="studio">Studio</button>
-            <button class="zone-switcher__button" type="button" data-zone-button="rooftop">Rooftop</button>
+            <button class="zone-switcher__button" type="button" data-zone-button="rooftop">Portal</button>
           </div>
 
           <div class="frame-stage">
@@ -80,7 +80,7 @@
               class="club-frame"
               id="clubFrame"
               data-zone="arrival"
-              aria-label="3D club scene"
+              aria-label="3DVR homepage world scene"
             >
               <div class="club-frame__rim"></div>
               <div class="club-frame__glass"></div>
@@ -95,23 +95,23 @@
               <div class="scene scene--mid" aria-hidden="true">
                 <div class="scene-card scene-card--arrival" data-zone-card="arrival">
                   <span class="scene-card__tag">01</span>
-                  <strong>Arrival deck</strong>
-                  <p>Orientation, entry energy, and the first call to move.</p>
+                  <strong>Home layer</strong>
+                  <p>First read, offer, and the immediate path forward.</p>
                 </div>
                 <div class="scene-card scene-card--arena" data-zone-card="arena">
                   <span class="scene-card__tag">02</span>
-                  <strong>Main arena</strong>
-                  <p>Big hero moment, schedule, and energy center.</p>
+                  <strong>World layer</strong>
+                  <p>Featured work, depth, and movement through the brand.</p>
                 </div>
                 <div class="scene-card scene-card--studio" data-zone-card="studio">
                   <span class="scene-card__tag">03</span>
-                  <strong>Motion studio</strong>
-                  <p>Classes, coaching, and content production lane.</p>
+                  <strong>Studio layer</strong>
+                  <p>Build process, demos, and production tools.</p>
                 </div>
                 <div class="scene-card scene-card--rooftop" data-zone-card="rooftop">
                   <span class="scene-card__tag">04</span>
-                  <strong>Rooftop lounge</strong>
-                  <p>Membership, events, recovery, and brand mood.</p>
+                  <strong>Portal layer</strong>
+                  <p>Support, account entry, and the place people continue.</p>
                 </div>
               </div>
 
@@ -120,37 +120,37 @@
                 <div class="scene-orbit scene-orbit--two"></div>
                 <div class="scene-marquee">
                   <span>3DVR</span>
-                  <span>FRAME CLUB TEST</span>
-                  <span>MOTION SAFE</span>
+                  <span>3D HOMEPAGE</span>
+                  <span>WORLD MODE</span>
                 </div>
               </div>
 
               <button class="hotspot hotspot--arrival is-active" type="button" data-zone="arrival">
-                <span>Arrival</span>
+                <span>Home</span>
               </button>
               <button class="hotspot hotspot--arena" type="button" data-zone="arena">
-                <span>Arena</span>
+                <span>World</span>
               </button>
               <button class="hotspot hotspot--studio" type="button" data-zone="studio">
                 <span>Studio</span>
               </button>
               <button class="hotspot hotspot--rooftop" type="button" data-zone="rooftop">
-                <span>Rooftop</span>
+                <span>Portal</span>
               </button>
             </div>
           </div>
 
           <article class="zone-detail" id="zoneDetail" aria-live="polite">
-            <p class="zone-detail__eyebrow">Arrival deck</p>
-            <h3 class="zone-detail__title">Set the first 10 seconds like a club entrance, not a flat landing page.</h3>
+            <p class="zone-detail__eyebrow">Home layer</p>
+            <h3 class="zone-detail__title">Make the homepage feel like an entrance into the 3DVR world, not a flat list of sections.</h3>
             <p class="zone-detail__body">
               The frame makes the homepage feel spatial right away: headline in front, world behind it,
-              and obvious paths to move deeper into the site without forcing a game-like interface.
+              and obvious paths into offers, experiments, and the portal without forcing a game-like interface.
             </p>
             <ul class="zone-detail__list">
               <li>Fast first read on every screen size.</li>
               <li>Motion depth without browser lockout.</li>
-              <li>Tap targets stay clear even inside the 3D scene.</li>
+              <li>Clear paths into plans, experiments, and support.</li>
             </ul>
           </article>
         </section>
@@ -169,19 +169,19 @@
 
       <article class="notes-card">
         <p class="eyebrow">Why this route</p>
-        <h2>Better than a browser warning.</h2>
+        <h2>A public 3D site still has to work.</h2>
         <p>
-          KODE-style mood is compelling, but a public site cannot fall apart on an older phone.
-          This prototype keeps the atmosphere while still rendering as a normal website when needed.
+          The goal is not to chase a browser-fragile effect. This prototype keeps the atmosphere
+          and layered depth while still rendering as a normal website when needed.
         </p>
       </article>
 
       <article class="notes-card">
         <p class="eyebrow">Next ideas</p>
-        <h2>Where this could go.</h2>
+        <h2>Where the world could go.</h2>
         <p>
-          Replace the scene cards with live pages, route each zone to a membership or schedule lane,
-          and layer audio-reactive or scroll-reactive motion once the base frame is stable.
+          Replace the scene cards with live homepage sections, route each zone into work, experiments,
+          and portal paths, and layer scroll-reactive or audio-reactive motion once the base frame is stable.
         </p>
       </article>
     </section>

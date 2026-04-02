@@ -13,43 +13,43 @@
 
   const zones = {
     arrival: {
-      label: 'Arrival deck',
-      title: 'Set the first 10 seconds like a club entrance, not a flat landing page.',
-      body: 'The frame makes the homepage feel spatial right away: headline in front, world behind it, and obvious paths to move deeper into the site without forcing a game-like interface.',
+      label: 'Home layer',
+      title: 'Make the homepage feel like an entrance into the 3DVR world, not a flat list of sections.',
+      body: 'The frame makes the homepage feel spatial right away: headline in front, world behind it, and obvious paths into offers, experiments, and the portal without forcing a game-like interface.',
       points: [
         'Fast first read on every screen size.',
         'Motion depth without browser lockout.',
-        'Tap targets stay clear even inside the 3D scene.',
+        'Clear paths into plans, experiments, and support.',
       ],
     },
     arena: {
-      label: 'Main arena',
-      title: 'Give the hero zone enough depth that it feels like a venue, not a banner.',
-      body: 'This is where match schedules, events, or a bold campaign headline could sit. The frame lets that centerpiece feel large without burying navigation.',
+      label: 'World layer',
+      title: 'Let the middle layer carry atmosphere, featured work, and the sense of a bigger 3DVR world.',
+      body: 'This is where featured work, scenes, community moments, or a bold campaign headline could sit. The frame lets that layer feel expansive without burying navigation.',
       points: [
-        'Big focal point for hero campaigns.',
-        'Clear CTA lane without flattening the scene.',
-        'Scroll content still works as ordinary HTML below it.',
+        'Big focal point for world-building.',
+        'Can spotlight featured projects or demos.',
+        'Keeps the homepage from feeling flat.',
       ],
     },
     studio: {
-      label: 'Motion studio',
-      title: 'Treat classes, coaching, or creator content like a live room inside the site.',
-      body: 'The studio zone shows how a service lane can still feel spatial. It can hold coaching drops, class cards, or interactive previews without leaving the frame metaphor.',
+      label: 'Studio layer',
+      title: 'Show how 3DVR builds, tests, and ships inside the world itself.',
+      body: 'The studio zone can hold build notes, prototype cards, tools, or work-in-progress demos without breaking the framed homepage metaphor.',
       points: [
-        'Good fit for modular product cards.',
+        'Good fit for experiments and process.',
         'Can support swipe or tap focus on mobile.',
         'Keeps motion controlled instead of noisy.',
       ],
     },
     rooftop: {
-      label: 'Rooftop lounge',
-      title: 'Use the upper layer for membership, community, and post-visit mood.',
-      body: 'This zone is less about raw action and more about aspiration: recovery, events, premium access, and atmosphere that sells the club identity.',
+      label: 'Portal layer',
+      title: 'Use the upper layer for support, account entry, and the next step after the homepage.',
+      body: 'This zone is less about spectacle and more about continuity: plans, portal access, support, and the systems people step into after the first visit.',
       points: [
-        'Works for premium tiers or event drops.',
-        'Lets the site end on mood instead of admin copy.',
-        'Extends the club metaphor without blocking usability.',
+        'Works for portal entry or paid lanes.',
+        'Lets the world connect to real services.',
+        'Ends on direction instead of filler copy.',
       ],
     },
   };

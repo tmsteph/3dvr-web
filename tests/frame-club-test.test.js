@@ -2,13 +2,13 @@ import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-describe('frame club test route', () => {
-  it('ships a framed 3d prototype page with device-safe messaging', async () => {
+describe('3dvr world prototype route', () => {
+  it('ships a framed 3d homepage world with device-safe messaging', async () => {
     const html = await readFile(new URL('../frame-club-test/index.html', import.meta.url), 'utf8');
 
-    assert.match(html, /3DVR Frame Club Test/);
-    assert.match(html, /Build a 3D website that still works on any device\./);
-    assert.match(html, /KODE Sports Club/);
+    assert.match(html, /3DVR 3D Homepage World/);
+    assert.match(html, /Build the 3DVR homepage as a world that works on any device\./);
+    assert.match(html, /A framed 3D homepage and world/);
     assert.match(html, /CSS layers, SVG-like shapes, motion fallback, no WebGL requirement\./);
     assert.match(html, /data-zone="arrival"/);
     assert.match(html, /data-zone="arena"/);
@@ -16,6 +16,8 @@ describe('frame club test route', () => {
     assert.match(html, /data-zone="rooftop"/);
     assert.match(html, /href="styles\.css"/);
     assert.match(html, /src="script\.js"/);
+    assert.doesNotMatch(html, /KODE/i);
+    assert.doesNotMatch(html, /sports-club/i);
   });
 
   it('uses css perspective and scripted zone switching for the frame', async () => {
