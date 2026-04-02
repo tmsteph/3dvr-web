@@ -3,11 +3,14 @@
 (function initFrameClubTest() {
   const frame = document.getElementById('clubFrame');
   const zoneDetail = document.getElementById('zoneDetail');
+  const zoneMetrics = document.getElementById('zoneMetrics');
+  const zoneDepthValue = document.getElementById('zoneDepthValue');
+  const zoneDepthFill = document.getElementById('zoneDepthFill');
   const statusPill = document.getElementById('statusPill');
   const buttons = Array.from(document.querySelectorAll('[data-zone-button], [data-zone]'));
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (!frame || !zoneDetail || !statusPill) {
+  if (!frame || !zoneDetail || !zoneMetrics || !zoneDepthValue || !zoneDepthFill || !statusPill) {
     return;
   }
 
@@ -21,6 +24,12 @@
         'Motion depth without browser lockout.',
         'Clear paths into plans, experiments, and support.',
       ],
+      metrics: [
+        { label: 'Signal', value: 'Front door' },
+        { label: 'Surface', value: 'Hero + plans' },
+        { label: 'Link', value: 'Start Free' },
+      ],
+      depth: 74,
     },
     arena: {
       label: 'World layer',
@@ -31,6 +40,12 @@
         'Can spotlight featured projects or demos.',
         'Keeps the homepage from feeling flat.',
       ],
+      metrics: [
+        { label: 'Signal', value: 'Brand world' },
+        { label: 'Surface', value: 'Scenes + work' },
+        { label: 'Link', value: 'Featured paths' },
+      ],
+      depth: 88,
     },
     studio: {
       label: 'Studio layer',
@@ -41,6 +56,12 @@
         'Can support swipe or tap focus on mobile.',
         'Keeps motion controlled instead of noisy.',
       ],
+      metrics: [
+        { label: 'Signal', value: 'Build lane' },
+        { label: 'Surface', value: 'Demos + tools' },
+        { label: 'Link', value: 'Live experiments' },
+      ],
+      depth: 82,
     },
     rooftop: {
       label: 'Portal layer',
@@ -51,6 +72,12 @@
         'Lets the world connect to real services.',
         'Ends on direction instead of filler copy.',
       ],
+      metrics: [
+        { label: 'Signal', value: 'Continuity' },
+        { label: 'Surface', value: 'Support + account' },
+        { label: 'Link', value: 'Portal entry' },
+      ],
+      depth: 79,
     },
   };
 
@@ -61,6 +88,7 @@
     }
 
     frame.dataset.zone = zoneKey;
+    zoneDetail.dataset.zone = zoneKey;
     statusPill.textContent = `Focus: ${zone.label}`;
     zoneDetail.querySelector('.zone-detail__eyebrow').textContent = zone.label;
     zoneDetail.querySelector('.zone-detail__title').textContent = zone.title;
@@ -68,6 +96,18 @@
 
     const list = zoneDetail.querySelector('.zone-detail__list');
     list.innerHTML = zone.points.map((point) => `<li>${point}</li>`).join('');
+    zoneMetrics.innerHTML = zone.metrics
+      .map(
+        (metric) => `
+          <article class="zone-metric">
+            <p class="zone-metric__label">${metric.label}</p>
+            <strong class="zone-metric__value">${metric.value}</strong>
+          </article>
+        `
+      )
+      .join('');
+    zoneDepthValue.textContent = `${zone.depth}%`;
+    zoneDepthFill.style.width = `${zone.depth}%`;
 
     buttons.forEach((button) => {
       const buttonZone = button.dataset.zoneButton || button.dataset.zone;

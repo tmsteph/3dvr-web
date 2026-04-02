@@ -24,8 +24,9 @@
         <h1>Build the 3DVR homepage as a world that works on any device.</h1>
         <p class="intro">
           This prototype turns the 3DVR homepage into a framed world: headline in front,
-          layered space behind it, and direct paths deeper into the site. It stays usable on
-          phones, tablets, and desktop without depending on heavy WebGL support.
+          layered space behind it, and direct paths deeper into the site. It borrows the portal's
+          HUD glow language for the graphics while staying usable on phones, tablets, and desktop
+          without depending on heavy WebGL support.
         </p>
 
         <div class="signal-grid" aria-label="Prototype goals">
@@ -57,6 +58,20 @@
           <span>Prototype route</span>
           <strong>/frame-club-test/</strong>
           <p>CSS layers, SVG-like shapes, motion fallback, no WebGL requirement.</p>
+          <div class="frame-meta__grid" aria-label="Prototype system readout">
+            <div class="frame-meta__tile">
+              <span>Render</span>
+              <strong>CSS depth stack</strong>
+            </div>
+            <div class="frame-meta__tile">
+              <span>Graphics</span>
+              <strong>Portal HUD glow</strong>
+            </div>
+            <div class="frame-meta__tile">
+              <span>Controls</span>
+              <strong>Tap + pointer</strong>
+            </div>
+          </div>
         </div>
 
         <section id="frame-lab" class="frame-lab" aria-labelledby="frame-title">
@@ -75,6 +90,24 @@
             <button class="zone-switcher__button" type="button" data-zone-button="rooftop">Portal</button>
           </div>
 
+          <div class="frame-hud" aria-label="Prototype graphics cues">
+            <article class="frame-hud__panel">
+              <span>Graphics</span>
+              <strong>Portal HUD glow</strong>
+              <p>Blurred glass, orbit rings, and telemetry panels lift the portal graphics language into the homepage.</p>
+            </article>
+            <article class="frame-hud__panel">
+              <span>Depth</span>
+              <strong>Layered signal field</strong>
+              <p>Stars, beacons, cards, and overlays sit on separate planes so the world reads with more depth.</p>
+            </article>
+            <article class="frame-hud__panel">
+              <span>Routes</span>
+              <strong>World to portal</strong>
+              <p>The scene still points people toward plans, experiments, and support instead of becoming a dead-end demo.</p>
+            </article>
+          </div>
+
           <div class="frame-stage">
             <div
               class="club-frame"
@@ -87,12 +120,34 @@
               <div class="club-frame__grain"></div>
 
               <div class="scene scene--back" aria-hidden="true">
+                <div class="scene__stars"></div>
                 <div class="scene__sky"></div>
+                <div class="scene__orb scene__orb--cyan"></div>
+                <div class="scene__orb scene__orb--violet"></div>
+                <div class="scene__orb scene__orb--rose"></div>
+                <div class="scene__beam"></div>
                 <div class="scene__grid"></div>
                 <div class="scene__halo"></div>
               </div>
 
               <div class="scene scene--mid" aria-hidden="true">
+                <div class="telemetry-panel telemetry-panel--left">
+                  <span class="telemetry-panel__label">Mission signal</span>
+                  <strong>3DVR world live</strong>
+                  <p>Homepage, experiments, and portal routes stay readable inside one frame.</p>
+                  <div class="telemetry-panel__meter"><span></span></div>
+                </div>
+                <div class="telemetry-panel telemetry-panel--right">
+                  <span class="telemetry-panel__label">Render mode</span>
+                  <strong>Device-safe depth</strong>
+                  <p>Portal-style glow and HUD panels without handing the page over to WebGL.</p>
+                  <div class="telemetry-panel__meter"><span></span></div>
+                </div>
+                <div class="scene-radar" aria-hidden="true">
+                  <span class="scene-radar__dot scene-radar__dot--one"></span>
+                  <span class="scene-radar__dot scene-radar__dot--two"></span>
+                  <span class="scene-radar__dot scene-radar__dot--three"></span>
+                </div>
                 <div class="scene-card scene-card--arrival" data-zone-card="arrival">
                   <span class="scene-card__tag">01</span>
                   <strong>Home layer</strong>
@@ -116,6 +171,14 @@
               </div>
 
               <div class="scene scene--front" aria-hidden="true">
+                <div class="scene-status scene-status--left">
+                  <span>Portal glow</span>
+                  <strong>Active</strong>
+                </div>
+                <div class="scene-status scene-status--right">
+                  <span>Tap + pointer</span>
+                  <strong>Ready</strong>
+                </div>
                 <div class="scene-orbit scene-orbit--one"></div>
                 <div class="scene-orbit scene-orbit--two"></div>
                 <div class="scene-marquee">
@@ -152,6 +215,30 @@
               <li>Motion depth without browser lockout.</li>
               <li>Clear paths into plans, experiments, and support.</li>
             </ul>
+            <div class="zone-detail__metrics" id="zoneMetrics" aria-label="Zone metrics">
+              <article class="zone-metric">
+                <p class="zone-metric__label">Signal</p>
+                <strong class="zone-metric__value">Front door</strong>
+              </article>
+              <article class="zone-metric">
+                <p class="zone-metric__label">Surface</p>
+                <strong class="zone-metric__value">Hero + plans</strong>
+              </article>
+              <article class="zone-metric">
+                <p class="zone-metric__label">Link</p>
+                <strong class="zone-metric__value">Start Free</strong>
+              </article>
+            </div>
+            <div class="zone-detail__meter" aria-label="World depth meter">
+              <div class="zone-detail__meter-labels">
+                <span>World depth</span>
+                <span id="zoneDepthValue">74%</span>
+              </div>
+              <div class="zone-detail__meter-track">
+                <span class="zone-detail__meter-fill" id="zoneDepthFill" style="width: 74%;"></span>
+                <span class="zone-detail__meter-glow"></span>
+              </div>
+            </div>
           </article>
         </section>
       </div>
@@ -172,7 +259,8 @@
         <h2>A public 3D site still has to work.</h2>
         <p>
           The goal is not to chase a browser-fragile effect. This prototype keeps the atmosphere
-          and layered depth while still rendering as a normal website when needed.
+          and layered depth while still rendering as a normal website when needed. Portal-style
+          glow panels and HUD overlays add more energy without breaking the basic web surface.
         </p>
       </article>
 

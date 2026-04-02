@@ -6,6 +6,7 @@ This route is a prototype for turning the 3DVR homepage into a 3D-feeling world 
 
 - The goal is a homepage that feels spatial without becoming a fragile WebGL demo.
 - The frame is the 3D stage. The rest of the page stays normal HTML.
+- The graphics now lean on the portal game's HUD language: glow panels, telemetry cards, orbit rings, and ambient orbs.
 - The zones can later map to work, experiments, portal paths, and support.
 
 ## Files
