@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 
 describe('3dvr world prototype route', () => {
   it('ships a full-screen 3d homepage world with device-safe messaging', async () => {
-    const html = await readFile(new URL('../frame-club-test/index.html', import.meta.url), 'utf8');
+    const html = await readFile(new URL('../3dvr-world/index.html', import.meta.url), 'utf8');
 
     assert.match(html, /3DVR 3D Homepage World/);
     assert.match(html, /Step into the 3DVR homepage as a full-screen world\./);
@@ -28,8 +28,8 @@ describe('3dvr world prototype route', () => {
   });
 
   it('uses css perspective and scripted zone switching for the frame', async () => {
-    const css = await readFile(new URL('../frame-club-test/styles.css', import.meta.url), 'utf8');
-    const js = await readFile(new URL('../frame-club-test/script.js', import.meta.url), 'utf8');
+    const css = await readFile(new URL('../3dvr-world/styles.css', import.meta.url), 'utf8');
+    const js = await readFile(new URL('../3dvr-world/script.js', import.meta.url), 'utf8');
 
     assert.match(css, /perspective:\s*1800px/);
     assert.match(css, /\.club-frame/);
@@ -46,5 +46,13 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /depth:/);
     assert.match(js, /renderZone\('arrival'\)/);
     assert.match(js, /pointermove/);
+  });
+
+  it('keeps the legacy frame-club-test route as a redirect to the canonical world route', async () => {
+    const html = await readFile(new URL('../frame-club-test/index.html', import.meta.url), 'utf8');
+
+    assert.match(html, /url=\/3dvr-world\//i);
+    assert.match(html, /location\.replace\('\/3dvr-world\/'\)/);
+    assert.match(html, /This route moved to 3DVR World/i);
   });
 });
