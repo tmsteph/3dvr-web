@@ -1419,30 +1419,109 @@ body {
 }
 
 @media (max-width: 720px) {
+  .frame-lab--fullscreen {
+    display: grid;
+    grid-template-areas:
+      "stage"
+      "controls"
+      "detail";
+    gap: 14px;
+    min-height: auto;
+    padding-bottom: max(18px, calc(env(safe-area-inset-bottom, 0px) + 18px));
+  }
+
+  .frame-stage--fullscreen {
+    grid-area: stage;
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: min(100svh, 760px);
+    min-height: 520px;
+    overflow: hidden;
+  }
+
+  .frame-stage--fullscreen .club-frame {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .world-topbar,
+  .hero-copy--overlay {
+    grid-area: stage;
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: auto;
+  }
+
   .world-topbar {
-    align-items: flex-start;
-    flex-direction: column;
+    align-self: start;
+    margin: max(14px, calc(env(safe-area-inset-top, 0px) + 14px))
+      max(14px, calc(env(safe-area-inset-right, 0px) + 14px))
+      0
+      max(14px, calc(env(safe-area-inset-left, 0px) + 14px));
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .world-mark,
+  .world-links a {
+    min-height: 38px;
+    padding: 0 14px;
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
   }
 
   .world-links {
     justify-content: flex-start;
+    gap: 8px;
   }
 
   .hero-copy--overlay {
-    top: max(120px, calc(env(safe-area-inset-top, 0px) + 120px));
-    width: calc(100% - 28px);
-    left: max(14px, calc(env(safe-area-inset-left, 0px) + 14px));
+    align-self: end;
+    margin: 0 max(14px, calc(env(safe-area-inset-right, 0px) + 14px)) 14px
+      max(14px, calc(env(safe-area-inset-left, 0px) + 14px));
+    max-width: none;
+    padding: 18px;
   }
 
   .hero-copy--overlay h1 {
-    font-size: clamp(2.5rem, 10vw, 4.3rem);
+    font-size: clamp(2.2rem, 10vw, 3.7rem);
+    max-width: none;
+  }
+
+  .hero-copy--overlay .intro {
+    margin-top: 14px;
+    font-size: 0.98rem;
+  }
+
+  .hero-copy--overlay .hero-actions {
+    margin-top: 18px;
+  }
+
+  .hero-copy--overlay .button {
+    flex: 1 1 140px;
   }
 
   .world-controls,
   .zone-detail--overlay {
-    left: max(14px, calc(env(safe-area-inset-left, 0px) + 14px));
-    right: max(14px, calc(env(safe-area-inset-right, 0px) + 14px));
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
     width: auto;
+    margin: 0 max(14px, calc(env(safe-area-inset-right, 0px) + 14px))
+      0
+      max(14px, calc(env(safe-area-inset-left, 0px) + 14px));
+  }
+
+  .world-controls {
+    grid-area: controls;
   }
 
   .world-controls .status-pill {
@@ -1450,11 +1529,52 @@ body {
   }
 
   .zone-detail--overlay {
-    bottom: max(148px, calc(env(safe-area-inset-bottom, 0px) + 148px));
-    max-height: min(31vh, 280px);
+    grid-area: detail;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .zone-detail--overlay .zone-detail__title {
+    max-width: none;
   }
 
   .zone-detail__metrics {
     grid-template-columns: 1fr;
+  }
+
+  .scene-card {
+    width: min(170px, 44vw);
+    padding: 12px;
+  }
+
+  .scene-card strong {
+    font-size: 1rem;
+  }
+
+  .hotspot,
+  .scene-marquee {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .frame-stage--fullscreen {
+    height: max(100svh, 640px);
+  }
+
+  .hero-copy--overlay {
+    padding: 16px;
+  }
+
+  .hero-copy--overlay .eyebrow {
+    display: none;
+  }
+
+  .hero-copy--overlay h1 {
+    font-size: clamp(1.95rem, 9.6vw, 3rem);
+  }
+
+  .hero-copy--overlay .intro {
+    font-size: 0.92rem;
   }
 }
