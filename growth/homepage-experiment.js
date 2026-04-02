@@ -33,7 +33,7 @@
     }),
     traction: Object.freeze({
       key: 'traction',
-      eyebrow: 'Launch faster. Look credible. Start selling.',
+      eyebrow: 'Launch faster. Show up clearly. Start selling.',
       primary: 'Get your website, offer, or project live.',
       secondary: 'And keep moving with direct support.',
       body: '3dvr helps small businesses and creators launch pages, apps, and follow-up systems without getting stuck in tech.',
