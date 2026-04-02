@@ -1,6 +1,6 @@
 'use strict';
 
-(function initFrameClubTest() {
+(function init3dvrWorld() {
   const frame = document.getElementById('clubFrame');
   const zoneDetail = document.getElementById('zoneDetail');
   const zoneMetrics = document.getElementById('zoneMetrics');

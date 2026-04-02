@@ -34,9 +34,9 @@ async function getWorldLayout(page) {
   });
 }
 
-test.describe('frame-club-test world page', () => {
+test.describe('3dvr-world page', () => {
   test('renders as a full-screen world and updates zone overlays', async ({ page }) => {
-    await page.goto('/frame-club-test/');
+    await page.goto('/3dvr-world/');
 
     await expect(
       page.getByRole('heading', { name: 'Step into the 3DVR homepage as a full-screen world.' })
@@ -84,7 +84,7 @@ test.describe('frame-club-test world page', () => {
 
     for (const viewport of mobileViewports) {
       await page.setViewportSize(viewport);
-      await page.goto('/frame-club-test/');
+      await page.goto('/3dvr-world/');
 
       const layout = await getWorldLayout(page);
 

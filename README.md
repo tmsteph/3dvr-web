@@ -50,5 +50,5 @@ Operational rules:
 
 - `npm run test:e2e` runs Playwright in Debian `proot` so browser automation stays out of native Termux.
 - `npm run playwright:install` installs the Firefox browser used by the current Playwright setup inside Debian.
-- The current Playwright coverage checks the full-screen `frame-club-test/` world route on desktop and mobile viewports.
+- The current Playwright coverage checks the full-screen `3dvr-world/` route on desktop and mobile viewports.
 - Playwright covers browser behavior only. Real WebXR or headset validation still needs an actual VR-capable browser or headset session.

@@ -18,7 +18,7 @@ This route is a prototype for turning the 3DVR homepage into a full-screen 3D-fe
 
 ## Route
 
-- `/frame-club-test/`
+- `/3dvr-world/`
 
 ## Why this matters
 
