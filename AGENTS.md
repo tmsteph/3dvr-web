@@ -47,6 +47,7 @@ Keep the marketing site and billing entry points aligned with the portal environ
 - Preserve the resolved portal origin across internal subscribe/detail links so plan cards stay in the same environment.
 - Avoid dead-end states where a preview page links into a production billing route that does not exist yet.
 - Use `3dvr.tech@gmail.com` as the canonical 3DVR contact email in copy, CTAs, and support links.
+- There is no separate public `@3dvr.tech` mailbox set up right now.
 - Do not introduce `hello@3dvr.tech`.
 
 ## Formatting
