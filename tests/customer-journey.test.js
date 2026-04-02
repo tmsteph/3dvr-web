@@ -23,7 +23,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Professional services/);
     assert.match(html, /Local services/);
     assert.match(html, /Support teams/);
-    assert.match(html, /What I do/);
+    assert.match(html, /What We Do/);
     assert.match(html, /Build your website or app/);
     assert.match(html, /Help you figure out the offer/);
     assert.match(html, /Stay with you as it grows/);
