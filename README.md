@@ -45,3 +45,10 @@ Operational rules:
 - `feature/*` previews should point to the matching portal preview, either through `portalOrigin` or the preview host map.
 - Never let preview billing links fall back to production when the target plan or billing route only exists in preview.
 - If Stripe is in test mode, make sure the paired portal preview also uses Stripe test price ids instead of live `price_...` values.
+
+## Browser Testing
+
+- `npm run test:e2e` runs Playwright in Debian `proot` so browser automation stays out of native Termux.
+- `npm run playwright:install` installs the Firefox browser used by the current Playwright setup inside Debian.
+- The current Playwright coverage checks the full-screen `frame-club-test/` world route on desktop and mobile viewports.
+- Playwright covers browser behavior only. Real WebXR or headset validation still needs an actual VR-capable browser or headset session.
