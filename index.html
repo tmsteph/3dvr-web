@@ -211,7 +211,14 @@
       font-size: 1.1rem;
       box-shadow: 0 0 15px rgba(0,255,200,0.5);
       z-index: 900;
-      transition: bottom 0.25s ease;
+      transition: bottom 0.25s ease, opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .sticky-cta.sticky-cta--hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(16px);
     }
 
     @media (max-width: 640px) {
@@ -1553,6 +1560,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       const cta = document.querySelector('.sticky-cta');
       const footer = document.querySelector('footer');
+      const heroButtons = document.querySelector('.hero-buttons');
 
       if (!cta || !footer) {
         return;
@@ -1586,8 +1594,22 @@
         }
 
         rafId = null;
-        const footerRect = footer.getBoundingClientRect();
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const heroButtonsRect = heroButtons ? heroButtons.getBoundingClientRect() : null;
+        const safeZoneTop = viewportHeight - baseBottom - ctaHeight - LIFT_BUFFER;
+        const hideForHero =
+          heroButtonsRect &&
+          heroButtonsRect.bottom > 0 &&
+          heroButtonsRect.bottom >= safeZoneTop;
+
+        cta.classList.toggle('sticky-cta--hidden', Boolean(hideForHero));
+
+        if (hideForHero) {
+          cta.style.removeProperty('--cta-offset');
+          return;
+        }
+
+        const footerRect = footer.getBoundingClientRect();
         const distance = viewportHeight - footerRect.top;
 
         if (distance <= 0) {
@@ -1658,6 +1680,7 @@
           cancelAnimationFrame(rafId);
           rafId = null;
         }
+        cta.classList.remove('sticky-cta--hidden');
         cta.style.removeProperty('--cta-offset');
         window.removeEventListener('load', refresh);
         window.removeEventListener('scroll', onScroll);
