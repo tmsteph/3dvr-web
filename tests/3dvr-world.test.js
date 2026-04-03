@@ -7,16 +7,20 @@ describe('3dvr world prototype route', () => {
     const html = await readFile(new URL('../3dvr-world/index.html', import.meta.url), 'utf8');
 
     assert.match(html, /3DVR 3D Homepage World/);
-    assert.match(html, /Step into the 3DVR homepage as a full-screen world\./);
+    assert.match(html, /Step into the 3DVR world\./);
     assert.match(html, /frame-lab--fullscreen/);
     assert.match(html, /Open Portal/);
     assert.match(html, /Portal HUD glow/);
-    assert.match(html, /Full-screen scene, CSS depth stack, motion fallback, no WebGL requirement\./);
+    assert.match(html, /A full-screen homepage entrance with layered depth, cleaner supporting panels, and direct/);
+    assert.match(html, /Stage \+ panels/);
     assert.match(html, /id="zoneMetrics"/);
     assert.match(html, /id="zoneDepthFill"/);
     assert.match(html, /scene-radar/);
     assert.match(html, /telemetry-panel/);
     assert.match(html, /world-topbar/);
+    assert.match(html, /class="hero-points"/);
+    assert.match(html, /class="world-content"/);
+    assert.match(html, /class="world-sidebar"/);
     assert.match(html, /data-zone="arrival"/);
     assert.match(html, /data-zone="arena"/);
     assert.match(html, /data-zone="studio"/);
@@ -39,6 +43,9 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.frame-hud__panel/);
     assert.match(css, /\.zone-detail__meter-fill/);
     assert.match(css, /\.scene-radar/);
+    assert.match(css, /\.hero-points/);
+    assert.match(css, /\.world-content/);
+    assert.match(css, /\.world-sidebar/);
     assert.match(js, /const zones = \{/);
     assert.match(js, /zoneMetrics/);
     assert.match(js, /zoneDepthFill/);
