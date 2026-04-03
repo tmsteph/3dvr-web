@@ -25,6 +25,7 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /id="worldMotion"/);
     assert.match(html, /id="motionToggle"/);
     assert.match(html, /id="motionState"/);
+    assert.doesNotMatch(html, /id="statusPill"/);
     assert.match(html, /data-zone="arrival"/);
     assert.match(html, /data-zone="arena"/);
     assert.match(html, /data-zone="studio"/);
@@ -64,6 +65,8 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /deviceorientation/);
     assert.match(js, /requestPermission/);
     assert.match(js, /handleMotionToggle/);
+    assert.match(js, /requestAnimationFrame/);
+    assert.match(js, /targetTiltX/);
   });
 
   it('keeps the legacy frame-club-test route as a redirect to the canonical world route', async () => {
