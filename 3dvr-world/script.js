@@ -6,7 +6,6 @@
   const zoneMetrics = document.getElementById('zoneMetrics');
   const zoneDepthValue = document.getElementById('zoneDepthValue');
   const zoneDepthFill = document.getElementById('zoneDepthFill');
-  const statusPill = document.getElementById('statusPill');
   const worldMotion = document.getElementById('worldMotion');
   const motionToggle = document.getElementById('motionToggle');
   const motionState = document.getElementById('motionState');
@@ -19,7 +18,7 @@
     prefersCoarsePointer &&
     typeof window.DeviceOrientationEvent !== 'undefined';
 
-  if (!frame || !zoneDetail || !zoneMetrics || !zoneDepthValue || !zoneDepthFill || !statusPill) {
+  if (!frame || !zoneDetail || !zoneMetrics || !zoneDepthValue || !zoneDepthFill) {
     return;
   }
 
@@ -28,6 +27,15 @@
     listening: false,
     baselineBeta: null,
     baselineGamma: null,
+    currentTiltX: 0,
+    currentTiltY: 0,
+    currentFloatX: 0,
+    currentFloatY: 0,
+    targetTiltX: 0,
+    targetTiltY: 0,
+    targetFloatX: 0,
+    targetFloatY: 0,
+    rafId: 0,
   };
 
   const zones = {
@@ -105,7 +113,6 @@
 
     frame.dataset.zone = zoneKey;
     zoneDetail.dataset.zone = zoneKey;
-    statusPill.textContent = `Focus: ${zone.label}`;
     zoneDetail.querySelector('.zone-detail__eyebrow').textContent = zone.label;
     zoneDetail.querySelector('.zone-detail__title').textContent = zone.title;
     zoneDetail.querySelector('.zone-detail__body').textContent = zone.body;
@@ -148,8 +155,76 @@
     frame.style.setProperty('--float-y', floatY);
   }
 
-  function resetFrameMotion() {
-    applyFrameMotion('0', '0', '0px', '0px');
+  function setMotionTarget(tiltX, tiltY, floatX, floatY) {
+    motion.targetTiltX = tiltX;
+    motion.targetTiltY = tiltY;
+    motion.targetFloatX = floatX;
+    motion.targetFloatY = floatY;
+
+    if (motion.rafId) {
+      return;
+    }
+
+    motion.rafId = window.requestAnimationFrame(renderMotionFrame);
+  }
+
+  function commitMotionFrame() {
+    applyFrameMotion(
+      motion.currentTiltX.toFixed(2),
+      motion.currentTiltY.toFixed(2),
+      `${motion.currentFloatX.toFixed(2)}px`,
+      `${motion.currentFloatY.toFixed(2)}px`
+    );
+  }
+
+  function renderMotionFrame() {
+    motion.rafId = 0;
+
+    const smoothing = motion.enabled ? 0.12 : 0.18;
+    motion.currentTiltX += (motion.targetTiltX - motion.currentTiltX) * smoothing;
+    motion.currentTiltY += (motion.targetTiltY - motion.currentTiltY) * smoothing;
+    motion.currentFloatX += (motion.targetFloatX - motion.currentFloatX) * smoothing;
+    motion.currentFloatY += (motion.targetFloatY - motion.currentFloatY) * smoothing;
+    commitMotionFrame();
+
+    const isSettled =
+      Math.abs(motion.targetTiltX - motion.currentTiltX) < 0.04 &&
+      Math.abs(motion.targetTiltY - motion.currentTiltY) < 0.04 &&
+      Math.abs(motion.targetFloatX - motion.currentFloatX) < 0.25 &&
+      Math.abs(motion.targetFloatY - motion.currentFloatY) < 0.25;
+
+    if (isSettled) {
+      motion.currentTiltX = motion.targetTiltX;
+      motion.currentTiltY = motion.targetTiltY;
+      motion.currentFloatX = motion.targetFloatX;
+      motion.currentFloatY = motion.targetFloatY;
+      commitMotionFrame();
+      return;
+    }
+
+    motion.rafId = window.requestAnimationFrame(renderMotionFrame);
+  }
+
+  function resetFrameMotion(immediate = false) {
+    if (immediate) {
+      if (motion.rafId) {
+        window.cancelAnimationFrame(motion.rafId);
+        motion.rafId = 0;
+      }
+
+      motion.currentTiltX = 0;
+      motion.currentTiltY = 0;
+      motion.currentFloatX = 0;
+      motion.currentFloatY = 0;
+      motion.targetTiltX = 0;
+      motion.targetTiltY = 0;
+      motion.targetFloatX = 0;
+      motion.targetFloatY = 0;
+      applyFrameMotion('0', '0', '0px', '0px');
+      return;
+    }
+
+    setMotionTarget(0, 0, 0, 0);
   }
 
   function updateMotionUi(mode) {
@@ -198,18 +273,20 @@
     if (motion.baselineBeta === null || motion.baselineGamma === null) {
       motion.baselineBeta = event.beta;
       motion.baselineGamma = event.gamma;
-      resetFrameMotion();
+      resetFrameMotion(true);
       return;
     }
 
-    const deltaBeta = clamp(event.beta - motion.baselineBeta, -18, 18);
-    const deltaGamma = clamp(event.gamma - motion.baselineGamma, -24, 24);
-    const tiltX = (deltaGamma / 2.4).toFixed(2);
-    const tiltY = (deltaBeta / 3).toFixed(2);
-    const floatX = `${(deltaGamma * 1.25).toFixed(2)}px`;
-    const floatY = `${(deltaBeta * 1.1).toFixed(2)}px`;
+    const rawBeta = clamp(event.beta - motion.baselineBeta, -14, 14);
+    const rawGamma = clamp(event.gamma - motion.baselineGamma, -18, 18);
+    const deltaBeta = Math.abs(rawBeta) < 1.5 ? 0 : rawBeta;
+    const deltaGamma = Math.abs(rawGamma) < 1.5 ? 0 : rawGamma;
+    const tiltX = deltaGamma / 4.6;
+    const tiltY = deltaBeta / 6;
+    const floatX = deltaGamma * 0.55;
+    const floatY = deltaBeta * 0.5;
 
-    applyFrameMotion(tiltX, tiltY, floatX, floatY);
+    setMotionTarget(tiltX, tiltY, floatX, floatY);
   }
 
   function enableMotionTilt() {
@@ -225,7 +302,7 @@
     motion.enabled = true;
     motion.baselineBeta = null;
     motion.baselineGamma = null;
-    resetFrameMotion();
+    resetFrameMotion(true);
     updateMotionUi('active');
   }
 
@@ -237,7 +314,7 @@
     if (motion.enabled) {
       motion.baselineBeta = null;
       motion.baselineGamma = null;
-      resetFrameMotion();
+      resetFrameMotion(true);
       updateMotionUi('active');
       return;
     }
@@ -274,7 +351,7 @@
 
       motion.baselineBeta = null;
       motion.baselineGamma = null;
-      resetFrameMotion();
+      resetFrameMotion(true);
     });
   } else {
     updateMotionUi('unavailable');
@@ -285,12 +362,12 @@
       const rect = frame.getBoundingClientRect();
       const x = (event.clientX - rect.left) / rect.width;
       const y = (event.clientY - rect.top) / rect.height;
-      const tiltX = ((x - 0.5) * 12).toFixed(2);
-      const tiltY = ((y - 0.5) * 10).toFixed(2);
-      const floatX = ((x - 0.5) * 36).toFixed(2);
-      const floatY = ((y - 0.5) * 26).toFixed(2);
+      const tiltX = (x - 0.5) * 7;
+      const tiltY = (y - 0.5) * 6;
+      const floatX = (x - 0.5) * 20;
+      const floatY = (y - 0.5) * 16;
 
-      applyFrameMotion(tiltX, tiltY, `${floatX}px`, `${floatY}px`);
+      setMotionTarget(tiltX, tiltY, floatX, floatY);
     });
 
     frame.addEventListener('pointerleave', () => {
