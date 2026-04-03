@@ -11,11 +11,12 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /frame-lab--fullscreen/);
     assert.match(html, /Open Portal/);
     assert.match(html, /Portal HUD glow/);
-    assert.match(html, /A full-screen homepage entrance with layered depth, direct paths into plans, experiments/);
+    assert.match(html, /A full-screen 3DVR homepage world with touch, tilt, and direct paths into plans/);
     assert.match(html, /Stage \+ panels/);
     assert.match(html, /id="zoneMetrics"/);
     assert.match(html, /id="zoneDepthFill"/);
     assert.match(html, /scene-radar/);
+    assert.match(html, /scene-core/);
     assert.match(html, /telemetry-panel/);
     assert.match(html, /world-topbar/);
     assert.match(html, /class="hero-points"/);
@@ -51,6 +52,8 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.frame-hud__panel/);
     assert.match(css, /\.zone-detail__meter-fill/);
     assert.match(css, /\.scene-radar/);
+    assert.match(css, /\.scene-core/);
+    assert.match(css, /\.scene-core__label/);
     assert.match(css, /\.hero-points/);
     assert.match(css, /\.world-content/);
     assert.match(css, /\.world-intro/);

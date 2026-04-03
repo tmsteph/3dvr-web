@@ -253,7 +253,7 @@
 
     if (!canUseMotionTilt || !motionPermissionRequired) {
       worldMotion.hidden = true;
-      motionState.textContent = 'Swipe to move through layers. Tilt your phone for depth.';
+      motionState.textContent = 'Drag to look. Swipe to move through layers. Tilt your phone for depth.';
       return;
     }
 
@@ -261,7 +261,7 @@
 
     if (mode === 'active') {
       motionToggle.textContent = 'Recenter Tilt';
-      motionState.textContent = 'Tilt on. Swipe left or right to move through layers.';
+      motionState.textContent = 'Tilt on. Drag to look or swipe left and right to move through layers.';
       return;
     }
 
@@ -278,7 +278,7 @@
     }
 
     motionToggle.textContent = 'Enable Tilt';
-    motionState.textContent = 'Enable tilt, or swipe left or right to move through layers.';
+    motionState.textContent = 'Enable tilt, or drag and swipe to move through the world.';
   }
 
   function renderZone(zoneKey) {
@@ -338,11 +338,11 @@
 
     const rawBeta = clamp(event.beta - motion.baselineBeta, -18, 18);
     const rawGamma = clamp(event.gamma - motion.baselineGamma, -22, 22);
-    const deltaBeta = Math.abs(rawBeta) < 0.9 ? 0 : rawBeta;
-    const deltaGamma = Math.abs(rawGamma) < 0.9 ? 0 : rawGamma;
-    const tiltX = deltaGamma / 4.4;
-    const tiltY = deltaBeta / 5.3;
-    const floatX = deltaGamma * 0.72;
+    const deltaBeta = Math.abs(rawBeta) < 0.45 ? 0 : rawBeta;
+    const deltaGamma = Math.abs(rawGamma) < 0.45 ? 0 : rawGamma;
+    const tiltX = clamp(deltaGamma / 3.9, -5.1, 5.1);
+    const tiltY = clamp(deltaBeta / 4.7, -3.6, 3.6);
+    const floatX = deltaGamma * 0.68;
     const floatY = deltaBeta * 0.62;
 
     setSensorMotion(tiltX, tiltY, floatX, floatY);
@@ -419,10 +419,10 @@
 
     const deltaX = touch.lastX - touch.startX;
     const deltaY = touch.lastY - touch.startY;
-    const tiltX = clamp(deltaX / 30, -4.4, 4.4);
-    const tiltY = clamp(deltaY / 54, -2.4, 2.4);
-    const floatX = clamp(deltaX * 0.5, -22, 22);
-    const floatY = clamp(deltaY * 0.28, -12, 12);
+    const tiltX = clamp(deltaX / 24, -5.2, 5.2);
+    const tiltY = clamp(deltaY / 42, -3.2, 3.2);
+    const floatX = clamp(deltaX * 0.58, -24, 24);
+    const floatY = clamp(deltaY * 0.34, -14, 14);
 
     setInteractionMotion(tiltX, tiltY, floatX, floatY);
   }
