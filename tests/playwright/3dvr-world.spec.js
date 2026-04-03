@@ -103,4 +103,60 @@ test.describe('3dvr-world page', () => {
       expect(layout.frame.height).toBeGreaterThan(Math.floor(viewport.height * 0.72));
     }
   });
+
+  test('enables device motion on supported phones', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'firefox-mobile', 'Mobile-only motion check');
+
+    await page.addInitScript(() => {
+      class MockDeviceOrientationEvent extends Event {
+        constructor(type, init = {}) {
+          super(type);
+          this.alpha = init.alpha ?? null;
+          this.beta = init.beta ?? null;
+          this.gamma = init.gamma ?? null;
+        }
+
+        static async requestPermission() {
+          return 'granted';
+        }
+      }
+
+      Object.defineProperty(window, 'DeviceOrientationEvent', {
+        configurable: true,
+        writable: true,
+        value: MockDeviceOrientationEvent,
+      });
+
+      window.__dispatchWorldOrientation = (beta, gamma) => {
+        window.dispatchEvent(new MockDeviceOrientationEvent('deviceorientation', { beta, gamma }));
+      };
+    });
+
+    await page.goto('/3dvr-world/');
+
+    await expect(page.locator('#motionToggle')).toBeVisible();
+    await expect(page.locator('#motionState')).toContainText('Tilt your phone');
+
+    await page.locator('#motionToggle').click();
+
+    await expect(page.locator('#motionToggle')).toHaveText('Recenter Motion');
+    await expect(page.locator('#motionState')).toContainText('Motion on');
+
+    await page.evaluate(() => {
+      window.__dispatchWorldOrientation(0, 0);
+      window.__dispatchWorldOrientation(12, 18);
+    });
+
+    const motion = await page.locator('#clubFrame').evaluate((element) => ({
+      tiltX: element.style.getPropertyValue('--tilt-x'),
+      tiltY: element.style.getPropertyValue('--tilt-y'),
+      floatX: element.style.getPropertyValue('--float-x'),
+      floatY: element.style.getPropertyValue('--float-y'),
+    }));
+
+    expect(Math.abs(Number.parseFloat(motion.tiltX))).toBeGreaterThan(0.1);
+    expect(Math.abs(Number.parseFloat(motion.tiltY))).toBeGreaterThan(0.1);
+    expect(motion.floatX).not.toBe('0px');
+    expect(motion.floatY).not.toBe('0px');
+  });
 });

@@ -7,12 +7,28 @@
   const zoneDepthValue = document.getElementById('zoneDepthValue');
   const zoneDepthFill = document.getElementById('zoneDepthFill');
   const statusPill = document.getElementById('statusPill');
+  const worldMotion = document.getElementById('worldMotion');
+  const motionToggle = document.getElementById('motionToggle');
+  const motionState = document.getElementById('motionState');
   const buttons = Array.from(document.querySelectorAll('button[data-zone-button], button[data-zone]'));
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+  const canUsePointerTilt = !prefersReducedMotion && !prefersCoarsePointer;
+  const canUseMotionTilt =
+    !prefersReducedMotion &&
+    prefersCoarsePointer &&
+    typeof window.DeviceOrientationEvent !== 'undefined';
 
   if (!frame || !zoneDetail || !zoneMetrics || !zoneDepthValue || !zoneDepthFill || !statusPill) {
     return;
   }
+
+  const motion = {
+    enabled: false,
+    listening: false,
+    baselineBeta: null,
+    baselineGamma: null,
+  };
 
   const zones = {
     arrival: {
@@ -121,7 +137,150 @@
     });
   });
 
-  if (!prefersReducedMotion) {
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  function applyFrameMotion(tiltX, tiltY, floatX, floatY) {
+    frame.style.setProperty('--tilt-x', tiltX);
+    frame.style.setProperty('--tilt-y', tiltY);
+    frame.style.setProperty('--float-x', floatX);
+    frame.style.setProperty('--float-y', floatY);
+  }
+
+  function resetFrameMotion() {
+    applyFrameMotion('0', '0', '0px', '0px');
+  }
+
+  function updateMotionUi(mode) {
+    if (!worldMotion || !motionToggle || !motionState) {
+      return;
+    }
+
+    if (!canUseMotionTilt) {
+      worldMotion.hidden = true;
+      return;
+    }
+
+    worldMotion.hidden = false;
+
+    if (mode === 'active') {
+      motionToggle.textContent = 'Recenter Motion';
+      motionState.textContent = 'Motion on. Tilt your phone to steer the world depth.';
+      return;
+    }
+
+    if (mode === 'blocked') {
+      motionToggle.textContent = 'Try Motion Again';
+      motionState.textContent = 'Motion permission was blocked. Try again if your browser allows it.';
+      return;
+    }
+
+    if (mode === 'pending') {
+      motionToggle.textContent = 'Waiting for Motion';
+      motionState.textContent = 'Approve motion access, then tilt your phone to move the world.';
+      return;
+    }
+
+    motionToggle.textContent = 'Enable Motion';
+    motionState.textContent = 'Tilt your phone to move the world depth.';
+  }
+
+  function handleDeviceOrientation(event) {
+    if (!motion.enabled) {
+      return;
+    }
+
+    if (!Number.isFinite(event.beta) || !Number.isFinite(event.gamma)) {
+      return;
+    }
+
+    if (motion.baselineBeta === null || motion.baselineGamma === null) {
+      motion.baselineBeta = event.beta;
+      motion.baselineGamma = event.gamma;
+      resetFrameMotion();
+      return;
+    }
+
+    const deltaBeta = clamp(event.beta - motion.baselineBeta, -18, 18);
+    const deltaGamma = clamp(event.gamma - motion.baselineGamma, -24, 24);
+    const tiltX = (deltaGamma / 2.4).toFixed(2);
+    const tiltY = (deltaBeta / 3).toFixed(2);
+    const floatX = `${(deltaGamma * 1.25).toFixed(2)}px`;
+    const floatY = `${(deltaBeta * 1.1).toFixed(2)}px`;
+
+    applyFrameMotion(tiltX, tiltY, floatX, floatY);
+  }
+
+  function enableMotionTilt() {
+    if (!canUseMotionTilt) {
+      return;
+    }
+
+    if (!motion.listening) {
+      window.addEventListener('deviceorientation', handleDeviceOrientation);
+      motion.listening = true;
+    }
+
+    motion.enabled = true;
+    motion.baselineBeta = null;
+    motion.baselineGamma = null;
+    resetFrameMotion();
+    updateMotionUi('active');
+  }
+
+  async function handleMotionToggle() {
+    if (!canUseMotionTilt) {
+      return;
+    }
+
+    if (motion.enabled) {
+      motion.baselineBeta = null;
+      motion.baselineGamma = null;
+      resetFrameMotion();
+      updateMotionUi('active');
+      return;
+    }
+
+    try {
+      if (typeof window.DeviceOrientationEvent.requestPermission === 'function') {
+        updateMotionUi('pending');
+        const permission = await window.DeviceOrientationEvent.requestPermission();
+
+        if (permission !== 'granted') {
+          updateMotionUi('blocked');
+          return;
+        }
+      }
+
+      enableMotionTilt();
+    } catch (error) {
+      updateMotionUi('blocked');
+    }
+  }
+
+  if (motionToggle) {
+    motionToggle.addEventListener('click', () => {
+      handleMotionToggle();
+    });
+  }
+
+  if (canUseMotionTilt) {
+    updateMotionUi('ready');
+    window.addEventListener('orientationchange', () => {
+      if (!motion.enabled) {
+        return;
+      }
+
+      motion.baselineBeta = null;
+      motion.baselineGamma = null;
+      resetFrameMotion();
+    });
+  } else {
+    updateMotionUi('unavailable');
+  }
+
+  if (canUsePointerTilt) {
     frame.addEventListener('pointermove', (event) => {
       const rect = frame.getBoundingClientRect();
       const x = (event.clientX - rect.left) / rect.width;
@@ -131,17 +290,11 @@
       const floatX = ((x - 0.5) * 36).toFixed(2);
       const floatY = ((y - 0.5) * 26).toFixed(2);
 
-      frame.style.setProperty('--tilt-x', tiltX);
-      frame.style.setProperty('--tilt-y', tiltY);
-      frame.style.setProperty('--float-x', `${floatX}px`);
-      frame.style.setProperty('--float-y', `${floatY}px`);
+      applyFrameMotion(tiltX, tiltY, `${floatX}px`, `${floatY}px`);
     });
 
     frame.addEventListener('pointerleave', () => {
-      frame.style.setProperty('--tilt-x', '0');
-      frame.style.setProperty('--tilt-y', '0');
-      frame.style.setProperty('--float-x', '0px');
-      frame.style.setProperty('--float-y', '0px');
+      resetFrameMotion();
     });
   }
 

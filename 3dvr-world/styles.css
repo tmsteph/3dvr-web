@@ -1352,6 +1352,42 @@ body {
   margin: 0;
 }
 
+.world-motion {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+
+.world-motion[hidden] {
+  display: none;
+}
+
+.world-motion__button {
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(94, 234, 212, 0.28);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.world-motion__button:hover,
+.world-motion__button:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(111, 247, 255, 0.48);
+  background: rgba(111, 247, 255, 0.12);
+}
+
+.world-motion__state {
+  margin: 0;
+  color: rgba(224, 231, 255, 0.86);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
 .world-content {
   position: relative;
   z-index: 10;
@@ -1476,12 +1512,21 @@ body {
     width: calc(100% - 28px);
     grid-template-columns: 1fr;
     justify-items: stretch;
-    gap: 0;
+    gap: 10px;
     padding: 10px 12px;
   }
 
   .world-controls .status-pill {
     display: none;
+  }
+
+  .world-motion {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .world-motion__button {
+    width: 100%;
   }
 
   .zone-detail__metrics {
