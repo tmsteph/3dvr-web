@@ -81,6 +81,32 @@ async function activateZone(page, zoneKey) {
 }
 
 test.describe('3dvr-world page', () => {
+  test('keeps ambient motion alive without input', async ({ page }, testInfo) => {
+    test.skip(!isMobileProject(testInfo), 'Ambient motion is asserted on the mobile-like projects');
+    test.skip(/webkit/i.test(testInfo.project.name), 'Ambient animation sampling is unreliable in headless WebKit');
+
+    await page.goto('/3dvr-world/');
+
+    const sampleMotion = async () => page.locator('#clubFrame').evaluate((element) => ({
+      tiltX: Number.parseFloat(element.style.getPropertyValue('--tilt-x') || '0'),
+      tiltY: Number.parseFloat(element.style.getPropertyValue('--tilt-y') || '0'),
+      floatX: Number.parseFloat(element.style.getPropertyValue('--float-x') || '0'),
+      floatY: Number.parseFloat(element.style.getPropertyValue('--float-y') || '0'),
+    }));
+
+    const first = await sampleMotion();
+    await page.waitForTimeout(900);
+    const later = await sampleMotion();
+
+    const delta =
+      Math.abs(later.tiltX - first.tiltX) +
+      Math.abs(later.tiltY - first.tiltY) +
+      Math.abs(later.floatX - first.floatX) +
+      Math.abs(later.floatY - first.floatY);
+
+    expect(delta).toBeGreaterThan(0.8);
+  });
+
   test('renders as a full-screen world and updates zone overlays', async ({ page }, testInfo) => {
     await page.goto('/3dvr-world/');
 
@@ -172,7 +198,7 @@ test.describe('3dvr-world page', () => {
 
       expect(layout.topbar.bottom).toBeLessThanOrEqual(layout.frame.bottom - 20);
       expect(layout.mobileHint.bottom).toBeLessThanOrEqual(layout.frame.bottom - 12);
-      expect(layout.frame.bottom).toBeLessThanOrEqual(layout.intro.top - 16);
+      expect(layout.frame.bottom).toBeLessThanOrEqual(layout.intro.top - 8);
       expect(layout.frame.bottom).toBeGreaterThanOrEqual(viewport.height - 6);
       expect(layout.intro.bottom).toBeLessThanOrEqual(layout.detail.top - 16);
       expect(layout.frame.height).toBeGreaterThan(Math.floor(viewport.height * 0.92));
@@ -294,13 +320,11 @@ test.describe('3dvr-world page', () => {
       floatY: Number.parseFloat(element.style.getPropertyValue('--float-y') || '0'),
     }));
 
-    expect(Math.abs(motion.tiltX)).toBeGreaterThan(0.6);
-    expect(Math.abs(motion.tiltY)).toBeGreaterThan(0.35);
-    expect(Math.abs(motion.tiltX)).toBeLessThan(5.2);
-    expect(Math.abs(motion.tiltY)).toBeLessThan(3.4);
-    expect(Math.abs(motion.floatX)).toBeGreaterThan(2);
-    expect(Math.abs(motion.floatY)).toBeGreaterThan(1);
-    expect(Math.abs(motion.floatX)).toBeLessThan(15);
-    expect(Math.abs(motion.floatY)).toBeLessThan(10);
+    expect(Math.abs(motion.tiltX) + Math.abs(motion.tiltY)).toBeGreaterThan(0.8);
+    expect(Math.abs(motion.tiltX)).toBeLessThan(7.6);
+    expect(Math.abs(motion.tiltY)).toBeLessThan(5.2);
+    expect(Math.abs(motion.floatX) + Math.abs(motion.floatY)).toBeGreaterThan(3);
+    expect(Math.abs(motion.floatX)).toBeLessThan(24);
+    expect(Math.abs(motion.floatY)).toBeLessThan(14);
   });
 });

@@ -417,16 +417,28 @@ button {
   border-radius: 34px;
   overflow: hidden;
   background:
-    radial-gradient(circle at 50% 10%, rgba(111, 247, 255, 0.22), transparent 28%),
-    radial-gradient(circle at 84% 20%, rgba(138, 132, 255, 0.24), transparent 28%),
-    radial-gradient(circle at 16% 74%, rgba(255, 90, 122, 0.14), transparent 22%),
-    linear-gradient(180deg, #081325, #050b14 72%);
+    radial-gradient(circle at 50% 10%, rgba(111, 247, 255, 0.12), transparent 24%),
+    radial-gradient(circle at 84% 20%, rgba(138, 132, 255, 0.14), transparent 24%),
+    radial-gradient(circle at 16% 74%, rgba(255, 90, 122, 0.09), transparent 20%),
+    linear-gradient(180deg, #040913, #02070f 76%);
   box-shadow: var(--frame-shadow);
   transform-style: preserve-3d;
   transform:
     rotateX(calc(var(--tilt-y) * -1deg))
     rotateY(calc(var(--tilt-x) * 1deg));
   transition: transform 180ms ease;
+  will-change: transform;
+}
+
+.club-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center, rgba(2, 7, 15, 0) 18%, rgba(2, 7, 15, 0.24) 54%, rgba(2, 7, 15, 0.72) 100%),
+    linear-gradient(180deg, rgba(2, 7, 15, 0.1), rgba(2, 7, 15, 0.34) 52%, rgba(2, 7, 15, 0.58));
+  z-index: 2;
 }
 
 .club-frame[data-zone="arrival"] {
@@ -468,9 +480,9 @@ button {
 
 .club-frame__glass {
   background:
-    linear-gradient(130deg, rgba(255, 255, 255, 0.16), transparent 22%, transparent 70%, rgba(255, 255, 255, 0.08)),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 35%, transparent 80%, rgba(255, 255, 255, 0.03));
-  mix-blend-mode: screen;
+    linear-gradient(130deg, rgba(255, 255, 255, 0.08), transparent 22%, transparent 72%, rgba(255, 255, 255, 0.04)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 35%, transparent 84%, rgba(255, 255, 255, 0.02));
+  opacity: 0.6;
   transform: translateZ(65px);
 }
 
@@ -490,15 +502,18 @@ button {
 }
 
 .scene--back {
-  transform: translateZ(-140px);
+  transform: translate3d(calc(var(--float-x) * -0.24), calc(var(--float-y) * -0.18), -160px) scale(1.08);
+  will-change: transform;
 }
 
 .scene--mid {
-  transform: translateZ(24px);
+  transform: translate3d(calc(var(--float-x) * 0.12), calc(var(--float-y) * 0.08), 28px);
+  will-change: transform;
 }
 
 .scene--front {
-  transform: translateZ(90px);
+  transform: translate3d(calc(var(--float-x) * 0.3), calc(var(--float-y) * 0.2), 104px);
+  will-change: transform;
 }
 
 .scene__stars,
@@ -526,30 +541,30 @@ button {
 
 .scene__sky {
   background:
-    radial-gradient(circle at 50% 22%, rgba(111, 247, 255, 0.26), transparent 32%),
-    radial-gradient(circle at 22% 70%, rgba(255, 90, 122, 0.16), transparent 25%),
-    radial-gradient(circle at 82% 74%, rgba(212, 255, 99, 0.18), transparent 24%);
+    radial-gradient(circle at 50% 22%, rgba(111, 247, 255, 0.18), transparent 28%),
+    radial-gradient(circle at 22% 70%, rgba(255, 90, 122, 0.1), transparent 22%),
+    radial-gradient(circle at 82% 74%, rgba(212, 255, 99, 0.12), transparent 22%);
 }
 
 .scene__orb {
   border-radius: 50%;
   filter: blur(2px);
-  mix-blend-mode: screen;
   animation: orb-float 9s ease-in-out infinite;
+  opacity: 0.68;
 }
 
 .scene__orb--cyan {
   inset: 6% auto auto 11%;
   width: 210px;
   height: 210px;
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.4), rgba(56, 189, 248, 0.16) 55%, transparent 78%);
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.28), rgba(56, 189, 248, 0.1) 52%, transparent 76%);
 }
 
 .scene__orb--violet {
   inset: 14% 8% auto auto;
   width: 240px;
   height: 240px;
-  background: radial-gradient(circle, rgba(129, 140, 248, 0.38), rgba(56, 189, 248, 0.14) 58%, transparent 80%);
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.26), rgba(56, 189, 248, 0.08) 56%, transparent 78%);
   animation-delay: -3s;
 }
 
@@ -557,16 +572,16 @@ button {
   inset: auto auto 12% 44%;
   width: 180px;
   height: 180px;
-  background: radial-gradient(circle, rgba(244, 114, 182, 0.26), rgba(56, 189, 248, 0.12) 58%, transparent 82%);
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.18), rgba(56, 189, 248, 0.06) 56%, transparent 80%);
   animation-delay: -5s;
 }
 
 .scene__beam {
   inset: 10% 44% 18%;
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(111, 247, 255, 0), rgba(111, 247, 255, 0.2), rgba(111, 247, 255, 0));
-  filter: blur(14px);
-  opacity: 0.88;
+  background: linear-gradient(180deg, rgba(111, 247, 255, 0), rgba(111, 247, 255, 0.08), rgba(111, 247, 255, 0));
+  filter: blur(18px);
+  opacity: 0.38;
 }
 
 .scene__grid {
@@ -610,7 +625,7 @@ button {
   width: min(190px, 36vw);
   padding: 14px;
   border: 1px solid rgba(94, 234, 212, 0.38);
-  background: rgba(8, 25, 44, 0.72);
+  background: rgba(6, 18, 34, 0.8);
   box-shadow: 0 18px 42px rgba(8, 145, 178, 0.38);
   backdrop-filter: blur(14px);
 }
@@ -618,13 +633,13 @@ button {
 .telemetry-panel--left {
   left: 4%;
   bottom: 13%;
-  transform: translateZ(168px) rotateY(10deg);
+  transform: translate3d(calc(var(--float-x) * -0.22), calc(var(--float-y) * -0.16), 168px) rotateY(10deg);
 }
 
 .telemetry-panel--right {
   right: 4%;
   top: 13%;
-  transform: translateZ(176px) rotateY(-10deg);
+  transform: translate3d(calc(var(--float-x) * 0.22), calc(var(--float-y) * -0.14), 176px) rotateY(-10deg);
 }
 
 .telemetry-panel__label {
@@ -676,11 +691,12 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background:
     linear-gradient(155deg, rgba(37, 99, 235, 0.22) 0%, rgba(59, 130, 246, 0.08) 45%, rgba(20, 184, 166, 0.14) 100%),
-    rgba(10, 20, 35, 0.78);
+    rgba(8, 17, 31, 0.86);
   box-shadow: 0 22px 50px rgba(0, 0, 0, 0.34);
-  opacity: 0.58;
-  filter: saturate(0.86) brightness(0.88);
+  opacity: 0.52;
+  filter: saturate(0.76) brightness(0.76);
   transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, opacity 220ms ease, filter 220ms ease;
+  will-change: transform;
 }
 
 .scene-card strong {
@@ -741,9 +757,9 @@ button {
 .club-frame[data-zone="studio"] .scene-card--studio,
 .club-frame[data-zone="rooftop"] .scene-card--rooftop {
   border-color: rgba(var(--zone-accent-rgb), 0.56);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.42), 0 0 40px rgba(var(--zone-accent-rgb), 0.18);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 0 0 48px rgba(var(--zone-accent-rgb), 0.24);
   opacity: 1;
-  filter: none;
+  filter: saturate(1.12) brightness(1.05);
 }
 
 .club-frame[data-zone="arrival"] .scene-card--arrival {
@@ -807,13 +823,13 @@ button {
 .scene-status--left {
   left: 5%;
   top: 8%;
-  transform: translateZ(126px);
+  transform: translate3d(calc(var(--float-x) * -0.18), calc(var(--float-y) * -0.08), 126px);
 }
 
 .scene-status--right {
   right: 5%;
   top: 8%;
-  transform: translateZ(126px);
+  transform: translate3d(calc(var(--float-x) * 0.18), calc(var(--float-y) * -0.08), 126px);
 }
 
 .scene-radar {
@@ -826,7 +842,7 @@ button {
   background:
     radial-gradient(circle at center, rgba(var(--zone-accent-rgb), 0.14), transparent 58%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
-  transform: translateZ(188px);
+  transform: translate3d(calc(var(--float-x) * 0.2), calc(var(--float-y) * 0.16), 188px);
   box-shadow: 0 22px 54px rgba(4, 9, 20, 0.34);
 }
 
@@ -876,9 +892,10 @@ button {
   top: 49%;
   width: min(340px, 34vw);
   aspect-ratio: 1;
-  transform: translate3d(calc(-50% + (var(--float-x) * 0.18)), calc(-50% + (var(--float-y) * 0.14)), 190px);
+  transform: translate3d(calc(-50% + (var(--float-x) * 0.28)), calc(-50% + (var(--float-y) * 0.22)), 204px);
   transform-style: preserve-3d;
   pointer-events: none;
+  will-change: transform;
 }
 
 .scene-core__ring,
@@ -909,12 +926,13 @@ button {
 .scene-core__disc {
   inset: 24%;
   background:
-    radial-gradient(circle, rgba(var(--zone-accent-rgb), 0.32), rgba(var(--zone-accent-rgb), 0.16) 54%, rgba(8, 25, 44, 0.18) 74%, transparent 86%),
-    radial-gradient(circle at center, rgba(255, 255, 255, 0.24), transparent 62%);
+    radial-gradient(circle, rgba(var(--zone-accent-rgb), 0.16), rgba(var(--zone-accent-rgb), 0.06) 48%, rgba(8, 25, 44, 0.08) 72%, transparent 84%),
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 56%);
   box-shadow:
-    0 0 48px rgba(var(--zone-accent-rgb), 0.22),
-    inset 0 0 36px rgba(255, 255, 255, 0.08);
-  filter: saturate(1.08);
+    0 0 28px rgba(var(--zone-accent-rgb), 0.14),
+    inset 0 0 24px rgba(255, 255, 255, 0.03);
+  filter: saturate(1.04);
+  animation: core-breathe 5.6s ease-in-out infinite;
 }
 
 .scene-core__label {
@@ -923,15 +941,15 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(243, 246, 251, 0.78);
+  color: rgba(243, 246, 251, 0.92);
   font-size: clamp(2.5rem, 4.7vw, 4.8rem);
   font-weight: 700;
   letter-spacing: 0.32em;
   text-indent: 0.32em;
   text-transform: uppercase;
   text-shadow:
-    0 0 24px rgba(var(--zone-accent-rgb), 0.22),
-    0 0 46px rgba(var(--zone-accent-rgb), 0.14);
+    0 0 16px rgba(var(--zone-accent-rgb), 0.18),
+    0 0 28px rgba(var(--zone-accent-rgb), 0.1);
 }
 
 .scene-marquee {
@@ -949,6 +967,7 @@ button {
   text-transform: uppercase;
   letter-spacing: 0.18em;
   font-size: 0.72rem;
+  transform: translate3d(calc(var(--float-x) * 0.12), calc(var(--float-y) * 0.06), 118px);
 }
 
 .hotspot {
@@ -963,6 +982,7 @@ button {
   color: var(--ink);
   cursor: pointer;
   transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+  will-change: transform;
 }
 
 .hotspot span {
@@ -980,25 +1000,25 @@ button {
 .hotspot--arrival {
   left: 10%;
   top: 52%;
-  transform: translateZ(130px);
+  transform: translate3d(calc(var(--float-x) * -0.22), calc(var(--float-y) * 0.12), 130px);
 }
 
 .hotspot--arena {
   left: 44%;
   top: 53%;
-  transform: translateZ(170px);
+  transform: translate3d(calc(var(--float-x) * 0.08), calc(var(--float-y) * 0.08), 170px);
 }
 
 .hotspot--studio {
   right: 11%;
   top: 50%;
-  transform: translateZ(150px);
+  transform: translate3d(calc(var(--float-x) * 0.22), calc(var(--float-y) * 0.12), 150px);
 }
 
 .hotspot--rooftop {
   right: 21%;
   top: 72%;
-  transform: translateZ(205px);
+  transform: translate3d(calc(var(--float-x) * 0.16), calc(var(--float-y) * 0.2), 205px);
 }
 
 .zone-detail {
@@ -1152,6 +1172,19 @@ button {
   50% {
     opacity: 1;
     transform: scale(1.35);
+  }
+}
+
+@keyframes core-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.94;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
   }
 }
 
@@ -1615,7 +1648,7 @@ body {
   .scene-core {
     top: 50%;
     width: min(310px, 74vw);
-    transform: translate3d(calc(-50% + (var(--float-x) * 0.22)), calc(-50% + (var(--float-y) * 0.18)), 200px);
+    transform: translate3d(calc(-50% + (var(--float-x) * 0.34)), calc(-50% + (var(--float-y) * 0.28)), 214px);
   }
 
   .scene-core__label {

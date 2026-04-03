@@ -54,6 +54,9 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.scene-radar/);
     assert.match(css, /\.scene-core/);
     assert.match(css, /\.scene-core__label/);
+    assert.match(css, /@keyframes core-breathe/);
+    assert.match(css, /\.scene--back/);
+    assert.match(css, /translate3d\(calc\(var\(--float-x\) \* -0\.24\)/);
     assert.match(css, /\.hero-points/);
     assert.match(css, /\.world-content/);
     assert.match(css, /\.world-intro/);
@@ -79,6 +82,9 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /motionPermissionRequired/);
     assert.match(js, /requestAnimationFrame/);
     assert.match(js, /targetTiltX/);
+    assert.match(js, /ambientEnabled/);
+    assert.match(js, /updateAmbientMotion/);
+    assert.match(css, /\.club-frame::after/);
   });
 
   it('keeps the legacy frame-club-test route as a redirect to the canonical world route', async () => {
