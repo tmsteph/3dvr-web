@@ -18,6 +18,8 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Get organized/);
     assert.match(html, /\$20/);
     assert.match(html, /\$50/);
+    assert.match(html, /\$200/);
+    assert.match(html, /Enterprise/);
     assert.match(html, /Custom/);
     assert.match(html, /Best first page/);
     assert.match(html, /Professional services/);
@@ -32,8 +34,10 @@ describe('3dvr-web customer journey copy', () => {
     assert.doesNotMatch(html, /Life starter/);
     assert.match(html, /Simple ways to work together/);
     assert.match(html, /Start free if you need structure\. Start at \$20\/month if you want direct launch help\./);
+    assert.match(html, /Teams with shared workflow pain should look at Enterprise at \$200\/month\./);
     assert.match(html, /Get ongoing help shaping the idea, page, or offer and getting it launched\./);
     assert.match(html, /Best for growing businesses that need a site, follow-up, updates, and calmer operations\./);
+    assert.match(html, /Best for support teams, organizations, and shared workflows that need one calmer operating lane\./);
     assert.doesNotMatch(html, /Websites\. Apps\. Real support\./);
     assert.doesNotMatch(html, /A real place to land when you need a site, support, or a launch plan\./);
     assert.doesNotMatch(html, /Best for real businesses that need a site, follow-up, updates, and calmer operations\./);
@@ -51,18 +55,19 @@ describe('3dvr-web customer journey copy', () => {
 
   it('makes the main plans page explicit about continuing in the portal', async () => {
     const html = await readFile(new URL('../subscribe/index.html', import.meta.url), 'utf8');
-    assert.match(html, /Start free to get organized, support the mission at \$5, grow with \$20, or move into a \$50 builder lane and custom scoped work\./);
+    assert.match(html, /Start free to get organized, support the mission at \$5, grow with \$20, move into a \$50 builder lane, choose Enterprise at \$200 for shared team support, or use custom scoped work\./);
     assert.match(html, /Get organized, sort out your next steps, and start using the portal without paying first\./);
     assert.match(html, /Choose by business type/);
     assert.match(html, /See professional-services fit/);
     assert.match(html, /See local-service fit/);
-    assert.match(html, /See team fit/);
+    assert.match(html, /See Enterprise fit/);
     assert.match(html, /Daily check-ins and weekly reflection/);
     assert.match(html, /No credit card required\. Create one portal account and start organizing what matters\./);
     assert.match(html, /Start Free in Portal/);
     assert.match(html, /Continue to Portal for \$5/);
     assert.match(html, /Continue to Portal for \$20/);
     assert.match(html, /Continue to Portal for \$50/);
+    assert.match(html, /Continue to Portal for Enterprise/);
     assert.match(html, /Open custom checkout in Portal/);
     assert.doesNotMatch(html, /Start free with Life/);
     assert.doesNotMatch(html, /Life starter/);
@@ -101,7 +106,10 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(localHtml, /Continue to Portal for Builder/);
     assert.match(supportHtml, /For Support Teams/);
     assert.match(supportHtml, /Give the team one calmer system for people, follow-up, and weekly action\./);
-    assert.match(supportHtml, /Continue to Portal for Embedded/);
+    assert.match(supportHtml, /Enterprise \$200 \/ month/);
+    assert.match(supportHtml, /Continue to Portal for Enterprise/);
+    assert.match(supportHtml, /choose Enterprise instead of Builder/i);
+    assert.match(supportHtml, /plan=embedded/);
   });
 
   it('keeps the campaign page exposed for higher-intent buyers', async () => {

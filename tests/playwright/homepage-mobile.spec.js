@@ -21,9 +21,13 @@ test.describe('homepage mobile sticky CTA', () => {
 
     expect(widthState.scrollWidth).toBeLessThanOrEqual(widthState.innerWidth + 1);
 
-    await page.evaluate(() => {
-      window.scrollTo(0, Math.round(window.innerHeight * 1.1));
-    });
+    const heroBottom = await page.locator('.hero').evaluate((element) => (
+      Math.round(element.getBoundingClientRect().bottom + window.scrollY)
+    ));
+
+    await page.evaluate((scrollTop) => {
+      window.scrollTo(0, scrollTop + 40);
+    }, heroBottom);
 
     await expect(stickyCta).toBeVisible();
   });
