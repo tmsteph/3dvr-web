@@ -214,17 +214,26 @@
       transition: bottom 0.25s ease, opacity 0.2s ease, transform 0.2s ease;
     }
 
-    .sticky-cta.sticky-cta--hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transform: translateY(16px);
-    }
-
     @media (max-width: 640px) {
       .sticky-cta {
         font-size: 1rem;
         padding: 0.85rem 1.4rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sticky-cta {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(16px);
+      }
+
+      .sticky-cta.sticky-cta--visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
       }
     }
 
@@ -1602,7 +1611,7 @@
           heroButtonsRect.bottom > 0 &&
           heroButtonsRect.bottom >= safeZoneTop;
 
-        cta.classList.toggle('sticky-cta--hidden', Boolean(hideForHero));
+        cta.classList.toggle('sticky-cta--visible', !hideForHero);
 
         if (hideForHero) {
           cta.style.removeProperty('--cta-offset');
@@ -1680,7 +1689,7 @@
           cancelAnimationFrame(rafId);
           rafId = null;
         }
-        cta.classList.remove('sticky-cta--hidden');
+        cta.classList.remove('sticky-cta--visible');
         cta.style.removeProperty('--cta-offset');
         window.removeEventListener('load', refresh);
         window.removeEventListener('scroll', onScroll);
