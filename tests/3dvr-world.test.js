@@ -11,7 +11,7 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /frame-lab--fullscreen/);
     assert.match(html, /Open Portal/);
     assert.match(html, /Portal HUD glow/);
-    assert.match(html, /A full-screen homepage entrance with layered depth, cleaner supporting panels, and direct/);
+    assert.match(html, /A full-screen homepage entrance with layered depth, direct paths into plans, experiments/);
     assert.match(html, /Stage \+ panels/);
     assert.match(html, /id="zoneMetrics"/);
     assert.match(html, /id="zoneDepthFill"/);
@@ -20,6 +20,7 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /world-topbar/);
     assert.match(html, /class="hero-points"/);
     assert.match(html, /class="world-content"/);
+    assert.match(html, /class="hero-copy world-intro"/);
     assert.match(html, /class="world-sidebar"/);
     assert.match(html, /data-zone="arrival"/);
     assert.match(html, /data-zone="arena"/);
@@ -45,6 +46,7 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.scene-radar/);
     assert.match(css, /\.hero-points/);
     assert.match(css, /\.world-content/);
+    assert.match(css, /\.world-intro/);
     assert.match(css, /\.world-sidebar/);
     assert.match(js, /const zones = \{/);
     assert.match(js, /zoneMetrics/);

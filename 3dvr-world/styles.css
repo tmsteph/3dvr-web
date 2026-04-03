@@ -1280,7 +1280,6 @@ body {
 }
 
 .world-topbar,
-.hero-copy--overlay,
 .world-controls {
   position: absolute;
   z-index: 30;
@@ -1326,26 +1325,6 @@ body {
   gap: 10px;
 }
 
-.hero-copy--overlay {
-  bottom: max(112px, calc(env(safe-area-inset-bottom, 0px) + 112px));
-  left: max(16px, calc(env(safe-area-inset-left, 0px) + 16px));
-  width: min(460px, calc(100% - 32px));
-  max-width: calc(100% - 32px);
-}
-
-.hero-copy--overlay h1 {
-  font-size: clamp(2.6rem, 5vw, 4.4rem);
-  max-width: 8ch;
-}
-
-.hero-copy--overlay .intro {
-  max-width: 34ch;
-}
-
-.hero-copy--overlay .hero-actions {
-  margin-top: 22px;
-}
-
 .world-controls {
   left: 50%;
   bottom: max(16px, calc(env(safe-area-inset-bottom, 0px) + 16px));
@@ -1385,11 +1364,30 @@ body {
   padding-bottom: 32px;
 }
 
+.world-intro {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.world-intro h1 {
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  max-width: 9ch;
+}
+
+.world-intro .intro {
+  max-width: 42ch;
+}
+
+.world-intro .hero-actions {
+  margin-top: 22px;
+}
+
 .world-sidebar {
   display: grid;
   gap: 18px;
 }
 
+.world-intro,
 .world-sidebar .frame-meta,
 .world-sidebar .frame-hud,
 .world-content .zone-detail {
@@ -1426,11 +1424,6 @@ body {
   .scene-radar {
     display: none;
   }
-
-  .hero-copy--overlay {
-    bottom: max(144px, calc(env(safe-area-inset-bottom, 0px) + 144px));
-    width: min(420px, calc(100% - 32px));
-  }
 }
 
 @media (max-width: 720px) {
@@ -1457,28 +1450,25 @@ body {
     gap: 8px;
   }
 
-  .hero-copy--overlay {
-    bottom: max(144px, calc(env(safe-area-inset-bottom, 0px) + 144px));
-    width: calc(100% - 28px);
-    left: max(14px, calc(env(safe-area-inset-left, 0px) + 14px));
-    padding: 18px;
+  .world-intro {
+    padding: 20px;
   }
 
-  .hero-copy--overlay h1 {
+  .world-intro h1 {
     font-size: clamp(2.1rem, 9vw, 3.2rem);
     max-width: none;
   }
 
-  .hero-copy--overlay .intro {
+  .world-intro .intro {
     margin-top: 14px;
     font-size: 0.98rem;
   }
 
-  .hero-copy--overlay .hero-actions {
+  .world-intro .hero-actions {
     margin-top: 18px;
   }
 
-  .hero-copy--overlay .button {
+  .world-intro .button {
     flex: 1 1 140px;
   }
 
@@ -1524,23 +1514,23 @@ body {
     min-height: 560px;
   }
 
-  .hero-copy--overlay {
+  .world-intro {
     padding: 16px;
   }
 
-  .hero-copy--overlay .eyebrow {
+  .world-intro .eyebrow {
     display: none;
   }
 
-  .hero-copy--overlay .hero-points {
+  .world-intro .hero-points {
     display: none;
   }
 
-  .hero-copy--overlay h1 {
+  .world-intro h1 {
     font-size: clamp(1.8rem, 9vw, 2.6rem);
   }
 
-  .hero-copy--overlay .intro {
+  .world-intro .intro {
     font-size: 0.92rem;
   }
 }
