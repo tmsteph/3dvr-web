@@ -124,74 +124,23 @@
       </header>
 
       <section class="hero-copy hero-copy--overlay" aria-labelledby="worldTitle">
-        <p class="eyebrow">3dvr lab / full-screen 3d world</p>
-        <h1 id="worldTitle">Step into the 3DVR homepage as a full-screen world.</h1>
+        <p class="eyebrow">3dvr world / full-screen homepage</p>
+        <h1 id="worldTitle">Step into the 3DVR world.</h1>
         <p class="intro">
-          This route is now its own page: a full-screen device-safe world with portal-style HUD
-          graphics, layered depth, and direct paths into 3DVR offers, experiments, and the portal.
+          A full-screen homepage entrance with layered depth, cleaner supporting panels, and direct
+          paths into plans, experiments, and the portal.
         </p>
-
-        <div class="signal-grid" aria-label="Prototype goals">
-          <article class="signal-card">
-            <p class="signal-card__label">Format</p>
-            <h2>Standalone page</h2>
-            <p>The world fills the screen instead of sitting inside a prototype explainer layout.</p>
-          </article>
-          <article class="signal-card">
-            <p class="signal-card__label">Graphics</p>
-            <h2>Portal HUD cues</h2>
-            <p>Glow panels, telemetry cards, orbit rings, and ambient fields push the visual language further.</p>
-          </article>
-          <article class="signal-card">
-            <p class="signal-card__label">Behavior</p>
-            <h2>Still web-safe</h2>
-            <p>Tap targets, readable copy, and motion fallback keep it usable on phones and desktops.</p>
-          </article>
-        </div>
+        <ul class="hero-points" aria-label="World route goals">
+          <li>Scene first.</li>
+          <li>Readable across web and VR.</li>
+          <li>Direct next steps.</li>
+        </ul>
 
         <div class="hero-actions">
           <a class="button button--primary" href="/subscribe/free-plan.html">Start Free</a>
           <a class="button button--ghost" href="https://portal.3dvr.tech" target="_blank" rel="noopener">Open Portal</a>
         </div>
       </section>
-
-      <aside class="frame-meta frame-meta--overlay">
-        <span>Prototype route</span>
-        <strong>/3dvr-world/</strong>
-        <p>Full-screen scene, CSS depth stack, motion fallback, no WebGL requirement.</p>
-        <div class="frame-meta__grid" aria-label="Prototype system readout">
-          <div class="frame-meta__tile">
-            <span>Render</span>
-            <strong>CSS depth stack</strong>
-          </div>
-          <div class="frame-meta__tile">
-            <span>Graphics</span>
-            <strong>Portal HUD glow</strong>
-          </div>
-          <div class="frame-meta__tile">
-            <span>Mode</span>
-            <strong>Full-screen page</strong>
-          </div>
-        </div>
-      </aside>
-
-      <div class="frame-hud frame-hud--overlay" aria-label="Prototype graphics cues">
-        <article class="frame-hud__panel">
-          <span>Graphics</span>
-          <strong>Portal HUD glow</strong>
-          <p>Blurred glass, orbit rings, and telemetry panels lift the portal graphics language into the world.</p>
-        </article>
-        <article class="frame-hud__panel">
-          <span>Depth</span>
-          <strong>Layered signal field</strong>
-          <p>Stars, beacons, cards, and overlays sit on separate planes so the page feels spatial at full screen.</p>
-        </article>
-        <article class="frame-hud__panel">
-          <span>Routes</span>
-          <strong>World to portal</strong>
-          <p>The scene still pushes people into plans, experiments, and support instead of becoming a dead-end demo.</p>
-        </article>
-      </div>
 
       <div class="world-controls">
         <p class="status-pill" id="statusPill">Focus: Home layer</p>
@@ -203,8 +152,10 @@
           <button class="zone-switcher__button" type="button" data-zone-button="rooftop">Portal</button>
         </div>
       </div>
+    </section>
 
-      <article class="zone-detail zone-detail--overlay" id="zoneDetail" aria-live="polite">
+    <section class="world-content" aria-label="World route details">
+      <article class="zone-detail" id="zoneDetail" aria-live="polite">
         <p class="zone-detail__eyebrow">Home layer</p>
         <h2 class="zone-detail__title">Make the homepage feel like an entrance into the 3DVR world, not a flat list of sections.</h2>
         <p class="zone-detail__body">
@@ -241,6 +192,46 @@
           </div>
         </div>
       </article>
+
+      <div class="world-sidebar">
+        <aside class="frame-meta">
+          <span>Route</span>
+          <strong>/3dvr-world/</strong>
+          <p>Full-screen scene, CSS depth stack, motion fallback, and a cleaner info layout below the stage.</p>
+          <div class="frame-meta__grid" aria-label="Prototype system readout">
+            <div class="frame-meta__tile">
+              <span>Render</span>
+              <strong>CSS depth stack</strong>
+            </div>
+            <div class="frame-meta__tile">
+              <span>Graphics</span>
+              <strong>Portal HUD glow</strong>
+            </div>
+            <div class="frame-meta__tile">
+              <span>Mode</span>
+              <strong>Stage + panels</strong>
+            </div>
+          </div>
+        </aside>
+
+        <div class="frame-hud" aria-label="Prototype graphics cues">
+          <article class="frame-hud__panel">
+            <span>Graphics</span>
+            <strong>Portal HUD glow</strong>
+            <p>Blurred glass, orbit rings, and telemetry panels lift the portal graphics language into the world.</p>
+          </article>
+          <article class="frame-hud__panel">
+            <span>Depth</span>
+            <strong>Layered signal field</strong>
+            <p>Stars, beacons, cards, and overlays sit on separate planes so the page feels spatial at full screen.</p>
+          </article>
+          <article class="frame-hud__panel">
+            <span>Routes</span>
+            <strong>World to portal</strong>
+            <p>The scene still pushes people into plans, experiments, and support instead of becoming a dead-end demo.</p>
+          </article>
+        </div>
+      </div>
     </section>
   </main>
 

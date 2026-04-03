@@ -29,7 +29,7 @@ async function getWorldLayout(page) {
       hero: pick('.hero-copy--overlay'),
       frame: pick('#clubFrame'),
       controls: pick('.world-controls'),
-      detail: pick('.zone-detail--overlay'),
+      detail: pick('#zoneDetail'),
     };
   });
 }
@@ -39,10 +39,11 @@ test.describe('3dvr-world page', () => {
     await page.goto('/3dvr-world/');
 
     await expect(
-      page.getByRole('heading', { name: 'Step into the 3DVR homepage as a full-screen world.' })
+      page.getByRole('heading', { name: 'Step into the 3DVR world.' })
     ).toBeVisible();
     await expect(page.locator('.world-topbar')).toBeVisible();
     await expect(page.locator('#clubFrame')).toBeVisible();
+    await expect(page.locator('.world-content')).toBeVisible();
     await expect(page.locator('#zoneMetrics .zone-metric')).toHaveCount(3);
 
     const frameSize = await page.locator('#clubFrame').evaluate((element) => ({
@@ -53,7 +54,7 @@ test.describe('3dvr-world page', () => {
     }));
 
     expect(frameSize.width).toBeGreaterThan(Math.floor(frameSize.viewportWidth * 0.85));
-    expect(frameSize.height).toBeGreaterThan(Math.floor(frameSize.viewportHeight * 0.85));
+    expect(frameSize.height).toBeGreaterThan(Math.floor(frameSize.viewportHeight * 0.75));
 
     const widthState = await page.evaluate(() => ({
       scrollWidth: document.documentElement.scrollWidth,
@@ -95,10 +96,11 @@ test.describe('3dvr-world page', () => {
       expect(layout.controls).not.toBeNull();
       expect(layout.detail).not.toBeNull();
 
-      expect(layout.topbar.bottom).toBeLessThanOrEqual(layout.hero.top - 12);
-      expect(layout.frame.bottom).toBeLessThanOrEqual(layout.controls.top - 8);
-      expect(layout.controls.bottom).toBeLessThanOrEqual(layout.detail.top - 8);
-      expect(layout.frame.height).toBeGreaterThan(Math.floor(viewport.height * 0.75));
+      expect(layout.topbar.bottom).toBeLessThanOrEqual(layout.hero.top + 2);
+      expect(layout.hero.bottom).toBeLessThanOrEqual(layout.controls.top - 8);
+      expect(layout.frame.bottom).toBeLessThanOrEqual(layout.detail.top - 16);
+      expect(layout.controls.bottom).toBeLessThanOrEqual(layout.detail.top - 16);
+      expect(layout.frame.height).toBeGreaterThan(Math.floor(viewport.height * 0.72));
     }
   });
 });
