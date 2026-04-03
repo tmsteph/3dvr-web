@@ -36,6 +36,8 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /data-zone="rooftop"/);
     assert.match(html, /href="styles\.css"/);
     assert.match(html, /src="script\.js"/);
+    assert.doesNotMatch(html, /fonts\.googleapis/i);
+    assert.doesNotMatch(html, /fonts\.gstatic/i);
     assert.doesNotMatch(html, /KODE/i);
     assert.doesNotMatch(html, /sports-club/i);
   });
@@ -64,6 +66,10 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.world-motion/);
     assert.match(css, /\.world-motion__button/);
     assert.match(css, /\.world-mobile-hint/);
+    assert.match(css, /@font-face/);
+    assert.match(css, /chakra-petch-400-latin\.woff2/);
+    assert.match(css, /instrument-serif-400-latin\.woff2/);
+    assert.match(css, /text-size-adjust:\s*100%/);
     assert.match(css, /touch-action:\s*pan-y/);
     assert.match(js, /const zones = \{/);
     assert.match(js, /zoneMetrics/);

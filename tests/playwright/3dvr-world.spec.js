@@ -82,7 +82,7 @@ async function activateZone(page, zoneKey) {
 
 test.describe('3dvr-world page', () => {
   test('keeps ambient motion alive without input', async ({ page }, testInfo) => {
-    test.skip(!isMobileProject(testInfo), 'Ambient motion is asserted on the mobile-like projects');
+    test.skip(testInfo.project.name !== 'chromium-fold-closed', 'Ambient motion is asserted on chromium mobile');
     test.skip(/webkit/i.test(testInfo.project.name), 'Ambient animation sampling is unreliable in headless WebKit');
 
     await page.goto('/3dvr-world/');
@@ -105,6 +105,27 @@ test.describe('3dvr-world page', () => {
       Math.abs(later.floatY - first.floatY);
 
     expect(delta).toBeGreaterThan(0.8);
+  });
+
+  test('keeps route fonts local on chromium mobile', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium-fold-closed', 'Brave hardening is asserted on Chromium mobile');
+
+    await page.route(/fonts\.googleapis\.com|fonts\.gstatic\.com/, (route) => route.abort());
+    await page.goto('/3dvr-world/');
+
+    await expect.poll(async () => {
+      return page.evaluate(() => ({
+        chakraReady: document.fonts.check('700 1em "Chakra Petch"'),
+        serifReady: document.fonts.check('400 1em "Instrument Serif"'),
+        remoteFontRequestSeen: performance
+          .getEntriesByType('resource')
+          .some((entry) => /fonts\.googleapis\.com|fonts\.gstatic\.com/i.test(entry.name)),
+      }));
+    }).toEqual({
+      chakraReady: true,
+      serifReady: true,
+      remoteFontRequestSeen: false,
+    });
   });
 
   test('renders as a full-screen world and updates zone overlays', async ({ page }, testInfo) => {
