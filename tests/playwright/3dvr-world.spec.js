@@ -1,5 +1,13 @@
 import { expect, test } from '@playwright/test';
 
+function isMobileProject(testInfo) {
+  return /(mobile|fold)/i.test(testInfo.project.name);
+}
+
+function supportsSyntheticMotion(testInfo) {
+  return !/webkit-mobile-safari/i.test(testInfo.project.name);
+}
+
 async function getWorldLayout(page) {
   return page.evaluate(() => {
     const pick = (selector) => {
@@ -36,9 +44,17 @@ async function getWorldLayout(page) {
   });
 }
 
-async function swipeWorld(page, startX, startY, endX, endY) {
+async function swipeWorld(page, {
+  startXRatio = 0.8,
+  endXRatio = 0.3,
+  yRatio = 0.46,
+} = {}) {
   await page.locator('#clubFrame').evaluate(
     (element, gesture) => {
+      const rect = element.getBoundingClientRect();
+      const startX = Math.round(rect.left + rect.width * gesture.startXRatio);
+      const endX = Math.round(rect.left + rect.width * gesture.endXRatio);
+      const y = Math.round(rect.top + rect.height * gesture.yRatio);
       const dispatchTouch = (type, x, y) => {
         const event = new Event(type, { bubbles: true, cancelable: true });
         const touches = type === 'touchend' ? [] : [{ clientX: x, clientY: y }];
@@ -50,11 +66,11 @@ async function swipeWorld(page, startX, startY, endX, endY) {
         element.dispatchEvent(event);
       };
 
-      dispatchTouch('touchstart', gesture.startX, gesture.startY);
-      dispatchTouch('touchmove', gesture.endX, gesture.endY);
-      dispatchTouch('touchend', gesture.endX, gesture.endY);
+      dispatchTouch('touchstart', startX, y);
+      dispatchTouch('touchmove', endX, y);
+      dispatchTouch('touchend', endX, y);
     },
-    { startX, startY, endX, endY }
+    { startXRatio, endXRatio, yRatio }
   );
 }
 
@@ -71,7 +87,7 @@ test.describe('3dvr-world page', () => {
     await expect(
       page.getByRole('heading', { name: 'Step into the 3DVR world.' })
     ).toBeVisible();
-    if (testInfo.project.name === 'firefox-mobile') {
+    if (isMobileProject(testInfo)) {
       await expect(page.locator('.world-topbar')).toBeVisible();
     } else {
       await expect(page.locator('.world-topbar')).not.toBeVisible();
@@ -92,7 +108,11 @@ test.describe('3dvr-world page', () => {
     }));
 
     expect(frameSize.width).toBeGreaterThan(Math.floor(frameSize.viewportWidth * 0.85));
-    expect(frameSize.height).toBeGreaterThan(Math.floor(frameSize.viewportHeight * 0.75));
+    if (isMobileProject(testInfo)) {
+      expect(frameSize.height).toBeGreaterThan(Math.floor(frameSize.viewportHeight * 0.92));
+    } else {
+      expect(frameSize.height).toBeGreaterThan(Math.floor(frameSize.viewportHeight * 0.75));
+    }
 
     const widthState = await page.evaluate(() => ({
       scrollWidth: document.documentElement.scrollWidth,
@@ -101,10 +121,10 @@ test.describe('3dvr-world page', () => {
 
     expect(widthState.scrollWidth).toBeLessThanOrEqual(widthState.innerWidth + 1);
 
-    if (testInfo.project.name === 'firefox-mobile') {
-      await swipeWorld(page, 312, 360, 120, 360);
-      await swipeWorld(page, 312, 360, 120, 360);
-      await swipeWorld(page, 312, 360, 120, 360);
+    if (isMobileProject(testInfo)) {
+      await swipeWorld(page);
+      await swipeWorld(page);
+      await swipeWorld(page);
     } else {
       await activateZone(page, 'rooftop');
     }
@@ -112,8 +132,11 @@ test.describe('3dvr-world page', () => {
     await expect(page.locator('#zoneDepthValue')).toHaveText('79%');
     await expect(page.locator('#zoneMetrics')).toContainText('Portal entry');
 
-    if (testInfo.project.name === 'firefox-mobile') {
-      await swipeWorld(page, 120, 360, 300, 360);
+    if (isMobileProject(testInfo)) {
+      await swipeWorld(page, {
+        startXRatio: 0.28,
+        endXRatio: 0.76,
+      });
     } else {
       await activateZone(page, 'studio');
     }
@@ -123,9 +146,10 @@ test.describe('3dvr-world page', () => {
   });
 
   test('stacks mobile overlays without collisions on narrow screens', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name !== 'firefox-mobile', 'Mobile-only layout check');
+    test.skip(!isMobileProject(testInfo), 'Mobile-only layout check');
 
     const mobileViewports = [
+      { width: 344, height: 808 },
       { width: 390, height: 844 },
       { width: 360, height: 640 },
       { width: 320, height: 568 },
@@ -149,24 +173,26 @@ test.describe('3dvr-world page', () => {
       expect(layout.topbar.bottom).toBeLessThanOrEqual(layout.frame.bottom - 20);
       expect(layout.mobileHint.bottom).toBeLessThanOrEqual(layout.frame.bottom - 12);
       expect(layout.frame.bottom).toBeLessThanOrEqual(layout.intro.top - 16);
+      expect(layout.frame.bottom).toBeGreaterThanOrEqual(viewport.height - 6);
       expect(layout.intro.bottom).toBeLessThanOrEqual(layout.detail.top - 16);
-      expect(layout.frame.height).toBeGreaterThan(Math.floor(viewport.height * 0.72));
+      expect(layout.frame.height).toBeGreaterThan(Math.floor(viewport.height * 0.92));
     }
   });
 
   test('swipes through zones on touch devices', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name !== 'firefox-mobile', 'Mobile-only swipe check');
+    test.skip(!isMobileProject(testInfo), 'Mobile-only swipe check');
 
     await page.goto('/3dvr-world/');
 
-    await swipeWorld(page, 310, 360, 150, 364);
+    await swipeWorld(page);
 
     await expect(page.locator('#zoneDetail .zone-detail__eyebrow')).toHaveText('World layer');
     await expect(page.locator('#zoneDepthValue')).toHaveText('88%');
   });
 
   test('auto-enables device motion when phone permission is not required', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name !== 'firefox-mobile', 'Mobile-only motion check');
+    test.skip(!isMobileProject(testInfo), 'Mobile-only motion check');
+    test.skip(!supportsSyntheticMotion(testInfo), 'Synthetic motion is unreliable in WebKit mobile emulation');
 
     await page.addInitScript(() => {
       class MockDeviceOrientationEvent extends Event {
@@ -209,7 +235,8 @@ test.describe('3dvr-world page', () => {
   });
 
   test('enables device motion on supported phones', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name !== 'firefox-mobile', 'Mobile-only motion check');
+    test.skip(!isMobileProject(testInfo), 'Mobile-only motion check');
+    test.skip(!supportsSyntheticMotion(testInfo), 'Synthetic motion is unreliable in WebKit mobile emulation');
 
     await page.addInitScript(() => {
       class MockDeviceOrientationEvent extends Event {
