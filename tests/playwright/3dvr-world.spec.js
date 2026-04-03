@@ -26,7 +26,7 @@ async function getWorldLayout(page) {
       },
       scrollWidth: document.documentElement.scrollWidth,
       topbar: pick('.world-topbar'),
-      hero: pick('.hero-copy--overlay'),
+      intro: pick('.world-intro'),
       frame: pick('#clubFrame'),
       controls: pick('.world-controls'),
       detail: pick('#zoneDetail'),
@@ -43,6 +43,7 @@ test.describe('3dvr-world page', () => {
     ).toBeVisible();
     await expect(page.locator('.world-topbar')).toBeVisible();
     await expect(page.locator('#clubFrame')).toBeVisible();
+    await expect(page.locator('.world-intro')).toBeVisible();
     await expect(page.locator('.world-content')).toBeVisible();
     await expect(page.locator('#zoneMetrics .zone-metric')).toHaveCount(3);
 
@@ -91,15 +92,14 @@ test.describe('3dvr-world page', () => {
 
       expect(layout.scrollWidth).toBeLessThanOrEqual(viewport.width + 1);
       expect(layout.topbar).not.toBeNull();
-      expect(layout.hero).not.toBeNull();
+      expect(layout.intro).not.toBeNull();
       expect(layout.frame).not.toBeNull();
       expect(layout.controls).not.toBeNull();
       expect(layout.detail).not.toBeNull();
 
-      expect(layout.topbar.bottom).toBeLessThanOrEqual(layout.hero.top + 2);
-      expect(layout.hero.bottom).toBeLessThanOrEqual(layout.controls.top - 8);
-      expect(layout.frame.bottom).toBeLessThanOrEqual(layout.detail.top - 16);
-      expect(layout.controls.bottom).toBeLessThanOrEqual(layout.detail.top - 16);
+      expect(layout.controls.bottom).toBeLessThanOrEqual(layout.intro.top - 16);
+      expect(layout.frame.bottom).toBeLessThanOrEqual(layout.intro.top - 16);
+      expect(layout.intro.bottom).toBeLessThanOrEqual(layout.detail.top - 16);
       expect(layout.frame.height).toBeGreaterThan(Math.floor(viewport.height * 0.72));
     }
   });
