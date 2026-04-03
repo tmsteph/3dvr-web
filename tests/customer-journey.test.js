@@ -6,7 +6,7 @@ describe('3dvr-web customer journey copy', () => {
   it('keeps the homepage focused on concrete first steps and the portal start path', async () => {
     const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
     assert.match(html, /Websites\. Apps\. Direct support\./);
-    assert.match(html, /I help small businesses actually launch\./);
+    assert.match(html, /We help small businesses actually launch\./);
     assert.match(html, /Not just plan\. Not just think about it\./);
     assert.match(html, /A clear place to land when you need a site, support, or a launch plan\./);
     assert.match(html, /Get a site, landing page, or simple business system with direct help from idea to launch\./);

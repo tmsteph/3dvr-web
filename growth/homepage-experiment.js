@@ -26,7 +26,7 @@
     clarity: Object.freeze({
       key: 'clarity',
       eyebrow: 'Websites. Apps. Direct support.',
-      primary: 'I help small businesses actually launch.',
+      primary: 'We help small businesses actually launch.',
       secondary: 'Not just plan. Not just think about it.',
       body: 'Get a site, landing page, or simple business system with direct help from idea to launch.',
       feedbackPrompt: 'Does this explain the offer clearly?',
