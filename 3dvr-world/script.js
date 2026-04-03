@@ -9,7 +9,7 @@
   const worldMotion = document.getElementById('worldMotion');
   const motionToggle = document.getElementById('motionToggle');
   const motionState = document.getElementById('motionState');
-  const buttons = Array.from(document.querySelectorAll('button[data-zone-button], button[data-zone]'));
+  const zoneButtons = Array.from(document.querySelectorAll('button[data-zone]'));
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const prefersCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
   const canUsePointerTilt = !prefersReducedMotion && !prefersCoarsePointer;
@@ -17,6 +17,9 @@
     !prefersReducedMotion &&
     prefersCoarsePointer &&
     typeof window.DeviceOrientationEvent !== 'undefined';
+  const motionPermissionRequired =
+    canUseMotionTilt &&
+    typeof window.DeviceOrientationEvent.requestPermission === 'function';
 
   if (!frame || !zoneDetail || !zoneMetrics || !zoneDepthValue || !zoneDepthFill) {
     return;
@@ -35,7 +38,23 @@
     targetTiltY: 0,
     targetFloatX: 0,
     targetFloatY: 0,
+    sensorTiltX: 0,
+    sensorTiltY: 0,
+    sensorFloatX: 0,
+    sensorFloatY: 0,
+    interactionTiltX: 0,
+    interactionTiltY: 0,
+    interactionFloatX: 0,
+    interactionFloatY: 0,
     rafId: 0,
+  };
+
+  const touch = {
+    active: false,
+    startX: 0,
+    startY: 0,
+    lastX: 0,
+    lastY: 0,
   };
 
   const zones = {
@@ -105,44 +124,8 @@
     },
   };
 
-  function renderZone(zoneKey) {
-    const zone = zones[zoneKey];
-    if (!zone) {
-      return;
-    }
-
-    frame.dataset.zone = zoneKey;
-    zoneDetail.dataset.zone = zoneKey;
-    zoneDetail.querySelector('.zone-detail__eyebrow').textContent = zone.label;
-    zoneDetail.querySelector('.zone-detail__title').textContent = zone.title;
-    zoneDetail.querySelector('.zone-detail__body').textContent = zone.body;
-
-    const list = zoneDetail.querySelector('.zone-detail__list');
-    list.innerHTML = zone.points.map((point) => `<li>${point}</li>`).join('');
-    zoneMetrics.innerHTML = zone.metrics
-      .map(
-        (metric) => `
-          <article class="zone-metric">
-            <p class="zone-metric__label">${metric.label}</p>
-            <strong class="zone-metric__value">${metric.value}</strong>
-          </article>
-        `
-      )
-      .join('');
-    zoneDepthValue.textContent = `${zone.depth}%`;
-    zoneDepthFill.style.width = `${zone.depth}%`;
-
-    buttons.forEach((button) => {
-      const buttonZone = button.dataset.zoneButton || button.dataset.zone;
-      button.classList.toggle('is-active', buttonZone === zoneKey);
-    });
-  }
-
-  buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-      renderZone(button.dataset.zoneButton || button.dataset.zone);
-    });
-  });
+  const zoneOrder = Object.keys(zones);
+  let activeZone = zoneOrder[0];
 
   function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
@@ -155,19 +138,6 @@
     frame.style.setProperty('--float-y', floatY);
   }
 
-  function setMotionTarget(tiltX, tiltY, floatX, floatY) {
-    motion.targetTiltX = tiltX;
-    motion.targetTiltY = tiltY;
-    motion.targetFloatX = floatX;
-    motion.targetFloatY = floatY;
-
-    if (motion.rafId) {
-      return;
-    }
-
-    motion.rafId = window.requestAnimationFrame(renderMotionFrame);
-  }
-
   function commitMotionFrame() {
     applyFrameMotion(
       motion.currentTiltX.toFixed(2),
@@ -177,10 +147,26 @@
     );
   }
 
+  function queueMotionFrame() {
+    if (motion.rafId) {
+      return;
+    }
+
+    motion.rafId = window.requestAnimationFrame(renderMotionFrame);
+  }
+
+  function syncMotionTarget() {
+    motion.targetTiltX = motion.sensorTiltX + motion.interactionTiltX;
+    motion.targetTiltY = motion.sensorTiltY + motion.interactionTiltY;
+    motion.targetFloatX = motion.sensorFloatX + motion.interactionFloatX;
+    motion.targetFloatY = motion.sensorFloatY + motion.interactionFloatY;
+    queueMotionFrame();
+  }
+
   function renderMotionFrame() {
     motion.rafId = 0;
 
-    const smoothing = motion.enabled ? 0.12 : 0.18;
+    const smoothing = motion.enabled ? 0.18 : 0.24;
     motion.currentTiltX += (motion.targetTiltX - motion.currentTiltX) * smoothing;
     motion.currentTiltY += (motion.targetTiltY - motion.currentTiltY) * smoothing;
     motion.currentFloatX += (motion.targetFloatX - motion.currentFloatX) * smoothing;
@@ -202,10 +188,47 @@
       return;
     }
 
-    motion.rafId = window.requestAnimationFrame(renderMotionFrame);
+    queueMotionFrame();
+  }
+
+  function setSensorMotion(tiltX, tiltY, floatX, floatY) {
+    motion.sensorTiltX = tiltX;
+    motion.sensorTiltY = tiltY;
+    motion.sensorFloatX = floatX;
+    motion.sensorFloatY = floatY;
+    syncMotionTarget();
+  }
+
+  function setInteractionMotion(tiltX, tiltY, floatX, floatY) {
+    motion.interactionTiltX = tiltX;
+    motion.interactionTiltY = tiltY;
+    motion.interactionFloatX = floatX;
+    motion.interactionFloatY = floatY;
+    syncMotionTarget();
+  }
+
+  function clearSensorMotion() {
+    setSensorMotion(0, 0, 0, 0);
+  }
+
+  function clearInteractionMotion() {
+    setInteractionMotion(0, 0, 0, 0);
   }
 
   function resetFrameMotion(immediate = false) {
+    motion.sensorTiltX = 0;
+    motion.sensorTiltY = 0;
+    motion.sensorFloatX = 0;
+    motion.sensorFloatY = 0;
+    motion.interactionTiltX = 0;
+    motion.interactionTiltY = 0;
+    motion.interactionFloatX = 0;
+    motion.interactionFloatY = 0;
+    motion.targetTiltX = 0;
+    motion.targetTiltY = 0;
+    motion.targetFloatX = 0;
+    motion.targetFloatY = 0;
+
     if (immediate) {
       if (motion.rafId) {
         window.cancelAnimationFrame(motion.rafId);
@@ -216,15 +239,11 @@
       motion.currentTiltY = 0;
       motion.currentFloatX = 0;
       motion.currentFloatY = 0;
-      motion.targetTiltX = 0;
-      motion.targetTiltY = 0;
-      motion.targetFloatX = 0;
-      motion.targetFloatY = 0;
       applyFrameMotion('0', '0', '0px', '0px');
       return;
     }
 
-    setMotionTarget(0, 0, 0, 0);
+    queueMotionFrame();
   }
 
   function updateMotionUi(mode) {
@@ -232,33 +251,73 @@
       return;
     }
 
-    if (!canUseMotionTilt) {
+    if (!canUseMotionTilt || !motionPermissionRequired) {
       worldMotion.hidden = true;
+      motionState.textContent = 'Swipe to move through layers. Tilt your phone for depth.';
       return;
     }
 
     worldMotion.hidden = false;
 
     if (mode === 'active') {
-      motionToggle.textContent = 'Recenter Motion';
-      motionState.textContent = 'Motion on. Tilt your phone to steer the world depth.';
+      motionToggle.textContent = 'Recenter Tilt';
+      motionState.textContent = 'Tilt on. Swipe left or right to move through layers.';
       return;
     }
 
     if (mode === 'blocked') {
-      motionToggle.textContent = 'Try Motion Again';
-      motionState.textContent = 'Motion permission was blocked. Try again if your browser allows it.';
+      motionToggle.textContent = 'Try Tilt Again';
+      motionState.textContent = 'Tilt permission was blocked. Try again if your browser allows it.';
       return;
     }
 
     if (mode === 'pending') {
-      motionToggle.textContent = 'Waiting for Motion';
-      motionState.textContent = 'Approve motion access, then tilt your phone to move the world.';
+      motionToggle.textContent = 'Waiting for Tilt';
+      motionState.textContent = 'Approve tilt access, then move your phone to deepen the world.';
       return;
     }
 
-    motionToggle.textContent = 'Enable Motion';
-    motionState.textContent = 'Tilt your phone to move the world depth.';
+    motionToggle.textContent = 'Enable Tilt';
+    motionState.textContent = 'Enable tilt, or swipe left or right to move through layers.';
+  }
+
+  function renderZone(zoneKey) {
+    const zone = zones[zoneKey];
+    if (!zone) {
+      return;
+    }
+
+    activeZone = zoneKey;
+    frame.dataset.zone = zoneKey;
+    zoneDetail.dataset.zone = zoneKey;
+    zoneDetail.querySelector('.zone-detail__eyebrow').textContent = zone.label;
+    zoneDetail.querySelector('.zone-detail__title').textContent = zone.title;
+    zoneDetail.querySelector('.zone-detail__body').textContent = zone.body;
+
+    const list = zoneDetail.querySelector('.zone-detail__list');
+    list.innerHTML = zone.points.map((point) => `<li>${point}</li>`).join('');
+    zoneMetrics.innerHTML = zone.metrics
+      .map(
+        (metric) => `
+          <article class="zone-metric">
+            <p class="zone-metric__label">${metric.label}</p>
+            <strong class="zone-metric__value">${metric.value}</strong>
+          </article>
+        `
+      )
+      .join('');
+    zoneDepthValue.textContent = `${zone.depth}%`;
+    zoneDepthFill.style.width = `${zone.depth}%`;
+
+    zoneButtons.forEach((button) => {
+      button.classList.toggle('is-active', button.dataset.zone === zoneKey);
+    });
+  }
+
+  function stepZone(direction) {
+    const currentIndex = zoneOrder.indexOf(activeZone);
+    const nextIndex = clamp(currentIndex + direction, 0, zoneOrder.length - 1);
+    renderZone(zoneOrder[nextIndex]);
   }
 
   function handleDeviceOrientation(event) {
@@ -277,16 +336,16 @@
       return;
     }
 
-    const rawBeta = clamp(event.beta - motion.baselineBeta, -14, 14);
-    const rawGamma = clamp(event.gamma - motion.baselineGamma, -18, 18);
-    const deltaBeta = Math.abs(rawBeta) < 1.5 ? 0 : rawBeta;
-    const deltaGamma = Math.abs(rawGamma) < 1.5 ? 0 : rawGamma;
-    const tiltX = deltaGamma / 4.6;
-    const tiltY = deltaBeta / 6;
-    const floatX = deltaGamma * 0.55;
-    const floatY = deltaBeta * 0.5;
+    const rawBeta = clamp(event.beta - motion.baselineBeta, -18, 18);
+    const rawGamma = clamp(event.gamma - motion.baselineGamma, -22, 22);
+    const deltaBeta = Math.abs(rawBeta) < 0.9 ? 0 : rawBeta;
+    const deltaGamma = Math.abs(rawGamma) < 0.9 ? 0 : rawGamma;
+    const tiltX = deltaGamma / 4.4;
+    const tiltY = deltaBeta / 5.3;
+    const floatX = deltaGamma * 0.72;
+    const floatY = deltaBeta * 0.62;
 
-    setMotionTarget(tiltX, tiltY, floatX, floatY);
+    setSensorMotion(tiltX, tiltY, floatX, floatY);
   }
 
   function enableMotionTilt() {
@@ -314,13 +373,13 @@
     if (motion.enabled) {
       motion.baselineBeta = null;
       motion.baselineGamma = null;
-      resetFrameMotion(true);
+      clearSensorMotion();
       updateMotionUi('active');
       return;
     }
 
     try {
-      if (typeof window.DeviceOrientationEvent.requestPermission === 'function') {
+      if (motionPermissionRequired) {
         updateMotionUi('pending');
         const permission = await window.DeviceOrientationEvent.requestPermission();
 
@@ -336,6 +395,60 @@
     }
   }
 
+  function handleTouchStart(event) {
+    if (!prefersCoarsePointer || event.touches.length !== 1) {
+      return;
+    }
+
+    const touchPoint = event.touches[0];
+    touch.active = true;
+    touch.startX = touchPoint.clientX;
+    touch.startY = touchPoint.clientY;
+    touch.lastX = touchPoint.clientX;
+    touch.lastY = touchPoint.clientY;
+  }
+
+  function handleTouchMove(event) {
+    if (!touch.active || event.touches.length !== 1) {
+      return;
+    }
+
+    const touchPoint = event.touches[0];
+    touch.lastX = touchPoint.clientX;
+    touch.lastY = touchPoint.clientY;
+
+    const deltaX = touch.lastX - touch.startX;
+    const deltaY = touch.lastY - touch.startY;
+    const tiltX = clamp(deltaX / 30, -4.4, 4.4);
+    const tiltY = clamp(deltaY / 54, -2.4, 2.4);
+    const floatX = clamp(deltaX * 0.5, -22, 22);
+    const floatY = clamp(deltaY * 0.28, -12, 12);
+
+    setInteractionMotion(tiltX, tiltY, floatX, floatY);
+  }
+
+  function handleTouchEnd() {
+    if (!touch.active) {
+      return;
+    }
+
+    const deltaX = touch.lastX - touch.startX;
+    const deltaY = touch.lastY - touch.startY;
+
+    if (Math.abs(deltaX) > 54 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+      stepZone(deltaX < 0 ? 1 : -1);
+    }
+
+    touch.active = false;
+    clearInteractionMotion();
+  }
+
+  zoneButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      renderZone(button.dataset.zone);
+    });
+  });
+
   if (motionToggle) {
     motionToggle.addEventListener('click', () => {
       handleMotionToggle();
@@ -343,7 +456,12 @@
   }
 
   if (canUseMotionTilt) {
-    updateMotionUi('ready');
+    if (motionPermissionRequired) {
+      updateMotionUi('ready');
+    } else {
+      enableMotionTilt();
+    }
+
     window.addEventListener('orientationchange', () => {
       if (!motion.enabled) {
         return;
@@ -357,6 +475,13 @@
     updateMotionUi('unavailable');
   }
 
+  if (prefersCoarsePointer) {
+    frame.addEventListener('touchstart', handleTouchStart, { passive: true });
+    frame.addEventListener('touchmove', handleTouchMove, { passive: true });
+    frame.addEventListener('touchend', handleTouchEnd);
+    frame.addEventListener('touchcancel', handleTouchEnd);
+  }
+
   if (canUsePointerTilt) {
     frame.addEventListener('pointermove', (event) => {
       const rect = frame.getBoundingClientRect();
@@ -367,13 +492,13 @@
       const floatX = (x - 0.5) * 20;
       const floatY = (y - 0.5) * 16;
 
-      setMotionTarget(tiltX, tiltY, floatX, floatY);
+      setInteractionMotion(tiltX, tiltY, floatX, floatY);
     });
 
     frame.addEventListener('pointerleave', () => {
-      resetFrameMotion();
+      clearInteractionMotion();
     });
   }
 
-  renderZone('arrival');
+  renderZone(activeZone);
 })();

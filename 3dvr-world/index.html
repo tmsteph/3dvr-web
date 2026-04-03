@@ -87,7 +87,7 @@
               <strong>Active</strong>
             </div>
             <div class="scene-status scene-status--right">
-              <span>Tap + pointer</span>
+              <span>Touch + tilt</span>
               <strong>Ready</strong>
             </div>
             <div class="scene-orbit scene-orbit--one"></div>
@@ -111,31 +111,20 @@
           <button class="hotspot hotspot--rooftop" type="button" data-zone="rooftop">
             <span>Portal</span>
           </button>
+
+          <div class="world-mobile-hint" aria-hidden="true">
+            <span>Swipe to move through layers.</span>
+          </div>
         </div>
       </div>
 
       <header class="world-topbar">
         <a class="world-mark" href="/" aria-label="Go to 3DVR homepage">3DVR</a>
-        <nav class="world-links" aria-label="World links">
-          <a href="/">Site</a>
-          <a href="/subscribe/free-plan.html">Start Free</a>
-          <a href="https://portal.3dvr.tech" target="_blank" rel="noopener">Portal</a>
-        </nav>
-      </header>
-
-      <div class="world-controls" aria-label="World controls">
-        <div class="zone-switcher" role="tablist" aria-label="Choose a focus zone">
-          <button class="zone-switcher__button is-active" type="button" data-zone-button="arrival">Home</button>
-          <button class="zone-switcher__button" type="button" data-zone-button="arena">World</button>
-          <button class="zone-switcher__button" type="button" data-zone-button="studio">Studio</button>
-          <button class="zone-switcher__button" type="button" data-zone-button="rooftop">Portal</button>
-        </div>
-
         <div class="world-motion" id="worldMotion" hidden>
-          <button class="world-motion__button" id="motionToggle" type="button">Enable Motion</button>
-          <p class="world-motion__state" id="motionState" aria-live="polite">Tilt your phone to move the world depth.</p>
+          <button class="world-motion__button" id="motionToggle" type="button">Enable Tilt</button>
+          <p class="sr-only world-motion__state" id="motionState" aria-live="polite">Swipe to move through layers. Tilt your phone for depth.</p>
         </div>
-      </div>
+      </header>
     </section>
 
     <section class="world-content" aria-label="World route details">
