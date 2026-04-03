@@ -28,6 +28,7 @@
   const motion = {
     enabled: false,
     listening: false,
+    ambientEnabled: !prefersReducedMotion,
     baselineBeta: null,
     baselineGamma: null,
     currentTiltX: 0,
@@ -38,6 +39,10 @@
     targetTiltY: 0,
     targetFloatX: 0,
     targetFloatY: 0,
+    ambientTiltX: 0,
+    ambientTiltY: 0,
+    ambientFloatX: 0,
+    ambientFloatY: 0,
     sensorTiltX: 0,
     sensorTiltY: 0,
     sensorFloatX: 0,
@@ -156,15 +161,38 @@
   }
 
   function syncMotionTarget() {
-    motion.targetTiltX = motion.sensorTiltX + motion.interactionTiltX;
-    motion.targetTiltY = motion.sensorTiltY + motion.interactionTiltY;
-    motion.targetFloatX = motion.sensorFloatX + motion.interactionFloatX;
-    motion.targetFloatY = motion.sensorFloatY + motion.interactionFloatY;
+    motion.targetTiltX = motion.ambientTiltX + motion.sensorTiltX + motion.interactionTiltX;
+    motion.targetTiltY = motion.ambientTiltY + motion.sensorTiltY + motion.interactionTiltY;
+    motion.targetFloatX = motion.ambientFloatX + motion.sensorFloatX + motion.interactionFloatX;
+    motion.targetFloatY = motion.ambientFloatY + motion.sensorFloatY + motion.interactionFloatY;
     queueMotionFrame();
   }
 
-  function renderMotionFrame() {
+  function updateAmbientMotion(now) {
+    if (!motion.ambientEnabled) {
+      motion.ambientTiltX = 0;
+      motion.ambientTiltY = 0;
+      motion.ambientFloatX = 0;
+      motion.ambientFloatY = 0;
+      return;
+    }
+
+    const phase = now * 0.00082;
+    const tiltScale = prefersCoarsePointer ? 2.4 : 1.25;
+    const floatScale = prefersCoarsePointer ? 18 : 10;
+    motion.ambientTiltX = Math.sin(phase) * tiltScale;
+    motion.ambientTiltY = Math.cos(phase * 0.88) * (tiltScale * 0.68);
+    motion.ambientFloatX = Math.sin(phase * 1.12) * floatScale;
+    motion.ambientFloatY = Math.cos(phase * 0.94) * (floatScale * 0.72);
+  }
+
+  function renderMotionFrame(now) {
     motion.rafId = 0;
+    updateAmbientMotion(now);
+    motion.targetTiltX = motion.ambientTiltX + motion.sensorTiltX + motion.interactionTiltX;
+    motion.targetTiltY = motion.ambientTiltY + motion.sensorTiltY + motion.interactionTiltY;
+    motion.targetFloatX = motion.ambientFloatX + motion.sensorFloatX + motion.interactionFloatX;
+    motion.targetFloatY = motion.ambientFloatY + motion.sensorFloatY + motion.interactionFloatY;
 
     const smoothing = motion.enabled ? 0.18 : 0.24;
     motion.currentTiltX += (motion.targetTiltX - motion.currentTiltX) * smoothing;
@@ -179,7 +207,7 @@
       Math.abs(motion.targetFloatX - motion.currentFloatX) < 0.25 &&
       Math.abs(motion.targetFloatY - motion.currentFloatY) < 0.25;
 
-    if (isSettled) {
+    if (isSettled && !motion.ambientEnabled) {
       motion.currentTiltX = motion.targetTiltX;
       motion.currentTiltY = motion.targetTiltY;
       motion.currentFloatX = motion.targetFloatX;
@@ -235,11 +263,28 @@
         motion.rafId = 0;
       }
 
-      motion.currentTiltX = 0;
-      motion.currentTiltY = 0;
-      motion.currentFloatX = 0;
-      motion.currentFloatY = 0;
-      applyFrameMotion('0', '0', '0px', '0px');
+      if (motion.ambientEnabled) {
+        updateAmbientMotion(window.performance.now());
+        motion.targetTiltX = motion.ambientTiltX;
+        motion.targetTiltY = motion.ambientTiltY;
+        motion.targetFloatX = motion.ambientFloatX;
+        motion.targetFloatY = motion.ambientFloatY;
+        motion.currentTiltX = motion.targetTiltX;
+        motion.currentTiltY = motion.targetTiltY;
+        motion.currentFloatX = motion.targetFloatX;
+        motion.currentFloatY = motion.targetFloatY;
+        commitMotionFrame();
+      } else {
+        motion.currentTiltX = 0;
+        motion.currentTiltY = 0;
+        motion.currentFloatX = 0;
+        motion.currentFloatY = 0;
+        applyFrameMotion('0', '0', '0px', '0px');
+      }
+
+      if (motion.ambientEnabled) {
+        queueMotionFrame();
+      }
       return;
     }
 
@@ -253,7 +298,7 @@
 
     if (!canUseMotionTilt || !motionPermissionRequired) {
       worldMotion.hidden = true;
-      motionState.textContent = 'Drag to look. Swipe to move through layers. Tilt your phone for depth.';
+      motionState.textContent = 'Drag to look. Swipe to move. Motion is live, and tilt deepens it when available.';
       return;
     }
 
@@ -340,10 +385,10 @@
     const rawGamma = clamp(event.gamma - motion.baselineGamma, -22, 22);
     const deltaBeta = Math.abs(rawBeta) < 0.45 ? 0 : rawBeta;
     const deltaGamma = Math.abs(rawGamma) < 0.45 ? 0 : rawGamma;
-    const tiltX = clamp(deltaGamma / 3.9, -5.1, 5.1);
-    const tiltY = clamp(deltaBeta / 4.7, -3.6, 3.6);
-    const floatX = deltaGamma * 0.68;
-    const floatY = deltaBeta * 0.62;
+    const tiltX = clamp(deltaGamma / 2.9, -7.2, 7.2);
+    const tiltY = clamp(deltaBeta / 3.6, -5.1, 5.1);
+    const floatX = deltaGamma * 1.24;
+    const floatY = deltaBeta * 1.02;
 
     setSensorMotion(tiltX, tiltY, floatX, floatY);
   }
@@ -419,10 +464,10 @@
 
     const deltaX = touch.lastX - touch.startX;
     const deltaY = touch.lastY - touch.startY;
-    const tiltX = clamp(deltaX / 24, -5.2, 5.2);
-    const tiltY = clamp(deltaY / 42, -3.2, 3.2);
-    const floatX = clamp(deltaX * 0.58, -24, 24);
-    const floatY = clamp(deltaY * 0.34, -14, 14);
+    const tiltX = clamp(deltaX / 15, -7.6, 7.6);
+    const tiltY = clamp(deltaY / 26, -5.2, 5.2);
+    const floatX = clamp(deltaX * 1.05, -48, 48);
+    const floatY = clamp(deltaY * 0.78, -30, 30);
 
     setInteractionMotion(tiltX, tiltY, floatX, floatY);
   }
@@ -501,4 +546,17 @@
   }
 
   renderZone(activeZone);
+  if (motion.ambientEnabled) {
+    updateAmbientMotion(window.performance.now());
+    motion.targetTiltX = motion.ambientTiltX;
+    motion.targetTiltY = motion.ambientTiltY;
+    motion.targetFloatX = motion.ambientFloatX;
+    motion.targetFloatY = motion.ambientFloatY;
+    motion.currentTiltX = motion.targetTiltX;
+    motion.currentTiltY = motion.targetTiltY;
+    motion.currentFloatX = motion.targetFloatX;
+    motion.currentFloatY = motion.targetFloatY;
+    commitMotionFrame();
+  }
+  queueMotionFrame();
 })();
