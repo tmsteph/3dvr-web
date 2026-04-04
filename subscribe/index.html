@@ -99,6 +99,31 @@
     .section-intro { margin-top: 3rem; }
     .section-intro h3 { font-family: Poppins, sans-serif; font-size: 1.5rem; margin-bottom: 0.75rem; }
     .section-intro p { color: var(--muted); line-height: 1.6; max-width: 760px; }
+    .journey-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+    .journey-card {
+      background: var(--panel);
+      border-radius: 14px;
+      padding: 1.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: grid;
+      gap: 0.65rem;
+    }
+    .journey-step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .journey-card h4 { font-family: Poppins, sans-serif; font-size: 1.05rem; }
+    .journey-card p { color: var(--muted); line-height: 1.55; }
     details { background: var(--panel); border-radius: 12px; padding: 0.9rem 1rem; margin: 0.6rem 0; }
     details[open] { background: var(--panel-hover); }
     summary { cursor: pointer; font-weight: 700; }
@@ -274,6 +299,37 @@
           </div>
           <div class="notice">Best route into Enterprise when coordination pain is shared across a real team.</div>
         </article>
+      </div>
+    </section>
+
+    <section id="journey" class="section-intro">
+      <h3>What happens after you click</h3>
+      <p>Choose the plan here, continue in portal billing or free start, and keep the same account through onboarding, support, and delivery.</p>
+      <div class="journey-grid">
+        <article class="journey-card">
+          <span class="journey-step">Step 1</span>
+          <h4>Pick the right lane</h4>
+          <p>Use the plan cards and business-type pages to decide whether this is Free, Founder, Builder, Enterprise, or custom scope.</p>
+        </article>
+        <article class="journey-card">
+          <span class="journey-step">Step 2</span>
+          <h4>Continue in portal</h4>
+          <p>Paid plans route into portal billing and Free routes into the portal start flow, so the next move stays obvious.</p>
+        </article>
+        <article class="journey-card">
+          <span class="journey-step">Step 3</span>
+          <h4>Keep one account</h4>
+          <p>The same portal account handles free access, upgrades, invoices, support, and later plan changes.</p>
+        </article>
+        <article class="journey-card">
+          <span class="journey-step">Step 4</span>
+          <h4>Start the customer journey</h4>
+          <p>After signup, move into the portal start flow, projects, and direct support instead of starting over somewhere else.</p>
+        </article>
+      </div>
+      <div class="actions">
+        <a class="cta secondary" data-portal-path="/start/" href="https://portal.3dvr.tech/start/" target="_blank" rel="noopener">Open portal start</a>
+        <a class="cta secondary" data-preserve-portal-origin href="/launch-your-site.html">Talk through custom scope</a>
       </div>
     </section>
 
