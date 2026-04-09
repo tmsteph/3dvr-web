@@ -11,11 +11,14 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /A place to land when you need a site, support, or a launch plan\./);
     assert.match(html, /Get a site, landing page, or simple business system with direct help from idea to launch\./);
     assert.match(html, /Start Free/);
-    assert.match(html, /Start free/);
-    assert.match(html, /subscribe\/free-plan\.html/);
-    assert.match(html, /Ways to work together/);
+    assert.match(html, /Start free in portal/);
+    assert.match(html, /data-portal-path="\/free-trial\.html"/);
+    assert.match(html, /data-portal-path="\/billing\/\?plan=pro"/);
+    assert.match(html, /data-portal-path="\/billing\/\?plan=builder"/);
+    assert.match(html, /data-portal-path="\/billing\/\?plan=embedded"/);
+    assert.match(html, /Choose a lane, continue in portal/);
     assert.match(html, /Built for/);
-    assert.match(html, /Get organized/);
+    assert.match(html, /Start in portal/);
     assert.match(html, /\$20/);
     assert.match(html, /\$50/);
     assert.match(html, /\$200/);
@@ -40,6 +43,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.doesNotMatch(html, /Life starter/);
     assert.match(html, /Simple ways to work together/);
     assert.match(html, /Start free if you need structure\. Start at \$20\/month if you want direct launch help\./);
+    assert.match(html, /Tap a card to continue in portal\./);
     assert.match(html, /Teams with shared workflow pain should look at Enterprise at \$200\/month\./);
     assert.match(html, /Get ongoing help shaping the idea, page, or offer and getting it launched\./);
     assert.match(html, /Best for growing businesses that need a site, follow-up, updates, and calmer operations\./);
