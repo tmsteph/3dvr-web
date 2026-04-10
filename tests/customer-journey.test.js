@@ -12,7 +12,11 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Get a site, landing page, or simple business system with direct help from idea to launch\./);
     assert.match(html, /Start Free/);
     assert.match(html, /Start free in portal/);
+    assert.match(html, /Calendar front and center/);
+    assert.match(html, /Open Calendar Hub/);
+    assert.match(html, /See meetings, follow-ups, and next actions in one calmer view\./);
     assert.match(html, /data-portal-path="\/free-trial\.html"/);
+    assert.match(html, /data-portal-path="\/calendar\/"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=pro"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=builder"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=embedded"/);
@@ -36,6 +40,8 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Build your website or app/);
     assert.match(html, /Help you figure out the offer/);
     assert.match(html, /Stay with you as it grows/);
+    assert.match(html, /Calendar Hub/);
+    assert.match(html, /Open the calendar →/);
     assert.match(html, /From lead generation to customer journey/);
     assert.match(html, /Find the fit/);
     assert.match(html, /Raise your hand/);
