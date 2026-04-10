@@ -34,7 +34,7 @@
     traction: Object.freeze({
       key: 'traction',
       eyebrow: 'Launch faster. Start selling.',
-      primary: 'Get your website, offer, or project live.',
+      primary: 'Get your project live.',
       secondary: 'Keep moving with direct support.',
       body: '3dvr helps small businesses and creators launch pages, apps, and follow-up systems without getting stuck in tech.',
       feedbackPrompt: 'Does this version make you want to reach out?',
