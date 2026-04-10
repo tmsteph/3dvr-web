@@ -16,9 +16,13 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /data-portal-path="\/billing\/\?plan=pro"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=builder"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=embedded"/);
-    assert.match(html, /Choose a lane, continue in portal/);
+    assert.match(html, /Pick the lane that fits\. Billing and account setup continue in portal\./);
     assert.match(html, /Built for/);
-    assert.match(html, /Start in portal/);
+    assert.match(html, /Get organized first/);
+    assert.match(html, /Launch with direct help/);
+    assert.match(html, /Build the business lane/);
+    assert.match(html, /Run one calmer team system/);
+    assert.match(html, /Talk through the bigger scope/);
     assert.match(html, /\$20/);
     assert.match(html, /\$50/);
     assert.match(html, /\$200/);
@@ -38,6 +42,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Continue in portal/);
     assert.match(html, /Onboard and deliver/);
     assert.match(html, /Open the portal start flow/);
+    assert.doesNotMatch(html, /Choose a lane, continue in portal/);
     assert.doesNotMatch(html, /Use Life to log/);
     assert.doesNotMatch(html, /Join a Cell/);
     assert.doesNotMatch(html, /Life starter/);
