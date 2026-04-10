@@ -44,6 +44,7 @@ test('homepage ships Gun-backed experiment and feedback plumbing', async () => {
   assert.match(js, /EXPERIMENT_CONFIG_PATH = \['3dvr-portal', 'growth', 'experiments', 'homepage-hero', 'config'\]/);
   assert.match(js, /EXPERIMENT_EVENT_PATH = \['3dvr-portal', 'growth', 'experiments', 'homepage-hero', 'events'\]/);
   assert.match(js, /FEEDBACK_EVENT_PATH = \['3dvr-portal', 'growth', 'feedback', 'homepage-hero'\]/);
+  assert.match(js, /eyebrow: 'Launch fast\. Start selling\.'/);
   assert.match(js, /primary: 'Get your project live\.'/);
   assert.match(js, /secondary: 'Keep it moving with direct support\.'/);
   assert.match(js, /function chooseVariant/);
