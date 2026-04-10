@@ -12,11 +12,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Get a site, landing page, or simple business system with direct help from idea to launch\./);
     assert.match(html, /Start Free/);
     assert.match(html, /Start free in portal/);
-    assert.match(html, /Calendar front and center/);
-    assert.match(html, /Open Calendar Hub/);
-    assert.match(html, /See meetings, follow-ups, and next actions in one calmer view\./);
     assert.match(html, /data-portal-path="\/free-trial\.html"/);
-    assert.match(html, /data-portal-path="\/calendar\/"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=pro"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=builder"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=embedded"/);
@@ -49,6 +45,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Onboard and deliver/);
     assert.match(html, /Open the portal start flow/);
     assert.doesNotMatch(html, /Choose a lane, continue in portal/);
+    assert.doesNotMatch(html, /Calendar front and center/);
     assert.doesNotMatch(html, /Use Life to log/);
     assert.doesNotMatch(html, /Join a Cell/);
     assert.doesNotMatch(html, /Life starter/);
