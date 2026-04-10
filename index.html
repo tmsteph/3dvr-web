@@ -907,6 +907,83 @@
       grid-column: 1 / -1;
       justify-self: center;
     }
+    .nomad-system-section {
+      background:
+        radial-gradient(circle at top left, rgba(0, 255, 200, 0.16), transparent 34%),
+        linear-gradient(135deg, #102033 0%, #173b51 55%, #2c4d5f 100%);
+    }
+    .nomad-shell {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+    .nomad-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+    .nomad-card {
+      background: rgba(7, 18, 28, 0.48);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.24);
+    }
+    .nomad-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.42rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #d8fff4;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.95rem;
+    }
+    .nomad-card h2,
+    .nomad-card h3 {
+      margin-bottom: 0.8rem;
+    }
+    .nomad-card p {
+      color: rgba(255, 255, 255, 0.84);
+    }
+    .nomad-points,
+    .nomad-pillars {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+      display: grid;
+      gap: 0.8rem;
+    }
+    .nomad-points li,
+    .nomad-pillars li {
+      padding: 0.8rem 0.95rem;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.88);
+    }
+    .nomad-pillars strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: #d7fff2;
+    }
+    .nomad-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.25rem;
+    }
+    .nomad-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
     .partner-card {
       background: rgba(255, 255, 255, 0.12);
       border-radius: 16px;
@@ -960,6 +1037,11 @@
       }
       .partner-mark {
         align-self: center;
+      }
+    }
+    @media (max-width: 960px) {
+      .nomad-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1705,6 +1787,55 @@
       Our mission is to empower creators, entrepreneurs, and digital nomads everywhere.<br />
       Contributions welcome on <a href="https://github.com/tmsteph/3dvr-web" target="_blank" style="color: var(--accent);">GitHub</a>.
     </p>
+  </section>
+
+  <section id="nomad-system" class="nomad-system-section">
+    <div class="nomad-shell">
+      <div class="nomad-grid">
+        <article class="nomad-card">
+          <span class="nomad-kicker">Nomad system direction</span>
+          <h2>Portable work, open hardware, and a calmer way to build on the move.</h2>
+          <p>
+            3dvr is not only a website and support business. The longer vision is a real nomad system:
+            portable computing, practical gear, Linux-first workflows, and infrastructure that helps
+            people work from more places with less dependence on closed platforms.
+          </p>
+          <ul class="nomad-points">
+            <li>Start with services, setup help, and community that already work today.</li>
+            <li>Grow into gear guidance, workstation kits, and portable infrastructure experiments.</li>
+            <li>Keep the stack open-source, repairable where possible, and useful in the real world.</li>
+          </ul>
+          <div class="nomad-actions">
+            <a class="cta" href="nomad-system.html" data-growth-cta="explore-nomad-system">Explore the nomad system</a>
+            <a class="nomad-link" href="vision/index.html">
+              Read the broader vision
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+        <aside class="nomad-card">
+          <h3>What the stack includes</h3>
+          <ul class="nomad-pillars">
+            <li>
+              <strong>Work</strong>
+              Websites, apps, AI tools, launch help, and support for independent builders.
+            </li>
+            <li>
+              <strong>Device</strong>
+              Linux-powered laptops, portable monitors, input systems, and travel-ready desks.
+            </li>
+            <li>
+              <strong>Power and shelter</strong>
+              Connectivity, solar-ready ideas, lightweight shelter, and real mobile comfort.
+            </li>
+            <li>
+              <strong>Future hardware</strong>
+              Open hardware and low-power computing experiments that point toward deeper independence.
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </div>
   </section>
 
   <section id="portal" style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); text-align: center;">
