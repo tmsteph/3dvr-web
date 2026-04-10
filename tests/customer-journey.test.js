@@ -67,6 +67,12 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /3dvr-world\//);
     assert.match(html, /Open the full-screen 3DVR world prototype/);
     assert.match(html, /full-screen 3DVR world prototype, now pushed further with portal-style HUD graphics and device-safe depth/);
+    assert.match(html, /Nomad system direction/);
+    assert.match(html, /Portable work, open hardware, and a calmer way to build on the move\./);
+    assert.match(html, /Explore the nomad system/);
+    assert.match(html, /Read the broader vision/);
+    assert.match(html, /href="nomad-system\.html"/);
+    assert.match(html, /What the stack includes/);
     assert.doesNotMatch(html, /Message me/i);
     assert.doesNotMatch(html, /mailto:3dvr\.tech@gmail\.com\?subject=3DVR%20Project%20Inquiry/);
     assert.doesNotMatch(html, /Plan your week\. Get support\. Launch work\./);
@@ -151,5 +157,20 @@ describe('3dvr-web customer journey copy', () => {
     assert.doesNotMatch(html, /looks credible on mobile/);
     assert.doesNotMatch(html, /Talk through scope/);
     assert.doesNotMatch(html, /Why is there a \$5 plan/);
+  });
+
+  it('ships the nomad system page as a dedicated direction page', async () => {
+    const html = await readFile(new URL('../nomad-system.html', import.meta.url), 'utf8');
+    assert.match(html, /<title>3dvr\.tech Nomad System<\/title>/);
+    assert.match(html, /Open-source tools for life on the move/);
+    assert.match(html, /Live anywhere\./);
+    assert.match(html, /Build anything\./);
+    assert.match(html, /Open-source ecology for digital nomads/);
+    assert.match(html, /The 3dvr nomad system/);
+    assert.match(html, /What we're offering first/);
+    assert.match(html, /Start with membership/);
+    assert.match(html, /See membership options/);
+    assert.match(html, /mailto:3dvr\.tech@gmail\.com\?subject=3dvr%20Nomad%20System/);
+    assert.doesNotMatch(html, /tmsteph1290@gmail\.com/);
   });
 });
