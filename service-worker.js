@@ -1,21 +1,24 @@
-const CACHE_NAME = '3dvr-cache-v2';
+const CACHE_NAME = '3dvr-cache-v3';
 const OFFLINE_ASSETS = [
   '/',
   '/index.html',
   '/3DVR.png',
   '/3DVRfavicon.png'
 ];
-const CACHEABLE_EXTENSIONS = [
+const NETWORK_FIRST_EXTENSIONS = [
+  '.css',
+  '.js',
+  '.json',
+  '.webmanifest',
+  '.txt'
+];
+const CACHE_FIRST_EXTENSIONS = [
   '.png',
   '.jpg',
   '.jpeg',
   '.gif',
   '.svg',
   '.webp',
-  '.css',
-  '.js',
-  '.json',
-  '.webmanifest',
   '.woff',
   '.woff2'
 ];
@@ -44,7 +47,20 @@ function isHtmlNavigationRequest(request) {
   );
 }
 
-function isCacheableAssetRequest(request) {
+function isNetworkFirstAssetRequest(request) {
+  if (!isSameOrigin(request) || isHtmlNavigationRequest(request)) {
+    return false;
+  }
+
+  const url = requestUrl(request);
+  if (!url) {
+    return false;
+  }
+
+  return NETWORK_FIRST_EXTENSIONS.some(extension => url.pathname.endsWith(extension));
+}
+
+function isCacheFirstAssetRequest(request) {
   if (!isSameOrigin(request) || isHtmlNavigationRequest(request)) {
     return false;
   }
@@ -58,7 +74,7 @@ function isCacheableAssetRequest(request) {
     return true;
   }
 
-  return CACHEABLE_EXTENSIONS.some(extension => url.pathname.endsWith(extension));
+  return CACHE_FIRST_EXTENSIONS.some(extension => url.pathname.endsWith(extension));
 }
 
 async function cacheResponse(request, response) {
@@ -71,7 +87,7 @@ async function cacheResponse(request, response) {
   return response;
 }
 
-async function networkFirstResponse(request) {
+async function networkFirstResponse(request, { offlineFallbackPath = '' } = {}) {
   try {
     const response = await fetch(request);
     return await cacheResponse(request, response);
@@ -81,7 +97,17 @@ async function networkFirstResponse(request) {
       return cached;
     }
 
-    return caches.match('/index.html');
+    if (offlineFallbackPath) {
+      const offlineFallback = await caches.match(offlineFallbackPath);
+      if (offlineFallback) {
+        return offlineFallback;
+      }
+    }
+
+    return new Response('Offline', {
+      status: 503,
+      statusText: 'Offline'
+    });
   }
 }
 
@@ -115,11 +141,16 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (isHtmlNavigationRequest(event.request)) {
+    event.respondWith(networkFirstResponse(event.request, { offlineFallbackPath: '/index.html' }));
+    return;
+  }
+
+  if (isNetworkFirstAssetRequest(event.request)) {
     event.respondWith(networkFirstResponse(event.request));
     return;
   }
 
-  if (isCacheableAssetRequest(event.request)) {
+  if (isCacheFirstAssetRequest(event.request)) {
     event.respondWith(cacheFirstResponse(event.request));
   }
 });
