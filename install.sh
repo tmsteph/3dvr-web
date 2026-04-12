@@ -68,13 +68,10 @@ const Gun = require(gunPath);
 console.log = originalLog;
 console.warn = originalWarn;
 
-const identityKey = String(process.argv[2] || '').trim();
-const recordType = String(process.argv[3] || 'commands').trim();
-
-if (!identityKey) {
-  process.stdout.write('[]');
-  process.exit(0);
-}
+const mode = String(process.argv[2] || 'records').trim();
+const identityKey = String(process.argv[3] || '').trim();
+const recordType = String(process.argv[4] || 'commands').trim();
+const pairingCode = String(process.argv[5] || '').trim().toUpperCase();
 
 const gun = Gun({
   peers: [
@@ -87,30 +84,57 @@ const gun = Gun({
   localStorage: false
 });
 
-const node = gun
-  .get('3dvr-portal')
-  .get('pocketWorkstation')
-  .get('users')
-  .get(identityKey)
-  .get(recordType);
-
-const records = new Map();
-const subscription = node.map().on((data, key) => {
-  if (!data || key === '_' || typeof data !== 'object') {
-    return;
+if (mode === 'pairing') {
+  if (!pairingCode) {
+    process.stdout.write('{}');
+    process.exit(0);
   }
-  const id = String(data.id || key);
-  records.set(id, { ...data, id });
-});
 
-setTimeout(() => {
-  if (subscription && typeof subscription.off === 'function') {
-    subscription.off();
+  gun
+    .get('3dvr-portal')
+    .get('pocketWorkstation')
+    .get('pairing')
+    .get(pairingCode)
+    .once(data => {
+      process.stdout.write(JSON.stringify(data || {}));
+      process.exit(0);
+    });
+
+  setTimeout(() => {
+    process.stdout.write('{}');
+    process.exit(0);
+  }, 2200);
+} else {
+  if (!identityKey) {
+    process.stdout.write('[]');
+    process.exit(0);
   }
-  const ordered = Array.from(records.values()).sort((a, b) => Number(b.updatedAt || 0) - Number(a.updatedAt || 0));
-  process.stdout.write(JSON.stringify(ordered));
-  process.exit(0);
-}, 2200);
+
+  const node = gun
+    .get('3dvr-portal')
+    .get('pocketWorkstation')
+    .get('users')
+    .get(identityKey)
+    .get(recordType);
+
+  const records = new Map();
+  const subscription = node.map().on((data, key) => {
+    if (!data || key === '_' || typeof data !== 'object') {
+      return;
+    }
+    const id = String(data.id || key);
+    records.set(id, { ...data, id });
+  });
+
+  setTimeout(() => {
+    if (subscription && typeof subscription.off === 'function') {
+      subscription.off();
+    }
+    const ordered = Array.from(records.values()).sort((a, b) => Number(b.updatedAt || 0) - Number(a.updatedAt || 0));
+    process.stdout.write(JSON.stringify(ordered));
+    process.exit(0);
+  }, 2200);
+}
 EOF
 
 chmod +x "${FETCHER_PATH}"
@@ -136,6 +160,19 @@ normalize_alias() {
   printf '%s' "$1" | tr '[:upper:]' '[:lower:]'
 }
 
+normalize_code() {
+  printf '%s' "$1" | tr '[:lower:]' '[:upper:]' | tr -cd 'A-Z0-9' | cut -c1-6
+}
+
+generate_pair_code() {
+  python3 - <<'PY'
+import random
+
+alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
+print("".join(random.choice(alphabet) for _ in range(6)))
+PY
+}
+
 save_config() {
   cat > "${CONFIG_PATH}" <<CONFIG
 THREEDVR_ALIAS="${THREEDVR_ALIAS:-}"
@@ -156,9 +193,37 @@ open_url() {
   if command -v termux-open-url >/dev/null 2>&1; then
     termux-open-url "${url}" >/dev/null 2>&1 || true
     printf '%s\n' "${url}"
-    exit 0
+    return 0
   fi
   printf '%s\n' "${url}"
+}
+
+poll_pairing_code() {
+  pair_code="$1"
+  pair_cache="${CACHE_DIR}/pairing-${pair_code}.json"
+
+  for _attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
+    node "${FETCHER_PATH}" "pairing" "_" "_" "${pair_code}" > "${pair_cache}"
+    if python3 - "${pair_cache}" <<'PY'
+import json
+import pathlib
+import sys
+
+cache_file = pathlib.Path(sys.argv[1])
+data = json.loads(cache_file.read_text()) if cache_file.exists() else {}
+if data.get('identityKey'):
+    print(data.get('alias', ''))
+    print(data.get('identityKey', ''))
+    raise SystemExit(0)
+raise SystemExit(1)
+PY
+    then
+      return 0
+    fi
+    sleep 5
+  done
+
+  return 1
 }
 
 print_records() {
@@ -217,7 +282,7 @@ pull_records() {
   record_type="$1"
   need_identity
   cache_file="${CACHE_DIR}/${record_type}.json"
-  node "${FETCHER_PATH}" "${THREEDVR_IDENTITY_KEY}" "${record_type}" > "${cache_file}"
+  node "${FETCHER_PATH}" "records" "${THREEDVR_IDENTITY_KEY}" "${record_type}" > "${cache_file}"
   print_records "${record_type}" "${cache_file}"
 }
 
@@ -226,7 +291,7 @@ show_help() {
 3dvr Pocket Workstation CLI
 
 Usage:
-  3dvr connect <email-or-alias>
+  3dvr connect [email-or-alias]
   3dvr whoami
   3dvr open [portal|workstation|notes|commands|projects]
   3dvr notes
@@ -235,6 +300,7 @@ Usage:
   3dvr deploy
 
 Examples:
+  3dvr connect
   3dvr connect you@example.com
   3dvr commands pull
   3dvr deploy
@@ -251,7 +317,37 @@ case "${command_name}" in
   connect)
     alias_value="${1:-}"
     if [ -z "${alias_value}" ]; then
-      echo "Usage: 3dvr connect <email-or-alias>" >&2
+      pair_code="$(generate_pair_code)"
+      pair_url="${PORTAL_ORIGIN}/pocket-workstation/?pairCode=${pair_code}#connect-title"
+      echo "Open this link on a signed-in portal session and enter the code:"
+      echo "${pair_code}"
+      open_url "${pair_url}"
+      echo "Waiting for Pocket Workstation to link the code..."
+      if poll_pairing_code "${pair_code}"; then
+        pair_cache="${CACHE_DIR}/pairing-${pair_code}.json"
+        THREEDVR_ALIAS="$(python3 - "${pair_cache}" <<'PY'
+import json
+import pathlib
+import sys
+data = json.loads(pathlib.Path(sys.argv[1]).read_text())
+print(data.get('alias', ''))
+PY
+)"
+        THREEDVR_IDENTITY_KEY="$(python3 - "${pair_cache}" <<'PY'
+import json
+import pathlib
+import sys
+data = json.loads(pathlib.Path(sys.argv[1]).read_text())
+print(data.get('identityKey', ''))
+PY
+)"
+        save_config
+        echo "Connected Pocket Workstation identity: ${THREEDVR_ALIAS}"
+        echo "Next step: 3dvr commands pull"
+        exit 0
+      fi
+      echo "No pairing response yet."
+      echo "Keep the portal open at ${pair_url} and try: 3dvr connect"
       exit 1
     fi
     THREEDVR_ALIAS="$(normalize_alias "${alias_value}")"
@@ -303,7 +399,7 @@ case "${command_name}" in
   deploy)
     need_identity
     cache_file="${CACHE_DIR}/commands.json"
-    node "${FETCHER_PATH}" "${THREEDVR_IDENTITY_KEY}" "commands" > "${cache_file}"
+    node "${FETCHER_PATH}" "records" "${THREEDVR_IDENTITY_KEY}" "commands" > "${cache_file}"
     python3 - "${cache_file}" <<'PY'
 import json
 import pathlib
@@ -351,5 +447,5 @@ fi
 
 printf '\n[3dvr] Install complete.\n'
 printf '[3dvr] Open the dashboard: %s/pocket-workstation/\n' "${PORTAL_ORIGIN}"
-printf '[3dvr] Connect your identity: 3dvr connect your@email.com\n'
+printf '[3dvr] Connect your identity: 3dvr connect\n'
 printf '[3dvr] Pull your commands: 3dvr commands pull\n'
