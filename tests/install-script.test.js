@@ -32,7 +32,7 @@ test('Termux installer ships a real Pocket Workstation bootstrap flow', async ()
   assert.match(vercelConfig, /text\/plain; charset=utf-8/);
 
   assert.match(pageHtml, /Turn your phone into a builder console\./);
-  assert.match(pageHtml, /curl -s https:\/\/3dvr\.tech\/install \| bash/);
+  assert.match(pageHtml, /curl -Ls https:\/\/3dvr\.tech\/install \| bash/);
   assert.match(pageHtml, /Then run <code>3dvr connect<\/code>/);
   assert.match(pageHtml, /https:\/\/portal\.3dvr\.tech\/pocket-workstation\//);
 
