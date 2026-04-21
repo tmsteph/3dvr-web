@@ -56,6 +56,10 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Get ongoing help shaping the idea, page, or offer and getting it launched\./);
     assert.match(html, /Best for growing businesses that need a site, follow-up, updates, and calmer operations\./);
     assert.match(html, /Best for support teams, organizations, and shared workflows that need one calmer operating lane\./);
+    assert.match(html, /Launch in 3 Days/);
+    assert.match(html, /\$20 starting point/);
+    assert.match(html, /See the launch flow/);
+    assert.match(html, /href="launch-in-3-days\.html"/);
     assert.doesNotMatch(html, /A clear place to land when you need a site, support, or a launch plan\./);
     assert.doesNotMatch(html, /Websites\. Apps\. Real support\./);
     assert.doesNotMatch(html, /A real place to land when you need a site, support, or a launch plan\./);
@@ -175,6 +179,28 @@ describe('3dvr-web customer journey copy', () => {
     assert.doesNotMatch(html, /looks credible on mobile/);
     assert.doesNotMatch(html, /Talk through scope/);
     assert.doesNotMatch(html, /Why is there a \$5 plan/);
+  });
+
+  it('ships the Launch in 3 Days page as the direct founder offer', async () => {
+    const html = await readFile(new URL('../launch-in-3-days.html', import.meta.url), 'utf8');
+    assert.match(html, /<title>Launch in 3 Days \| 3dvr\.tech<\/title>/);
+    assert.match(html, /Get the first real version live fast\./);
+    assert.match(html, /This is not a long consulting process\./);
+    assert.match(html, /The three questions that keep the build clean\./);
+    assert.match(html, /What are you trying to build or improve right now\?/);
+    assert.match(html, /What is stopping you from launching or growing it\?/);
+    assert.match(html, /If this worked perfectly, what would it do for you\?/);
+    assert.match(html, /I help people go from idea to live page in 3 days\./);
+    assert.match(html, /What you are buying is not just a website\./);
+    assert.match(html, /Continue to portal for Founder/);
+    assert.match(html, /Need Builder instead\?/);
+    assert.match(html, /Billing and account setup continue in portal\./);
+    assert.match(html, /data-portal-path="\/billing\/\?plan=pro"/);
+    assert.match(html, /data-portal-path="\/billing\/\?plan=builder"/);
+    assert.match(html, /data-preserve-portal-origin href="subscribe\/index\.html"/);
+    assert.match(html, /mailto:3dvr\.tech@gmail\.com\?subject=Launch%20in%203%20Days/);
+    assert.match(html, /src="subscribe\/portal-links\.js"/);
+    assert.doesNotMatch(html, /hello@3dvr\.tech/);
   });
 
   it('ships the nomad system page as a dedicated direction page', async () => {
