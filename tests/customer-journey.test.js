@@ -19,8 +19,8 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Pick the lane that fits\. Billing and account setup continue in portal\./);
     assert.match(html, /Built for/);
     assert.match(html, /Get organized first/);
-    assert.match(html, /Launch with direct help/);
-    assert.match(html, /Build the business lane/);
+    assert.match(html, /Launch in 3 Days/);
+    assert.match(html, /Default for businesses/);
     assert.match(html, /Run one calmer team system/);
     assert.match(html, /Talk through the bigger scope/);
     assert.match(html, /\$20/);
@@ -50,11 +50,12 @@ describe('3dvr-web customer journey copy', () => {
     assert.doesNotMatch(html, /Join a Cell/);
     assert.doesNotMatch(html, /Life starter/);
     assert.match(html, /Simple ways to work together/);
-    assert.match(html, /Start free if you need structure\. Start at \$20\/month if you want direct launch help\./);
+    assert.match(html, /Start free if you need structure\. Use Launch in 3 Days at \$20\/month for the first page or offer\./);
     assert.match(html, /Tap a card to continue in portal\./);
     assert.match(html, /Teams with shared workflow pain should look at Enterprise at \$200\/month\./);
-    assert.match(html, /Get ongoing help shaping the idea, page, or offer and getting it launched\./);
-    assert.match(html, /Best for growing businesses that need a site, follow-up, updates, and calmer operations\./);
+    assert.match(html, /Use this for Launch in 3 Days when the offer, site, or first page still needs to become real\./);
+    assert.match(html, /Default for active businesses that need a site, follow-up, updates, and calmer operations\./);
+    assert.match(html, /Pair it with a setup sprint when you want the first workflow built faster\./);
     assert.match(html, /Best for support teams, organizations, and shared workflows that need one calmer operating lane\./);
     assert.match(html, /Launch in 3 Days/);
     assert.match(html, /\$20 starting point/);
@@ -102,7 +103,8 @@ describe('3dvr-web customer journey copy', () => {
 
   it('makes the main plans page explicit about continuing in the portal', async () => {
     const html = await readFile(new URL('../subscribe/index.html', import.meta.url), 'utf8');
-    assert.match(html, /Start free to get organized, support the mission at \$5, grow with \$20, move into a \$50 builder lane, choose Enterprise at \$200 for shared team support, or use custom scoped work\./);
+    assert.match(html, /Launch in 3 Days is the fast entry point\. Builder at \$50\/month is the default business lane/);
+    assert.match(html, /Default for active businesses/);
     assert.match(html, /Get organized, sort out your next steps, and start using the portal without paying first\./);
     assert.match(html, /Choose by business type/);
     assert.match(html, /See professional-services fit/);
@@ -152,9 +154,13 @@ describe('3dvr-web customer journey copy', () => {
 
     assert.match(professionalHtml, /For Professional Services/);
     assert.match(professionalHtml, /Keep warm leads moving without building a giant sales stack\./);
+    assert.match(professionalHtml, /Default business lane when you want more replies, steadier follow-up, and one place to run the week\./);
+    assert.match(professionalHtml, /one-time setup sprint work/);
     assert.match(professionalHtml, /Continue to Portal for Builder/);
     assert.match(localHtml, /For Local Services/);
     assert.match(localHtml, /Stop letting calls, quotes, and follow-up slip through the cracks\./);
+    assert.match(localHtml, /Default business lane when the work is real, the owner is busy, and the main problem is keeping the week organized\./);
+    assert.match(localHtml, /scoped setup sprint help/);
     assert.match(localHtml, /Continue to Portal for Builder/);
     assert.match(supportHtml, /For Support Teams/);
     assert.match(supportHtml, /Give the team one calmer system for people, follow-up, and weekly action\./);
