@@ -79,6 +79,27 @@
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
     .card { background: var(--panel); padding: 1.25rem; border-radius: 14px; transition: 0.25s; position: relative; display: flex; flex-direction: column; min-height: 100%; }
     .card:hover { background: var(--panel-hover); transform: translateY(-3px); }
+    .card.featured {
+      background:
+        linear-gradient(150deg, rgba(0, 255, 200, 0.18), rgba(255, 255, 255, 0.09)),
+        var(--panel);
+      border: 2px solid rgba(0, 255, 200, 0.68);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.28), 0 0 34px rgba(0, 255, 200, 0.18);
+    }
+    .card.featured::before {
+      content: "Default for active businesses";
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 0.85rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #00110d;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
     .card h2 { font-family: Poppins, sans-serif; font-size: 1.2rem; color: var(--accent); margin-bottom: 0.4rem; }
     .card .tagline { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.75rem; line-height: 1.5; }
     .price { font-size: 1.8rem; font-weight: 800; margin: 0.25rem 0 0.75rem; }
@@ -153,7 +174,7 @@
   <main>
     <section class="hero">
       <h1>Choose Your 3dvr.tech Plan</h1>
-      <p>Start free to get organized, support the mission at $5, grow with $20, move into a $50 builder lane, choose Enterprise at $200 for shared team support, or use custom scoped work.</p>
+      <p>Launch in 3 Days is the fast entry point. Builder at $50/month is the default business lane when you already have leads, customers, quotes, follow-up, or weekly operations to keep moving.</p>
       <p class="hero-helper">
         New here? Start with a plan below. Returning? <a data-portal-path="/billing/" href="https://portal.3dvr.tech/billing/" target="_blank" rel="noopener">Open the billing center</a>.
       </p>
@@ -200,7 +221,7 @@
       <!-- PRO -->
       <article id="pro" class="card">
         <h2>Founder Plan</h2>
-        <p class="tagline">Launch your brand with a custom domain (included if $10/yr or less) and get more support as your project grows.</p>
+        <p class="tagline">Use Founder for Launch in 3 Days when the first page, offer, or useful version still needs to become real.</p>
         <div class="price">$20 / month</div>
         <ul>
           <li>Done-for-you website & landing pages</li>
@@ -217,15 +238,15 @@
       </article>
 
       <!-- BUILDER -->
-      <article id="builder" class="card">
+      <article id="builder" class="card featured">
         <h2>Builder Plan</h2>
-        <p class="tagline">For deeper partnership, heavier execution, and a faster lane for roadmap work across the portal and client projects.</p>
+        <p class="tagline">The main lane for active businesses that need follow-up, site updates, CRM rhythm, and calmer operations with direct support.</p>
         <div class="price">$50 / month</div>
         <ul>
-          <li>Everything in the Founder Plan</li>
-          <li>Higher usage limits across premium portal tools</li>
+          <li>Everything in Founder for launch and offer support</li>
+          <li>Lead follow-up, CRM, calendar, and weekly operating rhythm</li>
           <li>Priority planning and implementation support</li>
-          <li>Faster access for heavier design and product work</li>
+          <li>Optional setup sprint when you want the first workflow built faster</li>
         </ul>
         <div class="actions">
           <a class="cta primary" data-portal-path="/billing/?plan=builder" href="https://portal.3dvr.tech/billing/?plan=builder" target="_blank" rel="noopener">✅ Continue to Portal for $50</a>
