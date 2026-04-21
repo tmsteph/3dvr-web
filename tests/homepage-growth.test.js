@@ -26,6 +26,8 @@ test('homepage ships Gun-backed experiment and feedback plumbing', async () => {
   assert.match(html, /data-growth-cta="plan-50"[^>]+data-portal-path="\/billing\/\?plan=builder"/);
   assert.match(html, /data-growth-cta="plan-200"[^>]+data-portal-path="\/billing\/\?plan=embedded"/);
   assert.match(html, /data-growth-cta="plan-custom"/);
+  assert.match(html, /data-growth-cta="launch-in-3-days"/);
+  assert.match(html, /href="launch-in-3-days\.html"[^>]+data-growth-cta="launch-in-3-days"/);
   assert.match(html, /href="nomad-system\.html"[^>]+data-growth-cta="explore-nomad-system"/);
   assert.match(html, /data-portal-path="\/billing\/\?plan=custom"/);
   assert.match(html, /href="https:\/\/portal\.3dvr\.tech\/billing\/\?plan=custom"/);
