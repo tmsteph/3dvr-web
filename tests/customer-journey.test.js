@@ -22,7 +22,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Launch in 3 Days/);
     assert.match(html, /Default for businesses/);
     assert.match(html, /Run one calmer team system/);
-    assert.match(html, /Talk through the bigger scope/);
+    assert.match(html, /One-time payment or deposit/);
     assert.match(html, /\$20/);
     assert.match(html, /\$50/);
     assert.match(html, /\$200/);
@@ -115,6 +115,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Pick the right lane/);
     assert.match(html, /Keep one account/);
     assert.match(html, /Start the customer journey/);
+    assert.match(html, /custom one-time payment/);
     assert.match(html, /Open portal start/);
     assert.match(html, /No credit card required\. Create one portal account and start organizing what matters\./);
     assert.match(html, /Start Free in Portal/);
@@ -176,10 +177,13 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Message me/);
     assert.match(html, /A simple offer people can understand and say yes to\./);
     assert.match(html, /Start with direct help, move into Builder when the business is active/);
+    assert.match(html, /custom one-time payments only when the project actually needs a scoped deposit or checkout/);
     assert.match(html, /Show up clearly fast\./);
     assert.match(html, /reads cleanly on mobile and gives visitors a clear next step\./);
     assert.match(html, /Builder/);
     assert.match(html, /Custom/);
+    assert.match(html, /One-time payment/);
+    assert.match(html, /project checkout, deposit, or sprint instead of another monthly plan/);
     assert.match(html, /mailto:3dvr\.tech@gmail\.com\?subject=3DVR%20Project%20Inquiry/);
     assert.doesNotMatch(html, /Look credible fast\./);
     assert.doesNotMatch(html, /looks credible on mobile/);
