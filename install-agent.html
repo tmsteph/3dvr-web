@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Install 3dvr Agent</title>
+  <meta name="description" content="Install the 3dvr local agent on Debian, Termux, WSL, or macOS.">
+  <link rel="icon" href="/3DVRfavicon.png">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #09110f;
+      --panel: rgba(246, 239, 217, 0.08);
+      --panel-strong: rgba(246, 239, 217, 0.14);
+      --text: #f7eed6;
+      --muted: #b8ac90;
+      --line: rgba(247, 238, 214, 0.18);
+      --accent: #e6b85c;
+      --accent-2: #6ed6a5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", "Liberation Mono", monospace;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(110, 214, 165, 0.16), transparent 30rem),
+        radial-gradient(circle at 84% 18%, rgba(230, 184, 92, 0.16), transparent 28rem),
+        linear-gradient(145deg, #07100d 0%, #11130d 48%, #090b08 100%);
+    }
+
+    main {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0;
+    }
+
+    a {
+      color: var(--accent-2);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    h1 {
+      margin: 18px 0;
+      font-size: clamp(2.4rem, 7vw, 6rem);
+      line-height: 0.92;
+      letter-spacing: -0.08em;
+      max-width: 820px;
+    }
+
+    .lead {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      line-height: 1.7;
+    }
+
+    .card {
+      margin-top: 32px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(18px);
+    }
+
+    .command {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px;
+      border-radius: 18px;
+      background: #050806;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+    }
+
+    code {
+      color: var(--accent-2);
+      white-space: nowrap;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 16px;
+      color: #11130d;
+      background: var(--accent);
+      font: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .step {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel-strong);
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    pre {
+      margin: 16px 0 0;
+      padding: 18px;
+      overflow-x: auto;
+      border-radius: 18px;
+      background: #050806;
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .note {
+      margin-top: 18px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 760px) {
+      main {
+        padding: 36px 0;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .command {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">3dvr local agent</p>
+    <h1>Install the cockpit on a new device.</h1>
+    <p class="lead">
+      This installs the 3dvr command line agent, links the <code>3dvr</code> command,
+      creates local config, and gets the device ready for portal OAuth.
+    </p>
+
+    <section class="card" aria-labelledby="quick-install">
+      <h2 id="quick-install">One command</h2>
+      <div class="command">
+        <code id="install-command">curl -Ls https://3dvr.tech/install-agent | bash</code>
+        <button type="button" id="copy-command">Copy</button>
+      </div>
+      <p class="note">
+        Works on Debian, Termux, WSL, and macOS when Git, Node, npm, and curl or wget are available.
+      </p>
+    </section>
+
+    <section class="grid" aria-label="Install steps">
+      <div class="step">
+        <strong>1. Install</strong>
+        <p>Run the command above from a terminal on the device you want to use.</p>
+      </div>
+      <div class="step">
+        <strong>2. Verify</strong>
+        <p>Run <code>3dvr doctor</code> to confirm Node, config, and the CLI link.</p>
+      </div>
+      <div class="step">
+        <strong>3. Connect</strong>
+        <p>Run <code>3dvr connect</code>, approve OAuth in the portal, then import the connection.</p>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="manual-install">
+      <h2 id="manual-install">Manual fallback</h2>
+      <pre><code>git clone https://github.com/tmsteph/3dvr-agent.git
+cd 3dvr-agent
+./install.sh
+3dvr setup
+3dvr doctor</code></pre>
+      <p class="note">
+        The installer stores the checkout under <code>~/.3dvr/agent</code> by default.
+        Override with <code>THREEDVR_HOME</code>, <code>THREEDVR_AGENT_DIR</code>, or <code>THREEDVR_BIN_DIR</code>.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const button = document.getElementById('copy-command');
+    const command = document.getElementById('install-command');
+
+    button.addEventListener('click', async () => {
+      const text = command.textContent.trim();
+      try {
+        await navigator.clipboard.writeText(text);
+        button.textContent = 'Copied';
+        setTimeout(() => {
+          button.textContent = 'Copy';
+        }, 1600);
+      } catch (error) {
+        window.prompt('Copy install command', text);
+      }
+    });
+  </script>
+</body>
+</html>
