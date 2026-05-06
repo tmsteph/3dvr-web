@@ -350,6 +350,35 @@
       gap: 1rem;
       justify-content: center;
     }
+    .hero-route-guide {
+      width: min(100%, 760px);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+      padding: 1rem;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+    }
+    .hero-route {
+      display: grid;
+      gap: 0.35rem;
+      padding: 0.9rem 1rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      text-align: left;
+    }
+    .hero-route strong {
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .hero-route span {
+      font-size: 0.92rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.45;
+    }
     .hero-feedback {
       width: min(100%, 760px);
       display: flex;
@@ -1472,6 +1501,17 @@
             For service businesses
           </a>
         </div>
+        <div class="hero-route-guide" aria-label="Choose your first step">
+          <div class="hero-route">
+            <strong>Launch in 3 Days</strong>
+            <span>Best when you need the first live page or offer fast.</span>
+          </div>
+          <div class="hero-route">
+            <strong>Start free in Portal</strong>
+            <span>Best when you want structure first and can pay later.</span>
+          </div>
+        </div>
+        <p class="hero-route-summary">Choose one of three lanes: a daily check-in, a small support group, or direct help launching a project or offer.</p>
         <div class="hero-feedback" aria-label="Homepage clarity feedback">
           <span id="heroFeedbackPrompt" class="hero-feedback__prompt">Does this explain the offer clearly?</span>
           <div class="hero-feedback__buttons">
