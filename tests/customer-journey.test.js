@@ -8,7 +8,6 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Websites\. Apps\. Direct support\./);
     assert.match(html, /We help small businesses actually launch\./);
     assert.match(html, /Not just plan\. Not just think about it\./);
-    assert.match(html, /A place to land when you need a site, support, or a launch plan\./);
     assert.match(html, /Get a site, landing page, or simple business system with direct help from idea to launch\./);
     assert.match(html, /Start Free/);
     assert.match(html, /Start free in portal/);
@@ -17,6 +16,9 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Best when you need the first live page or offer fast\./);
     assert.match(html, /Start free in Portal/);
     assert.match(html, /Best when you want structure first and can pay later\./);
+    assert.match(html, /Enter here/);
+    assert.match(html, /Open the 3D world/);
+    assert.match(html, /href="3dvr-world\/"/);
     assert.match(html, /data-portal-path="\/free-trial\.html"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=pro"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=builder"/);
@@ -66,6 +68,8 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /\$20 starting point/);
     assert.match(html, /See the launch flow/);
     assert.match(html, /href="launch-in-3-days\.html"/);
+    assert.match(html, /data-growth-cta="enter-3dvr-world"/);
+    assert.match(html, /href="3dvr-world\/"[^>]+data-growth-cta="enter-3dvr-world"/);
     assert.doesNotMatch(html, /A clear place to land when you need a site, support, or a launch plan\./);
     assert.doesNotMatch(html, /Websites\. Apps\. Real support\./);
     assert.doesNotMatch(html, /A real place to land when you need a site, support, or a launch plan\./);

@@ -117,7 +117,15 @@
       /* animation-delay: 1s; */
     }
 
-    header img { height: 48px; max-width: 150px; }
+    header img {
+      height: 48px;
+      max-width: 150px;
+      transform:
+        translate3d(calc(var(--hero-tilt-x, 0) * 0.18px), calc(var(--hero-tilt-y, 0) * -0.18px), 0)
+        rotate(calc(var(--hero-tilt-x, 0) * 0.06deg));
+      transition: transform 120ms ease;
+      will-change: transform;
+    }
 
     nav {
       display: flex;
@@ -629,6 +637,7 @@
       display: flex;
       justify-content: center;
       width: 100%;
+      perspective: 1200px;
     }
     .hero-intro,
     .hero-content,
@@ -649,6 +658,28 @@
       gap: 1.2rem;
       text-align: center;
       max-width: 360px;
+      text-decoration: none;
+      color: var(--text-light);
+      transform-style: preserve-3d;
+      transform:
+        translate3d(0, 0, 0)
+        rotateX(calc(var(--hero-tilt-y, 0) * -1deg))
+        rotateY(calc(var(--hero-tilt-x, 0) * 1deg));
+      transition: transform 140ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+      will-change: transform;
+      cursor: pointer;
+      outline: none;
+    }
+    .hero-logo-card:hover,
+    .hero-logo-card:focus-visible {
+      background: rgba(255,255,255,0.11);
+      border-color: rgba(0,255,200,0.28);
+      box-shadow: 0 28px 62px rgba(0,0,0,0.38), 0 0 0 1px rgba(0,255,200,0.08);
+      transform:
+        translate3d(0, -2px, 0)
+        rotateX(calc(var(--hero-tilt-y, 0) * -1deg))
+        rotateY(calc(var(--hero-tilt-x, 0) * 1deg))
+        scale(1.01);
     }
     .hero-logo-card img {
       width: clamp(220px, 62vw, 300px);
@@ -656,11 +687,38 @@
       filter: drop-shadow(0 0 28px rgba(0,255,200,0.45));
       opacity: 0;
       animation: fadeIn 3s ease-out forwards;
+      transform:
+        translate3d(calc(var(--hero-tilt-x, 0) * 0.35px), calc(var(--hero-tilt-y, 0) * -0.35px), 0);
+      transition: transform 120ms ease;
+      will-change: transform;
+    }
+    .hero-logo-card__eyebrow {
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.78);
     }
     .hero-logo-card p {
       font-size: 0.95rem;
       color: rgba(255,255,255,0.75);
       margin: 0;
+    }
+    .hero-logo-card__enter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.72rem 1.2rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--text-dark);
+      font-weight: 700;
+      box-shadow: 0 10px 26px rgba(0,255,200,0.3);
+    }
+    .hero-logo-card__hint {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.66);
     }
     .hero-spark {
       position: absolute;
@@ -1519,15 +1577,23 @@
       <div class="hero-intro">
         <p id="heroEyebrow" class="hero-eyebrow">Websites. Apps. Direct support.</p>
       </div>
-      <div class="hero-visual" aria-hidden="true">
-        <div class="hero-logo-card">
+      <div class="hero-visual">
+        <a
+          class="hero-logo-card hero-enter-card"
+          href="3dvr-world/"
+          aria-label="Enter the 3DVR world"
+          data-growth-cta="enter-3dvr-world"
+        >
           <div class="hero-spark hero-spark--top"></div>
           <div class="hero-spark hero-spark--bottom"></div>
           <img src="3DVR.png" alt="" />
+          <span class="hero-logo-card__eyebrow">Enter here</span>
           <p>
-            A place to land when you need a site, support, or a launch plan.
+            Tap to step into the 3DVR world. Touch and tilt bring the scene to life.
           </p>
-        </div>
+          <span class="hero-logo-card__enter">Open the 3D world</span>
+          <span class="hero-logo-card__hint">Touch + tilt ready</span>
+        </a>
       </div>
       <div class="hero-content">
         <h1 class="hero-headline">
@@ -2309,6 +2375,131 @@
 
       handleMediaChange(mediaQuery);
       mediaQuery.addEventListener('change', handleMediaChange);
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hero = document.querySelector('.hero');
+      const heroCard = document.querySelector('.hero-enter-card');
+      if (!hero || !heroCard) {
+        return;
+      }
+
+      const root = document.documentElement;
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const hasMotionPermissionPrompt = typeof window.DeviceOrientationEvent !== 'undefined'
+        && typeof window.DeviceOrientationEvent.requestPermission === 'function';
+
+      let rafId = null;
+      let currentX = 0;
+      let currentY = 0;
+      let targetX = 0;
+      let targetY = 0;
+
+      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+      const applyTilt = () => {
+        root.style.setProperty('--hero-tilt-x', currentX.toFixed(2));
+        root.style.setProperty('--hero-tilt-y', currentY.toFixed(2));
+      };
+
+      const animate = () => {
+        rafId = null;
+        currentX += (targetX - currentX) * 0.12;
+        currentY += (targetY - currentY) * 0.12;
+        applyTilt();
+
+        if (Math.abs(targetX - currentX) > 0.01 || Math.abs(targetY - currentY) > 0.01) {
+          schedule();
+        }
+      };
+
+      const schedule = () => {
+        if (rafId === null) {
+          rafId = requestAnimationFrame(animate);
+        }
+      };
+
+      const setTargetFromPoint = (clientX, clientY) => {
+        const rect = hero.getBoundingClientRect();
+        if (!rect.width || !rect.height) {
+          return;
+        }
+
+        const px = (clientX - rect.left) / rect.width;
+        const py = (clientY - rect.top) / rect.height;
+
+        targetX = clamp((px - 0.5) * 14, -10, 10);
+        targetY = clamp((0.5 - py) * 10, -8, 8);
+        schedule();
+      };
+
+      const resetTarget = () => {
+        targetX = 0;
+        targetY = 0;
+        schedule();
+      };
+
+      const onOrientation = (event) => {
+        if (typeof event.gamma !== 'number' || typeof event.beta !== 'number') {
+          return;
+        }
+
+        targetX = clamp(event.gamma / 3, -10, 10);
+        targetY = clamp((event.beta - 45) / 8, -8, 8);
+        schedule();
+      };
+
+      const enableOrientation = () => {
+        if (prefersReducedMotion.matches) {
+          return false;
+        }
+
+        window.addEventListener('deviceorientation', onOrientation, true);
+        return true;
+      };
+
+      hero.addEventListener('pointermove', (event) => {
+        if (event.pointerType === 'touch') {
+          return;
+        }
+        setTargetFromPoint(event.clientX, event.clientY);
+      });
+      hero.addEventListener('pointerleave', resetTarget);
+      hero.addEventListener('pointerdown', (event) => {
+        setTargetFromPoint(event.clientX, event.clientY);
+      });
+      hero.addEventListener('touchstart', (event) => {
+        const touch = event.touches && event.touches[0];
+        if (touch) {
+          setTargetFromPoint(touch.clientX, touch.clientY);
+        }
+      }, { passive: true });
+      hero.addEventListener('touchend', resetTarget, { passive: true });
+
+      if (!prefersReducedMotion.matches) {
+        if (hasMotionPermissionPrompt) {
+          heroCard.addEventListener('click', async (event) => {
+            event.preventDefault();
+            try {
+              const granted = await window.DeviceOrientationEvent.requestPermission();
+              if (granted === 'granted') {
+                enableOrientation();
+              }
+            } catch {
+              // Fall through and continue to the world page.
+            }
+
+            window.location.href = heroCard.href;
+          });
+        } else {
+          enableOrientation();
+        }
+      }
+
+      applyTilt();
+      schedule();
     });
   </script>
 

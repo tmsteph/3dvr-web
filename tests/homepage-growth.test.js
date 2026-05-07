@@ -18,9 +18,11 @@ test('homepage ships Gun-backed experiment and feedback plumbing', async () => {
   assert.match(html, /data-growth-cta="start-free-primary"/);
   assert.match(html, /data-growth-cta="see-plans"/);
   assert.match(html, /data-growth-cta="for-service-businesses"/);
-  assert.match(html, /hero-route-guide/);
-  assert.match(html, /Best when you need the first live page or offer fast\./);
-  assert.match(html, /Best when you want structure first and can pay later\./);
+  assert.match(html, /data-growth-cta="enter-3dvr-world"/);
+  assert.match(html, /hero-enter-card/);
+  assert.match(html, /Enter here/);
+  assert.match(html, /Open the 3D world/);
+  assert.match(html, /Touch \+ tilt ready/);
   assert.match(html, /data-growth-cta="plan-free"/);
   assert.match(html, /data-growth-cta="sticky-start-free"[^>]+data-portal-path="\/free-trial\.html"/);
   assert.match(html, /data-growth-cta="start-free-primary"[^>]+data-portal-path="\/free-trial\.html"/);
@@ -31,6 +33,7 @@ test('homepage ships Gun-backed experiment and feedback plumbing', async () => {
   assert.match(html, /data-growth-cta="plan-custom"/);
   assert.match(html, /data-growth-cta="launch-in-3-days"/);
   assert.match(html, /href="launch-in-3-days\.html"[^>]+data-growth-cta="launch-in-3-days"/);
+  assert.match(html, /href="3dvr-world\/"[^>]+data-growth-cta="enter-3dvr-world"/);
   assert.match(html, /href="nomad-system\.html"[^>]+data-growth-cta="explore-nomad-system"/);
   assert.match(html, /data-portal-path="\/billing\/\?plan=custom"/);
   assert.match(html, /href="https:\/\/portal\.3dvr\.tech\/billing\/\?plan=custom"/);
