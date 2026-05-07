@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Portable work, open-source computing, and practical infrastructure for digital nomads, creators, and independent builders."
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://3dvr.tech/nomad-system.html" />
+  <title>3dvr.tech Nomad System</title>
+  <style>
+    :root {
+      --bg: #08111f;
+      --panel: rgba(255, 255, 255, 0.08);
+      --text: #f4f7fb;
+      --muted: #bfd0e6;
+      --gold: #d9b35f;
+      --gold-soft: #f0d89a;
+      --border: rgba(255, 255, 255, 0.14);
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(90, 176, 255, 0.2), transparent 30%),
+        linear-gradient(180deg, #07101c 0%, #0a1524 35%, #09101a 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(14px);
+      background: rgba(6, 13, 24, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.95rem 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(217, 179, 95, 0.25), rgba(90, 176, 255, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--gold-soft);
+      box-shadow: var(--shadow);
+      font-weight: 800;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 5.5rem 0 4rem;
+    }
+
+    .cloud {
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      filter: blur(8px);
+      animation: drift 22s linear infinite;
+      pointer-events: none;
+    }
+
+    .cloud.one {
+      width: 180px;
+      height: 58px;
+      top: 110px;
+      left: -40px;
+    }
+
+    .cloud.two {
+      width: 240px;
+      height: 72px;
+      top: 200px;
+      right: -50px;
+      animation-duration: 28s;
+    }
+
+    .cloud.three {
+      width: 150px;
+      height: 52px;
+      top: 60px;
+      right: 20%;
+      animation-duration: 18s;
+    }
+
+    @keyframes drift {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(18px); }
+      100% { transform: translateX(0); }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.95fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(90, 176, 255, 0.1);
+      border: 1px solid rgba(90, 176, 255, 0.22);
+      color: #b9ddff;
+      font-size: 0.88rem;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      line-height: 1.05;
+      margin: 0 0 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    h1 .gold {
+      color: var(--gold-soft);
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    .hero-copy {
+      font-size: 1.08rem;
+      max-width: 60ch;
+      margin: 0 0 1.6rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.95rem 1.3rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), #f4d58d);
+      color: #151515;
+      box-shadow: 0 12px 30px rgba(217, 179, 95, 0.25);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.14);
+      color: var(--text);
+    }
+
+    .hero-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .hero-points span {
+      font-size: 0.92rem;
+      color: var(--muted);
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hero-card,
+    .card,
+    .cta {
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.06));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 1.4rem;
+    }
+
+    .device-stack,
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .device {
+      border-radius: 20px;
+      padding: 1rem;
+      background: rgba(8, 17, 31, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .device h3 {
+      margin: 0 0 0.45rem;
+      font-size: 1.05rem;
+      color: var(--gold-soft);
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      max-width: 760px;
+      margin-bottom: 2rem;
+    }
+
+    .section-title h2 {
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      margin: 0 0 0.8rem;
+      line-height: 1.1;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.3rem;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+      font-size: 1.15rem;
+    }
+
+    .card ul {
+      margin: 0.9rem 0 0;
+      padding-left: 1.15rem;
+      color: var(--muted);
+    }
+
+    .band {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .quote {
+      font-size: clamp(1.3rem, 2.8vw, 2rem);
+      line-height: 1.4;
+      color: var(--gold-soft);
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .pricing {
+      align-items: stretch;
+    }
+
+    .price-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 0.4rem 0 0.8rem;
+      color: var(--gold-soft);
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 0.6rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #d2e9ff;
+      background: rgba(90, 176, 255, 0.12);
+      border: 1px solid rgba(90, 176, 255, 0.2);
+      padding: 0.35rem 0.55rem;
+      border-radius: 999px;
+    }
+
+    .featured {
+      background: linear-gradient(180deg, rgba(217, 179, 95, 0.14), rgba(255, 255, 255, 0.06));
+      border-color: rgba(217, 179, 95, 0.28);
+      transform: translateY(-4px);
+    }
+
+    .cta {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(180deg, rgba(90, 176, 255, 0.1), rgba(217, 179, 95, 0.08));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+    }
+
+    .site-footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .small {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .grid-4,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding-top: 4.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <div class="brand-badge">3D</div>
+        <span>3dvr.tech Nomad System</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#vision">Vision</a>
+        <a href="#system">System</a>
+        <a href="#pricing">Membership</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="cloud one"></div>
+      <div class="cloud two"></div>
+      <div class="cloud three"></div>
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Open-source tools for life on the move</div>
+          <h1>
+            Live anywhere.
+            <span class="gold">Build anything.</span>
+          </h1>
+          <p class="hero-copy">
+            3dvr.tech is building an open-source system for digital nomads, creators,
+            and independent builders who want portable computing, practical travel gear,
+            and a real path toward working from anywhere.
+          </p>
+          <div class="hero-actions">
+            <a href="subscribe/index.html" class="btn btn-primary">See membership options</a>
+            <a href="#system" class="btn btn-secondary">Explore the system</a>
+          </div>
+          <div class="hero-points">
+            <span>Open-source computing</span>
+            <span>Portable work setups</span>
+            <span>Camping and travel gear</span>
+            <span>Remote business tools</span>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="device-stack">
+            <div class="device">
+              <h3>Portable workstation</h3>
+              <p>
+                A practical mobile desk, ergonomic gear, Linux-powered computing,
+                and a setup that can travel with you.
+              </p>
+            </div>
+            <div class="device">
+              <h3>Nomad infrastructure</h3>
+              <p>
+                Power, connectivity, shelter, storage, and simple systems that help
+                you work in the real world.
+              </p>
+            </div>
+            <div class="device">
+              <h3>Future-proof stack</h3>
+              <p>
+                Inspired by Open Source Ecology, Linux, and open hardware:
+                from digital tools today to deeper independence tomorrow.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="vision">
+      <div class="container">
+        <div class="section-title">
+          <h2>Open-source ecology for digital nomads</h2>
+          <p>
+            We want to do more than sell websites or gadgets. We want to help people
+            build a full independent setup: work, travel, shelter, power, computing,
+            and community.
+          </p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Built for real movement</h3>
+            <p>
+              Our goal is a system that supports travel, camping, remote work, and
+              practical day-to-day independence instead of keeping you tied to one place.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Powered by open standards</h3>
+            <p>
+              We believe in Linux, repairable hardware, open documentation, and systems
+              people can understand, modify, and improve together.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Designed for builders</h3>
+            <p>
+              Whether you are launching a business, learning tech, or creating your own
+              path, 3dvr.tech is meant to help you move faster with less dependence on closed platforms.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container">
+        <p class="quote">
+          "We are building a portable open-source life system for people who want to work,
+          create, and travel on their own terms."
+        </p>
+      </div>
+    </section>
+
+    <section id="system">
+      <div class="container">
+        <div class="section-title">
+          <h2>The 3dvr nomad system</h2>
+          <p>
+            This is the stack we are building over time, starting with what works now
+            and moving toward deeper hardware and infrastructure independence.
+          </p>
+        </div>
+        <div class="grid-4">
+          <article class="card">
+            <h3>1. Work</h3>
+            <p>Websites, apps, AI tools, CRM, and support for people building a business online.</p>
+          </article>
+          <article class="card">
+            <h3>2. Device</h3>
+            <p>Linux-powered laptops, portable monitors, input systems, and practical mobile setups.</p>
+          </article>
+          <article class="card">
+            <h3>3. Power and shelter</h3>
+            <p>Travel gear, solar-ready systems, desk concepts, camping tools, and portable comfort.</p>
+          </article>
+          <article class="card">
+            <h3>4. Future hardware</h3>
+            <p>Open hardware, low-power computing, and long-term exploration into chips and fabrication.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-title">
+          <h2>What we're offering first</h2>
+          <p>
+            We're starting with services, setup help, and community, then growing into
+            gear, kits, and eventually our own physical products.
+          </p>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Digital nomad launch support</h3>
+            <ul>
+              <li>Website setup</li>
+              <li>Basic app and portal guidance</li>
+              <li>Remote business support</li>
+              <li>Open-source workflow recommendations</li>
+              <li>One place to start building</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Gear and system direction</h3>
+            <ul>
+              <li>Portable desk concepts</li>
+              <li>Travel workstation ideas</li>
+              <li>Linux-friendly gear recommendations</li>
+              <li>Open-source and repairable equipment focus</li>
+              <li>Long-term custom 3dvr products</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <div class="section-title">
+          <h2>Start with membership</h2>
+          <p>
+            The membership helps fund the vision while giving people real value today.
+          </p>
+        </div>
+        <div class="grid-3 pricing">
+          <article class="card price-card">
+            <div class="tag">ENTRY</div>
+            <h3>Free</h3>
+            <div class="price">$0</div>
+            <p>Get connected to the mission and follow the build.</p>
+            <ul>
+              <li>Project updates</li>
+              <li>Early access announcements</li>
+              <li>Community visibility</li>
+            </ul>
+          </article>
+          <article class="card price-card featured">
+            <div class="tag">CORE MEMBERSHIP</div>
+            <h3>Builder</h3>
+            <div class="price">$20/mo</div>
+            <p>The best place to start if you want help building your setup or business.</p>
+            <ul>
+              <li>Website and launch support</li>
+              <li>Access to 3dvr tools and direction</li>
+              <li>Builder community</li>
+              <li>Priority future product access</li>
+            </ul>
+          </article>
+          <article class="card price-card">
+            <div class="tag">CUSTOM</div>
+            <h3>Nomad setup</h3>
+            <div class="price">Custom</div>
+            <p>For people who want direct help designing a more complete work-and-travel system.</p>
+            <ul>
+              <li>Personal setup guidance</li>
+              <li>Gear recommendations</li>
+              <li>Workflow planning</li>
+              <li>Future kit consultation</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="cta">
+          <h2>Join the builders</h2>
+          <p>
+            If you want a more independent way to live, work, and build, join the 3dvr.tech
+            builder list and be part of the early movement.
+          </p>
+          <div class="hero-actions" style="justify-content: center;">
+            <a class="btn btn-primary" href="mailto:3dvr.tech@gmail.com?subject=3dvr%20Nomad%20System">
+              Email 3dvr.tech
+            </a>
+            <a class="btn btn-secondary" href="index.html">
+              Visit 3dvr.tech
+            </a>
+          </div>
+          <p class="small" style="margin-top: 1rem;">
+            Open-source computing. Portable infrastructure. A better way to build on the move.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 3dvr.tech. Building open-source systems for digital nomads, creators, and independent builders.</p>
+    </div>
+  </footer>
+</body>
+</html>

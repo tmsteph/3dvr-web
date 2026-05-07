@@ -436,6 +436,56 @@
       font-size: 0.82rem;
       color: rgba(255,255,255,0.78);
     }
+    .hero-choice-dock {
+      display: grid;
+      gap: 0.85rem;
+      width: min(100%, 760px);
+    }
+    .hero-choice-dock__label {
+      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+    }
+    .hero-choice-dock__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+      width: 100%;
+    }
+    .hero-choice-card {
+      display: grid;
+      gap: 0.35rem;
+      padding: 1.1rem 1.1rem 1.05rem;
+      border-radius: 20px;
+      text-decoration: none;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.08));
+      border: 1px solid rgba(255,255,255,0.16);
+      color: var(--text-light);
+      text-align: left;
+      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+    }
+    .hero-choice-card:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, rgba(0,255,200,0.18), rgba(255,255,255,0.11));
+      border-color: rgba(0,255,200,0.38);
+      box-shadow: 0 18px 36px rgba(0,0,0,0.28);
+    }
+    .hero-choice-card strong {
+      font-size: 1.02rem;
+      color: var(--accent);
+    }
+    .hero-choice-card span {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.8);
+    }
+    .hero-choice-card--launch {
+      background: linear-gradient(135deg, rgba(0,255,200,0.18), rgba(255,255,255,0.08));
+    }
+    .hero-choice-card--free {
+      background: linear-gradient(135deg, rgba(95,39,205,0.18), rgba(255,255,255,0.08));
+    }
     .hero-buyer-dock {
       display: grid;
       gap: 0.85rem;
@@ -623,6 +673,9 @@
         grid-column: 1 / -1;
         justify-self: center;
         width: min(100%, calc(50% - 0.4rem));
+      }
+      .hero-choice-dock__grid {
+        grid-template-columns: 1fr;
       }
       .hero-buyer-dock__grid { grid-template-columns: 1fr; }
       .hero-vision-highlights { text-align: left; }
@@ -907,6 +960,169 @@
       grid-column: 1 / -1;
       justify-self: center;
     }
+    .nomad-system-section {
+      background:
+        radial-gradient(circle at top left, rgba(0, 255, 200, 0.16), transparent 34%),
+        linear-gradient(135deg, #102033 0%, #173b51 55%, #2c4d5f 100%);
+    }
+    .system-layers-section {
+      background:
+        radial-gradient(circle at top right, rgba(0, 255, 200, 0.16), transparent 34%),
+        linear-gradient(135deg, #081018 0%, #102236 52%, #173547 100%);
+    }
+    .system-shell {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+      display: grid;
+      gap: 1.5rem;
+    }
+    .system-heading {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .system-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.42rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #d8fff4;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.95rem;
+    }
+    .system-heading p {
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .system-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+    .system-card {
+      background: rgba(7, 18, 28, 0.54);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 1.45rem;
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.24);
+      text-align: left;
+    }
+    .system-card__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      padding: 0.32rem 0.62rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #d8fff4;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .system-card p {
+      color: rgba(255, 255, 255, 0.84);
+    }
+    .system-points {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+      display: grid;
+      gap: 0.7rem;
+    }
+    .system-points li {
+      padding: 0.75rem 0.9rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.88);
+    }
+    .system-points strong {
+      color: #d7fff2;
+    }
+    .system-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      justify-content: center;
+    }
+    .nomad-shell {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+    .nomad-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+    .nomad-card {
+      background: rgba(7, 18, 28, 0.48);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.24);
+    }
+    .nomad-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.42rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #d8fff4;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.95rem;
+    }
+    .nomad-card h2,
+    .nomad-card h3 {
+      margin-bottom: 0.8rem;
+    }
+    .nomad-card p {
+      color: rgba(255, 255, 255, 0.84);
+    }
+    .nomad-points,
+    .nomad-pillars {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+      display: grid;
+      gap: 0.8rem;
+    }
+    .nomad-points li,
+    .nomad-pillars li {
+      padding: 0.8rem 0.95rem;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.88);
+    }
+    .nomad-pillars strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: #d7fff2;
+    }
+    .nomad-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.25rem;
+    }
+    .nomad-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
     .partner-card {
       background: rgba(255, 255, 255, 0.12);
       border-radius: 16px;
@@ -960,6 +1176,12 @@
       }
       .partner-mark {
         align-self: center;
+      }
+    }
+    @media (max-width: 960px) {
+      .system-grid,
+      .nomad-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1248,6 +1470,7 @@
     <nav id="mainNav">
       <a href="subscribe/index.html">Start Free</a>
       <a href="#vision">What We Do</a>
+      <a href="#system">System</a>
       <a href="#pipeline">How it works</a>
       <a href="#subscribe">Plans</a>
       <a href="#testimonials">Trust</a>
@@ -1255,7 +1478,12 @@
     </nav>
   </header>
 
-  <a class="sticky-cta" data-growth-cta="sticky-start-free" href="subscribe/free-plan.html">Start Free</a>
+  <a
+    class="sticky-cta"
+    data-growth-cta="sticky-start-free"
+    data-portal-path="/free-trial.html"
+    href="https://portal.3dvr.tech/free-trial.html"
+  >Start Free</a>
 
   <section class="hero">
     <div class="hero-inner">
@@ -1282,8 +1510,13 @@
           Get a site, landing page, or simple business system with direct help from idea to launch.
         </p>
         <div class="hero-buttons">
-          <a class="hero-button hero-button--primary" data-growth-cta="start-free-primary" href="subscribe/free-plan.html">
-            Start free
+          <a
+            class="hero-button hero-button--primary"
+            data-growth-cta="start-free-primary"
+            data-portal-path="/free-trial.html"
+            href="https://portal.3dvr.tech/free-trial.html"
+          >
+            Start free in portal
           </a>
           <a class="hero-button hero-button--ghost" data-growth-cta="see-plans" href="#subscribe">
             See plans
@@ -1291,6 +1524,28 @@
           <a class="hero-button hero-button--ghost" data-growth-cta="for-service-businesses" href="subscribe/professional-services.html">
             For service businesses
           </a>
+        </div>
+        <div class="hero-choice-dock" aria-label="Quick start choices">
+          <span class="hero-choice-dock__label">Quick start choices</span>
+          <div class="hero-choice-dock__grid">
+            <a
+              class="hero-choice-card hero-choice-card--launch"
+              data-growth-cta="launch-in-3-days"
+              href="launch-in-3-days.html"
+            >
+              <strong>Launch in 3 Days</strong>
+              <span>Best when you need the first live page or offer fast.</span>
+            </a>
+            <a
+              class="hero-choice-card hero-choice-card--free"
+              data-growth-cta="start-free-portal"
+              data-portal-path="/free-trial.html"
+              href="https://portal.3dvr.tech/free-trial.html"
+            >
+              <strong>Start free in Portal</strong>
+              <span>Best when you want structure first and can pay later.</span>
+            </a>
+          </div>
         </div>
         <div class="hero-feedback" aria-label="Homepage clarity feedback">
           <span id="heroFeedbackPrompt" class="hero-feedback__prompt">Does this explain the offer clearly?</span>
@@ -1301,23 +1556,43 @@
           <span id="heroFeedbackStatus" class="hero-feedback__status">Anonymous feedback helps tune the homepage.</span>
         </div>
         <div class="hero-plan-dock" aria-label="Quick plan links">
-          <span class="hero-plan-dock__label">Ways to work together</span>
+          <span class="hero-plan-dock__label">Pick the lane that fits. Billing and account setup continue in portal.</span>
           <div class="hero-plan-dock__grid">
-            <a class="hero-plan-chip" data-growth-cta="plan-free" href="subscribe/free-plan.html">
+            <a
+              class="hero-plan-chip"
+              data-growth-cta="plan-free"
+              data-portal-path="/free-trial.html"
+              href="https://portal.3dvr.tech/free-trial.html"
+            >
               <strong>Free</strong>
-              <span>Get organized</span>
+              <span>Get organized first</span>
             </a>
-            <a class="hero-plan-chip" data-growth-cta="plan-20" href="subscribe/founder-plan.html">
+            <a
+              class="hero-plan-chip"
+              data-growth-cta="plan-20"
+              data-portal-path="/billing/?plan=pro"
+              href="https://portal.3dvr.tech/billing/?plan=pro"
+            >
               <strong>$20</strong>
-              <span>Launch with help</span>
+              <span>Launch in 3 Days</span>
             </a>
-            <a class="hero-plan-chip" data-growth-cta="plan-50" href="subscribe/builder-plan.html">
+            <a
+              class="hero-plan-chip"
+              data-growth-cta="plan-50"
+              data-portal-path="/billing/?plan=builder"
+              href="https://portal.3dvr.tech/billing/?plan=builder"
+            >
               <strong>$50</strong>
-              <span>Best business fit</span>
+              <span>Default for businesses</span>
             </a>
-            <a class="hero-plan-chip" data-growth-cta="plan-200" href="subscribe/support-teams.html">
+            <a
+              class="hero-plan-chip"
+              data-growth-cta="plan-200"
+              data-portal-path="/billing/?plan=embedded"
+              href="https://portal.3dvr.tech/billing/?plan=embedded"
+            >
               <strong>$200</strong>
-              <span>Enterprise support</span>
+              <span>Run one calmer team system</span>
             </a>
             <a
               class="hero-plan-chip"
@@ -1326,7 +1601,7 @@
               href="https://portal.3dvr.tech/billing/?plan=custom"
             >
               <strong>Custom</strong>
-              <span>Bigger scope</span>
+              <span>One-time payment or deposit</span>
             </a>
           </div>
         </div>
@@ -1385,7 +1660,7 @@
       </div>
       <div class="vision-footnote">
         <p>
-          Start free if you need structure. Start at $20/month if you want launch help. Most businesses should move into Builder at $50/month. Teams with shared workflow pain should look at Enterprise at $200/month.
+          Start free if you need structure. Use Launch in 3 Days at $20/month for the first page or offer. Most active businesses should start on Builder at $50/month, with setup sprints available when you want the first workflow built faster. Teams with shared workflow pain should look at Enterprise at $200/month.
         </p>
         <a class="vision-link" href="subscribe/index.html">
           See plans and services
@@ -1412,7 +1687,7 @@
         <article class="pipeline-card">
           <span class="pipeline-step">Step 2</span>
           <h3>Raise your hand</h3>
-          <p>Start free, pick a paid plan, or talk through custom scope so the lead becomes a real contact with a real next step.</p>
+          <p>Start free, pick a paid plan, or use a scoped one-time payment when the work should be a deposit or project checkout.</p>
         </article>
         <article class="pipeline-card">
           <span class="pipeline-step">Step 3</span>
@@ -1432,34 +1707,106 @@
     </div>
   </section>
 
+  <section id="system" class="system-layers-section">
+    <div class="system-shell">
+      <div class="system-heading">
+        <span class="system-kicker">One system. Any device.</span>
+        <h2>Portal, Browser, OS</h2>
+        <p>
+          Start in your browser. Grow into your own operating system. The same 3dvr account,
+          apps, and support lane can move from cloud workspace to browser runtime to deeper
+          Linux-based control without starting over.
+        </p>
+      </div>
+      <div class="system-grid">
+        <article class="system-card">
+          <span class="system-card__eyebrow">Portal</span>
+          <h3>Cloud workspace and identity</h3>
+          <p>
+            Keep billing, CRM, notes, messaging, projects, and AI on one account instead of
+            scattering the work across disconnected tools.
+          </p>
+          <ul class="system-points">
+            <li><strong>Start here:</strong> subscriptions, contacts, notes, support, and daily operating lanes.</li>
+            <li><strong>Same account:</strong> one identity across planning, delivery, and collaboration.</li>
+          </ul>
+        </article>
+        <article class="system-card">
+          <span class="system-card__eyebrow">Browser</span>
+          <h3>Runtime, launcher, and media environment</h3>
+          <p>
+            The portal is also becoming a browser-shaped workspace: app launcher, multi-panel tools,
+            media experiments, AI workbench, and lighter desktop-like flows that run anywhere.
+          </p>
+          <ul class="system-points">
+            <li><strong>Run in tabs today:</strong> launcher, notes, CRM, media, and AI tools.</li>
+            <li><strong>Grow into a workspace:</strong> same apps, but with more context and control.</li>
+          </ul>
+        </article>
+        <article class="system-card">
+          <span class="system-card__eyebrow">OS</span>
+          <h3>TommyOS direction for deeper control</h3>
+          <p>
+            Long term, 3dvr is moving toward a Linux-based operating layer for devices, local servers,
+            hardware experiments, and a calmer builder environment that does not depend on closed platforms.
+          </p>
+          <ul class="system-points">
+            <li><strong>Start practical:</strong> Pocket Workstation, Debian experiments, and open workflows.</li>
+            <li><strong>Deeper later:</strong> same identity, same apps, deeper levels of control.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="system-actions">
+        <a class="cta" href="https://portal.3dvr.tech" target="_blank" rel="noopener">Open the portal command center</a>
+        <a class="cta" href="pocket-workstation.html" data-growth-cta="system-pocket-workstation">See Pocket Workstation</a>
+      </div>
+    </div>
+  </section>
+
   <section id="subscribe" style="background: var(--bg-subscribe);">
     <h2>Simple ways to work together</h2>
-    <p>Start free if you need structure. Start at $20/month if you want direct launch help. Most businesses should start on Builder at $50/month. Teams with shared workflow pain should look at Enterprise at $200/month.</p>
+    <p>Start free if you need structure. Use Launch in 3 Days at $20/month for the first page or offer. If you already have real customers, quotes, follow-up, or weekly operations to manage, Builder at $50/month is the default business lane. Tap a card to continue in portal.</p>
     <div class="card-grid">
-      <a href="subscribe/free-plan.html" class="card">
+      <a
+        class="card"
+        data-portal-path="/free-trial.html"
+        href="https://portal.3dvr.tech/free-trial.html"
+      >
         <h3><span class="plan-name">Free Plan</span><br><span class="plan-price">Free!</span></h3>
         <p>Get organized, sort out your next step, and enter the portal without paying first.</p>
-        <span class="btn-like">Learn More</span>
+        <span class="btn-like">Start in Portal</span>
       </a>
-      <a href="subscribe/founder-plan.html" class="card">
+      <a
+        class="card"
+        data-portal-path="/billing/?plan=pro"
+        href="https://portal.3dvr.tech/billing/?plan=pro"
+      >
         <h3><span class="plan-name">Founder Plan</span><br><span class="plan-price">$20 monthly</span></h3>
-        <p>Get ongoing help shaping the idea, page, or offer and getting it launched.</p>
-        <span class="btn-like">Learn More</span>
+        <p>Use this for Launch in 3 Days when the offer, site, or first page still needs to become real.</p>
+        <span class="btn-like">Continue in Portal</span>
       </a>
-      <a href="subscribe/builder-plan.html" class="card">
+      <a
+        class="card"
+        data-portal-path="/billing/?plan=builder"
+        href="https://portal.3dvr.tech/billing/?plan=builder"
+      >
         <h3><span class="plan-name">Builder Plan</span><br><span class="plan-price">$50 monthly</span></h3>
-        <p>Best for growing businesses that need a site, follow-up, updates, and calmer operations.</p>
-        <span class="btn-like">Learn More</span>
+        <p>Default for active businesses that need a site, follow-up, updates, and calmer operations. Pair it with a setup sprint when you want the first workflow built faster.</p>
+        <span class="btn-like">Continue in Portal</span>
       </a>
-      <a href="subscribe/support-teams.html" class="card">
+      <a
+        class="card"
+        data-portal-path="/billing/?plan=embedded"
+        href="https://portal.3dvr.tech/billing/?plan=embedded"
+      >
         <h3><span class="plan-name">Enterprise Plan</span><br><span class="plan-price">$200 monthly</span></h3>
         <p>Best for support teams, organizations, and shared workflows that need one calmer operating lane.</p>
-        <span class="btn-like">Learn More</span>
+        <span class="btn-like">Continue in Portal</span>
       </a>
-      <a href="launch-your-site.html" class="card">
-        <h3><span class="plan-name">Custom Scope</span><br><span class="plan-price">By project</span></h3>
-        <p>Use this for larger builds, one-time sprint work, or scoped projects when the monthly plans are not the right fit.</p>
-        <span class="btn-like">Learn More</span>
+      <a href="launch-in-3-days.html" class="card" data-growth-cta="launch-in-3-days">
+        <h3><span class="plan-name">Launch in 3 Days</span><br><span class="plan-price">$20 starting point</span></h3>
+        <p>Use this if you want the clearest path from rough idea to a live page fast, then move into Builder if the business lane grows.</p>
+        <span class="btn-like">See the launch flow</span>
       </a>
     </div>
   </section>
@@ -1468,6 +1815,24 @@
     <h2>Practical help</h2>
     <p class="section-lede">Use 3dvr when you need a website, an app flow, better support, or a clearer launch plan.</p>
     <div class="card-grid features-grid">
+      <a
+        href="https://portal.3dvr.tech/calendar/"
+        data-portal-path="/calendar/"
+        class="card feature-card"
+      >
+        <div class="feature-icon" aria-hidden="true">
+          <i class="fa-solid fa-calendar-days"></i>
+        </div>
+        <div class="feature-content">
+          <h3>Calendar Hub</h3>
+          <p>Keep meetings, follow-ups, and the next real slot visible instead of scattered across tabs.</p>
+          <ul class="feature-list">
+            <li>One place for scheduling, planning, and what is actually booked.</li>
+            <li>Built to stay connected to your portal workflow and weekly rhythm.</li>
+          </ul>
+          <span class="feature-cta">Open the calendar →</span>
+        </div>
+      </a>
       <a href="websites.html" class="card feature-card">
         <div class="feature-icon" aria-hidden="true">
           <i class="fa-solid fa-globe"></i>
@@ -1643,28 +2008,79 @@
     </p>
   </section>
 
+  <section id="nomad-system" class="nomad-system-section">
+    <div class="nomad-shell">
+      <div class="nomad-grid">
+        <article class="nomad-card">
+          <span class="nomad-kicker">Nomad system direction</span>
+          <h2>Portable work, open hardware, and a calmer way to build on the move.</h2>
+          <p>
+            3dvr is not only a website and support business. The longer vision is a real nomad system:
+            portable computing, practical gear, Linux-first workflows, and infrastructure that helps
+            people work from more places with less dependence on closed platforms.
+          </p>
+          <ul class="nomad-points">
+            <li>Start with services, setup help, and community that already work today.</li>
+            <li>Grow into gear guidance, workstation kits, and portable infrastructure experiments.</li>
+            <li>Keep the stack open-source, repairable where possible, and useful in the real world.</li>
+          </ul>
+          <div class="nomad-actions">
+            <a class="cta" href="nomad-system.html" data-growth-cta="explore-nomad-system">Explore the nomad system</a>
+            <a class="cta" href="pocket-workstation.html" data-growth-cta="pocket-workstation-page">Pocket Workstation install</a>
+            <a class="nomad-link" href="vision/index.html">
+              Read the broader vision
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+        <aside class="nomad-card">
+          <h3>What the stack includes</h3>
+          <ul class="nomad-pillars">
+            <li>
+              <strong>Work</strong>
+              Websites, apps, AI tools, launch help, and support for independent builders.
+            </li>
+            <li>
+              <strong>Device</strong>
+              Linux-powered laptops, portable monitors, input systems, and travel-ready desks.
+            </li>
+            <li>
+              <strong>Power and shelter</strong>
+              Connectivity, solar-ready ideas, lightweight shelter, and real mobile comfort.
+            </li>
+            <li>
+              <strong>Future hardware</strong>
+              Open hardware and low-power computing experiments that point toward deeper independence.
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
   <section id="portal" style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); text-align: center;">
-    <h2>Check out the Portal</h2>
+    <h2>Portal command center</h2>
     <p style="max-width: 820px; margin: 1rem auto 2rem; font-size: 1.15rem; color: #e5f7f3;">
-      Peek behind the curtain and explore the experiments we're building with the community. The portal gives you self-serve access to work-in-progress demos, analytics snapshots, and the tools that power our launch plans.
+      Start in the browser with one identity, one launcher, and one calmer operating lane. The portal is where
+      subscriptions, CRM, notes, messaging, support, AI, and device experiments stay connected while the system grows.
     </p>
     <div class="card-grid" style="margin-bottom: 2rem;">
       <a class="card" href="3dvr-world/" style="background: rgba(0, 0, 0, 0.35); text-align: left; color: inherit; text-decoration: none; display: block;">
-        <h3 style="color: var(--accent);">Live experiments</h3>
-        <p>Browse prototypes, VR scenes, and micro-apps shipping soon. Start with the full-screen 3DVR world prototype, now pushed further with portal-style HUD graphics and device-safe depth.</p>
+        <h3 style="color: var(--accent);">Browser layer</h3>
+        <p>Run the launcher, workspace experiments, VR scenes, and media tools in the browser before they harden into deeper desktop-like flows.</p>
         <p style="margin-top: 1rem; color: var(--accent); font-weight: 700;">Open the full-screen 3DVR world prototype</p>
       </a>
       <div class="card" style="background: rgba(0, 0, 0, 0.35); text-align: left;">
-        <h3 style="color: var(--accent);">Creator shortcuts</h3>
-        <p>Sign in once to unlock studio tools, asset uploads, and publishing pipelines that connect directly to your projects.</p>
+        <h3 style="color: var(--accent);">Portal layer</h3>
+        <p>Sign in once to unlock billing, CRM, notes, support, and project lanes that stay tied to the same account and customer history.</p>
       </div>
       <div class="card" style="background: rgba(0, 0, 0, 0.35); text-align: left;">
-        <h3 style="color: var(--accent);">Progress dashboards</h3>
-        <p>Follow milestone updates, performance snapshots, and roadmap notes as we ship new builds across web and XR.</p>
+        <h3 style="color: var(--accent);">OS direction</h3>
+        <p>Pocket Workstation, Debian Browser Lab, and TommyOS experiments point toward deeper device and hardware control without losing the same system identity.</p>
       </div>
     </div>
     <a class="cta" href="https://portal.3dvr.tech" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-      Visit portal.3dvr.tech <i class="fas fa-arrow-right" aria-hidden="true"></i>
+      Open portal.3dvr.tech <i class="fas fa-arrow-right" aria-hidden="true"></i>
     </a>
   </section>
 

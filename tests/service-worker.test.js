@@ -4,7 +4,7 @@ import path from 'node:path';
 import test from 'node:test';
 import vm from 'node:vm';
 
-const serviceWorkerPath = '/data/data/com.termux/files/home/3dvr-web-billing-center/service-worker.js';
+const serviceWorkerPath = '/data/data/com.termux/files/home/3dvr-web/service-worker.js';
 
 async function loadServiceWorker({
   cacheMatch,
@@ -120,9 +120,9 @@ test('service worker uses network-first for html navigations', async () => {
   assert.equal(cachePuts.length, 1);
 });
 
-test('service worker keeps same-origin js assets cache-first', async () => {
+test('service worker uses network-first for same-origin js assets', async () => {
   let fetchCalls = 0;
-  const { listeners } = await loadServiceWorker({
+  const { listeners, cachePuts } = await loadServiceWorker({
     cacheMatch: async (request) => {
       if (request?.url === 'https://www.3dvr.tech/subscribe/portal-links.js') {
         return new Response('cached-js', { status: 200 });
@@ -142,6 +142,54 @@ test('service worker keeps same-origin js assets cache-first', async () => {
     })
   );
 
-  assert.equal(fetchCalls, 0);
+  assert.equal(fetchCalls, 1);
+  assert.equal(await response.text(), 'network-js');
+  assert.equal(cachePuts.length, 1);
+});
+
+test('service worker falls back to cached js assets when offline', async () => {
+  const { listeners } = await loadServiceWorker({
+    cacheMatch: async (request) => {
+      if (request?.url === 'https://www.3dvr.tech/subscribe/portal-links.js') {
+        return new Response('cached-js', { status: 200 });
+      }
+      return undefined;
+    },
+    fetchImpl: async () => {
+      throw new Error('offline');
+    }
+  });
+
+  const response = await dispatchFetch(
+    listeners,
+    createRequest('https://www.3dvr.tech/subscribe/portal-links.js', {
+      accept: 'text/javascript'
+    })
+  );
+
   assert.equal(await response.text(), 'cached-js');
+});
+
+test('service worker keeps same-origin image assets cache-first', async () => {
+  let fetchCalls = 0;
+  const { listeners } = await loadServiceWorker({
+    cacheMatch: async (request) => {
+      if (request?.url === 'https://www.3dvr.tech/3DVR.png') {
+        return new Response('cached-image', { status: 200 });
+      }
+      return undefined;
+    },
+    fetchImpl: async () => {
+      fetchCalls += 1;
+      return new Response('network-image', { status: 200 });
+    }
+  });
+
+  const response = await dispatchFetch(
+    listeners,
+    createRequest('https://www.3dvr.tech/3DVR.png')
+  );
+
+  assert.equal(fetchCalls, 0);
+  assert.equal(await response.text(), 'cached-image');
 });
