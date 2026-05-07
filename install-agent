@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+INSTALLER_URL="${THREEDVR_INSTALLER_URL:-https://raw.githubusercontent.com/tmsteph/3dvr-agent/main/install.sh}"
+
+if command -v curl >/dev/null 2>&1; then
+  curl -fsSL "$INSTALLER_URL" | bash
+elif command -v wget >/dev/null 2>&1; then
+  wget -qO- "$INSTALLER_URL" | bash
+else
+  printf '%s\n' "3dvr-agent installer needs curl or wget."
+  printf '%s\n' "Install one of them, then run:"
+  printf '%s\n' "  curl -Ls https://3dvr.tech/install-agent | bash"
+  exit 1
+fi
