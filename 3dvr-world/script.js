@@ -66,9 +66,9 @@
 
   const zones = {
     arrival: {
-      label: 'Home layer',
-      title: 'Make the homepage feel like an entrance into the 3DVR world, not a flat list of sections.',
-      body: 'The frame makes the homepage feel spatial right away: headline in front, world behind it, and obvious paths into offers, experiments, and the portal without forcing a game-like interface.',
+      label: 'Castle courtyard',
+      title: 'Make the homepage feel like a castle courtyard with a bright front door and paths into the world.',
+      body: 'The frame should feel like a friendly entrance hub: headline in front, floating depth behind it, and obvious paths into offers, experiments, and the portal without turning into a hard game interface.',
       points: [
         'Fast first read on every screen size.',
         'Motion depth without browser lockout.',
@@ -76,15 +76,15 @@
       ],
       metrics: [
         { label: 'Signal', value: 'Front door' },
-        { label: 'Surface', value: 'Hero + plans' },
+        { label: 'Surface', value: 'Hero + stars' },
         { label: 'Link', value: 'Start Free' },
       ],
       depth: 74,
     },
     arena: {
-      label: 'World layer',
-      title: 'Let the middle layer carry atmosphere, featured work, and the sense of a bigger 3DVR world.',
-      body: 'This is where featured work, scenes, community moments, or a bold campaign headline could sit. The frame lets that layer feel expansive without burying navigation.',
+      label: 'Sky bridge',
+      title: 'Let the middle layer carry atmosphere, featured work, and a floating bridge of projects.',
+      body: 'This is where featured work, scenes, community moments, or a bold campaign headline can sit. The frame lets that layer feel expansive without burying navigation.',
       points: [
         'Big focal point for world-building.',
         'Can spotlight featured projects or demos.',
@@ -98,9 +98,9 @@
       depth: 88,
     },
     studio: {
-      label: 'Studio layer',
+      label: 'Workshop wing',
       title: 'Show how 3DVR builds, tests, and ships inside the world itself.',
-      body: 'The studio zone can hold build notes, prototype cards, tools, or work-in-progress demos without breaking the framed homepage metaphor.',
+      body: 'The workshop wing can hold build notes, prototype cards, tools, or work-in-progress demos without breaking the framed world metaphor.',
       points: [
         'Good fit for experiments and process.',
         'Can support swipe or tap focus on mobile.',
@@ -114,7 +114,7 @@
       depth: 82,
     },
     rooftop: {
-      label: 'Portal layer',
+      label: 'Portal tower',
       title: 'Use the upper layer for support, account entry, and the next step after the homepage.',
       body: 'This zone is less about spectacle and more about continuity: plans, portal access, support, and the systems people step into after the first visit.',
       points: [

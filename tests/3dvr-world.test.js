@@ -12,6 +12,10 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /Open Portal/);
     assert.match(html, /Portal HUD glow/);
     assert.match(html, /A full-screen 3DVR homepage world with touch, tilt, and direct paths into plans/);
+    assert.match(html, /Power stars/);
+    assert.match(html, /CASTLE/);
+    assert.match(html, /scene-castle/);
+    assert.match(html, /scene-coin-trail/);
     assert.match(html, /Stage \+ panels/);
     assert.match(html, /id="zoneMetrics"/);
     assert.match(html, /id="zoneDepthFill"/);
@@ -57,7 +61,11 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.scene-radar/);
     assert.match(css, /\.scene-core/);
     assert.match(css, /\.scene-core__label/);
+    assert.match(css, /\.scene-castle/);
+    assert.match(css, /\.scene-coin-trail/);
     assert.match(css, /@keyframes core-breathe/);
+    assert.match(css, /@keyframes coin-float/);
+    assert.match(css, /@keyframes flag-wave/);
     assert.match(css, /\.scene--back/);
     assert.match(css, /translate3d\(calc\(var\(--float-x\) \* -0\.24\)/);
     assert.match(css, /\.hero-points/);
