@@ -69,7 +69,8 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /See the launch flow/);
     assert.match(html, /href="launch-in-3-days\.html"/);
     assert.match(html, /data-growth-cta="enter-3dvr-world"/);
-    assert.match(html, /href="3dvr-world\/"[^>]+data-growth-cta="enter-3dvr-world"/);
+    assert.match(html, /href="3dvr-world\/"[^>]+data-growth-cta="enter-3dvr-world"[^>]+hidden/);
+    assert.match(html, /feature-flags\.js/);
     assert.doesNotMatch(html, /A clear place to land when you need a site, support, or a launch plan\./);
     assert.doesNotMatch(html, /Websites\. Apps\. Real support\./);
     assert.doesNotMatch(html, /A real place to land when you need a site, support, or a launch plan\./);

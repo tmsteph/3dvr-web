@@ -22,6 +22,9 @@ test('homepage ships Gun-backed experiment and feedback plumbing', async () => {
   assert.match(html, /hero-enter-card/);
   assert.match(html, /Enter here/);
   assert.match(html, /Open the 3D world/);
+  assert.match(html, /data-growth-cta="enter-3dvr-world"[^>]+hidden/);
+  assert.match(html, /data-feature-flag="world"/);
+  assert.match(html, /feature-flags\.js/);
   assert.match(html, /Touch \+ tilt ready/);
   assert.match(html, /data-growth-cta="plan-free"/);
   assert.match(html, /data-growth-cta="sticky-start-free"[^>]+data-portal-path="\/free-trial\.html"/);
@@ -33,7 +36,7 @@ test('homepage ships Gun-backed experiment and feedback plumbing', async () => {
   assert.match(html, /data-growth-cta="plan-custom"/);
   assert.match(html, /data-growth-cta="launch-in-3-days"/);
   assert.match(html, /href="launch-in-3-days\.html"[^>]+data-growth-cta="launch-in-3-days"/);
-  assert.match(html, /href="3dvr-world\/"[^>]+data-growth-cta="enter-3dvr-world"/);
+  assert.match(html, /href="3dvr-world\/"[^>]+data-growth-cta="enter-3dvr-world"[^>]+hidden/);
   assert.match(html, /href="nomad-system\.html"[^>]+data-growth-cta="explore-nomad-system"/);
   assert.match(html, /data-portal-path="\/billing\/\?plan=custom"/);
   assert.match(html, /href="https:\/\/portal\.3dvr\.tech\/billing\/\?plan=custom"/);

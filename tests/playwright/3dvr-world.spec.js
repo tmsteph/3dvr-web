@@ -85,7 +85,7 @@ test.describe('3dvr-world page', () => {
     test.skip(testInfo.project.name !== 'chromium-fold-closed', 'Ambient motion is asserted on chromium mobile');
     test.skip(/webkit/i.test(testInfo.project.name), 'Ambient animation sampling is unreliable in headless WebKit');
 
-    await page.goto('/3dvr-world/');
+    await page.goto('/3dvr-world/?feature_world=1');
 
     const sampleMotion = async () => page.locator('#clubFrame').evaluate((element) => ({
       tiltX: Number.parseFloat(element.style.getPropertyValue('--tilt-x') || '0'),
@@ -111,7 +111,7 @@ test.describe('3dvr-world page', () => {
     test.skip(testInfo.project.name !== 'chromium-fold-closed', 'Brave hardening is asserted on Chromium mobile');
 
     await page.route(/fonts\.googleapis\.com|fonts\.gstatic\.com/, (route) => route.abort());
-    await page.goto('/3dvr-world/');
+    await page.goto('/3dvr-world/?feature_world=1');
 
     await expect.poll(async () => {
       return page.evaluate(() => ({
@@ -129,7 +129,7 @@ test.describe('3dvr-world page', () => {
   });
 
   test('renders as a full-screen world and updates zone overlays', async ({ page }, testInfo) => {
-    await page.goto('/3dvr-world/');
+    await page.goto('/3dvr-world/?feature_world=1');
 
     await expect(
       page.getByRole('heading', { name: 'Step into the 3DVR world.' })
@@ -204,7 +204,7 @@ test.describe('3dvr-world page', () => {
 
     for (const viewport of mobileViewports) {
       await page.setViewportSize(viewport);
-      await page.goto('/3dvr-world/');
+      await page.goto('/3dvr-world/?feature_world=1');
 
       const layout = await getWorldLayout(page);
 
@@ -229,7 +229,7 @@ test.describe('3dvr-world page', () => {
   test('swipes through zones on touch devices', async ({ page }, testInfo) => {
     test.skip(!isMobileProject(testInfo), 'Mobile-only swipe check');
 
-    await page.goto('/3dvr-world/');
+    await page.goto('/3dvr-world/?feature_world=1');
 
     await swipeWorld(page);
 
@@ -262,7 +262,7 @@ test.describe('3dvr-world page', () => {
       };
     });
 
-    await page.goto('/3dvr-world/');
+    await page.goto('/3dvr-world/?feature_world=1');
 
     await expect(page.locator('#motionToggle')).toBeHidden();
 
@@ -310,7 +310,7 @@ test.describe('3dvr-world page', () => {
       };
     });
 
-    await page.goto('/3dvr-world/');
+    await page.goto('/3dvr-world/?feature_world=1');
 
     await expect(page.locator('#motionToggle')).toBeVisible();
     await expect(page.locator('#motionState')).toContainText('Enable tilt');
