@@ -17,7 +17,6 @@
   <link rel="icon" href="3DVRfavicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <script defer src="feature-flags.js"></script>
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="3dvr.tech" />
@@ -1578,26 +1577,7 @@
       <div class="hero-intro">
         <p id="heroEyebrow" class="hero-eyebrow">Websites. Apps. Direct support.</p>
       </div>
-      <div class="hero-visual">
-        <a
-          class="hero-logo-card hero-enter-card"
-          href="3dvr-world/"
-          aria-label="Enter the 3DVR world"
-          data-growth-cta="enter-3dvr-world"
-          data-feature-flag="world"
-          hidden
-        >
-          <div class="hero-spark hero-spark--top"></div>
-          <div class="hero-spark hero-spark--bottom"></div>
-          <img src="3DVR.png" alt="" />
-          <span class="hero-logo-card__eyebrow">Enter here</span>
-          <p>
-            Tap to step into the 3DVR world. Touch and tilt bring the scene to life.
-          </p>
-          <span class="hero-logo-card__enter">Open the 3D world</span>
-          <span class="hero-logo-card__hint">Touch + tilt ready</span>
-        </a>
-      </div>
+      <div class="hero-visual"></div>
       <div class="hero-content">
         <h1 class="hero-headline">
           <span id="heroHeadlinePrimary" class="hero-headline-primary">We help small businesses actually launch.</span>
@@ -2163,11 +2143,6 @@
       subscriptions, CRM, notes, messaging, support, AI, and device experiments stay connected while the system grows.
     </p>
     <div class="card-grid" style="margin-bottom: 2rem;">
-      <a class="card" href="3dvr-world/" style="background: rgba(0, 0, 0, 0.35); text-align: left; color: inherit; text-decoration: none; display: block;" data-feature-flag="world" hidden>
-        <h3 style="color: var(--accent);">Browser layer</h3>
-        <p>Run the launcher, workspace experiments, VR scenes, and media tools in the browser before they harden into deeper desktop-like flows.</p>
-        <p style="margin-top: 1rem; color: var(--accent); font-weight: 700;">Open the full-screen 3DVR world prototype</p>
-      </a>
       <div class="card" style="background: rgba(0, 0, 0, 0.35); text-align: left;">
         <h3 style="color: var(--accent);">Portal layer</h3>
         <p>Sign in once to unlock billing, CRM, notes, support, and project lanes that stay tied to the same account and customer history.</p>
@@ -2378,131 +2353,6 @@
 
       handleMediaChange(mediaQuery);
       mediaQuery.addEventListener('change', handleMediaChange);
-    });
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const hero = document.querySelector('.hero');
-      const heroCard = document.querySelector('.hero-enter-card');
-      if (!hero || !heroCard) {
-        return;
-      }
-
-      const root = document.documentElement;
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-      const hasMotionPermissionPrompt = typeof window.DeviceOrientationEvent !== 'undefined'
-        && typeof window.DeviceOrientationEvent.requestPermission === 'function';
-
-      let rafId = null;
-      let currentX = 0;
-      let currentY = 0;
-      let targetX = 0;
-      let targetY = 0;
-
-      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-
-      const applyTilt = () => {
-        root.style.setProperty('--hero-tilt-x', currentX.toFixed(2));
-        root.style.setProperty('--hero-tilt-y', currentY.toFixed(2));
-      };
-
-      const animate = () => {
-        rafId = null;
-        currentX += (targetX - currentX) * 0.12;
-        currentY += (targetY - currentY) * 0.12;
-        applyTilt();
-
-        if (Math.abs(targetX - currentX) > 0.01 || Math.abs(targetY - currentY) > 0.01) {
-          schedule();
-        }
-      };
-
-      const schedule = () => {
-        if (rafId === null) {
-          rafId = requestAnimationFrame(animate);
-        }
-      };
-
-      const setTargetFromPoint = (clientX, clientY) => {
-        const rect = hero.getBoundingClientRect();
-        if (!rect.width || !rect.height) {
-          return;
-        }
-
-        const px = (clientX - rect.left) / rect.width;
-        const py = (clientY - rect.top) / rect.height;
-
-        targetX = clamp((px - 0.5) * 14, -10, 10);
-        targetY = clamp((0.5 - py) * 10, -8, 8);
-        schedule();
-      };
-
-      const resetTarget = () => {
-        targetX = 0;
-        targetY = 0;
-        schedule();
-      };
-
-      const onOrientation = (event) => {
-        if (typeof event.gamma !== 'number' || typeof event.beta !== 'number') {
-          return;
-        }
-
-        targetX = clamp(event.gamma / 3, -10, 10);
-        targetY = clamp((event.beta - 45) / 8, -8, 8);
-        schedule();
-      };
-
-      const enableOrientation = () => {
-        if (prefersReducedMotion.matches) {
-          return false;
-        }
-
-        window.addEventListener('deviceorientation', onOrientation, true);
-        return true;
-      };
-
-      hero.addEventListener('pointermove', (event) => {
-        if (event.pointerType === 'touch') {
-          return;
-        }
-        setTargetFromPoint(event.clientX, event.clientY);
-      });
-      hero.addEventListener('pointerleave', resetTarget);
-      hero.addEventListener('pointerdown', (event) => {
-        setTargetFromPoint(event.clientX, event.clientY);
-      });
-      hero.addEventListener('touchstart', (event) => {
-        const touch = event.touches && event.touches[0];
-        if (touch) {
-          setTargetFromPoint(touch.clientX, touch.clientY);
-        }
-      }, { passive: true });
-      hero.addEventListener('touchend', resetTarget, { passive: true });
-
-      if (!prefersReducedMotion.matches) {
-        if (hasMotionPermissionPrompt) {
-          heroCard.addEventListener('click', async (event) => {
-            event.preventDefault();
-            try {
-              const granted = await window.DeviceOrientationEvent.requestPermission();
-              if (granted === 'granted') {
-                enableOrientation();
-              }
-            } catch {
-              // Fall through and continue to the world page.
-            }
-
-            window.location.href = heroCard.href;
-          });
-        } else {
-          enableOrientation();
-        }
-      }
-
-      applyTilt();
-      schedule();
     });
   </script>
 

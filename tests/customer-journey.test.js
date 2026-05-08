@@ -16,9 +16,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Best when you need the first live page or offer fast\./);
     assert.match(html, /Start free in Portal/);
     assert.match(html, /Best when you want structure first and can pay later\./);
-    assert.match(html, /Enter here/);
-    assert.match(html, /Open the 3D world/);
-    assert.match(html, /href="3dvr-world\/"/);
+    assert.doesNotMatch(html, /href="3dvr-world\//);
     assert.match(html, /data-portal-path="\/free-trial\.html"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=pro"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=builder"/);
@@ -68,9 +66,6 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /\$20 starting point/);
     assert.match(html, /See the launch flow/);
     assert.match(html, /href="launch-in-3-days\.html"/);
-    assert.match(html, /data-growth-cta="enter-3dvr-world"/);
-    assert.match(html, /href="3dvr-world\/"[^>]+data-growth-cta="enter-3dvr-world"[^>]+hidden/);
-    assert.match(html, /feature-flags\.js/);
     assert.doesNotMatch(html, /A clear place to land when you need a site, support, or a launch plan\./);
     assert.doesNotMatch(html, /Websites\. Apps\. Real support\./);
     assert.doesNotMatch(html, /A real place to land when you need a site, support, or a launch plan\./);
@@ -79,9 +74,8 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /See plans and services/);
     assert.match(html, /See plans/);
     assert.match(html, /For service businesses/);
-    assert.match(html, /3dvr-world\//);
-    assert.match(html, /Open the full-screen 3DVR world prototype/);
-    assert.match(html, /Run the launcher, workspace experiments, VR scenes, and media tools in the browser before they harden into deeper desktop-like flows\./);
+    assert.doesNotMatch(html, /3dvr-world\//);
+    assert.doesNotMatch(html, /Open the full-screen 3DVR world prototype/);
     assert.match(html, /Nomad system direction/);
     assert.match(html, /Portable work, open hardware, and a calmer way to build on the move\./);
     assert.match(html, /Explore the nomad system/);
@@ -102,7 +96,6 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /data-growth-cta="system-pocket-workstation"/);
     assert.match(html, /Portal command center/);
     assert.match(html, /Start in the browser with one identity, one launcher, and one calmer operating lane\./);
-    assert.match(html, /Browser layer/);
     assert.match(html, /Portal layer/);
     assert.match(html, /OS direction/);
     assert.match(html, /Open portal\.3dvr\.tech/);
