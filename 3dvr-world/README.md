@@ -9,14 +9,14 @@ This route is a prototype for turning the 3DVR homepage into a full-screen 3D-fe
 - The frame is the 3D stage. The rest of the page stays normal HTML.
 - The graphics now lean on the portal game's HUD language: glow panels, telemetry cards, orbit rings, and ambient orbs.
 - The zones can later map to work, experiments, portal paths, and support.
-- The route is hidden by default behind the `feature_world` flag. Use `?feature_world=1` or `localStorage["3dvr.feature.world"] = "1"` to opt in for testing.
+- The route is now linked quietly from the homepage projects area rather than the hero.
 
 ## Files
 
 - `index.html` renders the prototype route.
 - `styles.css` handles the framed 3D effect and responsive layout.
 - `script.js` drives focus switching and pointer tilt.
-- `script.js` also renders a locked preview when the feature flag is off.
+- `script.js` now always renders the live prototype.
 
 ## Route
 

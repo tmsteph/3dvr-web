@@ -17,7 +17,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Start free in Portal/);
     assert.match(html, /Best when you want structure first and can pay later\./);
     assert.match(html, /A clear place to land when you need a site, support, or a launch plan\./);
-    assert.doesNotMatch(html, /href="3dvr-world\//);
+    assert.match(html, /href="3dvr-world\//);
     assert.match(html, /data-portal-path="\/free-trial\.html"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=pro"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=builder"/);
@@ -76,7 +76,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /See plans/);
     assert.match(html, /For service businesses/);
     assert.match(html, /hero-logo-card/);
-    assert.doesNotMatch(html, /3dvr-world\//);
+    assert.match(html, /Browser experiments \/ 3DVR world prototype/);
     assert.doesNotMatch(html, /Open the full-screen 3DVR world prototype/);
     assert.match(html, /Nomad system direction/);
     assert.match(html, /Portable work, open hardware, and a calmer way to build on the move\./);

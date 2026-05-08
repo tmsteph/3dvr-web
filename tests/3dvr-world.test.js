@@ -8,7 +8,6 @@ describe('3dvr world prototype route', () => {
 
     assert.match(html, /3DVR 3D Homepage World/);
     assert.match(html, /Step into the 3DVR world\./);
-    assert.match(html, /feature-flags\.js/);
     assert.match(html, /frame-lab--fullscreen/);
     assert.match(html, /Open Portal/);
     assert.match(html, /Portal HUD glow/);
@@ -53,7 +52,6 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.frame-lab--fullscreen/);
     assert.match(css, /\.world-topbar/);
     assert.match(css, /\.world-body\.world-ready/);
-    assert.match(css, /\.world-body\.world-locked/);
     assert.match(css, /\.frame-hud__panel/);
     assert.match(css, /\.zone-detail__meter-fill/);
     assert.match(css, /\.scene-radar/);
@@ -94,7 +92,7 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /ambientEnabled/);
     assert.match(js, /updateAmbientMotion/);
     assert.match(css, /\.club-frame::after/);
-    assert.match(js, /3DVR world is not live yet/);
+    assert.doesNotMatch(js, /world-locked/);
   });
 
   it('keeps the legacy frame-club-test route as a redirect to the canonical world route', async () => {

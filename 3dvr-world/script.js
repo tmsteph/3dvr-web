@@ -1,29 +1,6 @@
 'use strict';
 
 (function init3dvrWorld() {
-  const worldFlags = window.__3DVR_FEATURE_FLAGS__ || {};
-  if (!worldFlags.world) {
-    document.body.classList.add('world-locked');
-    document.title = '3DVR world preview locked';
-    document.body.innerHTML = `
-      <main class="world-gate">
-        <section class="world-gate__panel">
-          <span class="eyebrow">3dvr world / feature flagged</span>
-          <h1>3DVR world is not live yet.</h1>
-          <p>
-            The world route is being kept behind a feature flag until the full experience is ready.
-            For now, use the homepage, the portal, or the meeting tools.
-          </p>
-          <div class="world-gate__actions">
-            <a class="button" href="/">Go to homepage</a>
-            <a class="button secondary" href="https://portal.3dvr.tech/">Open portal</a>
-          </div>
-        </section>
-      </main>
-    `;
-    return;
-  }
-
   document.body.classList.add('world-ready');
 
   const frame = document.getElementById('clubFrame');
