@@ -366,6 +366,14 @@
 
     const list = zoneDetail.querySelector('.zone-detail__list');
     list.innerHTML = zone.points.map((point) => `<li>${point}</li>`).join('');
+    const secretNote = zoneDetail.querySelector('.zone-detail__secret');
+    const secretLink = zoneDetail.querySelector('.zone-detail__secret-link');
+    if (secretNote) {
+      secretNote.hidden = zoneKey !== 'secret';
+    }
+    if (secretLink) {
+      secretLink.hidden = zoneKey !== 'secret';
+    }
     zoneMetrics.innerHTML = zone.metrics
       .map(
         (metric) => `
@@ -446,6 +454,11 @@
       const secretNote = zoneDetail.querySelector('.zone-detail__secret');
       if (secretNote) {
         secretNote.hidden = false;
+      }
+
+      const secretLink = zoneDetail.querySelector('.zone-detail__secret-link');
+      if (secretLink) {
+        secretLink.hidden = false;
       }
     }
 

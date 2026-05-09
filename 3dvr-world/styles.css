@@ -1395,6 +1395,16 @@ button {
   box-shadow: 0 16px 34px rgba(8, 12, 16, 0.28);
 }
 
+.zone-detail__secret-link {
+  display: inline-flex;
+  margin: 14px 0 0;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(111, 247, 255, 0.28);
+  background: rgba(8, 25, 44, 0.68);
+  color: rgba(224, 231, 255, 0.95);
+}
+
 .zone-detail__metrics {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
