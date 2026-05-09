@@ -479,7 +479,7 @@
 
   if (secretPortalButton) {
     secretPortalButton.addEventListener('click', () => {
-      renderZone('arena');
+      window.location.href = '/pages/portfolio.html#projects';
     });
   }
 

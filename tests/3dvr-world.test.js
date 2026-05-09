@@ -118,6 +118,7 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /secretWarpButton/);
     assert.match(js, /secretPortalButton/);
     assert.match(js, /Castle attic/);
+    assert.match(js, /pages\/portfolio\.html#projects/);
     assert.match(js, /renderZone\('secret'\)/);
     assert.match(js, /zone-detail__secret-link/);
     assert.match(js, /zone-detail__secret-portal/);
