@@ -60,6 +60,7 @@ describe('3dvr world prototype route', () => {
 
     assert.match(css, /perspective:\s*1800px/);
     assert.match(css, /\.club-frame/);
+    assert.match(css, /\.club-frame::before/);
     assert.match(css, /transform-style:\s*preserve-3d/);
     assert.match(css, /\.frame-lab--fullscreen/);
     assert.match(css, /\.world-topbar/);
@@ -69,6 +70,8 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.scene-radar/);
     assert.match(css, /\.scene-core/);
     assert.match(css, /\.scene-core__label/);
+    assert.match(css, /\.club-frame\[data-zone="arena"\] \.scene-core/);
+    assert.match(css, /\.club-frame\[data-zone="studio"\] \.scene-core/);
     assert.match(css, /\.world-stars/);
     assert.match(css, /\.warp-room/);
     assert.match(css, /\.warp-room__door/);
@@ -97,6 +100,10 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /const zones = \{/);
     assert.match(js, /zoneMetrics/);
     assert.match(js, /worldStars/);
+    assert.match(js, /sceneCoreLabel/);
+    assert.match(js, /sceneMarquee/);
+    assert.match(js, /sceneStatusLeft/);
+    assert.match(js, /sceneStatusRight/);
     assert.match(js, /secretStar/);
     assert.match(js, /warpButtons/);
     assert.match(js, /zoneDepthFill/);
@@ -120,6 +127,8 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /secretWarpButton/);
     assert.match(js, /secretPortalButton/);
     assert.match(js, /Castle attic/);
+    assert.match(js, /statusLeft/);
+    assert.match(js, /statusRight/);
     assert.match(js, /pages\/portfolio\.html#projects/);
     assert.match(js, /Warping to the projects room\./);
     assert.match(js, /renderZone\('secret'\)/);

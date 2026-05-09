@@ -9,6 +9,11 @@
   const zoneDepthValue = document.getElementById('zoneDepthValue');
   const zoneDepthFill = document.getElementById('zoneDepthFill');
   const worldStars = document.getElementById('worldStars');
+  const sceneCoreLabel = document.querySelector('.scene-core__label');
+  const sceneMarquee = document.querySelector('.scene-marquee');
+  const sceneStatusLeft = document.querySelector('.scene-status--left strong');
+  const sceneStatusRight = document.querySelector('.scene-status--right strong');
+  const telemetryPanels = Array.from(document.querySelectorAll('.telemetry-panel'));
   const secretStar = document.querySelector('[data-secret-star]');
   const secretWarpButton = document.querySelector('[data-warp-zone="secret"]');
   const secretPortalButton = document.querySelector('[data-secret-portal]');
@@ -72,6 +77,10 @@
   const zones = {
     arrival: {
       label: 'Castle courtyard',
+      room: 'Courtyard',
+      marquee: ['COURTYARD', 'FRONT DOOR', 'OPEN SKY'],
+      statusLeft: 'Courtyard active',
+      statusRight: 'Bright landing',
       title: 'Make the homepage feel like a castle courtyard with a bright front door and paths into the world.',
       body: 'The frame should feel like a friendly entrance hub: headline in front, floating depth behind it, and obvious paths into offers, experiments, and the portal without turning into a hard game interface.',
       points: [
@@ -88,6 +97,10 @@
     },
     arena: {
       label: 'Sky bridge',
+      room: 'Sky bridge',
+      marquee: ['SKY BRIDGE', 'OPEN AIR', 'WARP WALK'],
+      statusLeft: 'Bridge active',
+      statusRight: 'Wide view',
       title: 'Let the middle layer carry atmosphere, featured work, and a floating bridge of projects.',
       body: 'This is where featured work, scenes, community moments, or a bold campaign headline can sit. The frame lets that layer feel expansive without burying navigation.',
       points: [
@@ -104,6 +117,10 @@
     },
     studio: {
       label: 'Workshop wing',
+      room: 'Workshop',
+      marquee: ['WORKSHOP', 'BUILD LANE', 'TOOLS READY'],
+      statusLeft: 'Workshop active',
+      statusRight: 'Build lane',
       title: 'Show how 3DVR builds, tests, and ships inside the world itself.',
       body: 'The workshop wing can hold build notes, prototype cards, tools, or work-in-progress demos without breaking the framed world metaphor.',
       points: [
@@ -120,6 +137,10 @@
     },
     rooftop: {
       label: 'Portal tower',
+      room: 'Portal tower',
+      marquee: ['PORTAL TOWER', 'UPWARD PATH', 'NEXT STEP'],
+      statusLeft: 'Tower active',
+      statusRight: 'Portal ready',
       title: 'Use the upper layer for support, account entry, and the next step after the homepage.',
       body: 'This zone is less about spectacle and more about continuity: plans, portal access, support, and the systems people step into after the first visit.',
       points: [
@@ -136,6 +157,10 @@
     },
     secret: {
       label: 'Castle attic',
+      room: 'Attic',
+      marquee: ['SECRET ATTIC', 'HIDDEN ROOM', 'EXTRA PATH'],
+      statusLeft: 'Secret found',
+      statusRight: 'Hidden door open',
       title: 'A hidden room opens above the hub after the secret star is collected.',
       body: 'This tucked-away attic is the small reward for exploring the whole castle. It should feel like a quiet Mario-style secret: playful, useful, and easy to discover once the world has already been read.',
       points: [
@@ -364,6 +389,18 @@
     zoneDetail.querySelector('.zone-detail__eyebrow').textContent = zone.label;
     zoneDetail.querySelector('.zone-detail__title').textContent = zone.title;
     zoneDetail.querySelector('.zone-detail__body').textContent = zone.body;
+    if (sceneCoreLabel) {
+      sceneCoreLabel.textContent = zone.room;
+    }
+    if (sceneMarquee) {
+      sceneMarquee.innerHTML = zone.marquee.map((item) => `<span>${item}</span>`).join('');
+    }
+    if (sceneStatusLeft) {
+      sceneStatusLeft.textContent = zone.statusLeft;
+    }
+    if (sceneStatusRight) {
+      sceneStatusRight.textContent = zone.statusRight;
+    }
 
     const list = zoneDetail.querySelector('.zone-detail__list');
     list.innerHTML = zone.points.map((point) => `<li>${point}</li>`).join('');
@@ -402,6 +439,25 @@
       secretWarpButton.hidden = !secretStarCollected;
       secretWarpButton.classList.toggle('is-active', zoneKey === 'secret');
     }
+
+    telemetryPanels.forEach((panel, index) => {
+      const panelTitle = panel.querySelector('strong');
+      const panelBody = panel.querySelector('p');
+      const panelLabel = panel.querySelector('.telemetry-panel__label');
+      if (!panelTitle || !panelBody || !panelLabel) {
+        return;
+      }
+
+      if (index === 0) {
+        panelLabel.textContent = zoneKey === 'secret' ? 'Secret stars' : 'Power stars';
+        panelTitle.textContent = zoneKey === 'arrival' ? 'Front door' : zone.room;
+        panelBody.textContent = zone.body;
+      } else {
+        panelLabel.textContent = zoneKey === 'arena' ? 'Open sky' : zoneKey === 'studio' ? 'Build tools' : zoneKey === 'rooftop' ? 'Tower view' : 'Warp ready';
+        panelTitle.textContent = zone.statusRight;
+        panelBody.textContent = zone.points[0];
+      }
+    });
 
     zoneButtons.forEach((button) => {
       button.classList.toggle('is-active', button.dataset.zone === zoneKey);

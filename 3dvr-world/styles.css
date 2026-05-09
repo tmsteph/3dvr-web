@@ -465,6 +465,18 @@ button {
   will-change: transform;
 }
 
+.club-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(var(--zone-accent-rgb), 0.16), transparent 22%),
+    radial-gradient(circle at 12% 82%, rgba(255, 255, 255, 0.03), transparent 22%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 34%, rgba(2, 7, 15, 0.18) 100%);
+}
+
 .club-frame::after {
   content: "";
   position: absolute;
@@ -479,21 +491,46 @@ button {
 .club-frame[data-zone="arrival"] {
   --zone-accent: var(--cyan);
   --zone-accent-rgb: 111, 247, 255;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(111, 247, 255, 0.16), transparent 24%),
+    radial-gradient(circle at 50% 58%, rgba(82, 211, 255, 0.08), transparent 32%),
+    linear-gradient(180deg, #08121f, #03101a 74%);
 }
 
 .club-frame[data-zone="arena"] {
   --zone-accent: var(--violet);
   --zone-accent-rgb: 138, 132, 255;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(138, 132, 255, 0.16), transparent 24%),
+    radial-gradient(circle at 50% 46%, rgba(111, 247, 255, 0.08), transparent 38%),
+    linear-gradient(180deg, #081123, #030913 76%);
 }
 
 .club-frame[data-zone="studio"] {
   --zone-accent: var(--lime);
   --zone-accent-rgb: 212, 255, 99;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(212, 255, 99, 0.14), transparent 22%),
+    radial-gradient(circle at 58% 62%, rgba(212, 255, 99, 0.08), transparent 30%),
+    linear-gradient(180deg, #0b180f, #04100a 76%);
 }
 
 .club-frame[data-zone="rooftop"] {
   --zone-accent: var(--ember);
   --zone-accent-rgb: 255, 138, 76;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(255, 138, 76, 0.16), transparent 22%),
+    radial-gradient(circle at 18% 64%, rgba(255, 255, 255, 0.04), transparent 20%),
+    linear-gradient(180deg, #141012, #06080f 76%);
+}
+
+.club-frame[data-zone="secret"] {
+  --zone-accent: var(--violet);
+  --zone-accent-rgb: 138, 132, 255;
+  background:
+    radial-gradient(circle at 50% 14%, rgba(138, 132, 255, 0.16), transparent 20%),
+    radial-gradient(circle at 28% 72%, rgba(255, 255, 255, 0.04), transparent 20%),
+    linear-gradient(180deg, #10091d, #04060d 78%);
 }
 
 .club-frame__rim,
@@ -826,10 +863,26 @@ button {
   animation: orbit-spin 18s linear infinite;
 }
 
+.club-frame[data-zone="arena"] .scene-orbit--one {
+  inset: 7% 10%;
+}
+
+.club-frame[data-zone="rooftop"] .scene-orbit--one {
+  inset: 8% 12%;
+}
+
 .scene-orbit--two {
   inset: 20% 26%;
   border-style: dashed;
   animation: orbit-spin 24s linear infinite reverse;
+}
+
+.club-frame[data-zone="studio"] .scene-orbit--two {
+  inset: 18% 20%;
+}
+
+.club-frame[data-zone="secret"] .scene-orbit--two {
+  inset: 24% 28%;
 }
 
 .scene-status {
@@ -869,6 +922,18 @@ button {
   transform: translate3d(calc(var(--float-x) * 0.18), calc(var(--float-y) * -0.08), 126px);
 }
 
+.club-frame[data-zone="arena"] .scene-status--left {
+  top: 7%;
+}
+
+.club-frame[data-zone="studio"] .scene-status--right {
+  top: 7%;
+}
+
+.club-frame[data-zone="rooftop"] .scene-status--left {
+  top: 9%;
+}
+
 .scene-radar {
   right: 22%;
   bottom: 13%;
@@ -881,6 +946,30 @@ button {
     linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
   transform: translate3d(calc(var(--float-x) * 0.2), calc(var(--float-y) * 0.16), 188px);
   box-shadow: 0 22px 54px rgba(4, 9, 20, 0.34);
+}
+
+.club-frame[data-zone="arena"] .scene-radar {
+  right: 14%;
+  bottom: 18%;
+  transform: translate3d(calc(var(--float-x) * 0.24), calc(var(--float-y) * 0.14), 188px) scale(1.12);
+}
+
+.club-frame[data-zone="studio"] .scene-radar {
+  right: 26%;
+  bottom: 10%;
+  transform: translate3d(calc(var(--float-x) * 0.18), calc(var(--float-y) * 0.12), 188px) scale(0.9);
+}
+
+.club-frame[data-zone="rooftop"] .scene-radar {
+  right: 26%;
+  bottom: 20%;
+  transform: translate3d(calc(var(--float-x) * 0.2), calc(var(--float-y) * 0.12), 188px) scale(1.05);
+}
+
+.club-frame[data-zone="secret"] .scene-radar {
+  right: 18%;
+  bottom: 16%;
+  transform: translate3d(calc(var(--float-x) * 0.2), calc(var(--float-y) * 0.12), 188px) scale(0.92);
 }
 
 .scene-radar::before,
@@ -933,6 +1022,26 @@ button {
   transform-style: preserve-3d;
   pointer-events: none;
   will-change: transform;
+}
+
+.club-frame[data-zone="arena"] .scene-core {
+  top: 43%;
+  width: min(400px, 38vw);
+}
+
+.club-frame[data-zone="studio"] .scene-core {
+  top: 55%;
+  width: min(320px, 32vw);
+}
+
+.club-frame[data-zone="rooftop"] .scene-core {
+  top: 41%;
+  width: min(360px, 36vw);
+}
+
+.club-frame[data-zone="secret"] .scene-core {
+  top: 56%;
+  width: min(300px, 30vw);
 }
 
 .scene-core__ring,
@@ -998,6 +1107,33 @@ button {
   transform: translate3d(calc(-50% + (var(--float-x) * 0.14)), calc(-50% + (var(--float-y) * 0.1)), 182px);
   pointer-events: none;
   filter: drop-shadow(0 26px 42px rgba(0, 0, 0, 0.42));
+}
+
+.club-frame[data-zone="arrival"] .scene-castle {
+  top: 47%;
+}
+
+.club-frame[data-zone="arena"] .scene-castle {
+  top: 52%;
+  opacity: 0.82;
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.45));
+}
+
+.club-frame[data-zone="studio"] .scene-castle {
+  top: 49%;
+  opacity: 0.88;
+}
+
+.club-frame[data-zone="rooftop"] .scene-castle {
+  top: 43%;
+  opacity: 0.9;
+  transform: translate3d(calc(-50% + (var(--float-x) * 0.12)), calc(-50% + (var(--float-y) * 0.08)), 192px) scale(0.95);
+}
+
+.club-frame[data-zone="secret"] .scene-castle {
+  top: 48%;
+  opacity: 0.76;
+  filter: drop-shadow(0 20px 28px rgba(0, 0, 0, 0.52));
 }
 
 .scene-secret-star {
