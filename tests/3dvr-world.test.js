@@ -38,6 +38,7 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /zone-detail__secret/);
     assert.match(html, /zone-detail__secret-link/);
     assert.match(html, /zone-detail__secret-portal/);
+    assert.match(html, /scene-secret-callout/);
     assert.match(html, /class="world-mobile-hint"/);
     assert.doesNotMatch(html, /id="statusPill"/);
     assert.doesNotMatch(html, /class="world-controls"/);
@@ -76,6 +77,7 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.warp-room/);
     assert.match(css, /\.warp-room__door/);
     assert.match(css, /\.scene-secret-star/);
+    assert.match(css, /\.scene-secret-callout/);
     assert.match(css, /\.scene-castle/);
     assert.match(css, /\.scene-coin-trail/);
     assert.match(css, /\.club-frame\.is-warping/);
@@ -133,6 +135,7 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /collectSecretStar/);
     assert.match(js, /secretWarpButton/);
     assert.match(js, /secretPortalButton/);
+    assert.match(js, /secretCallout/);
     assert.match(js, /warpTransitionTimer/);
     assert.match(js, /lift: '0px'/);
     assert.match(js, /lift: '-12px'/);
