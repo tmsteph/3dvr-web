@@ -1385,6 +1385,16 @@ button {
   line-height: 1.7;
 }
 
+.zone-detail__secret {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 255, 99, 0.28);
+  background: rgba(18, 32, 18, 0.7);
+  color: rgba(245, 255, 220, 0.96);
+  box-shadow: 0 16px 34px rgba(8, 12, 16, 0.28);
+}
+
 .zone-detail__metrics {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1991,6 +2001,13 @@ body {
   border-color: rgba(var(--zone-accent-rgb), 0.48);
   box-shadow: 0 26px 48px rgba(4, 9, 20, 0.36), 0 0 0 1px rgba(var(--zone-accent-rgb), 0.18);
   filter: saturate(1.08);
+}
+
+.warp-room__door--secret {
+  border-color: rgba(212, 255, 99, 0.24);
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255, 248, 208, 0.18), transparent 28%),
+    linear-gradient(180deg, rgba(212, 255, 99, 0.14), rgba(111, 247, 255, 0.08));
 }
 
 .warp-room__door-label {

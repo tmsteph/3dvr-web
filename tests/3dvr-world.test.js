@@ -16,6 +16,7 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /id="worldStars"/);
     assert.match(html, /Warp Room/);
     assert.match(html, /data-secret-star/);
+    assert.match(html, /data-warp-zone="secret"/);
     assert.match(html, /scene-castle__keep/);
     assert.match(html, /CASTLE/);
     assert.match(html, /scene-castle/);
@@ -34,6 +35,7 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /id="worldMotion"/);
     assert.match(html, /id="motionToggle"/);
     assert.match(html, /id="motionState"/);
+    assert.match(html, /zone-detail__secret/);
     assert.match(html, /class="world-mobile-hint"/);
     assert.doesNotMatch(html, /id="statusPill"/);
     assert.doesNotMatch(html, /class="world-controls"/);
@@ -111,6 +113,8 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /ambientEnabled/);
     assert.match(js, /updateAmbientMotion/);
     assert.match(js, /collectSecretStar/);
+    assert.match(js, /secretWarpButton/);
+    assert.match(js, /Castle attic/);
     assert.match(css, /\.club-frame::after/);
     assert.doesNotMatch(js, /world-locked/);
   });

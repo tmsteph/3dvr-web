@@ -10,6 +10,7 @@
   const zoneDepthFill = document.getElementById('zoneDepthFill');
   const worldStars = document.getElementById('worldStars');
   const secretStar = document.querySelector('[data-secret-star]');
+  const secretWarpButton = document.querySelector('[data-warp-zone="secret"]');
   const worldMotion = document.getElementById('worldMotion');
   const motionToggle = document.getElementById('motionToggle');
   const motionState = document.getElementById('motionState');
@@ -131,6 +132,22 @@
         { label: 'Link', value: 'Portal entry' },
       ],
       depth: 79,
+    },
+    secret: {
+      label: 'Castle attic',
+      title: 'A hidden room opens above the hub after the secret star is collected.',
+      body: 'This tucked-away attic is the small reward for exploring the whole castle. It should feel like a quiet Mario-style secret: playful, useful, and easy to discover once the world has already been read.',
+      points: [
+        'Hidden reward for exploring the hub.',
+        'A quieter place for experiments and easter eggs.',
+        'The castle gets one more layer without crowding the front door.',
+      ],
+      metrics: [
+        { label: 'Signal', value: 'Secret found' },
+        { label: 'Surface', value: 'Attic room' },
+        { label: 'Link', value: 'Warp door unlocked' },
+      ],
+      depth: 95,
     },
   };
 
@@ -368,6 +385,11 @@
       worldStars.textContent = `Stars ${Math.min(starCount, starTotal)}/${starTotal}`;
     }
 
+    if (secretWarpButton) {
+      secretWarpButton.hidden = !secretStarCollected;
+      secretWarpButton.classList.toggle('is-active', zoneKey === 'secret');
+    }
+
     zoneButtons.forEach((button) => {
       button.classList.toggle('is-active', button.dataset.zone === zoneKey);
     });
@@ -402,6 +424,10 @@
       secretStar.disabled = true;
     }
 
+    if (secretWarpButton) {
+      secretWarpButton.hidden = false;
+    }
+
     frame.classList.remove('is-secret-star');
     window.requestAnimationFrame(() => {
       frame.classList.add('is-secret-star');
@@ -413,7 +439,14 @@
     }
 
     if (motionState) {
-      motionState.textContent = 'Secret star collected. The castle feels brighter now.';
+      motionState.textContent = 'Secret star collected. The attic door is open now.';
+    }
+
+    if (zoneDetail) {
+      const secretNote = zoneDetail.querySelector('.zone-detail__secret');
+      if (secretNote) {
+        secretNote.hidden = false;
+      }
     }
   }
 
