@@ -15,6 +15,7 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /Power stars/);
     assert.match(html, /id="worldStars"/);
     assert.match(html, /Warp Room/);
+    assert.match(html, /data-secret-star/);
     assert.match(html, /scene-castle__keep/);
     assert.match(html, /CASTLE/);
     assert.match(html, /scene-castle/);
@@ -67,6 +68,7 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.world-stars/);
     assert.match(css, /\.warp-room/);
     assert.match(css, /\.warp-room__door/);
+    assert.match(css, /\.scene-secret-star/);
     assert.match(css, /\.scene-castle/);
     assert.match(css, /\.scene-coin-trail/);
     assert.match(css, /@keyframes core-breathe/);
@@ -89,6 +91,7 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /const zones = \{/);
     assert.match(js, /zoneMetrics/);
     assert.match(js, /worldStars/);
+    assert.match(js, /secretStar/);
     assert.match(js, /warpButtons/);
     assert.match(js, /zoneDepthFill/);
     assert.match(js, /metrics:/);
@@ -107,6 +110,7 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /targetTiltX/);
     assert.match(js, /ambientEnabled/);
     assert.match(js, /updateAmbientMotion/);
+    assert.match(js, /collectSecretStar/);
     assert.match(css, /\.club-frame::after/);
     assert.doesNotMatch(js, /world-locked/);
   });

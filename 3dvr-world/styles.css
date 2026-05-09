@@ -1000,6 +1000,52 @@ button {
   filter: drop-shadow(0 26px 42px rgba(0, 0, 0, 0.42));
 }
 
+.scene-secret-star {
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  width: 54px;
+  height: 54px;
+  transform: translate3d(calc(-50% + (var(--float-x) * 0.06)), calc(var(--float-y) * -0.06), 188px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.98), rgba(255, 247, 191, 0.92) 18%, rgba(255, 204, 64, 0.9) 46%, rgba(193, 122, 8, 0.98) 100%);
+  box-shadow:
+    0 0 16px rgba(255, 207, 76, 0.52),
+    0 0 36px rgba(255, 207, 76, 0.24);
+  cursor: pointer;
+  z-index: 8;
+  animation: secret-star-float 3.4s ease-in-out infinite;
+}
+
+.scene-secret-star span {
+  display: block;
+  color: rgba(8, 18, 30, 0.94);
+  font-size: 1.45rem;
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.scene-secret-star:hover,
+.scene-secret-star:focus-visible {
+  transform: translate3d(calc(-50% + (var(--float-x) * 0.06)), calc(var(--float-y) * -0.06), 196px) scale(1.06);
+}
+
+.scene-secret-star.is-collected {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(calc(-50% + (var(--float-x) * 0.06)), calc(var(--float-y) * -0.06), 188px) scale(0.35);
+}
+
+.club-frame.is-landing {
+  animation: landing-pulse 560ms ease-out;
+}
+
+.club-frame.is-secret-star {
+  animation: landing-pulse 620ms ease-out;
+}
+
 .scene-castle__keep,
 .scene-castle__tower,
 .scene-castle__roof,
@@ -1487,6 +1533,31 @@ button {
 
   50% {
     transform: translateX(3px) skewX(-8deg);
+  }
+}
+
+@keyframes secret-star-float {
+  0%,
+  100% {
+    transform: translate3d(calc(-50% + (var(--float-x) * 0.06)), calc(var(--float-y) * -0.06), 188px) rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: translate3d(calc(-50% + (var(--float-x) * 0.06)), calc(var(--float-y) * -0.06), 188px) rotate(16deg) scale(1.06);
+  }
+}
+
+@keyframes landing-pulse {
+  0% {
+    transform: rotateX(calc(var(--tilt-y) * -1deg)) rotateY(calc(var(--tilt-x) * 1deg)) scale(1);
+  }
+
+  45% {
+    transform: rotateX(calc(var(--tilt-y) * -1deg)) rotateY(calc(var(--tilt-x) * 1deg)) scale(1.012);
+  }
+
+  100% {
+    transform: rotateX(calc(var(--tilt-y) * -1deg)) rotateY(calc(var(--tilt-x) * 1deg)) scale(1);
   }
 }
 

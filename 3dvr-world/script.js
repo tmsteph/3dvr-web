@@ -9,6 +9,7 @@
   const zoneDepthValue = document.getElementById('zoneDepthValue');
   const zoneDepthFill = document.getElementById('zoneDepthFill');
   const worldStars = document.getElementById('worldStars');
+  const secretStar = document.querySelector('[data-secret-star]');
   const worldMotion = document.getElementById('worldMotion');
   const motionToggle = document.getElementById('motionToggle');
   const motionState = document.getElementById('motionState');
@@ -136,6 +137,7 @@
   const zoneOrder = Object.keys(zones);
   let activeZone = zoneOrder[0];
   const visitedZones = new Set([activeZone]);
+  let secretStarCollected = false;
 
   function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
@@ -361,7 +363,9 @@
     zoneDepthFill.style.width = `${zone.depth}%`;
 
     if (worldStars) {
-      worldStars.textContent = `Stars ${visitedZones.size}/4`;
+      const starTotal = secretStarCollected ? 5 : 4;
+      const starCount = visitedZones.size + (secretStarCollected ? 1 : 0);
+      worldStars.textContent = `Stars ${Math.min(starCount, starTotal)}/${starTotal}`;
     }
 
     zoneButtons.forEach((button) => {
@@ -371,12 +375,46 @@
     warpButtons.forEach((button) => {
       button.classList.toggle('is-active', button.dataset.warpZone === zoneKey);
     });
+
+    frame.classList.remove('is-landing');
+    window.requestAnimationFrame(() => {
+      frame.classList.add('is-landing');
+      window.setTimeout(() => frame.classList.remove('is-landing'), 640);
+    });
   }
 
   function stepZone(direction) {
     const currentIndex = zoneOrder.indexOf(activeZone);
     const nextIndex = clamp(currentIndex + direction, 0, zoneOrder.length - 1);
     renderZone(zoneOrder[nextIndex]);
+  }
+
+  function collectSecretStar() {
+    if (secretStarCollected) {
+      return;
+    }
+
+    secretStarCollected = true;
+
+    if (secretStar) {
+      secretStar.classList.add('is-collected');
+      secretStar.setAttribute('aria-hidden', 'true');
+      secretStar.disabled = true;
+    }
+
+    frame.classList.remove('is-secret-star');
+    window.requestAnimationFrame(() => {
+      frame.classList.add('is-secret-star');
+      window.setTimeout(() => frame.classList.remove('is-secret-star'), 760);
+    });
+
+    if (worldStars) {
+      worldStars.textContent = `Stars 5/5`;
+    }
+
+    if (motionState) {
+      motionState.textContent = 'Secret star collected. The castle feels brighter now.';
+    }
   }
 
   function handleDeviceOrientation(event) {
@@ -513,6 +551,10 @@
       renderZone(button.dataset.warpZone);
     });
   });
+
+  if (secretStar) {
+    secretStar.addEventListener('click', collectSecretStar);
+  }
 
   if (motionToggle) {
     motionToggle.addEventListener('click', () => {
