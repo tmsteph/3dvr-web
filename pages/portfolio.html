@@ -136,6 +136,80 @@
       width: min(1200px, 100%);
     }
 
+    .projects-room {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+      padding: clamp(1.5rem, 4vw, 2rem);
+      border-radius: 1.4rem;
+      border: 1px solid rgba(110, 249, 214, 0.22);
+      background:
+        radial-gradient(circle at top right, rgba(110, 249, 214, 0.18), transparent 38%),
+        radial-gradient(circle at bottom left, rgba(95, 174, 255, 0.14), transparent 32%),
+        linear-gradient(165deg, rgba(18, 22, 28, 0.98), rgba(9, 12, 18, 0.92));
+      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.35);
+    }
+
+    .projects-room::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 0 48%, rgba(110, 249, 214, 0.06) 50%, transparent 52%),
+        linear-gradient(transparent 0 48%, rgba(110, 249, 214, 0.06) 50%, transparent 52%);
+      background-size: 42px 42px;
+      opacity: 0.32;
+      pointer-events: none;
+    }
+
+    .projects-room__eyebrow {
+      margin: 0;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.75rem;
+    }
+
+    .projects-room h2 {
+      margin: 0.35rem 0 0;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+    }
+
+    .projects-room p {
+      margin: 0.85rem 0 0;
+      max-width: 70ch;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .projects-room__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.2rem;
+    }
+
+    .projects-room__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.15rem;
+      border-radius: 999px;
+      border: 1px solid rgba(110, 249, 214, 0.25);
+      background: rgba(110, 249, 214, 0.12);
+      color: #eafff9;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .projects-room__link:hover,
+    .projects-room__link:focus {
+      transform: translateY(-2px);
+      background: rgba(110, 249, 214, 0.18);
+    }
+
     .project-intro {
       text-align: center;
       margin-bottom: clamp(2.5rem, 7vw, 4rem);
@@ -299,6 +373,24 @@
   </section>
 
   <section id="projects" class="projects">
+    <div class="projects-room">
+      <p class="projects-room__eyebrow">Projects room</p>
+      <h2>The portfolio now feels like the room behind the secret attic.</h2>
+      <p>
+        This is the quieter destination the world portal opens into: a curated room of projects,
+        experiments, and launch work with the same 3DVR identity carried forward instead of a hard cut.
+      </p>
+      <div class="projects-room__actions">
+        <a class="projects-room__link" href="/3dvr-world/">
+          <span>Back to the world</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        <a class="projects-room__link" href="https://portal.3dvr.tech" target="_blank" rel="noreferrer">
+          <span>Open portal</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
     <p class="project-intro">A snapshot of recent launches, community experiments, and passion projects we build for founders, artists, and educators across the globe.</p>
 
     <div class="project-grid">

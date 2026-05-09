@@ -106,6 +106,16 @@ describe('3dvr-web customer journey copy', () => {
     assert.doesNotMatch(html, /Plan your week\. Get support\. Launch work\./);
   });
 
+  it('keeps the portfolio projects room visually connected to the world', async () => {
+    const html = await readFile(new URL('../pages/portfolio.html', import.meta.url), 'utf8');
+    assert.match(html, /Projects room/);
+    assert.match(html, /behind the secret attic/);
+    assert.match(html, /Back to the world/);
+    assert.match(html, /Open portal/);
+    assert.match(html, /project-intro/);
+    assert.match(html, /A snapshot of recent launches, community experiments, and passion projects/);
+  });
+
   it('makes the main plans page explicit about continuing in the portal', async () => {
     const html = await readFile(new URL('../subscribe/index.html', import.meta.url), 'utf8');
     assert.match(html, /Launch in 3 Days is the fast entry point\. Builder at \$50\/month is the default business lane/);

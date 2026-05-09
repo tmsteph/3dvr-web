@@ -1046,6 +1046,10 @@ button {
   animation: landing-pulse 620ms ease-out;
 }
 
+.club-frame.is-warping {
+  animation: landing-pulse 260ms ease-out, warp-flash 260ms ease-out;
+}
+
 .scene-castle__keep,
 .scene-castle__tower,
 .scene-castle__roof,
@@ -1592,6 +1596,18 @@ button {
 
   100% {
     transform: rotateX(calc(var(--tilt-y) * -1deg)) rotateY(calc(var(--tilt-x) * 1deg)) scale(1);
+  }
+}
+
+@keyframes warp-flash {
+  0% {
+    filter: saturate(1) brightness(1);
+  }
+  45% {
+    filter: saturate(1.14) brightness(1.2);
+  }
+  100% {
+    filter: saturate(1) brightness(1);
   }
 }
 

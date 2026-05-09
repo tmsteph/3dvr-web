@@ -75,9 +75,11 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.scene-secret-star/);
     assert.match(css, /\.scene-castle/);
     assert.match(css, /\.scene-coin-trail/);
+    assert.match(css, /\.club-frame\.is-warping/);
     assert.match(css, /@keyframes core-breathe/);
     assert.match(css, /@keyframes coin-float/);
     assert.match(css, /@keyframes flag-wave/);
+    assert.match(css, /@keyframes warp-flash/);
     assert.match(css, /\.scene--back/);
     assert.match(css, /translate3d\(calc\(var\(--float-x\) \* -0\.24\)/);
     assert.match(css, /\.hero-points/);
@@ -119,6 +121,7 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /secretPortalButton/);
     assert.match(js, /Castle attic/);
     assert.match(js, /pages\/portfolio\.html#projects/);
+    assert.match(js, /Warping to the projects room\./);
     assert.match(js, /renderZone\('secret'\)/);
     assert.match(js, /zone-detail__secret-link/);
     assert.match(js, /zone-detail__secret-portal/);

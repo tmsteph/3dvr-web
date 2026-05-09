@@ -479,7 +479,13 @@
 
   if (secretPortalButton) {
     secretPortalButton.addEventListener('click', () => {
-      window.location.href = '/pages/portfolio.html#projects';
+      frame.classList.add('is-warping');
+      if (motionState) {
+        motionState.textContent = 'Warping to the projects room.';
+      }
+      window.setTimeout(() => {
+        window.location.href = '/pages/portfolio.html#projects';
+      }, 260);
     });
   }
 
