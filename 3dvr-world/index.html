@@ -133,6 +133,7 @@
 
       <header class="world-topbar">
         <a class="world-mark" href="/" aria-label="Go to 3DVR homepage">3DVR</a>
+        <div class="world-stars" id="worldStars" aria-live="polite">Stars 1/4</div>
         <div class="world-motion" id="worldMotion" hidden>
           <button class="world-motion__button" id="motionToggle" type="button">Enable Tilt</button>
           <p class="sr-only world-motion__state" id="motionState" aria-live="polite">Swipe to move through layers. Tilt your phone for depth.</p>
@@ -158,6 +159,35 @@
           <a class="button button--ghost" href="https://portal.3dvr.tech" target="_blank" rel="noopener">Open Portal</a>
         </div>
       </section>
+
+      <article class="warp-room" aria-labelledby="warpRoomTitle">
+        <div class="warp-room__header">
+          <p class="eyebrow">Warp Room</p>
+          <h2 id="warpRoomTitle">Choose the next castle door.</h2>
+          <p>
+            The hub behaves like a small Mario-style room: each door jumps to a different layer,
+            and the star count rises as you explore.
+          </p>
+        </div>
+        <div class="warp-room__grid">
+          <button class="warp-room__door is-active" type="button" data-warp-zone="arrival">
+            <span class="warp-room__door-label">Courtyard</span>
+            <strong>Home door</strong>
+          </button>
+          <button class="warp-room__door" type="button" data-warp-zone="arena">
+            <span class="warp-room__door-label">Sky bridge</span>
+            <strong>World door</strong>
+          </button>
+          <button class="warp-room__door" type="button" data-warp-zone="studio">
+            <span class="warp-room__door-label">Workshop wing</span>
+            <strong>Build door</strong>
+          </button>
+          <button class="warp-room__door" type="button" data-warp-zone="rooftop">
+            <span class="warp-room__door-label">Portal tower</span>
+            <strong>Exit door</strong>
+          </button>
+        </div>
+      </article>
 
       <article class="zone-detail" id="zoneDetail" aria-live="polite">
         <p class="zone-detail__eyebrow">Home layer</p>

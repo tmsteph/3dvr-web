@@ -8,10 +8,12 @@
   const zoneMetrics = document.getElementById('zoneMetrics');
   const zoneDepthValue = document.getElementById('zoneDepthValue');
   const zoneDepthFill = document.getElementById('zoneDepthFill');
+  const worldStars = document.getElementById('worldStars');
   const worldMotion = document.getElementById('worldMotion');
   const motionToggle = document.getElementById('motionToggle');
   const motionState = document.getElementById('motionState');
   const zoneButtons = Array.from(document.querySelectorAll('button[data-zone]'));
+  const warpButtons = Array.from(document.querySelectorAll('button[data-warp-zone]'));
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const prefersCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
   const canUsePointerTilt = !prefersReducedMotion && !prefersCoarsePointer;
@@ -133,6 +135,7 @@
 
   const zoneOrder = Object.keys(zones);
   let activeZone = zoneOrder[0];
+  const visitedZones = new Set([activeZone]);
 
   function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
@@ -335,6 +338,7 @@
     }
 
     activeZone = zoneKey;
+    visitedZones.add(zoneKey);
     frame.dataset.zone = zoneKey;
     zoneDetail.dataset.zone = zoneKey;
     zoneDetail.querySelector('.zone-detail__eyebrow').textContent = zone.label;
@@ -356,8 +360,16 @@
     zoneDepthValue.textContent = `${zone.depth}%`;
     zoneDepthFill.style.width = `${zone.depth}%`;
 
+    if (worldStars) {
+      worldStars.textContent = `Stars ${visitedZones.size}/4`;
+    }
+
     zoneButtons.forEach((button) => {
       button.classList.toggle('is-active', button.dataset.zone === zoneKey);
+    });
+
+    warpButtons.forEach((button) => {
+      button.classList.toggle('is-active', button.dataset.warpZone === zoneKey);
     });
   }
 
@@ -493,6 +505,12 @@
   zoneButtons.forEach((button) => {
     button.addEventListener('click', () => {
       renderZone(button.dataset.zone);
+    });
+  });
+
+  warpButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      renderZone(button.dataset.warpZone);
     });
   });
 

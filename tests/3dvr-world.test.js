@@ -13,6 +13,9 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /Portal HUD glow/);
     assert.match(html, /A full-screen 3DVR homepage world with touch, tilt, and direct paths into plans/);
     assert.match(html, /Power stars/);
+    assert.match(html, /id="worldStars"/);
+    assert.match(html, /Warp Room/);
+    assert.match(html, /scene-castle__keep/);
     assert.match(html, /CASTLE/);
     assert.match(html, /scene-castle/);
     assert.match(html, /scene-coin-trail/);
@@ -61,6 +64,9 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.scene-radar/);
     assert.match(css, /\.scene-core/);
     assert.match(css, /\.scene-core__label/);
+    assert.match(css, /\.world-stars/);
+    assert.match(css, /\.warp-room/);
+    assert.match(css, /\.warp-room__door/);
     assert.match(css, /\.scene-castle/);
     assert.match(css, /\.scene-coin-trail/);
     assert.match(css, /@keyframes core-breathe/);
@@ -82,6 +88,8 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /touch-action:\s*pan-y/);
     assert.match(js, /const zones = \{/);
     assert.match(js, /zoneMetrics/);
+    assert.match(js, /worldStars/);
+    assert.match(js, /warpButtons/);
     assert.match(js, /zoneDepthFill/);
     assert.match(js, /metrics:/);
     assert.match(js, /depth:/);

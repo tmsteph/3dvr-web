@@ -1761,6 +1761,29 @@ body {
   -webkit-backdrop-filter: blur(16px);
 }
 
+.world-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 255, 99, 0.22);
+  background: rgba(8, 25, 44, 0.72);
+  box-shadow: 0 18px 40px rgba(8, 145, 178, 0.18);
+  color: rgba(224, 231, 255, 0.92);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.68rem;
+}
+
+.world-stars::before {
+  content: "★";
+  color: var(--lime);
+  font-size: 0.9rem;
+  text-shadow: 0 0 16px rgba(212, 255, 99, 0.42);
+}
+
 .world-motion[hidden] {
   display: none;
 }
@@ -1844,6 +1867,75 @@ body {
   padding-bottom: 32px;
 }
 
+.warp-room {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 20px;
+  border-radius: 24px;
+  background:
+    linear-gradient(155deg, rgba(37, 99, 235, 0.12) 0%, rgba(59, 130, 246, 0.05) 45%, rgba(20, 184, 166, 0.08) 100%),
+    rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(94, 234, 212, 0.16);
+  box-shadow: 0 18px 40px rgba(4, 9, 20, 0.24);
+}
+
+.warp-room__header h2 {
+  margin: 6px 0 0;
+  font-size: clamp(1.5rem, 3.8vw, 2.1rem);
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+}
+
+.warp-room__header p {
+  margin: 10px 0 0;
+  max-width: 56ch;
+}
+
+.warp-room__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.warp-room__door {
+  min-height: 108px;
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255, 248, 208, 0.14), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(8, 18, 30, 0.92));
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  box-shadow: 0 18px 34px rgba(4, 9, 20, 0.26);
+}
+
+.warp-room__door:hover,
+.warp-room__door:focus-visible,
+.warp-room__door.is-active {
+  transform: translateY(-2px);
+  border-color: rgba(var(--zone-accent-rgb), 0.48);
+  box-shadow: 0 26px 48px rgba(4, 9, 20, 0.36), 0 0 0 1px rgba(var(--zone-accent-rgb), 0.18);
+  filter: saturate(1.08);
+}
+
+.warp-room__door-label {
+  display: block;
+  color: rgba(165, 243, 252, 0.86);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.66rem;
+}
+
+.warp-room__door strong {
+  display: block;
+  margin-top: 14px;
+  font-size: 1.12rem;
+}
+
 .world-intro {
   grid-column: 1 / -1;
   margin: 0;
@@ -1886,6 +1978,10 @@ body {
   .world-content {
     grid-template-columns: 1fr;
     margin-top: 18px;
+  }
+
+  .warp-room__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1974,6 +2070,18 @@ body {
   .world-content {
     width: calc(100% - 28px);
     margin-top: 16px;
+  }
+
+  .warp-room {
+    padding: 16px;
+  }
+
+  .warp-room__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .warp-room__door {
+    min-height: 92px;
   }
 
   .scene-core {
