@@ -115,6 +115,7 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /collectSecretStar/);
     assert.match(js, /secretWarpButton/);
     assert.match(js, /Castle attic/);
+    assert.match(js, /renderZone\('secret'\)/);
     assert.match(css, /\.club-frame::after/);
     assert.doesNotMatch(js, /world-locked/);
   });

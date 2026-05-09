@@ -448,6 +448,10 @@
         secretNote.hidden = false;
       }
     }
+
+    window.setTimeout(() => {
+      renderZone('secret');
+    }, 260);
   }
 
   function handleDeviceOrientation(event) {
