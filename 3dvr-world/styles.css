@@ -1002,11 +1002,11 @@ button {
 
 .scene-secret-star {
   position: absolute;
-  left: 50%;
-  top: 18%;
+  left: 72%;
+  top: 12%;
   width: 54px;
   height: 54px;
-  transform: translate3d(calc(-50% + (var(--float-x) * 0.06)), calc(var(--float-y) * -0.06), 188px);
+  transform: translate3d(calc(-50% + (var(--float-x) * 0.05)), calc(var(--float-y) * -0.05), 188px);
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 50%;
   background:
@@ -1029,13 +1029,13 @@ button {
 
 .scene-secret-star:hover,
 .scene-secret-star:focus-visible {
-  transform: translate3d(calc(-50% + (var(--float-x) * 0.06)), calc(var(--float-y) * -0.06), 196px) scale(1.06);
+  transform: translate3d(calc(-50% + (var(--float-x) * 0.05)), calc(var(--float-y) * -0.05), 196px) scale(1.06);
 }
 
 .scene-secret-star.is-collected {
   opacity: 0;
   pointer-events: none;
-  transform: translate3d(calc(-50% + (var(--float-x) * 0.06)), calc(var(--float-y) * -0.06), 188px) scale(0.35);
+  transform: translate3d(calc(-50% + (var(--float-x) * 0.05)), calc(var(--float-y) * -0.05), 188px) scale(0.35);
 }
 
 .club-frame.is-landing {
@@ -2313,6 +2313,13 @@ body {
 
   .scene-core__label {
     font-size: clamp(2.15rem, 11vw, 3.2rem);
+  }
+
+  .scene-secret-star {
+    left: 75%;
+    top: 10%;
+    width: 44px;
+    height: 44px;
   }
 }
 
