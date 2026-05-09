@@ -65,6 +65,7 @@
     interactionFloatY: 0,
     rafId: 0,
   };
+  let warpTransitionTimer = 0;
 
   const touch = {
     active: false,
@@ -467,11 +468,23 @@
       button.classList.toggle('is-active', button.dataset.warpZone === zoneKey);
     });
 
-    frame.classList.remove('is-landing');
+    if (warpTransitionTimer) {
+      window.clearTimeout(warpTransitionTimer);
+      warpTransitionTimer = 0;
+    }
+
+    frame.classList.remove('is-landing', 'is-warping');
     window.requestAnimationFrame(() => {
-      frame.classList.add('is-landing');
-      window.setTimeout(() => frame.classList.remove('is-landing'), 640);
+      frame.classList.add('is-landing', 'is-warping');
+      warpTransitionTimer = window.setTimeout(() => {
+        frame.classList.remove('is-landing', 'is-warping');
+        warpTransitionTimer = 0;
+      }, 340);
     });
+
+    if (motionState) {
+      motionState.textContent = `Entering ${zone.room}.`;
+    }
   }
 
   function stepZone(direction) {

@@ -571,6 +571,10 @@ button {
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
+  transition:
+    opacity 180ms ease,
+    filter 180ms ease,
+    transform 180ms ease;
 }
 
 .scene--back {
@@ -1186,6 +1190,25 @@ button {
   animation: landing-pulse 260ms ease-out, warp-flash 260ms ease-out;
 }
 
+.club-frame.is-warping::before {
+  animation: zone-wash 260ms ease-out;
+}
+
+.club-frame.is-warping .scene--back,
+.club-frame.is-warping .scene--mid,
+.club-frame.is-warping .scene--front {
+  opacity: 0.95;
+  filter: saturate(1.14) brightness(1.08);
+}
+
+.club-frame.is-warping .scene-core,
+.club-frame.is-warping .scene-castle,
+.club-frame.is-warping .warp-room,
+.club-frame.is-warping .zone-detail,
+.club-frame.is-warping .telemetry-panel {
+  filter: saturate(1.08) brightness(1.04);
+}
+
 .scene-castle__keep,
 .scene-castle__tower,
 .scene-castle__roof,
@@ -1744,6 +1767,23 @@ button {
   }
   100% {
     filter: saturate(1) brightness(1);
+  }
+}
+
+@keyframes zone-wash {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  35% {
+    opacity: 0.9;
+    transform: scale(1.015);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
   }
 }
 
