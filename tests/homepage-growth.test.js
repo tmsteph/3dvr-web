@@ -22,19 +22,14 @@ test('homepage ships Gun-backed experiment and feedback plumbing', async () => {
   assert.match(html, /A clear place to land when you need a site, support, or a launch plan\./);
   assert.doesNotMatch(html, /data-growth-cta="enter-3dvr-world"/);
   assert.match(html, /Browser experiments \/ 3DVR world prototype/);
-  assert.match(html, /data-growth-cta="plan-free"/);
   assert.match(html, /data-growth-cta="sticky-start-free"[^>]+data-portal-path="\/free-trial\.html"/);
   assert.match(html, /data-growth-cta="start-free-primary"[^>]+data-portal-path="\/free-trial\.html"/);
-  assert.match(html, /data-growth-cta="plan-free"[^>]+data-portal-path="\/free-trial\.html"/);
-  assert.match(html, /data-growth-cta="plan-20"[^>]+data-portal-path="\/billing\/\?plan=pro"/);
-  assert.match(html, /data-growth-cta="plan-50"[^>]+data-portal-path="\/billing\/\?plan=builder"/);
-  assert.match(html, /data-growth-cta="plan-200"[^>]+data-portal-path="\/billing\/\?plan=embedded"/);
-  assert.match(html, /data-growth-cta="plan-custom"/);
+  assert.match(html, /data-portal-path="\/free-trial\.html"/);
+  assert.match(html, /data-portal-path="\/billing\/\?plan=pro"/);
+  assert.match(html, /data-portal-path="\/billing\/\?plan=builder"/);
+  assert.match(html, /data-portal-path="\/billing\/\?plan=embedded"/);
   assert.match(html, /data-growth-cta="launch-in-3-days"/);
   assert.match(html, /href="launch-in-3-days\.html"[^>]+data-growth-cta="launch-in-3-days"/);
-  assert.match(html, /href="nomad-system\.html"[^>]+data-growth-cta="explore-nomad-system"/);
-  assert.match(html, /data-portal-path="\/billing\/\?plan=custom"/);
-  assert.match(html, /href="https:\/\/portal\.3dvr\.tech\/billing\/\?plan=custom"/);
   assert.match(html, /src="subscribe\/portal-links\.js"/);
   assert.doesNotMatch(html, /data-growth-cta="sticky-start-free"[^>]+href="subscribe\/free-plan\.html"/);
   assert.doesNotMatch(html, /data-growth-cta="start-free-primary"[^>]+href="subscribe\/free-plan\.html"/);
@@ -44,7 +39,11 @@ test('homepage ships Gun-backed experiment and feedback plumbing', async () => {
   assert.doesNotMatch(html, /data-growth-cta="plan-200"[^>]+href="subscribe\/support-teams\.html"/);
   assert.doesNotMatch(html, /data-growth-cta="plan-custom"[^>]+href="launch-your-site\.html"/);
   assert.doesNotMatch(html, /data-growth-cta="message-me"/);
-  assert.match(html, /data-growth-cta="segment-professional-services"/);
+  assert.doesNotMatch(html, /class="hero-plan-dock"/);
+  assert.doesNotMatch(html, /class="hero-buyer-dock"/);
+  assert.doesNotMatch(html, /id="features"/);
+  assert.doesNotMatch(html, /id="nomad-system"/);
+  assert.doesNotMatch(html, /id="portal"/);
   assert.match(html, /src="https:\/\/cdn\.jsdelivr\.net\/npm\/gun\/gun\.js"/);
   assert.match(html, /src="growth\/homepage-experiment\.js"/);
 

@@ -7,6 +7,8 @@ Keep the marketing site and billing entry points aligned with the portal environ
 - This repo carries a mirrored copy of Thomas Stephens' markdown control plane in `ops/control-plane/home/`.
 - On devices where the full `~/` control plane is missing or different, read the mirrored files there before making broad assumptions.
 - Treat the mirrored files as portable context, but prefer the live `~/` files when both are present.
+- On Android/Termux, the authenticated working checkout lives at `/data/data/com.termux/files/home/3dvr-web`.
+- If the root checkout cannot push or auth is missing, use the Termux checkout and its SSH/GitHub credentials instead of re-explaining the setup.
 
 ## Focus Rule
 - Default to the shortest path that helps win or serve a paying customer.

@@ -36,7 +36,7 @@ test('Termux installer ships a real Pocket Workstation bootstrap flow', async ()
   assert.match(pageHtml, /Then run <code>3dvr connect<\/code>/);
   assert.match(pageHtml, /https:\/\/portal\.3dvr\.tech\/pocket-workstation\//);
 
-  assert.match(homepageHtml, /Pocket Workstation install/);
+  assert.match(homepageHtml, /See Pocket Workstation/);
   assert.match(homepageHtml, /href="pocket-workstation\.html"/);
-  assert.match(homepageHtml, /data-growth-cta="pocket-workstation-page"/);
+  assert.match(homepageHtml, /data-growth-cta="system-pocket-workstation"/);
 });
