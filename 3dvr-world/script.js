@@ -79,6 +79,7 @@
     arrival: {
       label: 'Castle courtyard',
       room: 'Courtyard',
+      lift: '0px',
       marquee: ['COURTYARD', 'FRONT DOOR', 'OPEN SKY'],
       statusLeft: 'Courtyard active',
       statusRight: 'Bright landing',
@@ -99,6 +100,7 @@
     arena: {
       label: 'Sky bridge',
       room: 'Sky bridge',
+      lift: '-12px',
       marquee: ['SKY BRIDGE', 'OPEN AIR', 'WARP WALK'],
       statusLeft: 'Bridge active',
       statusRight: 'Wide view',
@@ -119,6 +121,7 @@
     studio: {
       label: 'Workshop wing',
       room: 'Workshop',
+      lift: '9px',
       marquee: ['WORKSHOP', 'BUILD LANE', 'TOOLS READY'],
       statusLeft: 'Workshop active',
       statusRight: 'Build lane',
@@ -139,6 +142,7 @@
     rooftop: {
       label: 'Portal tower',
       room: 'Portal tower',
+      lift: '-16px',
       marquee: ['PORTAL TOWER', 'UPWARD PATH', 'NEXT STEP'],
       statusLeft: 'Tower active',
       statusRight: 'Portal ready',
@@ -159,6 +163,7 @@
     secret: {
       label: 'Castle attic',
       room: 'Attic',
+      lift: '-4px',
       marquee: ['SECRET ATTIC', 'HIDDEN ROOM', 'EXTRA PATH'],
       statusLeft: 'Secret found',
       statusRight: 'Hidden door open',
@@ -387,6 +392,7 @@
     visitedZones.add(zoneKey);
     frame.dataset.zone = zoneKey;
     zoneDetail.dataset.zone = zoneKey;
+    frame.style.setProperty('--scene-lift', zone.lift);
     zoneDetail.querySelector('.zone-detail__eyebrow').textContent = zone.label;
     zoneDetail.querySelector('.zone-detail__title').textContent = zone.title;
     zoneDetail.querySelector('.zone-detail__body').textContent = zone.body;

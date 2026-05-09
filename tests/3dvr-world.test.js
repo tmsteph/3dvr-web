@@ -80,6 +80,7 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.scene-coin-trail/);
     assert.match(css, /\.club-frame\.is-warping/);
     assert.match(css, /\.club-frame\.is-warping::before/);
+    assert.match(css, /\.club-frame\.is-warping::after/);
     assert.match(css, /\.club-frame\.is-warping \.scene--back/);
     assert.match(css, /\.club-frame\.is-warping \.scene-core/);
     assert.match(css, /@keyframes core-breathe/);
@@ -87,8 +88,10 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /@keyframes flag-wave/);
     assert.match(css, /@keyframes warp-flash/);
     assert.match(css, /@keyframes zone-wash/);
+    assert.match(css, /@keyframes room-wipe/);
     assert.match(css, /\.scene--back/);
     assert.match(css, /translate3d\(calc\(var\(--float-x\) \* -0\.24\)/);
+    assert.match(css, /--scene-lift/);
     assert.match(css, /\.hero-points/);
     assert.match(css, /\.world-content/);
     assert.match(css, /\.world-intro/);
@@ -131,6 +134,12 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /secretWarpButton/);
     assert.match(js, /secretPortalButton/);
     assert.match(js, /warpTransitionTimer/);
+    assert.match(js, /lift: '0px'/);
+    assert.match(js, /lift: '-12px'/);
+    assert.match(js, /lift: '9px'/);
+    assert.match(js, /lift: '-16px'/);
+    assert.match(js, /lift: '-4px'/);
+    assert.match(js, /--scene-lift/);
     assert.match(js, /Castle attic/);
     assert.match(js, /statusLeft/);
     assert.match(js, /statusRight/);
