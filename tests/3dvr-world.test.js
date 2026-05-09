@@ -37,6 +37,7 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /id="motionState"/);
     assert.match(html, /zone-detail__secret/);
     assert.match(html, /zone-detail__secret-link/);
+    assert.match(html, /zone-detail__secret-portal/);
     assert.match(html, /class="world-mobile-hint"/);
     assert.doesNotMatch(html, /id="statusPill"/);
     assert.doesNotMatch(html, /class="world-controls"/);
@@ -115,9 +116,11 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /updateAmbientMotion/);
     assert.match(js, /collectSecretStar/);
     assert.match(js, /secretWarpButton/);
+    assert.match(js, /secretPortalButton/);
     assert.match(js, /Castle attic/);
     assert.match(js, /renderZone\('secret'\)/);
     assert.match(js, /zone-detail__secret-link/);
+    assert.match(js, /zone-detail__secret-portal/);
     assert.match(css, /\.club-frame::after/);
     assert.doesNotMatch(js, /world-locked/);
   });

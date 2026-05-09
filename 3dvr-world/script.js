@@ -11,6 +11,7 @@
   const worldStars = document.getElementById('worldStars');
   const secretStar = document.querySelector('[data-secret-star]');
   const secretWarpButton = document.querySelector('[data-warp-zone="secret"]');
+  const secretPortalButton = document.querySelector('[data-secret-portal]');
   const worldMotion = document.getElementById('worldMotion');
   const motionToggle = document.getElementById('motionToggle');
   const motionState = document.getElementById('motionState');
@@ -368,11 +369,15 @@
     list.innerHTML = zone.points.map((point) => `<li>${point}</li>`).join('');
     const secretNote = zoneDetail.querySelector('.zone-detail__secret');
     const secretLink = zoneDetail.querySelector('.zone-detail__secret-link');
+    const secretPortal = zoneDetail.querySelector('.zone-detail__secret-portal');
     if (secretNote) {
       secretNote.hidden = zoneKey !== 'secret';
     }
     if (secretLink) {
       secretLink.hidden = zoneKey !== 'secret';
+    }
+    if (secretPortal) {
+      secretPortal.hidden = zoneKey !== 'secret';
     }
     zoneMetrics.innerHTML = zone.metrics
       .map(
@@ -460,11 +465,22 @@
       if (secretLink) {
         secretLink.hidden = false;
       }
+
+      const secretPortal = zoneDetail.querySelector('.zone-detail__secret-portal');
+      if (secretPortal) {
+        secretPortal.hidden = false;
+      }
     }
 
     window.setTimeout(() => {
       renderZone('secret');
     }, 260);
+  }
+
+  if (secretPortalButton) {
+    secretPortalButton.addEventListener('click', () => {
+      renderZone('arena');
+    });
   }
 
   function handleDeviceOrientation(event) {
