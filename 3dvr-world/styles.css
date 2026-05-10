@@ -1274,23 +1274,47 @@ button {
   color: rgba(245, 255, 220, 0.98);
 }
 
-.club-frame[data-camera="first"] .scene-card {
+.club-frame[data-camera="wide"] .scene-core {
+  width: min(420px, 72vw);
+}
+
+.club-frame[data-camera="wide"] .scene-card {
+  opacity: 0.25;
+  filter: blur(0.7px) brightness(0.78) saturate(0.84);
+}
+
+.club-frame[data-camera="wide"] .scene-castle {
+  opacity: 0.96;
+  filter: blur(0.1px) brightness(0.96);
+  transform: translate3d(calc(var(--float-x) * 0.06), calc(var(--float-y) * 0.06), 0) scale(1.05);
+}
+
+.club-frame[data-camera="high"] .scene-core {
+  width: min(380px, 68vw);
+  transform: translate3d(calc(-50% + (var(--float-x) * 0.16)), calc(-54% + (var(--float-y) * 0.22)), 214px);
+}
+
+.club-frame[data-camera="high"] .scene-core__label {
+  font-size: clamp(2.9rem, 10vw, 4.4rem);
+}
+
+.club-frame[data-camera="close"] .scene-core {
+  width: min(520px, 88vw);
+}
+
+.club-frame[data-camera="close"] .scene-card {
   opacity: 0.04;
   filter: blur(2px) brightness(0.58) saturate(0.55);
   transform: translate3d(0, 16px, 0) scale(0.94);
 }
 
-.club-frame[data-camera="first"] .scene-castle {
-  opacity: 0.9;
+.club-frame[data-camera="close"] .scene-castle {
+  opacity: 0.92;
   filter: blur(0.2px) brightness(0.95);
   transform: translate3d(calc(var(--float-x) * 0.08), calc(var(--float-y) * 0.08), 0) scale(1.08);
 }
 
-.club-frame[data-camera="first"] .scene-core {
-  width: min(520px, 88vw);
-}
-
-.club-frame[data-camera="first"] .scene-core__label {
+.club-frame[data-camera="close"] .scene-core__label {
   font-size: clamp(3.5rem, 13vw, 5.2rem);
 }
 
@@ -2238,45 +2262,6 @@ body {
   display: none;
 }
 
-.world-camera {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 10px;
-  border: 1px solid rgba(94, 234, 212, 0.18);
-  border-radius: 999px;
-  background: rgba(8, 25, 44, 0.72);
-  box-shadow: 0 18px 40px rgba(8, 145, 178, 0.18);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-.world-camera__button {
-  min-height: 36px;
-  padding: 0 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(212, 255, 99, 0.24);
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--ink);
-  cursor: pointer;
-  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-}
-
-.world-camera__button:hover,
-.world-camera__button:focus-visible {
-  transform: translateY(-1px);
-  border-color: rgba(212, 255, 99, 0.48);
-  background: rgba(212, 255, 99, 0.12);
-}
-
-.world-camera__state {
-  margin: 0;
-  color: rgba(224, 231, 255, 0.82);
-  font-size: 0.74rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
 .world-motion__button {
   min-height: 36px;
   padding: 0 14px;
@@ -2323,10 +2308,6 @@ body {
 
   .frame-stage--fullscreen .club-frame {
     touch-action: pan-y;
-  }
-
-  .world-camera {
-    gap: 6px;
   }
 }
 
@@ -2529,22 +2510,6 @@ body {
     padding: 6px;
   }
 
-  .world-camera {
-    gap: 6px;
-    padding: 6px 8px;
-  }
-
-  .world-camera__button {
-    min-height: 30px;
-    padding: 0 10px;
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-  }
-
-  .world-camera__state {
-    display: none;
-  }
-
   .world-intro {
     padding: 20px;
   }
@@ -2612,17 +2577,21 @@ body {
     text-indent: 0.26em;
   }
 
-  .club-frame[data-camera="first"] .scene-core {
+  .club-frame[data-camera="wide"] .scene-core {
+    width: min(320px, 72vw);
+  }
+
+  .club-frame[data-camera="close"] .scene-core {
     width: min(340px, 88vw);
   }
 
-  .club-frame[data-camera="first"] .scene-card {
+  .club-frame[data-camera="close"] .scene-card {
     opacity: 0.02;
     filter: blur(2.8px) brightness(0.48) saturate(0.48);
     transform: translate3d(0, 20px, 0) scale(0.9);
   }
 
-  .club-frame[data-camera="first"] .scene-castle {
+  .club-frame[data-camera="close"] .scene-castle {
     opacity: 1;
     filter: none;
     transform: translate3d(calc(var(--float-x) * 0.04), calc(var(--float-y) * 0.04), 0) scale(1.12);
@@ -2717,16 +2686,6 @@ body {
 
   .scene-core__label {
     font-size: clamp(2.15rem, 11vw, 3.2rem);
-  }
-
-  .world-camera {
-    gap: 4px;
-    padding: 5px 7px;
-  }
-
-  .world-camera__button {
-    min-height: 28px;
-    padding: 0 9px;
   }
 
   .scene-secret-star {
