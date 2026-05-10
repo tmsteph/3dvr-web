@@ -85,10 +85,12 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.scene-coin-trail/);
     assert.doesNotMatch(css, /\.world-camera/);
     assert.match(css, /\.club-frame\.is-warping/);
+    assert.match(css, /\.club-frame\.is-snapping/);
     assert.match(css, /\.club-frame\.is-warping::before/);
     assert.match(css, /\.club-frame\.is-warping::after/);
     assert.match(css, /\.club-frame\.is-warping \.scene--back/);
     assert.match(css, /\.club-frame\.is-warping \.scene-core/);
+    assert.match(css, /\.zone-detail\.is-secret/);
     assert.match(css, /\.club-frame\[data-camera="wide"\] \.scene-core/);
     assert.match(css, /\.club-frame\[data-camera="close"\] \.scene-card/);
     assert.match(css, /\.club-frame\[data-camera="high"\] \.scene-core/);
@@ -96,6 +98,7 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /@keyframes coin-float/);
     assert.match(css, /@keyframes flag-wave/);
     assert.match(css, /@keyframes warp-flash/);
+    assert.match(css, /@keyframes camera-snap/);
     assert.match(css, /@keyframes zone-wash/);
     assert.match(css, /@keyframes room-wipe/);
     assert.match(css, /\.scene--back/);
@@ -143,6 +146,8 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /secretWarpButton/);
     assert.match(js, /secretPortalButton/);
     assert.match(js, /secretCallout/);
+    assert.match(js, /zoneDetail\.classList\.toggle\('is-secret', zoneKey === 'secret'\)/);
+    assert.match(js, /snapTransitionTimer/);
     assert.doesNotMatch(js, /cameraModeToggle/);
     assert.doesNotMatch(js, /cameraState/);
     assert.doesNotMatch(js, /setCameraMode/);
@@ -159,7 +164,7 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /pages\/portfolio\.html#projects/);
     assert.match(js, /Warping to the projects room\./);
     assert.match(js, /renderZone\('secret'\)/);
-    assert.match(js, /frame\.classList\.add\('is-landing', 'is-warping'\)/);
+    assert.match(js, /frame\.classList\.add\('is-landing', 'is-warping', 'is-snapping'\)/);
     assert.match(js, /zone-detail__secret-link/);
     assert.match(js, /zone-detail__secret-portal/);
     assert.match(js, /Entering \$\{zone\.room\}\./);

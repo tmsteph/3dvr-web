@@ -67,6 +67,7 @@
     rafId: 0,
   };
   let warpTransitionTimer = 0;
+  let snapTransitionTimer = 0;
 
   const touch = {
     active: false,
@@ -402,6 +403,7 @@
     visitedZones.add(zoneKey);
     frame.dataset.zone = zoneKey;
     zoneDetail.dataset.zone = zoneKey;
+    zoneDetail.classList.toggle('is-secret', zoneKey === 'secret');
     updateCameraProfile(zone);
     frame.style.setProperty('--scene-lift', zone.lift);
     zoneDetail.querySelector('.zone-detail__eyebrow').textContent = zone.label;
@@ -492,14 +494,22 @@
       window.clearTimeout(warpTransitionTimer);
       warpTransitionTimer = 0;
     }
+    if (snapTransitionTimer) {
+      window.clearTimeout(snapTransitionTimer);
+      snapTransitionTimer = 0;
+    }
 
     frame.classList.remove('is-landing', 'is-warping');
     window.requestAnimationFrame(() => {
-      frame.classList.add('is-landing', 'is-warping');
+      frame.classList.add('is-landing', 'is-warping', 'is-snapping');
       warpTransitionTimer = window.setTimeout(() => {
         frame.classList.remove('is-landing', 'is-warping');
         warpTransitionTimer = 0;
       }, 340);
+      snapTransitionTimer = window.setTimeout(() => {
+        frame.classList.remove('is-snapping');
+        snapTransitionTimer = 0;
+      }, 180);
     });
 
     if (motionState) {

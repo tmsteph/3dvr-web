@@ -1330,6 +1330,10 @@ button {
   animation: landing-pulse 260ms ease-out, warp-flash 260ms ease-out;
 }
 
+.club-frame.is-snapping {
+  animation: camera-snap 180ms ease-out;
+}
+
 .club-frame.is-warping::before {
   animation: zone-wash 260ms ease-out;
 }
@@ -1351,6 +1355,18 @@ button {
 .club-frame.is-warping .zone-detail,
 .club-frame.is-warping .telemetry-panel {
   filter: saturate(1.08) brightness(1.04);
+}
+
+.club-frame.is-snapping .scene--back {
+  transform: translate3d(calc(var(--float-x) * -0.28), calc(var(--float-y) * -0.16), 0) scale(1.02);
+}
+
+.club-frame.is-snapping .scene--mid {
+  transform: translate3d(calc(var(--float-x) * 0.12), calc(var(--float-y) * 0.08), 88px) scale(1.03);
+}
+
+.club-frame.is-snapping .scene--front {
+  transform: translate3d(calc(var(--float-x) * 0.18), calc(var(--float-y) * 0.14), 156px) scale(1.04);
 }
 
 .scene-castle__keep,
@@ -1755,6 +1771,23 @@ button {
   margin-top: 18px;
 }
 
+.zone-detail.is-secret {
+  display: flex;
+  flex-direction: column;
+}
+
+.zone-detail.is-secret .zone-detail__secret {
+  order: -3;
+}
+
+.zone-detail.is-secret .zone-detail__secret-link {
+  order: -2;
+}
+
+.zone-detail.is-secret .zone-detail__secret-portal {
+  order: -1;
+}
+
 .zone-detail__meter-labels {
   display: flex;
   justify-content: space-between;
@@ -1911,6 +1944,23 @@ button {
   }
   100% {
     filter: saturate(1) brightness(1);
+  }
+}
+
+@keyframes camera-snap {
+  0% {
+    transform: rotateX(calc(var(--tilt-y) * -1deg)) rotateY(calc(var(--tilt-x) * 1deg)) scale(1);
+    filter: brightness(1) saturate(1);
+  }
+
+  50% {
+    transform: rotateX(calc(var(--tilt-y) * -1deg)) rotateY(calc(var(--tilt-x) * 1deg)) scale(1.018);
+    filter: brightness(1.12) saturate(1.08);
+  }
+
+  100% {
+    transform: rotateX(calc(var(--tilt-y) * -1deg)) rotateY(calc(var(--tilt-x) * 1deg)) scale(1);
+    filter: brightness(1) saturate(1);
   }
 }
 
@@ -2546,6 +2596,27 @@ body {
 
   .zone-detail__metrics {
     grid-template-columns: 1fr;
+  }
+
+  .zone-detail.is-secret .zone-detail__body,
+  .zone-detail.is-secret .zone-detail__list,
+  .zone-detail.is-secret .zone-detail__metrics,
+  .zone-detail.is-secret .zone-detail__meter {
+    display: none;
+  }
+
+  .zone-detail.is-secret .zone-detail__title {
+    font-size: clamp(1.2rem, 5.7vw, 1.7rem);
+    margin-top: 10px;
+  }
+
+  .zone-detail.is-secret .zone-detail__secret {
+    margin-top: 12px;
+  }
+
+  .zone-detail.is-secret .zone-detail__secret-link,
+  .zone-detail.is-secret .zone-detail__secret-portal {
+    width: 100%;
   }
 
   .world-content {
