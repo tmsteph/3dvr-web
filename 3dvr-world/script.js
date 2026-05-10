@@ -19,8 +19,11 @@
   const secretPortalButton = document.querySelector('[data-secret-portal]');
   const secretCallout = document.querySelector('[data-secret-callout]');
   const worldMotion = document.getElementById('worldMotion');
+  const worldCamera = document.getElementById('worldCamera');
   const motionToggle = document.getElementById('motionToggle');
   const motionState = document.getElementById('motionState');
+  const cameraModeToggle = document.getElementById('cameraModeToggle');
+  const cameraState = document.getElementById('cameraState');
   const zoneButtons = Array.from(document.querySelectorAll('button[data-zone]'));
   const warpButtons = Array.from(document.querySelectorAll('button[data-warp-zone]'));
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -65,6 +68,9 @@
     interactionFloatX: 0,
     interactionFloatY: 0,
     rafId: 0,
+  };
+  const camera = {
+    mode: 'third',
   };
   let warpTransitionTimer = 0;
 
@@ -383,6 +389,32 @@
     motionState.textContent = 'Enable tilt, or drag and swipe to move through the world.';
   }
 
+  function updateCameraUi() {
+    if (!cameraModeToggle || !cameraState) {
+      return;
+    }
+
+    if (camera.mode === 'first') {
+      cameraModeToggle.textContent = '3rd';
+      cameraModeToggle.setAttribute('aria-label', 'Switch to third-person camera');
+      cameraModeToggle.title = 'Switch to third-person camera';
+      cameraState.textContent = 'Camera: first-person play test.';
+      return;
+    }
+
+    cameraModeToggle.textContent = '1st';
+    cameraModeToggle.setAttribute('aria-label', 'Switch to first-person camera');
+    cameraModeToggle.title = 'Switch to first-person camera';
+    cameraState.textContent = 'Camera: third-person play test.';
+  }
+
+  function setCameraMode(mode) {
+    camera.mode = mode === 'first' ? 'first' : 'third';
+    frame.dataset.camera = camera.mode;
+    frame.classList.toggle('is-first-person', camera.mode === 'first');
+    updateCameraUi();
+  }
+
   function renderZone(zoneKey) {
     const zone = zones[zoneKey];
     if (!zone) {
@@ -394,6 +426,9 @@
     frame.dataset.zone = zoneKey;
     zoneDetail.dataset.zone = zoneKey;
     frame.style.setProperty('--scene-lift', zone.lift);
+    if (camera.mode === 'first') {
+      frame.style.setProperty('--scene-lift', `calc(${zone.lift} - 10px)`);
+    }
     zoneDetail.querySelector('.zone-detail__eyebrow').textContent = zone.label;
     zoneDetail.querySelector('.zone-detail__title').textContent = zone.title;
     zoneDetail.querySelector('.zone-detail__body').textContent = zone.body;
@@ -427,6 +462,7 @@
     if (secretPortal) {
       secretPortal.hidden = zoneKey !== 'secret';
     }
+    frame.classList.toggle('is-first-person', camera.mode === 'first');
     zoneMetrics.innerHTML = zone.metrics
       .map(
         (metric) => `
@@ -565,6 +601,17 @@
       window.setTimeout(() => {
         window.location.href = '/pages/portfolio.html#projects';
       }, 260);
+    });
+  }
+
+  if (cameraModeToggle) {
+    cameraModeToggle.addEventListener('click', () => {
+      setCameraMode(camera.mode === 'first' ? 'third' : 'first');
+      if (motionState) {
+        motionState.textContent = camera.mode === 'first'
+          ? 'First-person play test on. Push into the room.'
+          : 'Third-person play test on. Pull back for the full hub.';
+      }
     });
   }
 
@@ -759,6 +806,7 @@
   }
 
   renderZone(activeZone);
+  setCameraMode('third');
   if (motion.ambientEnabled) {
     updateAmbientMotion(window.performance.now());
     motion.targetTiltX = motion.ambientTiltX;
