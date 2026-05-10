@@ -11,6 +11,8 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /frame-lab--fullscreen/);
     assert.match(html, /Open Portal/);
     assert.match(html, /Portal HUD glow/);
+    assert.match(html, /Three\.js world/);
+    assert.match(html, /Castle game layer/);
     assert.match(html, /A full-screen 3DVR homepage world with touch, tilt, and direct paths into plans/);
     assert.match(html, /Power stars/);
     assert.match(html, /id="worldStars"/);
@@ -21,6 +23,10 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /CASTLE/);
     assert.match(html, /scene-castle/);
     assert.match(html, /scene-coin-trail/);
+    assert.match(html, /id="worldCanvasFallback"/);
+    assert.match(html, /class="world-canvas-fallback"/);
+    assert.match(html, /id="worldThreeCanvas"/);
+    assert.match(html, /class="world-three-canvas"/);
     assert.match(html, /Stage \+ panels/);
     assert.match(html, /id="zoneMetrics"/);
     assert.match(html, /id="zoneDepthFill"/);
@@ -38,6 +44,8 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /zone-detail__secret/);
     assert.match(html, /zone-detail__secret-link/);
     assert.match(html, /zone-detail__secret-portal/);
+    assert.match(html, /data-secret-portal/);
+    assert.match(html, /href="\/pages\/portfolio\.html#projects"/);
     assert.match(html, /scene-secret-callout/);
     assert.match(html, /class="world-mobile-hint"/);
     assert.doesNotMatch(html, /class="world-camera"/);
@@ -58,7 +66,7 @@ describe('3dvr world prototype route', () => {
     assert.doesNotMatch(html, /sports-club/i);
   });
 
-  it('uses css perspective and scripted zone switching for the frame', async () => {
+  it('uses a Three.js world layer with css perspective and scripted zone switching', async () => {
     const css = await readFile(new URL('../3dvr-world/styles.css', import.meta.url), 'utf8');
     const js = await readFile(new URL('../3dvr-world/script.js', import.meta.url), 'utf8');
 
@@ -83,6 +91,11 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.scene-secret-callout/);
     assert.match(css, /\.scene-castle/);
     assert.match(css, /\.scene-coin-trail/);
+    assert.match(css, /\.world-canvas-fallback/);
+    assert.match(css, /\.club-frame\.world-canvas-active \.world-canvas-fallback/);
+    assert.match(css, /\.world-three-canvas/);
+    assert.match(css, /\.club-frame\.world-three-active \.world-three-canvas/);
+    assert.match(css, /\.club-frame\.world-three-active \.scene-castle/);
     assert.doesNotMatch(css, /\.world-camera/);
     assert.match(css, /\.club-frame\.is-warping/);
     assert.match(css, /\.club-frame\.is-snapping/);
@@ -112,6 +125,7 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.world-motion__button/);
     assert.match(css, /\.world-mobile-hint/);
     assert.match(css, /\.world-mobile-hint\[hidden\]/);
+    assert.match(css, /\.zone-detail__secret-portal\[hidden\]/);
     assert.match(css, /\.club-frame\[data-zone="secret"\] \.world-mobile-hint/);
     assert.match(css, /@font-face/);
     assert.match(css, /chakra-petch-400-latin\.woff2/);
@@ -149,6 +163,20 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /secretPortalButton/);
     assert.match(js, /secretCallout/);
     assert.match(js, /worldMobileHint/);
+    assert.match(js, /worldCanvasFallback/);
+    assert.match(js, /worldThreeCanvas/);
+    assert.match(js, /createCanvasFallbackWorld/);
+    assert.match(js, /CanvasRenderingContext2D|drawCastle|drawPortal/);
+    assert.match(js, /world-canvas-active/);
+    assert.match(js, /THREE_CDN_URL/);
+    assert.match(js, /cdnjs\.cloudflare\.com\/ajax\/libs\/three\.js\/r128\/three\.min\.js/);
+    assert.match(js, /createThreeWorld/);
+    assert.match(js, /WebGLRenderer/);
+    assert.match(js, /PerspectiveCamera/);
+    assert.match(js, /TorusGeometry/);
+    assert.match(js, /ExtrudeGeometry/);
+    assert.match(js, /world-three-active/);
+    assert.match(js, /world-three-unavailable/);
     assert.match(js, /zoneDetail\.classList\.toggle\('is-secret', zoneKey === 'secret'\)/);
     assert.match(js, /snapTransitionTimer/);
     assert.doesNotMatch(js, /cameraModeToggle/);
@@ -166,6 +194,7 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /statusRight/);
     assert.match(js, /pages\/portfolio\.html#projects/);
     assert.match(js, /Warping to the projects room\./);
+    assert.match(js, /secretPortalButton\.href/);
     assert.match(js, /renderZone\('secret'\)/);
     assert.match(js, /frame\.classList\.add\('is-landing', 'is-warping', 'is-snapping'\)/);
     assert.match(js, /zone-detail__secret-link/);

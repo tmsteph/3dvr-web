@@ -6,7 +6,7 @@
   <title>3DVR 3D Homepage World</title>
   <meta
     name="description"
-    content="A full-screen 3DVR prototype for a device-safe 3D homepage and world using a framed CSS scene instead of fragile browser-specific 3D stacks."
+    content="A full-screen 3DVR prototype for a device-safe 3D homepage world using a Three.js castle scene with readable CSS fallback panels."
   />
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="styles.css" />
@@ -24,6 +24,8 @@
           <div class="club-frame__rim"></div>
           <div class="club-frame__glass"></div>
           <div class="club-frame__grain"></div>
+          <canvas class="world-canvas-fallback" id="worldCanvasFallback" aria-hidden="true"></canvas>
+          <canvas class="world-three-canvas" id="worldThreeCanvas" aria-hidden="true"></canvas>
 
           <div class="scene scene--back" aria-hidden="true">
             <div class="scene__stars"></div>
@@ -69,9 +71,6 @@
               <div class="scene-castle__flag scene-castle__flag--left"></div>
               <div class="scene-castle__flag scene-castle__flag--right"></div>
             </div>
-            <button class="scene-secret-star" type="button" data-secret-star aria-label="Collect the secret star">
-              <span>★</span>
-            </button>
             <div class="scene-coin-trail" aria-hidden="true">
               <span></span><span></span><span></span><span></span><span></span><span></span>
             </div>
@@ -94,14 +93,6 @@
               <span class="scene-card__tag">04</span>
               <strong>Portal tower</strong>
               <p>Support, account entry, and the place people continue.</p>
-            </div>
-            <div class="scene-secret-callout" hidden data-secret-callout>
-              <span class="scene-secret-callout__eyebrow">Secret attic</span>
-              <strong>Open the projects room next.</strong>
-              <p>Tap through to the hidden projects room portal for the next scene.</p>
-              <a class="scene-secret-callout__link" href="/pages/portfolio.html#projects">
-                Open the projects room portal
-              </a>
             </div>
           </div>
 
@@ -139,6 +130,19 @@
           <div class="world-mobile-hint" aria-hidden="true">
             <span>Drag to look. Swipe to move. The room camera follows the scene.</span>
           </div>
+        </div>
+
+        <button class="scene-secret-star" type="button" data-secret-star aria-label="Collect the secret star">
+          <span>★</span>
+        </button>
+
+        <div class="scene-secret-callout" hidden data-secret-callout>
+          <span class="scene-secret-callout__eyebrow">Secret attic</span>
+          <strong>Open the projects room next.</strong>
+          <p>Tap through to the hidden projects room portal for the next scene.</p>
+          <a class="scene-secret-callout__link" href="/pages/portfolio.html#projects">
+            Open the projects room portal
+          </a>
         </div>
       </div>
 
@@ -222,9 +226,9 @@
         <a class="zone-detail__secret-link" href="/pages/portfolio.html#projects" hidden>
           Peek into the projects room
         </a>
-        <button class="zone-detail__secret-portal" type="button" hidden data-secret-portal>
+        <a class="zone-detail__secret-portal" href="/pages/portfolio.html#projects" hidden data-secret-portal>
           Open the projects room portal
-        </button>
+        </a>
         <div class="zone-detail__metrics" id="zoneMetrics" aria-label="Zone metrics">
           <article class="zone-metric">
             <p class="zone-metric__label">Signal</p>
@@ -255,11 +259,11 @@
         <aside class="frame-meta">
           <span>Route</span>
           <strong>/3dvr-world/</strong>
-          <p>Full-screen scene, CSS depth stack, motion fallback, and a cleaner info layout below the stage.</p>
+          <p>Full-screen scene, Three.js world layer, CSS fallback, motion depth, and a cleaner info layout below the stage.</p>
           <div class="frame-meta__grid" aria-label="Prototype system readout">
             <div class="frame-meta__tile">
               <span>Render</span>
-              <strong>CSS depth stack</strong>
+              <strong>Three.js world</strong>
             </div>
             <div class="frame-meta__tile">
               <span>Graphics</span>
@@ -280,8 +284,8 @@
           </article>
           <article class="frame-hud__panel">
             <span>Depth</span>
-            <strong>Layered signal field</strong>
-            <p>Stars, beacons, cards, and overlays sit on separate planes so the page feels spatial at full screen.</p>
+            <strong>Castle game layer</strong>
+            <p>A low-poly castle, coins, player marker, and portal ring carry the game feel behind readable overlays.</p>
           </article>
           <article class="frame-hud__panel">
             <span>Routes</span>

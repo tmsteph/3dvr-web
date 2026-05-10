@@ -175,7 +175,7 @@ test.describe('3dvr-world page', () => {
     } else {
       await activateZone(page, 'rooftop');
     }
-    await expect(page.locator('#zoneDetail .zone-detail__eyebrow')).toHaveText('Portal layer');
+    await expect(page.locator('#zoneDetail .zone-detail__eyebrow')).toHaveText('Portal tower');
     await expect(page.locator('#zoneDepthValue')).toHaveText('79%');
     await expect(page.locator('#zoneMetrics')).toContainText('Portal entry');
 
@@ -187,7 +187,7 @@ test.describe('3dvr-world page', () => {
     } else {
       await activateZone(page, 'studio');
     }
-    await expect(page.locator('#zoneDetail .zone-detail__eyebrow')).toHaveText('Studio layer');
+    await expect(page.locator('#zoneDetail .zone-detail__eyebrow')).toHaveText('Workshop wing');
     await expect(page.locator('#zoneDepthValue')).toHaveText('82%');
     await expect(page.locator('#zoneMetrics')).toContainText('Live experiments');
   });
@@ -233,8 +233,24 @@ test.describe('3dvr-world page', () => {
 
     await swipeWorld(page);
 
-    await expect(page.locator('#zoneDetail .zone-detail__eyebrow')).toHaveText('World layer');
+    await expect(page.locator('#zoneDetail .zone-detail__eyebrow')).toHaveText('Sky bridge');
     await expect(page.locator('#zoneDepthValue')).toHaveText('88%');
+  });
+
+  test('clicks through from the secret attic portal without the mobile hint blocking it', async ({ page }) => {
+    await page.goto('/3dvr-world/');
+
+    await page.locator('[data-secret-star]').click({ force: true });
+
+    await expect(page.locator('#zoneDetail')).toHaveAttribute('data-zone', 'secret');
+    await expect(page.locator('.world-mobile-hint')).toBeHidden();
+    await expect(page.locator('[data-secret-callout]')).toBeVisible();
+    await expect(page.locator('.scene-secret-callout__link')).toBeVisible();
+    await expect(page.locator('[data-secret-portal]')).toHaveAttribute('href', '/pages/portfolio.html#projects');
+    await expect(page.locator('[data-secret-portal]')).toBeVisible();
+
+    await page.locator('.scene-secret-callout__link').click();
+    await expect(page).toHaveURL(/\/pages\/portfolio\.html#projects$/);
   });
 
   test('auto-enables device motion when phone permission is not required', async ({ page }, testInfo) => {
