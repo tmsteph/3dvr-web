@@ -2355,6 +2355,10 @@ body {
   text-transform: uppercase;
 }
 
+.world-mobile-hint[hidden] {
+  display: none !important;
+}
+
 @media (pointer: coarse) {
   .world-topbar {
     display: flex;
@@ -2362,6 +2366,10 @@ body {
 
   .world-mobile-hint {
     display: inline-flex;
+  }
+
+  .club-frame[data-zone="secret"] .world-mobile-hint {
+    display: none !important;
   }
 
   .frame-stage--fullscreen .club-frame {

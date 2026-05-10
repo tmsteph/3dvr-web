@@ -111,6 +111,8 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.world-motion/);
     assert.match(css, /\.world-motion__button/);
     assert.match(css, /\.world-mobile-hint/);
+    assert.match(css, /\.world-mobile-hint\[hidden\]/);
+    assert.match(css, /\.club-frame\[data-zone="secret"\] \.world-mobile-hint/);
     assert.match(css, /@font-face/);
     assert.match(css, /chakra-petch-400-latin\.woff2/);
     assert.match(css, /instrument-serif-400-latin\.woff2/);
