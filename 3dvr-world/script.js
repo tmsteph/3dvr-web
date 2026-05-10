@@ -17,6 +17,7 @@
   const secretStar = document.querySelector('[data-secret-star]');
   const secretWarpButton = document.querySelector('[data-warp-zone="secret"]');
   const secretPortalButton = document.querySelector('[data-secret-portal]');
+  const secretCalloutLink = document.querySelector('.scene-secret-callout__link');
   const secretCallout = document.querySelector('[data-secret-callout]');
   const worldMobileHint = document.querySelector('.world-mobile-hint');
   const fallbackCanvas = document.getElementById('worldCanvasFallback');
@@ -74,6 +75,7 @@
   let snapTransitionTimer = 0;
   let fallbackWorld = null;
   let threeWorld = null;
+  let projectsWarping = false;
 
   const touch = {
     active: false,
@@ -1491,27 +1493,47 @@
     }, 260);
   }
 
-  if (secretPortalButton) {
-    secretPortalButton.addEventListener('click', (event) => {
-      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
-        return;
-      }
+  function handleProjectsWarp(event) {
+    const target = event.currentTarget;
 
-      event.preventDefault();
-      frame.classList.add('is-warping');
-      if (fallbackWorld) {
-        fallbackWorld.pulse(1.2);
-      }
-      if (threeWorld) {
-        threeWorld.pulse(1.2);
-      }
-      if (motionState) {
-        motionState.textContent = 'Warping to the projects room.';
-      }
-      window.setTimeout(() => {
-        window.location.href = secretPortalButton.href || '/pages/portfolio.html#projects';
-      }, 260);
-    });
+    if (event.type === 'pointerdown' && event.button !== 0) {
+      return;
+    }
+
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      return;
+    }
+
+    event.preventDefault();
+
+    if (projectsWarping) {
+      return;
+    }
+
+    projectsWarping = true;
+    frame.classList.add('is-warping');
+    if (fallbackWorld) {
+      fallbackWorld.pulse(1.2);
+    }
+    if (threeWorld) {
+      threeWorld.pulse(1.2);
+    }
+    if (motionState) {
+      motionState.textContent = 'Warping to the projects room.';
+    }
+
+    window.setTimeout(() => {
+      window.location.href = target.href || '/pages/portfolio.html#projects';
+    }, event.type === 'pointerdown' ? 90 : 260);
+  }
+
+  if (secretPortalButton) {
+    secretPortalButton.addEventListener('click', handleProjectsWarp);
+  }
+
+  if (secretCalloutLink) {
+    secretCalloutLink.addEventListener('pointerdown', handleProjectsWarp);
+    secretCalloutLink.addEventListener('click', handleProjectsWarp);
   }
 
   function handleDeviceOrientation(event) {

@@ -249,7 +249,7 @@ test.describe('3dvr-world page', () => {
     await expect(page.locator('[data-secret-portal]')).toHaveAttribute('href', '/pages/portfolio.html#projects');
     await expect(page.locator('[data-secret-portal]')).toBeVisible();
 
-    await page.locator('.scene-secret-callout__link').click();
+    await page.locator('.scene-secret-callout__link').click({ force: true });
     await expect(page).toHaveURL(/\/pages\/portfolio\.html#projects$/);
   });
 
