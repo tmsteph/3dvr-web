@@ -146,6 +146,7 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /secretWarpButton/);
     assert.match(js, /secretPortalButton/);
     assert.match(js, /secretCallout/);
+    assert.match(js, /worldMobileHint/);
     assert.match(js, /zoneDetail\.classList\.toggle\('is-secret', zoneKey === 'secret'\)/);
     assert.match(js, /snapTransitionTimer/);
     assert.doesNotMatch(js, /cameraModeToggle/);

@@ -18,6 +18,7 @@
   const secretWarpButton = document.querySelector('[data-warp-zone="secret"]');
   const secretPortalButton = document.querySelector('[data-secret-portal]');
   const secretCallout = document.querySelector('[data-secret-callout]');
+  const worldMobileHint = document.querySelector('.world-mobile-hint');
   const worldMotion = document.getElementById('worldMotion');
   const motionToggle = document.getElementById('motionToggle');
   const motionState = document.getElementById('motionState');
@@ -438,6 +439,9 @@
     }
     if (secretPortal) {
       secretPortal.hidden = zoneKey !== 'secret';
+    }
+    if (worldMobileHint) {
+      worldMobileHint.hidden = zoneKey === 'secret';
     }
     zoneMetrics.innerHTML = zone.metrics
       .map(
