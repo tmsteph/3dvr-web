@@ -246,11 +246,36 @@ test.describe('3dvr-world page', () => {
     await expect(page.locator('.world-mobile-hint')).toBeHidden();
     await expect(page.locator('[data-secret-callout]')).toBeVisible();
     await expect(page.locator('.scene-secret-callout__link')).toBeVisible();
-    await expect(page.locator('[data-secret-portal]')).toHaveAttribute('href', '/pages/portfolio.html#projects');
+    await expect(page.locator('[data-secret-portal]')).toHaveAttribute('href', '/3dvr-world/prize.html');
     await expect(page.locator('[data-secret-portal]')).toBeVisible();
 
     await page.locator('.scene-secret-callout__link').click({ force: true });
-    await expect(page).toHaveURL(/\/pages\/portfolio\.html#projects$/);
+    await expect(page).toHaveURL(/\/3dvr-world\/prize\.html$/);
+    await expect(page.getByRole('heading', { name: 'Builder Pass unlocked.' })).toBeVisible();
+  });
+
+  test('runs level progression and unlocks the Builder Pass prize', async ({ page }) => {
+    await page.goto('/3dvr-world/');
+
+    await expect(page.locator('.world-game-hud')).toBeVisible();
+    await expect(page.locator('#worldGameLevel')).toHaveText('1 Courtyard');
+    await page.locator('#worldGameStart').click();
+    await expect(page.locator('#worldGameStart')).toHaveText('Running');
+
+    await page.evaluate(() => window.__3dvrWorldGame.completeLevel());
+    await expect(page.locator('#zoneDetail')).toHaveAttribute('data-zone', 'arena');
+    await expect(page.locator('#worldGameLevel')).toHaveText('2 Sky bridge');
+
+    await page.evaluate(() => window.__3dvrWorldGame.completeLevel());
+    await expect(page.locator('#zoneDetail')).toHaveAttribute('data-zone', 'studio');
+    await page.evaluate(() => window.__3dvrWorldGame.completeLevel());
+    await expect(page.locator('#zoneDetail')).toHaveAttribute('data-zone', 'rooftop');
+    await page.evaluate(() => window.__3dvrWorldGame.completeLevel());
+    await expect(page.locator('#zoneDetail')).toHaveAttribute('data-zone', 'secret');
+    await page.evaluate(() => window.__3dvrWorldGame.completeLevel());
+
+    await expect(page.locator('[data-prize-panel]')).toBeVisible();
+    await expect(page.locator('[data-prize-panel]')).toContainText('Builder Pass unlocked');
   });
 
   test('auto-enables device motion when phone permission is not required', async ({ page }, testInfo) => {

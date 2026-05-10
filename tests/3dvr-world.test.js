@@ -45,8 +45,13 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /zone-detail__secret-link/);
     assert.match(html, /zone-detail__secret-portal/);
     assert.match(html, /data-secret-portal/);
-    assert.match(html, /href="\/pages\/portfolio\.html#projects"/);
+    assert.match(html, /href="\/3dvr-world\/prize\.html"/);
     assert.match(html, /scene-secret-callout/);
+    assert.match(html, /id="worldGameStart"/);
+    assert.match(html, /id="worldGameReset"/);
+    assert.match(html, /data-game-control="boost"/);
+    assert.match(html, /data-prize-panel/);
+    assert.match(html, /Builder Pass unlocked/);
     assert.match(html, /class="world-mobile-hint"/);
     assert.doesNotMatch(html, /class="world-camera"/);
     assert.doesNotMatch(html, /id="cameraModeToggle"/);
@@ -125,6 +130,10 @@ describe('3dvr world prototype route', () => {
     assert.match(css, /\.world-motion__button/);
     assert.match(css, /\.world-mobile-hint/);
     assert.match(css, /\.world-mobile-hint\[hidden\]/);
+    assert.match(css, /\.world-game-hud/);
+    assert.match(css, /\.world-game-controls/);
+    assert.match(css, /\.world-prize-panel/);
+    assert.match(css, /\.world-prize-route/);
     assert.match(css, /\.zone-detail__secret-portal\[hidden\]/);
     assert.match(css, /\.club-frame\[data-zone="secret"\] \.world-mobile-hint/);
     assert.match(css, /@font-face/);
@@ -159,6 +168,11 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /ambientEnabled/);
     assert.match(js, /updateAmbientMotion/);
     assert.match(js, /collectSecretStar/);
+    assert.match(js, /const gameLevels = \[/);
+    assert.match(js, /worldGame/);
+    assert.match(js, /completeActiveGameLevel/);
+    assert.match(js, /data-game-control/);
+    assert.match(js, /__3dvrWorldGame/);
     assert.match(js, /secretWarpButton/);
     assert.match(js, /secretPortalButton/);
     assert.match(js, /secretCallout/);
@@ -192,8 +206,8 @@ describe('3dvr world prototype route', () => {
     assert.match(js, /Castle attic/);
     assert.match(js, /statusLeft/);
     assert.match(js, /statusRight/);
-    assert.match(js, /pages\/portfolio\.html#projects/);
-    assert.match(js, /Warping to the projects room\./);
+    assert.match(js, /WORLD_PRIZE_URL/);
+    assert.match(js, /Warping to the Builder Pass\./);
     assert.match(js, /target\.href/);
     assert.match(js, /renderZone\('secret'\)/);
     assert.match(js, /frame\.classList\.add\('is-landing', 'is-warping', 'is-snapping'\)/);
@@ -210,5 +224,17 @@ describe('3dvr world prototype route', () => {
     assert.match(html, /url=\/3dvr-world\//i);
     assert.match(html, /location\.replace\('\/3dvr-world\/'\)/);
     assert.match(html, /This route moved to 3DVR World/i);
+  });
+
+  it('ships a Builder Pass prize route instead of ending on the portfolio page', async () => {
+    const html = await readFile(new URL('../3dvr-world/prize.html', import.meta.url), 'utf8');
+
+    assert.match(html, /3DVR Builder Pass/);
+    assert.match(html, /Builder Pass unlocked\./);
+    assert.match(html, /Start Free/);
+    assert.match(html, /\/subscribe\/free-plan\.html\?source=world-prize/);
+    assert.match(html, /Open Portal/);
+    assert.match(html, /Replay World/);
+    assert.doesNotMatch(html, /portfolio\.html#projects/);
   });
 });

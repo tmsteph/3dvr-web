@@ -20,6 +20,13 @@
   const secretCalloutLink = document.querySelector('.scene-secret-callout__link');
   const secretCallout = document.querySelector('[data-secret-callout]');
   const worldMobileHint = document.querySelector('.world-mobile-hint');
+  const prizePanel = document.querySelector('[data-prize-panel]');
+  const gameLevelLabel = document.getElementById('worldGameLevel');
+  const gameCoinsLabel = document.getElementById('worldGameCoins');
+  const gameBoostLabel = document.getElementById('worldGameBoost');
+  const gameStartButton = document.getElementById('worldGameStart');
+  const gameResetButton = document.getElementById('worldGameReset');
+  const gameControlButtons = Array.from(document.querySelectorAll('[data-game-control]'));
   const fallbackCanvas = document.getElementById('worldCanvasFallback');
   const threeCanvas = document.getElementById('worldThreeCanvas');
   const worldMotion = document.getElementById('worldMotion');
@@ -38,6 +45,7 @@
     canUseMotionTilt &&
     typeof window.DeviceOrientationEvent.requestPermission === 'function';
   const THREE_CDN_URL = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  const WORLD_PRIZE_URL = '/3dvr-world/prize.html';
 
   if (!frame || !zoneDetail || !zoneMetrics || !zoneDepthValue || !zoneDepthFill) {
     return;
@@ -203,6 +211,184 @@
   const visitedZones = new Set([activeZone]);
   let secretStarCollected = false;
 
+  const gameLevels = [
+    {
+      key: 'arrival',
+      name: 'Courtyard',
+      coins: [[0.22, 0.68], [0.34, 0.58], [0.48, 0.52], [0.62, 0.58], [0.76, 0.68]],
+      hazards: [[0.44, 0.75], [0.58, 0.74]],
+      portal: [0.84, 0.54],
+    },
+    {
+      key: 'arena',
+      name: 'Sky bridge',
+      coins: [[0.18, 0.58], [0.3, 0.44], [0.46, 0.36], [0.62, 0.44], [0.78, 0.58]],
+      hazards: [[0.4, 0.68], [0.64, 0.7], [0.54, 0.28]],
+      portal: [0.82, 0.38],
+    },
+    {
+      key: 'studio',
+      name: 'Workshop',
+      coins: [[0.2, 0.42], [0.32, 0.62], [0.5, 0.72], [0.66, 0.55], [0.8, 0.42]],
+      hazards: [[0.28, 0.75], [0.56, 0.48], [0.72, 0.68]],
+      portal: [0.86, 0.6],
+    },
+    {
+      key: 'rooftop',
+      name: 'Portal tower',
+      coins: [[0.22, 0.72], [0.34, 0.52], [0.5, 0.34], [0.66, 0.52], [0.78, 0.72]],
+      hazards: [[0.38, 0.76], [0.5, 0.58], [0.62, 0.76]],
+      portal: [0.5, 0.25],
+    },
+    {
+      key: 'secret',
+      name: 'Attic',
+      coins: [[0.24, 0.62], [0.38, 0.42], [0.5, 0.32], [0.62, 0.42], [0.76, 0.62]],
+      hazards: [[0.35, 0.72], [0.5, 0.54], [0.65, 0.72]],
+      portal: [0.5, 0.18],
+    },
+  ];
+
+  const worldGame = {
+    started: false,
+    completed: false,
+    levelIndex: 0,
+    activeLevelKey: 'arrival',
+    player: { x: 0.16, y: 0.72, vx: 0, vy: 0 },
+    input: { left: false, right: false, up: false, down: false, boost: false },
+    boost: 1,
+    score: 0,
+    levelStates: gameLevels.reduce((states, level) => {
+      states[level.key] = {
+        coins: level.coins.map(() => false),
+        complete: false,
+      };
+      return states;
+    }, {}),
+  };
+
+  function getGameLevel(zoneKey = worldGame.activeLevelKey) {
+    return gameLevels.find((level) => level.key === zoneKey) || gameLevels[0];
+  }
+
+  function resetGamePlayer() {
+    worldGame.player.x = 0.16;
+    worldGame.player.y = 0.72;
+    worldGame.player.vx = 0;
+    worldGame.player.vy = 0;
+  }
+
+  function updateGameHud() {
+    const level = getGameLevel();
+    const state = worldGame.levelStates[level.key];
+    const collected = state.coins.filter(Boolean).length;
+
+    if (gameLevelLabel) {
+      gameLevelLabel.textContent = `${worldGame.levelIndex + 1} ${level.name}`;
+    }
+    if (gameCoinsLabel) {
+      gameCoinsLabel.textContent = `${collected}/${level.coins.length}`;
+    }
+    if (gameBoostLabel) {
+      gameBoostLabel.textContent = `${Math.round(worldGame.boost * 100)}%`;
+    }
+    if (gameStartButton) {
+      gameStartButton.textContent = worldGame.started ? 'Running' : 'Start run';
+    }
+  }
+
+  function setGameLevel(zoneKey) {
+    const nextIndex = gameLevels.findIndex((level) => level.key === zoneKey);
+
+    if (nextIndex === -1) {
+      return;
+    }
+
+    if (worldGame.activeLevelKey !== zoneKey) {
+      worldGame.activeLevelKey = zoneKey;
+      worldGame.levelIndex = nextIndex;
+      resetGamePlayer();
+    }
+
+    updateGameHud();
+  }
+
+  function startGame() {
+    worldGame.started = true;
+    worldGame.completed = false;
+    if (prizePanel) {
+      prizePanel.hidden = true;
+    }
+    updateGameHud();
+    if (fallbackWorld) {
+      fallbackWorld.pulse(1);
+    }
+  }
+
+  function resetActiveGameLevel() {
+    const level = getGameLevel();
+    worldGame.levelStates[level.key].coins = level.coins.map(() => false);
+    worldGame.levelStates[level.key].complete = false;
+    resetGamePlayer();
+    worldGame.started = true;
+    worldGame.completed = false;
+    if (prizePanel) {
+      prizePanel.hidden = true;
+    }
+    updateGameHud();
+  }
+
+  function setGameControl(control, isActive) {
+    if (Object.prototype.hasOwnProperty.call(worldGame.input, control)) {
+      worldGame.input[control] = isActive;
+    }
+  }
+
+  function completeActiveGameLevel() {
+    const level = getGameLevel();
+    const state = worldGame.levelStates[level.key];
+
+    if (state.complete) {
+      return;
+    }
+
+    state.complete = true;
+    visitedZones.add(level.key);
+    updateGameHud();
+
+    if (fallbackWorld) {
+      fallbackWorld.pulse(1.35);
+    }
+    if (threeWorld) {
+      threeWorld.pulse(1);
+    }
+
+    if (motionState) {
+      motionState.textContent = `${level.name} cleared.`;
+    }
+
+    const nextLevel = gameLevels[worldGame.levelIndex + 1];
+
+    if (nextLevel) {
+      if (nextLevel.key === 'secret' && !secretStarCollected) {
+        collectSecretStar();
+      }
+      window.setTimeout(() => {
+        renderZone(nextLevel.key);
+      }, nextLevel.key === 'secret' ? 420 : 360);
+      return;
+    }
+
+    worldGame.completed = true;
+    worldGame.started = false;
+    if (prizePanel) {
+      prizePanel.hidden = false;
+    }
+    if (motionState) {
+      motionState.textContent = 'Run complete. Builder Pass unlocked.';
+    }
+  }
+
   function createCanvasFallbackWorld(canvas) {
     const context = canvas.getContext('2d');
 
@@ -232,6 +418,7 @@
       height: 1,
       dpr: 1,
       rafId: 0,
+      lastTime: 0,
     };
 
     function resize() {
@@ -303,6 +490,135 @@
       context.restore();
     }
 
+    function drawHazard(x, y, radius, phase, palette) {
+      context.save();
+      context.translate(x, y);
+      context.rotate(phase);
+      context.shadowColor = 'rgba(255, 90, 122, 0.46)';
+      context.shadowBlur = radius * 1.2;
+      context.fillStyle = '#ff5a7a';
+      drawPolygon(
+        [[0, -radius], [radius * 0.34, -radius * 0.34], [radius, 0], [radius * 0.34, radius * 0.34], [0, radius], [-radius * 0.34, radius * 0.34], [-radius, 0], [-radius * 0.34, -radius * 0.34]],
+        '#ff5a7a',
+        palette.glow,
+        1.5
+      );
+      context.restore();
+    }
+
+    function drawPlayer(x, y, radius, phase, palette, isBoosting) {
+      context.save();
+      context.translate(x, y);
+      context.shadowColor = palette.glow;
+      context.shadowBlur = radius * (isBoosting ? 1.8 : 0.9);
+      context.fillStyle = 'rgba(243, 246, 251, 0.94)';
+      context.beginPath();
+      context.arc(0, -radius * 0.45, radius * 0.42, 0, Math.PI * 2);
+      context.fill();
+      context.fillRect(-radius * 0.32, -radius * 0.06, radius * 0.64, radius * 0.94);
+      context.fillStyle = palette.glow;
+      context.fillRect(-radius * 0.26, -radius * 0.52, radius * 0.52, radius * 0.12);
+      context.globalAlpha = isBoosting ? 0.74 : 0.38;
+      context.fillStyle = '#ffd36f';
+      drawPolygon(
+        [[-radius * 0.22, radius * 0.9], [0, radius * (1.42 + Math.sin(phase * 8) * 0.18)], [radius * 0.22, radius * 0.9]],
+        '#ffd36f'
+      );
+      context.restore();
+    }
+
+    function updateGame(deltaSeconds) {
+      if (!worldGame.started || worldGame.completed) {
+        return;
+      }
+
+      const level = getGameLevel(state.activeZone);
+      const levelState = worldGame.levelStates[level.key];
+      const player = worldGame.player;
+      const boostActive = worldGame.input.boost && worldGame.boost > 0.04;
+      const acceleration = boostActive ? 1.42 : 0.92;
+      let moveX = 0;
+      let moveY = 0;
+
+      if (worldGame.input.left) moveX -= 1;
+      if (worldGame.input.right) moveX += 1;
+      if (worldGame.input.up) moveY -= 1;
+      if (worldGame.input.down) moveY += 1;
+
+      if (moveX || moveY) {
+        const length = Math.hypot(moveX, moveY) || 1;
+        player.vx += (moveX / length) * acceleration * deltaSeconds;
+        player.vy += (moveY / length) * acceleration * deltaSeconds;
+      }
+
+      player.vx *= 0.88;
+      player.vy *= 0.88;
+      player.x = clamp(player.x + player.vx, 0.08, 0.92);
+      player.y = clamp(player.y + player.vy, 0.18, 0.84);
+      worldGame.boost = clamp(worldGame.boost + (boostActive ? -0.42 : 0.2) * deltaSeconds, 0, 1);
+
+      level.coins.forEach(([coinX, coinY], index) => {
+        if (levelState.coins[index]) {
+          return;
+        }
+
+        if (Math.hypot(player.x - coinX, player.y - coinY) < 0.055) {
+          levelState.coins[index] = true;
+          worldGame.score += 1;
+          state.pulse = Math.max(state.pulse, 0.8);
+          updateGameHud();
+        }
+      });
+
+      level.hazards.forEach(([hazardX, hazardY]) => {
+        if (Math.hypot(player.x - hazardX, player.y - hazardY) < 0.048) {
+          player.x = 0.16;
+          player.y = 0.72;
+          player.vx = 0;
+          player.vy = 0;
+          state.pulse = Math.max(state.pulse, 0.55);
+        }
+      });
+
+      const collected = levelState.coins.every(Boolean);
+      const portalReached = Math.hypot(player.x - level.portal[0], player.y - level.portal[1]) < 0.08;
+
+      if (collected && portalReached) {
+        completeActiveGameLevel();
+      }
+    }
+
+    function drawGameLayer(width, height, unit, phase, palette) {
+      const level = getGameLevel(state.activeZone);
+      const levelState = worldGame.levelStates[level.key];
+      const playerRadius = Math.max(13, unit * 0.36);
+      const toX = (value) => value * width;
+      const toY = (value) => value * height;
+
+      level.hazards.forEach(([x, y], index) => {
+        drawHazard(toX(x), toY(y), Math.max(10, unit * 0.23), phase * 1.6 + index, palette);
+      });
+
+      level.coins.forEach(([x, y], index) => {
+        if (!levelState.coins[index]) {
+          drawCoin(toX(x), toY(y), Math.max(8, unit * 0.2), phase * 2.4 + index * 0.44, palette);
+        }
+      });
+
+      const allCoinsCollected = levelState.coins.every(Boolean);
+      context.globalAlpha = allCoinsCollected ? 1 : 0.34;
+      drawPortal(toX(level.portal[0]), toY(level.portal[1]), Math.max(20, unit * 0.58), phase, palette);
+      context.globalAlpha = 1;
+      drawPlayer(
+        toX(worldGame.player.x),
+        toY(worldGame.player.y),
+        playerRadius,
+        phase,
+        palette,
+        worldGame.input.boost && worldGame.boost > 0.04
+      );
+    }
+
     function drawCastle(centerX, centerY, unit, phase, palette) {
       context.save();
       context.translate(centerX, centerY + Math.sin(phase) * unit * 0.04);
@@ -340,6 +656,7 @@
       const width = state.width;
       const height = state.height;
       const time = now * 0.001;
+      const deltaSeconds = state.lastTime ? Math.min(0.05, (now - state.lastTime) * 0.001) : 0;
       const palette = palettes[state.activeZone] || palettes.arrival;
       const camera = cameraOffsets[state.activeZone] || cameraOffsets.arrival;
       const shortSide = Math.min(width, height);
@@ -347,6 +664,9 @@
       const centerX = width * (0.5 + camera.x);
       const centerY = height * (0.52 + camera.y);
       const pulse = state.pulse;
+
+      state.lastTime = now;
+      updateGame(deltaSeconds);
 
       context.clearRect(0, 0, width, height);
       const sky = context.createRadialGradient(centerX, height * 0.18, 1, centerX, height * 0.38, Math.max(width, height) * 0.72);
@@ -397,6 +717,8 @@
       if (state.starCollected || state.activeZone === 'secret' || state.activeZone === 'rooftop') {
         drawPortal(centerX + unit * 2.75, centerY + unit * 1.15, unit * 0.68, time, palette);
       }
+
+      drawGameLayer(width, height, unit, time, palette);
 
       context.save();
       context.translate(centerX - unit * 0.5 + Math.sin(time) * unit * 0.12, centerY + unit * 1.12);
@@ -1290,6 +1612,7 @@
 
     activeZone = zoneKey;
     visitedZones.add(zoneKey);
+    setGameLevel(zoneKey);
     frame.dataset.zone = zoneKey;
     zoneDetail.dataset.zone = zoneKey;
     zoneDetail.classList.toggle('is-secret', zoneKey === 'secret');
@@ -1519,11 +1842,11 @@
       threeWorld.pulse(1.2);
     }
     if (motionState) {
-      motionState.textContent = 'Warping to the projects room.';
+      motionState.textContent = 'Warping to the Builder Pass.';
     }
 
     window.setTimeout(() => {
-      window.location.href = target.href || '/pages/portfolio.html#projects';
+      window.location.href = target.href || WORLD_PRIZE_URL;
     }, event.type === 'pointerdown' ? 90 : 260);
   }
 
@@ -1680,6 +2003,87 @@
       handleMotionToggle();
     });
   }
+
+  if (gameStartButton) {
+    gameStartButton.addEventListener('click', startGame);
+  }
+
+  if (gameResetButton) {
+    gameResetButton.addEventListener('click', resetActiveGameLevel);
+  }
+
+  gameControlButtons.forEach((button) => {
+    const control = button.dataset.gameControl;
+
+    button.addEventListener('pointerdown', (event) => {
+      event.preventDefault();
+      startGame();
+      setGameControl(control, true);
+      button.setPointerCapture?.(event.pointerId);
+    });
+    button.addEventListener('pointerup', () => setGameControl(control, false));
+    button.addEventListener('pointercancel', () => setGameControl(control, false));
+    button.addEventListener('lostpointercapture', () => setGameControl(control, false));
+  });
+
+  window.addEventListener('keydown', (event) => {
+    const keyMap = {
+      ArrowLeft: 'left',
+      a: 'left',
+      A: 'left',
+      ArrowRight: 'right',
+      d: 'right',
+      D: 'right',
+      ArrowUp: 'up',
+      w: 'up',
+      W: 'up',
+      ArrowDown: 'down',
+      s: 'down',
+      S: 'down',
+      ' ': 'boost',
+      Shift: 'boost',
+    };
+    const control = keyMap[event.key];
+
+    if (!control) {
+      return;
+    }
+
+    event.preventDefault();
+    startGame();
+    setGameControl(control, true);
+  });
+
+  window.addEventListener('keyup', (event) => {
+    const keyMap = {
+      ArrowLeft: 'left',
+      a: 'left',
+      A: 'left',
+      ArrowRight: 'right',
+      d: 'right',
+      D: 'right',
+      ArrowUp: 'up',
+      w: 'up',
+      W: 'up',
+      ArrowDown: 'down',
+      s: 'down',
+      S: 'down',
+      ' ': 'boost',
+      Shift: 'boost',
+    };
+    const control = keyMap[event.key];
+
+    if (control) {
+      setGameControl(control, false);
+    }
+  });
+
+  window.__3dvrWorldGame = {
+    start: startGame,
+    resetLevel: resetActiveGameLevel,
+    completeLevel: completeActiveGameLevel,
+    state: worldGame,
+  };
 
   if (canUseMotionTilt) {
     if (motionPermissionRequired) {

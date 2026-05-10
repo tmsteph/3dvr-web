@@ -27,6 +27,25 @@
           <canvas class="world-canvas-fallback" id="worldCanvasFallback" aria-hidden="true"></canvas>
           <canvas class="world-three-canvas" id="worldThreeCanvas" aria-hidden="true"></canvas>
 
+          <div class="world-game-hud" aria-label="3DVR world game status">
+            <div class="world-game-hud__stat">
+              <span>Level</span>
+              <strong id="worldGameLevel">1 Courtyard</strong>
+            </div>
+            <div class="world-game-hud__stat">
+              <span>Coins</span>
+              <strong id="worldGameCoins">0/5</strong>
+            </div>
+            <div class="world-game-hud__stat">
+              <span>Boost</span>
+              <strong id="worldGameBoost">100%</strong>
+            </div>
+            <div class="world-game-hud__actions">
+              <button id="worldGameStart" type="button">Start run</button>
+              <button id="worldGameReset" type="button">Reset</button>
+            </div>
+          </div>
+
           <div class="scene scene--back" aria-hidden="true">
             <div class="scene__stars"></div>
             <div class="scene__sky"></div>
@@ -128,7 +147,15 @@
           </button>
 
           <div class="world-mobile-hint" aria-hidden="true">
-            <span>Drag to look. Swipe to move. The room camera follows the scene.</span>
+            <span>Collect every coin, then enter the glowing door.</span>
+          </div>
+
+          <div class="world-game-controls" aria-label="World game controls">
+            <button type="button" data-game-control="left" aria-label="Move left">←</button>
+            <button type="button" data-game-control="up" aria-label="Move up">↑</button>
+            <button type="button" data-game-control="right" aria-label="Move right">→</button>
+            <button type="button" data-game-control="down" aria-label="Move down">↓</button>
+            <button type="button" data-game-control="boost" aria-label="Boost">Boost</button>
           </div>
         </div>
 
@@ -138,11 +165,18 @@
 
         <div class="scene-secret-callout" hidden data-secret-callout>
           <span class="scene-secret-callout__eyebrow">Secret attic</span>
-          <strong>Open the projects room next.</strong>
-          <p>Tap through to the hidden projects room portal for the next scene.</p>
-          <a class="scene-secret-callout__link" href="/pages/portfolio.html#projects">
-            Open the projects room portal
+          <strong>Claim the Builder Pass.</strong>
+          <p>Finish the attic route to unlock a cleaner starter path into 3DVR.</p>
+          <a class="scene-secret-callout__link" href="/3dvr-world/prize.html">
+            Open the Builder Pass
           </a>
+        </div>
+
+        <div class="world-prize-panel" hidden data-prize-panel>
+          <span class="world-prize-panel__eyebrow">Run complete</span>
+          <strong>Builder Pass unlocked.</strong>
+          <p>You cleared every room. Take the prize route into a starter plan, portal access, and the next build step.</p>
+          <a class="world-prize-panel__link" href="/3dvr-world/prize.html">Claim the Builder Pass</a>
         </div>
       </div>
 
@@ -223,11 +257,11 @@
         <p class="zone-detail__secret" hidden>
           Secret star found. A hidden attic door has opened in the warp room.
         </p>
-        <a class="zone-detail__secret-link" href="/pages/portfolio.html#projects" hidden>
-          Peek into the projects room
+        <a class="zone-detail__secret-link" href="/3dvr-world/prize.html" hidden>
+          Preview the Builder Pass
         </a>
-        <a class="zone-detail__secret-portal" href="/pages/portfolio.html#projects" hidden data-secret-portal>
-          Open the projects room portal
+        <a class="zone-detail__secret-portal" href="/3dvr-world/prize.html" hidden data-secret-portal>
+          Claim the Builder Pass
         </a>
         <div class="zone-detail__metrics" id="zoneMetrics" aria-label="Zone metrics">
           <article class="zone-metric">
