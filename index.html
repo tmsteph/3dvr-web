@@ -473,56 +473,6 @@
       font-size: 0.82rem;
       color: rgba(255,255,255,0.78);
     }
-    .hero-choice-dock {
-      display: grid;
-      gap: 0.85rem;
-      width: min(100%, 760px);
-    }
-    .hero-choice-dock__label {
-      font-size: 0.82rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.72);
-    }
-    .hero-choice-dock__grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.8rem;
-      width: 100%;
-    }
-    .hero-choice-card {
-      display: grid;
-      gap: 0.35rem;
-      padding: 1.1rem 1.1rem 1.05rem;
-      border-radius: 20px;
-      text-decoration: none;
-      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.08));
-      border: 1px solid rgba(255,255,255,0.16);
-      color: var(--text-light);
-      text-align: left;
-      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 14px 30px rgba(0,0,0,0.22);
-    }
-    .hero-choice-card:hover {
-      transform: translateY(-3px);
-      background: linear-gradient(135deg, rgba(0,255,200,0.18), rgba(255,255,255,0.11));
-      border-color: rgba(0,255,200,0.38);
-      box-shadow: 0 18px 36px rgba(0,0,0,0.28);
-    }
-    .hero-choice-card strong {
-      font-size: 1.02rem;
-      color: var(--accent);
-    }
-    .hero-choice-card span {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.8);
-    }
-    .hero-choice-card--launch {
-      background: linear-gradient(135deg, rgba(0,255,200,0.18), rgba(255,255,255,0.08));
-    }
-    .hero-choice-card--free {
-      background: linear-gradient(135deg, rgba(95,39,205,0.18), rgba(255,255,255,0.08));
-    }
     .hero-buyer-dock {
       display: grid;
       gap: 0.85rem;
@@ -760,9 +710,6 @@
         grid-column: 1 / -1;
         justify-self: center;
         width: min(100%, calc(50% - 0.4rem));
-      }
-      .hero-choice-dock__grid {
-        grid-template-columns: 1fr;
       }
       .hero-buyer-dock__grid { grid-template-columns: 1fr; }
       .hero-vision-highlights { text-align: left; }
@@ -1611,19 +1558,6 @@
           <a class="hero-button hero-button--ghost" data-growth-cta="for-service-businesses" href="subscribe/professional-services.html">
             For service businesses
           </a>
-        </div>
-        <div class="hero-choice-dock" aria-label="Quick start choices">
-          <span class="hero-choice-dock__label">Quick start choices</span>
-          <div class="hero-choice-dock__grid">
-            <a
-              class="hero-choice-card hero-choice-card--launch"
-              data-growth-cta="launch-in-3-days"
-              href="launch-in-3-days.html"
-            >
-              <strong>Launch in 3 Days</strong>
-              <span>Best when you need the first live page or offer fast.</span>
-            </a>
-          </div>
         </div>
         <div class="hero-feedback" aria-label="Homepage clarity feedback">
           <span id="heroFeedbackPrompt" class="hero-feedback__prompt">Does this explain the offer clearly?</span>

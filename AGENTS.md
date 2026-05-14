@@ -18,6 +18,10 @@ Keep the marketing site and billing entry points aligned with the portal environ
 - Open a pull request for changes that should be kept, reviewed, or deployed. Treat the PR as the project memory for why the change exists.
 - Use concise PR descriptions that state the user-facing goal, the environment impact, and any billing or portal-link risks.
 - Keep branches and PRs scoped narrowly so they are easy to review and revert if needed.
+- In this Android/Termux-backed environment, GitHub CLI auth may live under `/data/data/com.termux/files/home/.config/gh` even when the active shell is `/root`.
+- If `git push` or `gh` reports missing GitHub credentials, run GitHub commands with `HOME=/data/data/com.termux/files/home`, for example:
+  - `HOME=/data/data/com.termux/files/home git push -u origin <branch>`
+  - `HOME=/data/data/com.termux/files/home /data/data/com.termux/files/usr/bin/gh pr create ...`
 
 ## Deployment Topology
 - Keep `3dvr-web` and `3dvr-portal` on the same branch matrix:
