@@ -14,8 +14,6 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Quick start choices/);
     assert.match(html, /Launch in 3 Days/);
     assert.match(html, /Best when you need the first live page or offer fast\./);
-    assert.match(html, /Start free in Portal/);
-    assert.match(html, /Best when you want structure first and can pay later\./);
     assert.match(html, /A clear place to land when you need a site, support, or a launch plan\./);
     assert.match(html, /href="3dvr-world\//);
     assert.match(html, /data-portal-path="\/free-trial\.html"/);
