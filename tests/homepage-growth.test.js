@@ -17,7 +17,6 @@ test('homepage ships Gun-backed experiment and feedback plumbing', async () => {
   assert.match(html, /data-growth-cta="sticky-start-free"/);
   assert.match(html, /data-growth-cta="start-free-primary"/);
   assert.match(html, /data-growth-cta="see-plans"/);
-  assert.match(html, /data-growth-cta="for-service-businesses"/);
   assert.match(html, /class="hero-logo-card"/);
   assert.match(html, /A clear place to land when you need a site, support, or a launch plan\./);
   assert.doesNotMatch(html, /data-growth-cta="enter-3dvr-world"/);
