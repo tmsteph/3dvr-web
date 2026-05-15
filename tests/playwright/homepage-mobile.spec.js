@@ -32,7 +32,7 @@ test.describe('homepage mobile sticky CTA', () => {
     await expect(stickyCta).toBeVisible();
   });
 
-  test('centers the final hero plan chip when the mobile plan row count is odd', async ({ page }, testInfo) => {
+  test('keeps hero plan chips inside the mobile grid', async ({ page }, testInfo) => {
     test.skip(!isMobileProject(testInfo), 'Mobile-only homepage check');
 
     await page.goto('/');
@@ -46,20 +46,23 @@ test.describe('homepage mobile sticky CTA', () => {
       }
 
       const gridRect = grid.getBoundingClientRect();
-      const lastRect = chips.at(-1).getBoundingClientRect();
+      const chipRects = chips.map((chip) => chip.getBoundingClientRect());
 
       return {
         chipCount: chips.length,
-        gridCenter: Math.round(gridRect.left + (gridRect.width / 2)),
-        lastCenter: Math.round(lastRect.left + (lastRect.width / 2)),
-        lastWidth: Math.round(lastRect.width),
+        gridLeft: Math.round(gridRect.left),
+        gridRight: Math.round(gridRect.right),
         gridWidth: Math.round(gridRect.width),
+        minChipLeft: Math.round(Math.min(...chipRects.map((rect) => rect.left))),
+        maxChipRight: Math.round(Math.max(...chipRects.map((rect) => rect.right))),
+        maxChipWidth: Math.round(Math.max(...chipRects.map((rect) => rect.width))),
       };
     });
 
     expect(layout).not.toBeNull();
-    expect(layout.chipCount % 2).toBe(1);
-    expect(layout.lastWidth).toBeLessThan(layout.gridWidth);
-    expect(Math.abs(layout.lastCenter - layout.gridCenter)).toBeLessThanOrEqual(2);
+    expect(layout.chipCount).toBeGreaterThan(0);
+    expect(layout.minChipLeft).toBeGreaterThanOrEqual(layout.gridLeft - 1);
+    expect(layout.maxChipRight).toBeLessThanOrEqual(layout.gridRight + 1);
+    expect(layout.maxChipWidth).toBeLessThan(layout.gridWidth);
   });
 });

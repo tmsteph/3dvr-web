@@ -21,9 +21,11 @@ test('homepage ships Gun-backed experiment and feedback plumbing', async () => {
   assert.match(html, /A clear place to land when you need a site, support, or a launch plan\./);
   assert.doesNotMatch(html, /data-growth-cta="enter-3dvr-world"/);
   assert.match(html, /data-growth-cta="plan-free"/);
+  assert.match(html, /data-growth-cta="plan-starter"/);
   assert.match(html, /data-growth-cta="sticky-start-free"[^>]+data-portal-path="\/free-trial\.html"/);
   assert.match(html, /data-growth-cta="start-free-primary"[^>]+data-portal-path="\/free-trial\.html"/);
   assert.match(html, /data-growth-cta="plan-free"[^>]+data-portal-path="\/free-trial\.html"/);
+  assert.match(html, /data-growth-cta="plan-starter"[^>]+data-portal-path="\/billing\/\?plan=starter"/);
   assert.match(html, /data-growth-cta="plan-20"[^>]+data-portal-path="\/billing\/\?plan=pro"/);
   assert.match(html, /data-growth-cta="plan-50"[^>]+data-portal-path="\/billing\/\?plan=builder"/);
   assert.match(html, /data-growth-cta="plan-200"[^>]+data-portal-path="\/billing\/\?plan=embedded"/);
@@ -37,6 +39,7 @@ test('homepage ships Gun-backed experiment and feedback plumbing', async () => {
   assert.doesNotMatch(html, /data-growth-cta="sticky-start-free"[^>]+href="subscribe\/free-plan\.html"/);
   assert.doesNotMatch(html, /data-growth-cta="start-free-primary"[^>]+href="subscribe\/free-plan\.html"/);
   assert.doesNotMatch(html, /data-growth-cta="plan-free"[^>]+href="subscribe\/free-plan\.html"/);
+  assert.doesNotMatch(html, /data-growth-cta="plan-starter"[^>]+href="subscribe\/family-friends\.html"/);
   assert.doesNotMatch(html, /data-growth-cta="plan-20"[^>]+href="subscribe\/founder-plan\.html"/);
   assert.doesNotMatch(html, /data-growth-cta="plan-50"[^>]+href="subscribe\/builder-plan\.html"/);
   assert.doesNotMatch(html, /data-growth-cta="plan-200"[^>]+href="subscribe\/support-teams\.html"/);
