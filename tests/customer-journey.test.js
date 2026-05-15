@@ -14,15 +14,18 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Launch in 3 Days/);
     assert.match(html, /A clear place to land when you need a site, support, or a launch plan\./);
     assert.match(html, /data-portal-path="\/free-trial\.html"/);
+    assert.match(html, /data-portal-path="\/billing\/\?plan=starter"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=pro"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=builder"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=embedded"/);
     assert.match(html, /Pick the lane that fits\./);
     assert.match(html, /Get organized first/);
+    assert.match(html, /Light monthly support/);
     assert.match(html, /Launch in 3 Days/);
     assert.match(html, /Default for businesses/);
     assert.match(html, /Run one calmer team system/);
     assert.match(html, /One-time payment or deposit/);
+    assert.match(html, /\$5/);
     assert.match(html, /\$20/);
     assert.match(html, /\$50/);
     assert.match(html, /\$200/);
