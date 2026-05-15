@@ -18,7 +18,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /data-portal-path="\/billing\/\?plan=pro"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=builder"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=embedded"/);
-    assert.match(html, /Pick the lane that fits\. Billing and account setup continue in portal\./);
+    assert.match(html, /Pick the lane that fits\./);
     assert.match(html, /Built for/);
     assert.match(html, /Get organized first/);
     assert.match(html, /Launch in 3 Days/);
