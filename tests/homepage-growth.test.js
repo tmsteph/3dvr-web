@@ -43,7 +43,6 @@ test('homepage ships Gun-backed experiment and feedback plumbing', async () => {
   assert.doesNotMatch(html, /data-growth-cta="plan-200"[^>]+href="subscribe\/support-teams\.html"/);
   assert.doesNotMatch(html, /data-growth-cta="plan-custom"[^>]+href="launch-your-site\.html"/);
   assert.doesNotMatch(html, /data-growth-cta="message-me"/);
-  assert.match(html, /data-growth-cta="segment-professional-services"/);
   assert.match(html, /src="https:\/\/cdn\.jsdelivr\.net\/npm\/gun\/gun\.js"/);
   assert.match(html, /src="growth\/homepage-experiment\.js"/);
 

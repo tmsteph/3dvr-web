@@ -473,61 +473,6 @@
       font-size: 0.82rem;
       color: rgba(255,255,255,0.78);
     }
-    .hero-buyer-dock {
-      display: grid;
-      gap: 0.85rem;
-      width: min(100%, 760px);
-    }
-    .hero-buyer-dock__label {
-      font-size: 0.82rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.72);
-    }
-    .hero-buyer-dock__grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.8rem;
-      width: 100%;
-    }
-    .hero-buyer-chip {
-      display: grid;
-      gap: 0.35rem;
-      padding: 1rem 1rem 0.95rem;
-      border-radius: 18px;
-      text-decoration: none;
-      background: rgba(0,0,0,0.28);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: var(--text-light);
-      text-align: left;
-      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
-    }
-    .hero-buyer-chip--featured {
-      background: rgba(0,255,200,0.12);
-      border-color: rgba(0,255,200,0.28);
-      box-shadow: 0 16px 34px rgba(0,255,200,0.12);
-    }
-    .hero-buyer-chip:hover {
-      transform: translateY(-3px);
-      background: rgba(255,255,255,0.12);
-      border-color: rgba(0,255,200,0.35);
-    }
-    .hero-buyer-chip__eyebrow {
-      font-size: 0.7rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.66);
-    }
-    .hero-buyer-chip strong {
-      font-size: 0.96rem;
-      color: var(--text-light);
-    }
-    .hero-buyer-chip span {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.72);
-      line-height: 1.45;
-    }
     .hero-button {
       display: inline-flex;
       align-items: center;
@@ -711,7 +656,6 @@
         justify-self: center;
         width: min(100%, calc(50% - 0.4rem));
       }
-      .hero-buyer-dock__grid { grid-template-columns: 1fr; }
       .hero-vision-highlights { text-align: left; }
       .hero-logo-card {
         width: min(92vw, 420px);
@@ -1565,7 +1509,7 @@
           <span id="heroFeedbackStatus" class="hero-feedback__status">Anonymous feedback helps tune the homepage.</span>
         </div>
         <div class="hero-plan-dock" aria-label="Quick plan links">
-          <span class="hero-plan-dock__label">Pick the lane that fits. Billing and account setup continue in portal.</span>
+          <span class="hero-plan-dock__label">Pick the lane that fits.</span>
           <div class="hero-plan-dock__grid">
             <a
               class="hero-plan-chip"
@@ -1611,24 +1555,6 @@
             >
               <strong>Custom</strong>
               <span>One-time payment or deposit</span>
-            </a>
-          </div>
-        </div>
-        <div class="hero-buyer-dock" aria-label="Buyer segments">
-          <span class="hero-buyer-dock__label">Built for</span>
-          <div class="hero-buyer-dock__grid">
-            <a class="hero-buyer-chip hero-buyer-chip--featured" data-growth-cta="segment-professional-services" href="subscribe/professional-services.html">
-              <span class="hero-buyer-chip__eyebrow">Best first page</span>
-              <strong>Professional services</strong>
-              <span>Consultants, agencies, and studios that need a clearer site and better follow-up.</span>
-            </a>
-            <a class="hero-buyer-chip" data-growth-cta="segment-local-services" href="subscribe/local-services.html">
-              <strong>Local services</strong>
-              <span>Owner-operators who need quotes, scheduling, and customer follow-through to stop slipping.</span>
-            </a>
-            <a class="hero-buyer-chip" data-growth-cta="segment-support-teams" href="subscribe/support-teams.html">
-              <strong>Support teams</strong>
-              <span>Teams that need one calmer system for people, scheduling, and weekly action.</span>
             </a>
           </div>
         </div>
