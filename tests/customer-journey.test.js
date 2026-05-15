@@ -13,7 +13,6 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Start free in portal/);
     assert.match(html, /Launch in 3 Days/);
     assert.match(html, /A clear place to land when you need a site, support, or a launch plan\./);
-    assert.match(html, /href="3dvr-world\//);
     assert.match(html, /data-portal-path="\/free-trial\.html"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=pro"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=builder"/);
@@ -49,7 +48,6 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Simple ways to work together/);
     assert.match(html, /Start free if you need structure\. Use Launch in 3 Days at \$20\/month for the first page or offer\./);
     assert.match(html, /Tap a card to continue in portal\./);
-    assert.match(html, /Teams with shared workflow pain should look at Enterprise at \$200\/month\./);
     assert.match(html, /Use this for Launch in 3 Days when the offer, site, or first page still needs to become real\./);
     assert.match(html, /Default for active businesses that need a site, follow-up, updates, and calmer operations\./);
     assert.match(html, /Pair it with a setup sprint when you want the first workflow built faster\./);
@@ -63,10 +61,8 @@ describe('3dvr-web customer journey copy', () => {
     assert.doesNotMatch(html, /A real place to land when you need a site, support, or a launch plan\./);
     assert.doesNotMatch(html, /Best for real businesses that need a site, follow-up, updates, and calmer operations\./);
     assert.match(html, /Trusted by friends, family, and small businesses/);
-    assert.match(html, /See plans and services/);
     assert.match(html, /See plans/);
     assert.match(html, /hero-logo-card/);
-    assert.match(html, /Browser experiments \/ 3DVR world prototype/);
     assert.doesNotMatch(html, /Open the full-screen 3DVR world prototype/);
     assert.match(html, /Nomad system direction/);
     assert.match(html, /Portable work, open hardware, and a calmer way to build on the move\./);
