@@ -43,11 +43,11 @@ describe('3dvr-web customer journey copy', () => {
     assert.doesNotMatch(html, /Join a Cell/);
     assert.doesNotMatch(html, /Life starter/);
     assert.match(html, /Simple ways to work together/);
-    assert.match(html, /Plan fit guide/);
-    assert.match(html, /Get structure first\./);
-    assert.match(html, /Launch the first page or offer\./);
-    assert.match(html, /Default for active businesses\./);
-    assert.match(html, /Tap a card to continue in portal\./);
+    assert.doesNotMatch(html, /Plan fit guide/);
+    assert.doesNotMatch(html, /Get structure first\./);
+    assert.doesNotMatch(html, /Launch the first page or offer\./);
+    assert.doesNotMatch(html, /Default for active businesses\.<\/span>/);
+    assert.doesNotMatch(html, /Tap a card to continue in portal\./);
     assert.match(html, /Use this for Launch in 3 Days when the offer, site, or first page still needs to become real\./);
     assert.match(html, /Default for active businesses that need a site, follow-up, updates, and calmer operations\./);
     assert.match(html, /Pair it with a setup sprint when you want the first workflow built faster\./);
