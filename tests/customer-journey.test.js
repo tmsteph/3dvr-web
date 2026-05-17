@@ -57,10 +57,8 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Default for active businesses that need a site, follow-up, updates, and calmer operations\./);
     assert.match(html, /Pair it with a setup sprint when you want the first workflow built faster\./);
     assert.match(html, /Best for support teams, organizations, and shared workflows that need one calmer operating lane\./);
-    assert.match(html, /Launch in 3 Days/);
-    assert.match(html, /\$20 starting point/);
-    assert.match(html, /See the launch flow/);
-    assert.match(html, /href="launch-in-3-days\.html"/);
+    assert.doesNotMatch(html, /\$20 starting point/);
+    assert.doesNotMatch(html, /See the launch flow/);
     assert.match(html, /A clear place to land when you need a site, support, or a launch plan\./);
     assert.doesNotMatch(html, /Websites\. Apps\. Real support\./);
     assert.doesNotMatch(html, /A real place to land when you need a site, support, or a launch plan\./);
