@@ -22,6 +22,7 @@ test('homepage ships Gun-backed experiment and feedback plumbing', async () => {
   assert.doesNotMatch(html, /data-growth-cta="enter-3dvr-world"/);
   assert.match(html, /data-growth-cta="plan-free"/);
   assert.match(html, /data-growth-cta="plan-starter"/);
+  assert.match(html, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(html, /data-growth-cta="sticky-start-free"[^>]+data-portal-path="\/free-trial\.html"/);
   assert.match(html, /data-growth-cta="start-free-primary"[^>]+data-portal-path="\/free-trial\.html"/);
   assert.match(html, /data-growth-cta="plan-free"[^>]+data-portal-path="\/free-trial\.html"/);
