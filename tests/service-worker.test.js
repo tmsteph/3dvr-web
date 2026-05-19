@@ -3,8 +3,10 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 import vm from 'node:vm';
+import { fileURLToPath } from 'node:url';
 
-const serviceWorkerPath = '/data/data/com.termux/files/home/3dvr-web/service-worker.js';
+const serviceWorkerPath = new URL('../service-worker.js', import.meta.url);
+const serviceWorkerFilename = fileURLToPath(serviceWorkerPath);
 
 async function loadServiceWorker({
   cacheMatch,
@@ -55,7 +57,7 @@ async function loadServiceWorker({
   };
 
   vm.runInNewContext(source, sandbox, {
-    filename: path.basename(serviceWorkerPath)
+    filename: path.basename(serviceWorkerFilename)
   });
 
   return { listeners, cachePuts };
@@ -192,4 +194,28 @@ test('service worker keeps same-origin image assets cache-first', async () => {
 
   assert.equal(fetchCalls, 0);
   assert.equal(await response.text(), 'cached-image');
+});
+
+test('service worker keeps the svg app logo cache-first', async () => {
+  let fetchCalls = 0;
+  const { listeners } = await loadServiceWorker({
+    cacheMatch: async (request) => {
+      if (request?.url === 'https://www.3dvr.tech/assets/logo-3dvr.svg') {
+        return new Response('cached-logo', { status: 200 });
+      }
+      return undefined;
+    },
+    fetchImpl: async () => {
+      fetchCalls += 1;
+      return new Response('network-logo', { status: 200 });
+    }
+  });
+
+  const response = await dispatchFetch(
+    listeners,
+    createRequest('https://www.3dvr.tech/assets/logo-3dvr.svg')
+  );
+
+  assert.equal(fetchCalls, 0);
+  assert.equal(await response.text(), 'cached-logo');
 });
