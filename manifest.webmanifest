@@ -9,6 +9,12 @@
   "description": "3dvr.tech community-first websites, apps, and digital strategy.",
   "icons": [
     {
+      "src": "/assets/logo-3dvr.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
       "src": "/3DVR.png",
       "sizes": "512x512",
       "type": "image/png"

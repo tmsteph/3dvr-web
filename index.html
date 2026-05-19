@@ -14,7 +14,8 @@
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://3dvr.tech/" />
   <title>3dvr.tech</title>
-  <link rel="icon" href="3DVRfavicon.png" />
+  <link rel="icon" type="image/svg+xml" href="/assets/logo-3dvr.svg" />
+  <link rel="alternate icon" href="3DVRfavicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
@@ -36,6 +37,11 @@
   />
   <meta name="twitter:image" content="https://3dvr.tech/3DVR.png" />
   <script defer src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+  <script>
+    const hideHomeBoot = () => document.documentElement.classList.add('app-ready');
+    window.addEventListener('load', hideHomeBoot, { once: true });
+    window.setTimeout(hideHomeBoot, 3600);
+  </script>
 
   <script type="application/ld+json">
     {
@@ -125,6 +131,14 @@
         rotate(calc(var(--hero-tilt-x, 0) * 0.06deg));
       transition: transform 120ms ease;
       will-change: transform;
+    }
+
+    .site-logo {
+      display: block;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
     }
 
     nav {
@@ -220,6 +234,75 @@
       box-shadow: 0 0 15px rgba(0,255,200,0.5);
       z-index: 900;
       transition: bottom 0.25s ease, opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .app-boot {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: grid;
+      place-items: center;
+      gap: 1rem;
+      align-content: center;
+      padding: 2rem;
+      background:
+        radial-gradient(circle at 50% 36%, rgba(0, 255, 200, 0.25), transparent 30rem),
+        #07131f;
+      color: #fff;
+      transition: opacity 280ms ease, visibility 280ms ease;
+    }
+
+    .app-ready .app-boot {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .app-boot__mark {
+      width: 112px;
+      aspect-ratio: 1;
+      border-radius: 28px;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+      animation: web-boot-float 1600ms ease-in-out infinite;
+    }
+
+    .app-boot__mark img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .app-boot__text {
+      display: grid;
+      gap: 0.25rem;
+      text-align: center;
+    }
+
+    .app-boot__text strong {
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+    }
+
+    .app-boot__text span {
+      color: #ccfbf1;
+      font-size: 0.95rem;
+    }
+
+    .app-boot__bar {
+      width: min(220px, 60vw);
+      height: 4px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .app-boot__bar span {
+      display: block;
+      width: 42%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #00ffc8, #fed7aa);
+      animation: web-boot-load 1400ms ease-in-out infinite;
     }
 
     @media (max-width: 640px) {
@@ -1324,14 +1407,39 @@
 
     @keyframes fadeSlideIn { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes web-boot-float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-8px) scale(1.02); }
+    }
+    @keyframes web-boot-load {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(240%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .app-boot__mark,
+      .app-boot__bar span {
+        animation: none;
+      }
+    }
   </style>
 
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="growth/homepage-experiment.js"></script>
 </head>
 <body id="top">
+  <div class="app-boot" aria-hidden="true">
+    <div class="app-boot__mark">
+      <img src="/assets/logo-3dvr.svg" alt="">
+    </div>
+    <div class="app-boot__text">
+      <strong>3dvr.tech</strong>
+      <span>Loading the launch desk</span>
+    </div>
+    <div class="app-boot__bar"><span></span></div>
+  </div>
   <header>
-    <a href="#top"><img src="3DVR.png" alt="3dvr.tech logo" /></a>
+    <a href="#top"><img class="site-logo" src="/assets/logo-3dvr.svg" alt="3dvr.tech logo" /></a>
 
     <!-- a11y & control bindings for mobile menu -->
     <div
@@ -1372,7 +1480,7 @@
         <div class="hero-logo-card">
           <div class="hero-spark hero-spark--top"></div>
           <div class="hero-spark hero-spark--bottom"></div>
-          <img src="3DVR.png" alt="" />
+          <img src="/assets/logo-3dvr.svg" alt="" />
           <p>
             A clear place to land when you need a site, support, or a launch plan.
           </p>
