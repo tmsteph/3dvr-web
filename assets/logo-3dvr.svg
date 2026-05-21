@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
   <title id="title">3dvr.tech logo</title>
-  <desc id="desc">A bright 3dvr mark for the main website.</desc>
+  <desc id="desc">A bright 3dvr.tech mark for the main website.</desc>
   <defs>
     <linearGradient id="web-bg" x1="70" x2="442" y1="72" y2="438" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#0f766e"/>
@@ -20,6 +20,6 @@
   <path d="M98 152 256 64l158 88v208l-158 88-158-88V152Z" fill="url(#web-bg)" filter="url(#depth)"/>
   <path d="M164 188 256 137l92 51v136l-92 51-92-51V188Z" fill="none" stroke="url(#web-ring)" stroke-width="18" stroke-linejoin="round"/>
   <path d="M256 137v238M164 188l184 136M348 188 164 324" stroke="#f8fafc" stroke-width="12" stroke-linecap="round" opacity="0.5"/>
-  <text x="256" y="271" text-anchor="middle" font-family="Poppins, Inter, Arial, sans-serif" font-size="82" font-weight="900" fill="#ffffff" letter-spacing="-6">3D</text>
-  <text x="256" y="326" text-anchor="middle" font-family="Poppins, Inter, Arial, sans-serif" font-size="46" font-weight="800" fill="#ccfbf1" letter-spacing="5">VR</text>
+  <text x="256" y="274" text-anchor="middle" font-family="Poppins, Inter, Arial, sans-serif" font-size="76" font-weight="900" fill="#ffffff" letter-spacing="-3">3dvr</text>
+  <text x="256" y="324" text-anchor="middle" font-family="Poppins, Inter, Arial, sans-serif" font-size="42" font-weight="800" fill="#ccfbf1" letter-spacing="1">.tech</text>
 </svg>
