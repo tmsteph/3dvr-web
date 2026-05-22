@@ -33,6 +33,9 @@ describe('3dvr-web logo branding', () => {
     assert.match(token, /IDLE_QUARTER_SPIN_SPEED = \(Math\.PI \* 2\) \/ 18000/);
     assert.match(token, /IDLE_WOBBLE_X = 0\.025/);
     assert.match(token, /IDLE_WOBBLE_Z = 0\.012/);
+    assert.match(token, /DRAG_SPIN_FACTOR = 0\.018/);
+    assert.match(token, /MAX_SPIN_MOMENTUM = 0\.014/);
+    assert.match(token, /SPIN_MOMENTUM_DECAY = 0\.992/);
     assert.match(token, /CylinderGeometry/);
     assert.match(token, /TorusGeometry/);
     assert.match(token, /CanvasTexture/);
@@ -40,7 +43,8 @@ describe('3dvr-web logo branding', () => {
     assert.match(token, /targetY: 0/);
     assert.match(token, /targetZ: 0/);
     assert.match(token, /idleSpin/);
-    assert.match(token, /state\.idleSpin \+= elapsed \* IDLE_QUARTER_SPIN_SPEED/);
+    assert.match(token, /spinVelocityY/);
+    assert.match(token, /state\.idleSpin \+= elapsed \* \(IDLE_QUARTER_SPIN_SPEED \+ state\.spinVelocityY\)/);
     assert.doesNotMatch(token, /idleSpin = .*% \(Math\.PI \* 2\)/);
     assert.match(token, /getRenderRotation/);
     assert.match(token, /pointerdown/);

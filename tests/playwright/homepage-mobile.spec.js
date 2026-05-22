@@ -136,15 +136,21 @@ test.describe('homepage mobile sticky CTA', () => {
 
     await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
     await page.mouse.down();
-    await page.mouse.move(box.x + box.width / 2 + 95, box.y + box.height / 2 + 48, { steps: 6 });
+    await page.mouse.move(box.x + box.width / 2 + 140, box.y + box.height / 2 + 28, { steps: 2 });
     await page.mouse.up();
+    await page.waitForTimeout(180);
+
+    const boosted = await page.evaluate(() => window.__3dvrLogoToken.getRotation());
+    expect(boosted.spinVelocityY).toBeGreaterThan(0.002);
+
     await page.waitForTimeout(1800);
 
     const released = await page.evaluate(() => window.__3dvrLogoToken.getRotation());
     expect(Math.abs(released.manualX)).toBeLessThan(0.08);
     expect(Math.abs(released.manualY)).toBeLessThan(0.08);
     expect(Math.abs(released.manualZ)).toBeLessThan(0.08);
-    expect(released.idleSpin).toBeGreaterThan(spinning.idleSpin);
-    expect(released.y).toBeGreaterThan(spinning.y);
+    expect(released.spinVelocityY).toBeLessThan(boosted.spinVelocityY);
+    expect(released.idleSpin).toBeGreaterThan(boosted.idleSpin + 1.4);
+    expect(released.y).toBeGreaterThan(boosted.y + 1.4);
   });
 });
