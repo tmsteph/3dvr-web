@@ -2,8 +2,8 @@
   const THREE_CDN_URL = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
   const FACE_TEXTURE_ROTATION = -Math.PI / 2;
   const IDLE_QUARTER_SPIN_SPEED = (Math.PI * 2) / 18000;
-  const IDLE_WOBBLE_X = 0.08;
-  const IDLE_WOBBLE_Z = 0.045;
+  const IDLE_WOBBLE_X = 0.025;
+  const IDLE_WOBBLE_Z = 0.012;
   const root = document.querySelector('[data-3dvr-token]');
   const canvas = document.querySelector('[data-3dvr-token-canvas]');
 
@@ -179,7 +179,7 @@
     state.lastTimestamp = timestamp;
 
     if (!state.dragging) {
-      state.idleSpin = (state.idleSpin + elapsed * IDLE_QUARTER_SPIN_SPEED) % (Math.PI * 2);
+      state.idleSpin += elapsed * IDLE_QUARTER_SPIN_SPEED;
     }
   }
 
