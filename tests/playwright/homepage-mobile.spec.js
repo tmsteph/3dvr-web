@@ -65,4 +65,49 @@ test.describe('homepage mobile sticky CTA', () => {
     expect(layout.maxChipRight).toBeLessThanOrEqual(layout.gridRight + 1);
     expect(layout.maxChipWidth).toBeLessThan(layout.gridWidth);
   });
+
+  test('keeps the 3D hero logo framed on mobile', async ({ page }, testInfo) => {
+    test.skip(!isMobileProject(testInfo), 'Mobile-only homepage check');
+
+    await page.goto('/');
+    await page.waitForFunction(() => window.__3dvrLogoToken?.ready === true);
+    await page.waitForTimeout(300);
+
+    const layout = await page.evaluate(() => {
+      const selectors = [
+        '.hero-eyebrow',
+        '.hero-token',
+        '.hero-brand-wordmark strong',
+        '.hero-logo-card--token p',
+      ];
+      const rects = selectors.map((selector) => {
+        const element = document.querySelector(selector);
+        const rect = element?.getBoundingClientRect();
+
+        return {
+          selector,
+          left: Math.round(rect?.left ?? 0),
+          right: Math.round(rect?.right ?? 0),
+          width: Math.round(rect?.width ?? 0),
+        };
+      });
+      const fallback = document.querySelector('.hero-token__fallback');
+
+      return {
+        innerWidth: window.innerWidth,
+        scrollWidth: document.documentElement.scrollWidth,
+        fallbackOpacity: Number.parseFloat(getComputedStyle(fallback).opacity),
+        rects,
+      };
+    });
+
+    expect(layout.scrollWidth).toBeLessThanOrEqual(layout.innerWidth + 1);
+    expect(layout.fallbackOpacity).toBeLessThan(0.1);
+
+    for (const rect of layout.rects) {
+      expect(rect.width, `${rect.selector} should render with width`).toBeGreaterThan(0);
+      expect(rect.left, `${rect.selector} should not clip left`).toBeGreaterThanOrEqual(0);
+      expect(rect.right, `${rect.selector} should not clip right`).toBeLessThanOrEqual(layout.innerWidth);
+    }
+  });
 });
