@@ -30,9 +30,15 @@ describe('3dvr-web logo branding', () => {
     assert.match(token, /THREE_CDN_URL/);
     assert.match(token, /three\.js\/r128\/three\.min\.js/);
     assert.match(token, /FACE_TEXTURE_ROTATION/);
+    assert.match(token, /IDLE_SPIN_SPEED = \(Math\.PI \* 2\) \/ 56000/);
     assert.match(token, /CylinderGeometry/);
     assert.match(token, /TorusGeometry/);
     assert.match(token, /CanvasTexture/);
+    assert.match(token, /targetX: 0/);
+    assert.match(token, /targetY: 0/);
+    assert.match(token, /targetZ: 0/);
+    assert.match(token, /idleSpin/);
+    assert.match(token, /getRenderRotation/);
     assert.match(token, /pointerdown/);
     assert.match(token, /pointermove/);
     assert.match(token, /releasePointerCapture/);
