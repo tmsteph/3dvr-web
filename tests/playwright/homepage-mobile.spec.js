@@ -111,7 +111,7 @@ test.describe('homepage mobile sticky CTA', () => {
     }
   });
 
-  test('returns the 3D token to a straight idle spin after interaction', async ({ page }, testInfo) => {
+  test('returns the 3D token to a quarter-style idle spin after interaction', async ({ page }, testInfo) => {
     test.skip(!isMobileProject(testInfo), 'Mobile-only homepage check');
 
     await page.goto('/');
@@ -124,7 +124,10 @@ test.describe('homepage mobile sticky CTA', () => {
 
     expect(Math.abs(initial.manualX)).toBeLessThan(0.02);
     expect(Math.abs(initial.manualY)).toBeLessThan(0.02);
+    expect(Math.abs(initial.manualZ)).toBeLessThan(0.02);
     expect(spinning.idleSpin).toBeGreaterThan(initial.idleSpin + 0.06);
+    expect(spinning.y).toBeGreaterThan(initial.y + 0.25);
+    expect(Math.abs(spinning.z - spinning.manualZ)).toBeLessThan(0.06);
 
     const token = page.locator('.hero-token');
     const box = await token.boundingBox();
@@ -139,6 +142,8 @@ test.describe('homepage mobile sticky CTA', () => {
     const released = await page.evaluate(() => window.__3dvrLogoToken.getRotation());
     expect(Math.abs(released.manualX)).toBeLessThan(0.08);
     expect(Math.abs(released.manualY)).toBeLessThan(0.08);
+    expect(Math.abs(released.manualZ)).toBeLessThan(0.08);
     expect(released.idleSpin).toBeGreaterThan(spinning.idleSpin);
+    expect(released.y).toBeGreaterThan(spinning.y);
   });
 });
