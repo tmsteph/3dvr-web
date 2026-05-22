@@ -1,7 +1,9 @@
 (function () {
   const THREE_CDN_URL = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
   const FACE_TEXTURE_ROTATION = -Math.PI / 2;
-  const IDLE_SPIN_SPEED = (Math.PI * 2) / 56000;
+  const IDLE_QUARTER_SPIN_SPEED = (Math.PI * 2) / 18000;
+  const IDLE_WOBBLE_X = 0.08;
+  const IDLE_WOBBLE_Z = 0.045;
   const root = document.querySelector('[data-3dvr-token]');
   const canvas = document.querySelector('[data-3dvr-token-canvas]');
 
@@ -127,7 +129,7 @@
   function makeToken(THREE) {
     const group = new THREE.Group();
     const faceTexture = makeFaceTexture(THREE, false);
-    const backTexture = makeFaceTexture(THREE, true);
+    const backTexture = makeFaceTexture(THREE, false);
     const sideMaterial = new THREE.MeshStandardMaterial({
       color: 0x13b8b8,
       metalness: 0.72,
@@ -177,15 +179,20 @@
     state.lastTimestamp = timestamp;
 
     if (!state.dragging) {
-      state.idleSpin = (state.idleSpin + elapsed * IDLE_SPIN_SPEED) % (Math.PI * 2);
+      state.idleSpin = (state.idleSpin + elapsed * IDLE_QUARTER_SPIN_SPEED) % (Math.PI * 2);
     }
   }
 
   function getRenderRotation() {
+    const wobbleX = Math.sin(state.idleSpin * 1.6) * IDLE_WOBBLE_X;
+    const wobbleZ = Math.sin(state.idleSpin * 0.75) * IDLE_WOBBLE_Z;
+
     return {
-      x: state.currentX,
-      y: state.currentY,
-      z: state.currentZ + state.idleSpin
+      x: state.currentX + wobbleX,
+      y: state.currentY + state.idleSpin,
+      z: state.currentZ + wobbleZ,
+      wobbleX,
+      wobbleZ
     };
   }
 
@@ -288,16 +295,17 @@
     const size = Math.min(width, height);
     const centerX = width / 2;
     const centerY = height / 2;
-    const tiltX = Math.sin(state.currentX) * 0.22;
-    const tiltY = Math.sin(state.currentY) * 0.28;
-    const scaleX = Math.max(0.45, Math.cos(state.currentY) * 0.28 + 0.72);
-    const scaleY = Math.max(0.5, Math.cos(state.currentX) * 0.18 + 0.78);
+    const rotation = getRenderRotation();
+    const tiltX = Math.sin(rotation.x) * 0.22;
+    const tiltY = Math.sin(rotation.y) * 0.28;
+    const scaleX = Math.max(0.18, Math.abs(Math.cos(rotation.y)) * 0.82 + 0.18);
+    const scaleY = Math.max(0.5, Math.cos(rotation.x) * 0.18 + 0.78);
     const radius = size * 0.34;
 
     context.clearRect(0, 0, width, height);
     context.save();
     context.translate(centerX, centerY);
-    context.rotate(state.currentZ + state.idleSpin);
+    context.rotate(rotation.z);
     context.scale(scaleX, scaleY);
 
     const sideGradient = context.createLinearGradient(-radius, -radius, radius, radius);
@@ -364,6 +372,8 @@
           manualY: state.currentY,
           manualZ: state.currentZ,
           idleSpin: state.idleSpin,
+          wobbleX: rotation.wobbleX,
+          wobbleZ: rotation.wobbleZ,
           targetX: state.targetX,
           targetY: state.targetY,
           targetZ: state.targetZ
