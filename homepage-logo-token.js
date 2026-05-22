@@ -1,6 +1,7 @@
 (function () {
   const THREE_CDN_URL = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
   const FACE_TEXTURE_ROTATION = -Math.PI / 2;
+  const IDLE_SPIN_SPEED = (Math.PI * 2) / 56000;
   const root = document.querySelector('[data-3dvr-token]');
   const canvas = document.querySelector('[data-3dvr-token-canvas]');
 
@@ -10,15 +11,17 @@
     dragging: false,
     lastX: 0,
     lastY: 0,
-    targetX: -0.2,
-    targetY: 0.38,
-    targetZ: -0.08,
-    currentX: -0.2,
-    currentY: 0.38,
-    currentZ: -0.08,
-    restX: -0.2,
-    restY: 0.38,
-    restZ: -0.08,
+    targetX: 0,
+    targetY: 0,
+    targetZ: 0,
+    currentX: 0,
+    currentY: 0,
+    currentZ: 0,
+    restX: 0,
+    restY: 0,
+    restZ: 0,
+    idleSpin: 0,
+    lastTimestamp: 0,
     renderer: null,
     fallbackContext: null,
     camera: null,
@@ -164,8 +167,31 @@
     return group;
   }
 
-  function animate() {
+  function updateIdleSpin(timestamp) {
+    if (!state.lastTimestamp) {
+      state.lastTimestamp = timestamp;
+      return;
+    }
+
+    const elapsed = Math.min(timestamp - state.lastTimestamp, 64);
+    state.lastTimestamp = timestamp;
+
+    if (!state.dragging) {
+      state.idleSpin = (state.idleSpin + elapsed * IDLE_SPIN_SPEED) % (Math.PI * 2);
+    }
+  }
+
+  function getRenderRotation() {
+    return {
+      x: state.currentX,
+      y: state.currentY,
+      z: state.currentZ + state.idleSpin
+    };
+  }
+
+  function animate(timestamp = 0) {
     state.frame = window.requestAnimationFrame(animate);
+    updateIdleSpin(timestamp);
 
     if (!state.dragging) {
       state.targetX += (state.restX - state.targetX) * 0.08;
@@ -178,7 +204,8 @@
     state.currentZ += (state.targetZ - state.currentZ) * 0.16;
 
     if (state.token && state.renderer && state.scene && state.camera) {
-      state.token.rotation.set(state.currentX, state.currentY, state.currentZ);
+      const rotation = getRenderRotation();
+      state.token.rotation.set(rotation.x, rotation.y, rotation.z);
       state.renderer.render(state.scene, state.camera);
       return;
     }
@@ -270,7 +297,7 @@
     context.clearRect(0, 0, width, height);
     context.save();
     context.translate(centerX, centerY);
-    context.rotate(state.currentZ);
+    context.rotate(state.currentZ + state.idleSpin);
     context.scale(scaleX, scaleY);
 
     const sideGradient = context.createLinearGradient(-radius, -radius, radius, radius);
@@ -326,14 +353,22 @@
     window.__3dvrLogoToken = {
       ready: true,
       mode,
-      getRotation: () => ({
-        x: state.currentX,
-        y: state.currentY,
-        z: state.currentZ,
-        targetX: state.targetX,
-        targetY: state.targetY,
-        targetZ: state.targetZ
-      })
+      getRotation: () => {
+        const rotation = getRenderRotation();
+
+        return {
+          x: rotation.x,
+          y: rotation.y,
+          z: rotation.z,
+          manualX: state.currentX,
+          manualY: state.currentY,
+          manualZ: state.currentZ,
+          idleSpin: state.idleSpin,
+          targetX: state.targetX,
+          targetY: state.targetY,
+          targetZ: state.targetZ
+        };
+      }
     };
   }
 

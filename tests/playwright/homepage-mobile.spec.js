@@ -110,4 +110,35 @@ test.describe('homepage mobile sticky CTA', () => {
       expect(rect.right, `${rect.selector} should not clip right`).toBeLessThanOrEqual(layout.innerWidth);
     }
   });
+
+  test('returns the 3D token to a straight idle spin after interaction', async ({ page }, testInfo) => {
+    test.skip(!isMobileProject(testInfo), 'Mobile-only homepage check');
+
+    await page.goto('/');
+    await page.waitForFunction(() => window.__3dvrLogoToken?.ready === true);
+    await page.waitForTimeout(300);
+
+    const initial = await page.evaluate(() => window.__3dvrLogoToken.getRotation());
+    await page.waitForTimeout(900);
+    const spinning = await page.evaluate(() => window.__3dvrLogoToken.getRotation());
+
+    expect(Math.abs(initial.manualX)).toBeLessThan(0.02);
+    expect(Math.abs(initial.manualY)).toBeLessThan(0.02);
+    expect(spinning.idleSpin).toBeGreaterThan(initial.idleSpin + 0.06);
+
+    const token = page.locator('.hero-token');
+    const box = await token.boundingBox();
+    expect(box).not.toBeNull();
+
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(box.x + box.width / 2 + 95, box.y + box.height / 2 + 48, { steps: 6 });
+    await page.mouse.up();
+    await page.waitForTimeout(1800);
+
+    const released = await page.evaluate(() => window.__3dvrLogoToken.getRotation());
+    expect(Math.abs(released.manualX)).toBeLessThan(0.08);
+    expect(Math.abs(released.manualY)).toBeLessThan(0.08);
+    expect(released.idleSpin).toBeGreaterThan(spinning.idleSpin);
+  });
 });
