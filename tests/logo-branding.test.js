@@ -10,6 +10,11 @@ describe('3dvr-web logo branding', () => {
     assert.match(logo, /3dvr\.tech logo/);
     assert.match(logo, />3dvr</);
     assert.match(logo, />\.tech</);
-    assert.match(html, /<strong>3dvr\.tech<\/strong>/);
+    assert.match(html, /class="site-brand"[^>]+aria-label="3dvr\.tech home"/);
+    assert.match(html, /<span class="site-brand__name">3dvr<span>\.tech<\/span><\/span>/);
+    assert.match(html, /<strong>3dvr<span>\.tech<\/span><\/strong>/);
+    assert.match(html, /app-boot-enabled/);
+    assert.match(html, /display-mode: standalone/);
+    assert.match(html, /document\.referrer\.startsWith\('android-app:\/\/'\)/);
   });
 });

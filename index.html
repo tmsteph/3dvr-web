@@ -38,9 +38,22 @@
   <meta name="twitter:image" content="https://3dvr.tech/3DVR.png" />
   <script defer src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
   <script>
-    const hideHomeBoot = () => document.documentElement.classList.add('app-ready');
-    window.addEventListener('load', hideHomeBoot, { once: true });
-    window.setTimeout(hideHomeBoot, 3600);
+    (() => {
+      const isStandalone =
+        window.matchMedia('(display-mode: standalone)').matches ||
+        window.navigator.standalone === true ||
+        document.referrer.startsWith('android-app://');
+
+      if (!isStandalone) {
+        document.documentElement.classList.add('app-ready');
+        return;
+      }
+
+      document.documentElement.classList.add('app-boot-enabled');
+      const hideHomeBoot = () => document.documentElement.classList.add('app-ready');
+      window.addEventListener('load', hideHomeBoot, { once: true });
+      window.setTimeout(hideHomeBoot, 3600);
+    })();
   </script>
 
   <script type="application/ld+json">
@@ -123,6 +136,19 @@
       /* animation-delay: 1s; */
     }
 
+    .site-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      min-width: 0;
+    }
+
     header img {
       height: 48px;
       max-width: 150px;
@@ -135,10 +161,20 @@
 
     .site-logo {
       display: block;
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+      flex: 0 0 auto;
+    }
+
+    .site-brand__name {
+      white-space: nowrap;
+      text-shadow: 0 6px 22px rgba(0, 0, 0, 0.3);
+    }
+
+    .site-brand__name span {
+      color: var(--accent);
     }
 
     nav {
@@ -240,7 +276,7 @@
       position: fixed;
       inset: 0;
       z-index: 2000;
-      display: grid;
+      display: none;
       place-items: center;
       gap: 1rem;
       align-content: center;
@@ -252,7 +288,11 @@
       transition: opacity 280ms ease, visibility 280ms ease;
     }
 
-    .app-ready .app-boot {
+    .app-boot-enabled .app-boot {
+      display: grid;
+    }
+
+    .app-boot-enabled.app-ready .app-boot {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -660,7 +700,7 @@
         scale(1.01);
     }
     .hero-logo-card img {
-      width: clamp(220px, 62vw, 300px);
+      width: clamp(112px, 28vw, 156px);
       height: auto;
       filter: drop-shadow(0 0 28px rgba(0,255,200,0.45));
       opacity: 0;
@@ -669,6 +709,22 @@
         translate3d(calc(var(--hero-tilt-x, 0) * 0.35px), calc(var(--hero-tilt-y, 0) * -0.35px), 0);
       transition: transform 120ms ease;
       will-change: transform;
+    }
+    .hero-brand-wordmark {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.55rem;
+    }
+    .hero-brand-wordmark strong {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2.35rem, 10vw, 4.9rem);
+      line-height: 0.95;
+      letter-spacing: 0;
+      text-shadow: 0 18px 46px rgba(0,0,0,0.3);
+    }
+    .hero-brand-wordmark strong span {
+      color: var(--accent);
     }
     .hero-logo-card__eyebrow {
       font-size: 0.82rem;
@@ -1439,7 +1495,10 @@
     <div class="app-boot__bar"><span></span></div>
   </div>
   <header>
-    <a href="#top"><img class="site-logo" src="/assets/logo-3dvr.svg" alt="3dvr.tech logo" /></a>
+    <a class="site-brand" href="#top" aria-label="3dvr.tech home">
+      <img class="site-logo" src="/assets/logo-3dvr.svg" alt="" />
+      <span class="site-brand__name">3dvr<span>.tech</span></span>
+    </a>
 
     <!-- a11y & control bindings for mobile menu -->
     <div
@@ -1480,7 +1539,10 @@
         <div class="hero-logo-card">
           <div class="hero-spark hero-spark--top"></div>
           <div class="hero-spark hero-spark--bottom"></div>
-          <img src="/assets/logo-3dvr.svg" alt="" />
+          <div class="hero-brand-wordmark" aria-label="3dvr.tech">
+            <img src="/assets/logo-3dvr.svg" alt="" />
+            <strong>3dvr<span>.tech</span></strong>
+          </div>
           <p>
             A clear place to land when you need a site, support, or a launch plan.
           </p>
