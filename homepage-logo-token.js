@@ -4,6 +4,10 @@
   const IDLE_QUARTER_SPIN_SPEED = (Math.PI * 2) / 18000;
   const IDLE_WOBBLE_X = 0.025;
   const IDLE_WOBBLE_Z = 0.012;
+  const DRAG_SPIN_FACTOR = 0.018;
+  const MAX_SPIN_MOMENTUM = 0.014;
+  const MIN_SPIN_MOMENTUM = 0.00008;
+  const SPIN_MOMENTUM_DECAY = 0.992;
   const root = document.querySelector('[data-3dvr-token]');
   const canvas = document.querySelector('[data-3dvr-token-canvas]');
 
@@ -23,16 +27,21 @@
     restY: 0,
     restZ: 0,
     idleSpin: 0,
+    spinVelocityY: 0,
     lastTimestamp: 0,
+    lastDragTimestamp: 0,
     renderer: null,
     fallbackContext: null,
     camera: null,
     scene: null,
     token: null,
     frame: 0,
-    interactionsReady: false,
-    dragIdleTimer: 0
+    interactionsReady: false
   };
+
+  function clamp(value, min, max) {
+    return Math.min(max, Math.max(min, value));
+  }
 
   function loadThree() {
     if (window.THREE) return Promise.resolve(window.THREE);
@@ -178,8 +187,17 @@
     const elapsed = Math.min(timestamp - state.lastTimestamp, 64);
     state.lastTimestamp = timestamp;
 
-    if (!state.dragging) {
-      state.idleSpin += elapsed * IDLE_QUARTER_SPIN_SPEED;
+    if (state.dragging) {
+      return;
+    }
+
+    state.idleSpin += elapsed * (IDLE_QUARTER_SPIN_SPEED + state.spinVelocityY);
+
+    if (state.spinVelocityY !== 0) {
+      state.spinVelocityY *= Math.pow(SPIN_MOMENTUM_DECAY, elapsed / 16.67);
+      if (Math.abs(state.spinVelocityY) < MIN_SPIN_MOMENTUM) {
+        state.spinVelocityY = 0;
+      }
     }
   }
 
@@ -226,27 +244,34 @@
     state.dragging = true;
     state.lastX = event.clientX;
     state.lastY = event.clientY;
+    state.lastDragTimestamp = event.timeStamp || performance.now();
+    state.spinVelocityY = 0;
     root.setPointerCapture?.(event.pointerId);
   }
 
   function drag(event) {
     if (!state.dragging) return;
-    window.clearTimeout(state.dragIdleTimer);
     const dx = event.clientX - state.lastX;
     const dy = event.clientY - state.lastY;
+    const timestamp = event.timeStamp || performance.now();
+    const elapsed = Math.max(16, Math.min(timestamp - state.lastDragTimestamp, 80));
+    const spinDelta = dx * DRAG_SPIN_FACTOR;
     state.lastX = event.clientX;
     state.lastY = event.clientY;
-    state.targetY += dx * 0.014;
-    state.targetX += dy * 0.014;
-    state.targetZ += (dx - dy) * 0.002;
-    state.dragIdleTimer = window.setTimeout(() => {
-      state.dragging = false;
-    }, 140);
+    state.lastDragTimestamp = timestamp;
+    state.idleSpin += spinDelta;
+    state.spinVelocityY = clamp(
+      state.spinVelocityY * 0.35 + (spinDelta / elapsed) * 0.65,
+      -MAX_SPIN_MOMENTUM,
+      MAX_SPIN_MOMENTUM
+    );
+    state.targetY += spinDelta * 0.18;
+    state.targetX += dy * 0.012;
+    state.targetZ += (dx - dy) * 0.0015;
   }
 
   function endDrag(event) {
     state.dragging = false;
-    window.clearTimeout(state.dragIdleTimer);
     root.releasePointerCapture?.(event.pointerId);
   }
 
@@ -372,6 +397,7 @@
           manualY: state.currentY,
           manualZ: state.currentZ,
           idleSpin: state.idleSpin,
+          spinVelocityY: state.spinVelocityY,
           wobbleX: rotation.wobbleX,
           wobbleZ: rotation.wobbleZ,
           targetX: state.targetX,
