@@ -127,7 +127,8 @@ test.describe('homepage mobile sticky CTA', () => {
     expect(Math.abs(initial.manualZ)).toBeLessThan(0.02);
     expect(spinning.idleSpin).toBeGreaterThan(initial.idleSpin + 0.06);
     expect(spinning.y).toBeGreaterThan(initial.y + 0.25);
-    expect(Math.abs(spinning.z - spinning.manualZ)).toBeLessThan(0.06);
+    expect(Math.abs(spinning.wobbleX)).toBeLessThan(0.026);
+    expect(Math.abs(spinning.z - spinning.manualZ)).toBeLessThan(0.013);
 
     const token = page.locator('.hero-token');
     const box = await token.boundingBox();
