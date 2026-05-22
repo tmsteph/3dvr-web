@@ -444,10 +444,12 @@
       text-transform: uppercase;
       font-weight: 600;
       color: rgba(255,255,255,0.8);
-      display: inline-flex;
-      justify-content: center;
+      display: block;
       text-align: center;
       width: 100%;
+      max-width: min(100%, 34rem);
+      line-height: 1.8;
+      overflow-wrap: anywhere;
     }
     .hero h1 {
       font-size: clamp(3rem, 7vw, 4.5rem);
@@ -717,7 +719,7 @@
       box-shadow: none;
     }
 
-    .hero-logo-card img {
+    .hero-logo-card > img {
       width: clamp(112px, 28vw, 156px);
       height: auto;
       filter: drop-shadow(0 0 28px rgba(0,255,200,0.45));
@@ -731,13 +733,15 @@
 
     .hero-token {
       position: relative;
-      width: clamp(230px, 54vw, 360px);
+      width: clamp(200px, min(50vw, 36vh), 340px);
+      max-width: 100%;
       aspect-ratio: 1;
       border-radius: 50%;
       cursor: grab;
       touch-action: none;
       outline: none;
       filter: drop-shadow(0 30px 45px rgba(0,0,0,0.32));
+      isolation: isolate;
     }
 
     .hero-token:active {
@@ -770,6 +774,10 @@
       object-fit: contain;
       opacity: 1;
       transition: opacity 220ms ease;
+      animation: none;
+      filter: none;
+      transform: none;
+      pointer-events: none;
     }
 
     .hero-token[data-token-ready="true"] .hero-token__fallback {
@@ -781,13 +789,16 @@
       flex-direction: column;
       align-items: center;
       gap: 0.55rem;
+      width: min(100%, 34rem);
     }
     .hero-brand-wordmark strong {
       font-family: 'Poppins', sans-serif;
-      font-size: clamp(2.35rem, 10vw, 4.9rem);
+      font-size: clamp(2.25rem, 9.2vw, 4.6rem);
       line-height: 0.95;
       letter-spacing: 0;
       text-shadow: 0 18px 46px rgba(0,0,0,0.3);
+      max-width: 100%;
+      white-space: nowrap;
     }
     .hero-brand-wordmark strong span {
       color: var(--accent);
@@ -866,6 +877,31 @@
         width: min(92vw, 420px);
         padding: 2.8rem 2.4rem;
         gap: 1.4rem;
+      }
+      .hero-logo-card--token {
+        width: min(100%, 420px);
+        padding: 0;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding-inline: clamp(1rem, 5vw, 1.25rem);
+      }
+      .hero-eyebrow {
+        font-size: clamp(0.76rem, 3.1vw, 0.88rem);
+        letter-spacing: clamp(0.12em, 0.8vw, 0.18em);
+        line-height: 1.75;
+      }
+      .hero-brand-wordmark {
+        gap: 0.45rem;
+      }
+      .hero-brand-wordmark strong {
+        font-size: clamp(2.2rem, 11vw, 3.25rem);
+      }
+      .hero-token {
+        width: clamp(190px, 56vw, 230px);
       }
     }
 

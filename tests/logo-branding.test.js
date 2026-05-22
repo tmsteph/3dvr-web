@@ -16,6 +16,8 @@ describe('3dvr-web logo branding', () => {
     assert.match(html, /data-3dvr-token/);
     assert.match(html, /data-3dvr-token-canvas/);
     assert.match(html, /Interactive 3dvr\.tech 3D token/);
+    assert.match(html, /\.hero-logo-card > img/);
+    assert.match(html, /\.hero-token\[data-token-ready="true"\] \.hero-token__fallback/);
     assert.match(html, /homepage-logo-token\.js/);
     assert.match(html, /app-boot-enabled/);
     assert.match(html, /display-mode: standalone/);
@@ -27,6 +29,7 @@ describe('3dvr-web logo branding', () => {
 
     assert.match(token, /THREE_CDN_URL/);
     assert.match(token, /three\.js\/r128\/three\.min\.js/);
+    assert.match(token, /FACE_TEXTURE_ROTATION/);
     assert.match(token, /CylinderGeometry/);
     assert.match(token, /TorusGeometry/);
     assert.match(token, /CanvasTexture/);

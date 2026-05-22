@@ -1,5 +1,6 @@
 (function () {
   const THREE_CDN_URL = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  const FACE_TEXTURE_ROTATION = -Math.PI / 2;
   const root = document.querySelector('[data-3dvr-token]');
   const canvas = document.querySelector('[data-3dvr-token-canvas]');
 
@@ -83,6 +84,7 @@
     context.save();
     context.translate(size / 2, size / 2);
     if (mirrored) context.scale(-1, 1);
+    context.rotate(FACE_TEXTURE_ROTATION);
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     context.fillStyle = '#ffffff';
