@@ -699,6 +699,24 @@
         rotateY(calc(var(--hero-tilt-x, 0) * 1deg))
         scale(1.01);
     }
+
+    .hero-logo-card--token {
+      max-width: 460px;
+      padding: 0;
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+      cursor: default;
+    }
+
+    .hero-logo-card--token:hover,
+    .hero-logo-card--token:focus-visible {
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
+    }
+
     .hero-logo-card img {
       width: clamp(112px, 28vw, 156px);
       height: auto;
@@ -710,6 +728,54 @@
       transition: transform 120ms ease;
       will-change: transform;
     }
+
+    .hero-token {
+      position: relative;
+      width: clamp(230px, 54vw, 360px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      cursor: grab;
+      touch-action: none;
+      outline: none;
+      filter: drop-shadow(0 30px 45px rgba(0,0,0,0.32));
+    }
+
+    .hero-token:active {
+      cursor: grabbing;
+    }
+
+    .hero-token:focus-visible {
+      box-shadow: 0 0 0 3px rgba(0,255,200,0.42);
+    }
+
+    .hero-token__canvas,
+    .hero-token__fallback {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-token__canvas {
+      display: block;
+      opacity: 0;
+      transition: opacity 220ms ease;
+    }
+
+    .hero-token[data-token-ready="true"] .hero-token__canvas {
+      opacity: 1;
+    }
+
+    .hero-token__fallback {
+      object-fit: contain;
+      opacity: 1;
+      transition: opacity 220ms ease;
+    }
+
+    .hero-token[data-token-ready="true"] .hero-token__fallback {
+      opacity: 0;
+    }
+
     .hero-brand-wordmark {
       display: flex;
       flex-direction: column;
@@ -1535,12 +1601,21 @@
       <div class="hero-intro">
         <p id="heroEyebrow" class="hero-eyebrow">Websites. Apps. Direct support.</p>
       </div>
-      <div class="hero-visual" aria-hidden="true">
-        <div class="hero-logo-card">
+      <div class="hero-visual">
+        <div class="hero-logo-card hero-logo-card--token">
           <div class="hero-spark hero-spark--top"></div>
           <div class="hero-spark hero-spark--bottom"></div>
           <div class="hero-brand-wordmark" aria-label="3dvr.tech">
-            <img src="/assets/logo-3dvr.svg" alt="" />
+            <div
+              class="hero-token"
+              data-3dvr-token
+              role="img"
+              tabindex="0"
+              aria-label="Interactive 3dvr.tech 3D token. Drag to spin it; release to reset."
+            >
+              <canvas class="hero-token__canvas" data-3dvr-token-canvas></canvas>
+              <img class="hero-token__fallback" src="/assets/logo-3dvr.svg" alt="" />
+            </div>
             <strong>3dvr<span>.tech</span></strong>
           </div>
           <p>
@@ -2381,5 +2456,6 @@
   </script>
   <script src="/pwa.js"></script>
   <script src="subscribe/portal-links.js"></script>
+  <script src="homepage-logo-token.js"></script>
 </body>
 </html>
