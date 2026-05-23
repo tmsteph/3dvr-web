@@ -11,6 +11,11 @@ describe('3dvr-web logo branding', () => {
     assert.match(logo, />3dvr</);
     assert.match(logo, />\.tech</);
     assert.match(html, /class="site-brand"[^>]+aria-label="3dvr\.tech home"/);
+    assert.match(html, /class="site-token-mark" aria-hidden="true"/);
+    assert.match(html, /class="site-token-mark__main">3dvr<\/span>/);
+    assert.match(html, /class="site-token-mark__suffix">\.tech<\/span>/);
+    assert.match(html, /\.site-token-mark::before/);
+    assert.match(html, /radial-gradient\(circle at 48% 50%, #1768f2 0, #0f766e 54%, #07131f 100%\)/);
     assert.match(html, /<span class="site-brand__name">3dvr<span>\.tech<\/span><\/span>/);
     assert.match(html, /<strong>3dvr<span>\.tech<\/span><\/strong>/);
     assert.match(html, /data-3dvr-token/);
