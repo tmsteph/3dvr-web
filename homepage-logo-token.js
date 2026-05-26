@@ -5,9 +5,16 @@
   const IDLE_WOBBLE_X = 0.025;
   const IDLE_WOBBLE_Z = 0.012;
   const DRAG_SPIN_FACTOR = 0.018;
+  const DRAG_VERTICAL_SPIN_FACTOR = DRAG_SPIN_FACTOR;
   const MAX_SPIN_MOMENTUM = 0.014;
+  const MAX_VERTICAL_SPIN_MOMENTUM = 0.0018;
   const MIN_SPIN_MOMENTUM = 0.00008;
   const SPIN_MOMENTUM_DECAY = 0.992;
+  const VERTICAL_SPIN_MOMENTUM_DECAY = 0.9;
+  const MANUAL_X_TARGET_RETURN = 0.14;
+  const MANUAL_X_CURRENT_RETURN = 0.24;
+  const MANUAL_TARGET_RETURN = 0.1;
+  const MANUAL_CURRENT_RETURN = 0.18;
   const root = document.querySelector('[data-3dvr-token]');
   const canvas = document.querySelector('[data-3dvr-token-canvas]');
 
@@ -27,6 +34,7 @@
     restY: 0,
     restZ: 0,
     idleSpin: 0,
+    spinVelocityX: 0,
     spinVelocityY: 0,
     lastTimestamp: 0,
     lastDragTimestamp: 0,
@@ -199,6 +207,14 @@
         state.spinVelocityY = 0;
       }
     }
+
+    if (state.spinVelocityX !== 0) {
+      state.targetX += elapsed * state.spinVelocityX;
+      state.spinVelocityX *= Math.pow(VERTICAL_SPIN_MOMENTUM_DECAY, elapsed / 16.67);
+      if (Math.abs(state.spinVelocityX) < MIN_SPIN_MOMENTUM) {
+        state.spinVelocityX = 0;
+      }
+    }
   }
 
   function getRenderRotation() {
@@ -219,14 +235,14 @@
     updateIdleSpin(timestamp);
 
     if (!state.dragging) {
-      state.targetX += (state.restX - state.targetX) * 0.08;
-      state.targetY += (state.restY - state.targetY) * 0.08;
-      state.targetZ += (state.restZ - state.targetZ) * 0.08;
+      state.targetX += (state.restX - state.targetX) * MANUAL_X_TARGET_RETURN;
+      state.targetY += (state.restY - state.targetY) * MANUAL_TARGET_RETURN;
+      state.targetZ += (state.restZ - state.targetZ) * MANUAL_TARGET_RETURN;
     }
 
-    state.currentX += (state.targetX - state.currentX) * 0.16;
-    state.currentY += (state.targetY - state.currentY) * 0.16;
-    state.currentZ += (state.targetZ - state.currentZ) * 0.16;
+    state.currentX += (state.targetX - state.currentX) * MANUAL_X_CURRENT_RETURN;
+    state.currentY += (state.targetY - state.currentY) * MANUAL_CURRENT_RETURN;
+    state.currentZ += (state.targetZ - state.currentZ) * MANUAL_CURRENT_RETURN;
 
     if (state.token && state.renderer && state.scene && state.camera) {
       const rotation = getRenderRotation();
@@ -245,6 +261,7 @@
     state.lastX = event.clientX;
     state.lastY = event.clientY;
     state.lastDragTimestamp = event.timeStamp || performance.now();
+    state.spinVelocityX = 0;
     state.spinVelocityY = 0;
     root.setPointerCapture?.(event.pointerId);
   }
@@ -256,17 +273,24 @@
     const timestamp = event.timeStamp || performance.now();
     const elapsed = Math.max(16, Math.min(timestamp - state.lastDragTimestamp, 80));
     const spinDelta = dx * DRAG_SPIN_FACTOR;
+    const verticalIntent = Math.abs(dy) / Math.max(Math.abs(dx), Math.abs(dy), 1);
+    const verticalSpinDelta = dy * DRAG_VERTICAL_SPIN_FACTOR * verticalIntent;
     state.lastX = event.clientX;
     state.lastY = event.clientY;
     state.lastDragTimestamp = timestamp;
     state.idleSpin += spinDelta;
+    state.targetX += verticalSpinDelta;
+    state.spinVelocityX = clamp(
+      state.spinVelocityX * 0.35 + (verticalSpinDelta / elapsed) * 0.65,
+      -MAX_VERTICAL_SPIN_MOMENTUM,
+      MAX_VERTICAL_SPIN_MOMENTUM
+    );
     state.spinVelocityY = clamp(
       state.spinVelocityY * 0.35 + (spinDelta / elapsed) * 0.65,
       -MAX_SPIN_MOMENTUM,
       MAX_SPIN_MOMENTUM
     );
     state.targetY += spinDelta * 0.18;
-    state.targetX += dy * 0.012;
     state.targetZ += (dx - dy) * 0.0015;
   }
 
@@ -397,6 +421,7 @@
           manualY: state.currentY,
           manualZ: state.currentZ,
           idleSpin: state.idleSpin,
+          spinVelocityX: state.spinVelocityX,
           spinVelocityY: state.spinVelocityY,
           wobbleX: rotation.wobbleX,
           wobbleZ: rotation.wobbleZ,
