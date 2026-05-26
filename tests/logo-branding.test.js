@@ -39,11 +39,14 @@ describe('3dvr-web logo branding', () => {
     assert.match(token, /IDLE_WOBBLE_X = 0\.025/);
     assert.match(token, /IDLE_WOBBLE_Z = 0\.012/);
     assert.match(token, /DRAG_SPIN_FACTOR = 0\.018/);
-    assert.match(token, /DRAG_VERTICAL_SPIN_FACTOR = DRAG_SPIN_FACTOR/);
+    assert.match(token, /DRAG_VERTICAL_SPIN_FACTOR = 0\.034/);
     assert.match(token, /MAX_SPIN_MOMENTUM = 0\.014/);
-    assert.match(token, /MAX_VERTICAL_SPIN_MOMENTUM = 0\.0018/);
+    assert.match(token, /MAX_VERTICAL_SPIN_MOMENTUM = 0\.032/);
     assert.match(token, /SPIN_MOMENTUM_DECAY = 0\.992/);
-    assert.match(token, /VERTICAL_SPIN_MOMENTUM_DECAY = 0\.9/);
+    assert.match(token, /VERTICAL_SPIN_MOMENTUM_DECAY = 0\.986/);
+    assert.match(token, /ACTIVE_FRONT_FLIP_TARGET_RETURN = 0\.018/);
+    assert.match(token, /FRONT_FLIP_SETTLE_VELOCITY = 0\.0012/);
+    assert.match(token, /FULL_TURN = Math\.PI \* 2/);
     assert.match(token, /MANUAL_X_TARGET_RETURN = 0\.14/);
     assert.match(token, /MANUAL_X_CURRENT_RETURN = 0\.24/);
     assert.match(token, /MANUAL_TARGET_RETURN = 0\.1/);
@@ -59,6 +62,8 @@ describe('3dvr-web logo branding', () => {
     assert.match(token, /spinVelocityY/);
     assert.match(token, /state\.idleSpin \+= elapsed \* \(IDLE_QUARTER_SPIN_SPEED \+ state\.spinVelocityY\)/);
     assert.match(token, /state\.targetX \+= elapsed \* state\.spinVelocityX/);
+    assert.match(token, /nearestFullTurn/);
+    assert.match(token, /settleFrontFlipAxis/);
     assert.match(token, /const verticalIntent = Math\.abs\(dy\) \/ Math\.max\(Math\.abs\(dx\), Math\.abs\(dy\), 1\)/);
     assert.match(token, /const verticalSpinDelta = dy \* DRAG_VERTICAL_SPIN_FACTOR \* verticalIntent/);
     assert.match(token, /state\.targetX \+= verticalSpinDelta/);
@@ -67,7 +72,8 @@ describe('3dvr-web logo branding', () => {
     assert.match(token, /pointerdown/);
     assert.match(token, /pointermove/);
     assert.match(token, /releasePointerCapture/);
-    assert.match(token, /state\.targetX \+= \(state\.restX - state\.targetX\) \* MANUAL_X_TARGET_RETURN/);
+    assert.match(token, /const xTargetReturn =/);
+    assert.match(token, /state\.targetX \+= \(state\.restX - state\.targetX\) \* xTargetReturn/);
     assert.match(token, /__3dvrLogoToken/);
   });
 });
