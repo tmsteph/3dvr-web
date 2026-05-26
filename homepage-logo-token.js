@@ -5,16 +5,19 @@
   const IDLE_WOBBLE_X = 0.025;
   const IDLE_WOBBLE_Z = 0.012;
   const DRAG_SPIN_FACTOR = 0.018;
-  const DRAG_VERTICAL_SPIN_FACTOR = DRAG_SPIN_FACTOR;
+  const DRAG_VERTICAL_SPIN_FACTOR = 0.034;
   const MAX_SPIN_MOMENTUM = 0.014;
-  const MAX_VERTICAL_SPIN_MOMENTUM = 0.0018;
+  const MAX_VERTICAL_SPIN_MOMENTUM = 0.032;
   const MIN_SPIN_MOMENTUM = 0.00008;
   const SPIN_MOMENTUM_DECAY = 0.992;
-  const VERTICAL_SPIN_MOMENTUM_DECAY = 0.9;
+  const VERTICAL_SPIN_MOMENTUM_DECAY = 0.986;
+  const ACTIVE_FRONT_FLIP_TARGET_RETURN = 0.018;
+  const FRONT_FLIP_SETTLE_VELOCITY = 0.0012;
   const MANUAL_X_TARGET_RETURN = 0.14;
   const MANUAL_X_CURRENT_RETURN = 0.24;
   const MANUAL_TARGET_RETURN = 0.1;
   const MANUAL_CURRENT_RETURN = 0.18;
+  const FULL_TURN = Math.PI * 2;
   const root = document.querySelector('[data-3dvr-token]');
   const canvas = document.querySelector('[data-3dvr-token-canvas]');
 
@@ -49,6 +52,23 @@
 
   function clamp(value, min, max) {
     return Math.min(max, Math.max(min, value));
+  }
+
+  function nearestFullTurn(value) {
+    return Math.round(value / FULL_TURN) * FULL_TURN;
+  }
+
+  function settleFrontFlipAxis() {
+    if (state.dragging || Math.abs(state.spinVelocityX) >= FRONT_FLIP_SETTLE_VELOCITY) return;
+    if (Math.abs(state.spinVelocityX) < FRONT_FLIP_SETTLE_VELOCITY) {
+      state.spinVelocityX = 0;
+    }
+
+    if (Math.abs(state.currentX) < FULL_TURN && Math.abs(state.targetX) < FULL_TURN) return;
+
+    const turnOffset = nearestFullTurn(state.currentX);
+    state.currentX -= turnOffset;
+    state.targetX = nearestFullTurn(state.currentX);
   }
 
   function loadThree() {
@@ -235,7 +255,12 @@
     updateIdleSpin(timestamp);
 
     if (!state.dragging) {
-      state.targetX += (state.restX - state.targetX) * MANUAL_X_TARGET_RETURN;
+      settleFrontFlipAxis();
+      const xTargetReturn =
+        Math.abs(state.spinVelocityX) >= FRONT_FLIP_SETTLE_VELOCITY
+          ? ACTIVE_FRONT_FLIP_TARGET_RETURN
+          : MANUAL_X_TARGET_RETURN;
+      state.targetX += (state.restX - state.targetX) * xTargetReturn;
       state.targetY += (state.restY - state.targetY) * MANUAL_TARGET_RETURN;
       state.targetZ += (state.restZ - state.targetZ) * MANUAL_TARGET_RETURN;
     }

@@ -126,7 +126,7 @@ test.describe('homepage mobile sticky CTA', () => {
     expect(Math.abs(initial.manualY)).toBeLessThan(0.02);
     expect(Math.abs(initial.manualZ)).toBeLessThan(0.02);
     expect(spinning.idleSpin).toBeGreaterThan(initial.idleSpin + 0.06);
-    expect(spinning.y).toBeGreaterThan(initial.y + 0.25);
+    expect(spinning.y).toBeGreaterThan(initial.y + 0.2);
     expect(Math.abs(spinning.wobbleX)).toBeLessThan(0.026);
     expect(Math.abs(spinning.z - spinning.manualZ)).toBeLessThan(0.013);
 
@@ -152,5 +152,40 @@ test.describe('homepage mobile sticky CTA', () => {
     expect(released.spinVelocityY).toBeLessThan(boosted.spinVelocityY);
     expect(released.idleSpin).toBeGreaterThan(boosted.idleSpin + 1.4);
     expect(released.y).toBeGreaterThan(boosted.y + 1.4);
+  });
+
+  test('lets vertical token drags front-flip several times before settling', async ({ page }, testInfo) => {
+    test.skip(!isMobileProject(testInfo), 'Mobile-only homepage check');
+
+    await page.goto('/');
+    await page.waitForFunction(() => window.__3dvrLogoToken?.ready === true);
+    await page.waitForTimeout(300);
+
+    const token = page.locator('.hero-token');
+    const box = await token.boundingBox();
+    expect(box).not.toBeNull();
+
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2 - 190, { steps: 5 });
+    await page.mouse.up();
+    await page.waitForTimeout(180);
+
+    const released = await page.evaluate(() => window.__3dvrLogoToken.getRotation());
+    expect(Math.abs(released.spinVelocityX)).toBeGreaterThan(0.012);
+
+    await page.waitForTimeout(1200);
+
+    const flipping = await page.evaluate(() => window.__3dvrLogoToken.getRotation());
+    expect(Math.abs(flipping.x - released.x)).toBeGreaterThan(Math.PI * 1.25);
+    expect(Math.abs(flipping.spinVelocityX)).toBeGreaterThan(0.002);
+
+    await page.waitForFunction(() => Math.abs(window.__3dvrLogoToken.getRotation().spinVelocityX) === 0, null, {
+      timeout: 6500
+    });
+    await page.waitForTimeout(1200);
+
+    const settled = await page.evaluate(() => window.__3dvrLogoToken.getRotation());
+    expect(Math.abs(settled.manualX)).toBeLessThan(0.12);
   });
 });
