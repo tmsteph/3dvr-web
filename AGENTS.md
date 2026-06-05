@@ -13,6 +13,17 @@ Keep the marketing site and billing entry points aligned with the portal environ
 - Keep this operating rule visible in planning and reviews: `Sell first. Build second. Keep it simple.`
 - Avoid speculative feature work unless it directly supports an active offer, customer delivery, or billing flow.
 
+## Agent Execution Principles
+- Think before coding: state important assumptions, surface conflicting interpretations, and ask when guessing would
+  change the solution. Push back when a simpler or safer path exists.
+- Simplicity first: implement the smallest useful change. Do not add speculative features, one-use abstractions, or
+  configurability the task did not request. If the first version feels bloated, simplify before committing.
+- Surgical changes: touch only files and lines required by the request. Match local style, leave unrelated comments and
+  formatting alone, and remove only dead code created by your own change.
+- Goal-driven execution: turn each task into a verifiable outcome. For fixes, reproduce with a test or focused check
+  first when practical; for refactors, verify behavior before and after. Keep looping until checks or a clearly stated
+  blocker close the task.
+
 ## Git Workflow
 - Do not work directly on `main` for substantive changes. Create a branch first.
 - Open a pull request for changes that should be kept, reviewed, or deployed. Treat the PR as the project memory for why the change exists.
