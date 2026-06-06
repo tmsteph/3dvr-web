@@ -32,14 +32,14 @@ test.describe('homepage mobile sticky CTA', () => {
     await expect(stickyCta).toBeVisible();
   });
 
-  test('keeps hero plan chips inside the mobile grid', async ({ page }, testInfo) => {
+  test('keeps plan lane chips inside the mobile grid', async ({ page }, testInfo) => {
     test.skip(!isMobileProject(testInfo), 'Mobile-only homepage check');
 
     await page.goto('/');
 
     const layout = await page.evaluate(() => {
-      const grid = document.querySelector('.hero-plan-dock__grid');
-      const chips = Array.from(document.querySelectorAll('.hero-plan-chip'));
+      const grid = document.querySelector('.plan-lane-dock__grid');
+      const chips = Array.from(document.querySelectorAll('.plan-lane-chip'));
 
       if (!grid || chips.length === 0) {
         return null;

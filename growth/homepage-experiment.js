@@ -7,14 +7,12 @@
 
   const VISITOR_ID_KEY = '3dvr-growth.visitor-id';
   const VARIANT_DAY_KEY = '3dvr-growth.homepage-hero.variant-day';
-  const FEEDBACK_DAY_KEY = '3dvr-growth.homepage-hero.feedback-day';
   const GUN_PEERS = window.__GUN_PEERS__ || [
     'wss://relay.3dvr.tech/gun',
     'wss://gun-relay-3dvr.fly.dev/gun',
   ];
   const EXPERIMENT_CONFIG_PATH = ['3dvr-portal', 'growth', 'experiments', 'homepage-hero', 'config'];
   const EXPERIMENT_EVENT_PATH = ['3dvr-portal', 'growth', 'experiments', 'homepage-hero', 'events'];
-  const FEEDBACK_EVENT_PATH = ['3dvr-portal', 'growth', 'feedback', 'homepage-hero'];
   const MIN_WEIGHT = 1;
   const DEFAULT_CONFIG = Object.freeze({
     autoMode: true,
@@ -27,17 +25,13 @@
       key: 'clarity',
       eyebrow: 'Websites. Apps. Direct support.',
       primary: 'We help small businesses actually launch.',
-      secondary: 'Not just plan. Not just think about it.',
-      body: 'Get a site, landing page, or simple business system with direct help from idea to launch.',
-      feedbackPrompt: 'Does this explain the offer clearly?',
+      body: 'Launch a site, offer, or simple business system with direct support from idea to live.',
     }),
     traction: Object.freeze({
       key: 'traction',
       eyebrow: 'Launch fast. Start selling.',
       primary: 'Get your project live.',
-      secondary: 'Keep it moving with direct support.',
       body: '3dvr helps small businesses and creators launch pages, apps, and follow-up systems without getting stuck in tech.',
-      feedbackPrompt: 'Does this version make you want to reach out?',
     }),
   });
 
@@ -45,11 +39,7 @@
     hero: document.querySelector('.hero'),
     eyebrow: document.getElementById('heroEyebrow'),
     headlinePrimary: document.getElementById('heroHeadlinePrimary'),
-    headlineSecondary: document.getElementById('heroHeadlineSecondary'),
     body: document.getElementById('heroBody'),
-    feedbackPrompt: document.getElementById('heroFeedbackPrompt'),
-    feedbackStatus: document.getElementById('heroFeedbackStatus'),
-    feedbackButtons: Array.from(document.querySelectorAll('[data-growth-feedback]')),
     ctaLinks: Array.from(document.querySelectorAll('[data-growth-cta]')),
   };
 
@@ -147,10 +137,6 @@
     return getNode(root, EXPERIMENT_EVENT_PATH);
   }
 
-  function feedbackNode(root) {
-    return getNode(root, FEEDBACK_EVENT_PATH);
-  }
-
   function applyVariant(variantKey) {
     const variant = VARIANTS[variantKey] || VARIANTS.clarity;
     state.variantKey = variant.key;
@@ -159,9 +145,7 @@
     }
     if (refs.eyebrow) refs.eyebrow.textContent = variant.eyebrow;
     if (refs.headlinePrimary) refs.headlinePrimary.textContent = variant.primary;
-    if (refs.headlineSecondary) refs.headlineSecondary.textContent = variant.secondary;
     if (refs.body) refs.body.textContent = variant.body;
-    if (refs.feedbackPrompt) refs.feedbackPrompt.textContent = variant.feedbackPrompt;
   }
 
   function writeEvent(root, pathResolver, payload) {
@@ -204,44 +188,10 @@
     });
   }
 
-  function submitFeedback(root, sentiment) {
-    const day = todayKey();
-    const previous = safeStorageGet(FEEDBACK_DAY_KEY);
-    if (previous === `${day}:${sentiment}:${state.variantKey}`) {
-      if (refs.feedbackStatus) {
-        refs.feedbackStatus.textContent = 'Feedback already saved for today.';
-      }
-      return;
-    }
-
-    safeStorageSet(FEEDBACK_DAY_KEY, `${day}:${sentiment}:${state.variantKey}`);
-    writeEvent(root, feedbackNode, {
-      visitorId: state.visitorId,
-      page: 'homepage',
-      sentiment,
-      variant: state.variantKey,
-      prompt: refs.feedbackPrompt?.textContent || '',
-      timestamp: new Date().toISOString(),
-      source: '3dvr-web',
-    });
-
-    if (refs.feedbackStatus) {
-      refs.feedbackStatus.textContent = sentiment === 'clear'
-        ? 'Saved. This version felt clear.'
-        : 'Saved. This version still felt vague.';
-    }
-  }
-
   function bindInteractions(root) {
     refs.ctaLinks.forEach(link => {
       link.addEventListener('click', () => {
         logCtaClick(root, String(link.dataset.growthCta || 'unknown').trim());
-      });
-    });
-
-    refs.feedbackButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        submitFeedback(root, String(button.dataset.growthFeedback || 'clear').trim());
       });
     });
   }
@@ -257,9 +207,6 @@
     bindInteractions(root);
 
     if (!gun) {
-      if (refs.feedbackStatus) {
-        refs.feedbackStatus.textContent = 'Feedback works best when Gun is available.';
-      }
       return;
     }
 
@@ -272,9 +219,6 @@
       state.config = normalizeConfig(data);
       applyVariant(chooseVariant(state.config, state.visitorId));
       logView(root);
-      if (refs.feedbackStatus && state.config.autoMode && state.config.winner) {
-        refs.feedbackStatus.textContent = `Live winner: ${state.config.winner}.`;
-      }
     });
   }
 

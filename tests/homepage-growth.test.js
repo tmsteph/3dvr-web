@@ -2,29 +2,29 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-test('homepage ships Gun-backed experiment and feedback plumbing', async () => {
+test('homepage ships Gun-backed experiment and focused CTA plumbing', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const js = await readFile(new URL('../growth/homepage-experiment.js', import.meta.url), 'utf8');
 
   assert.match(html, /id="heroEyebrow"/);
   assert.match(html, /id="heroHeadlinePrimary"/);
-  assert.match(html, /id="heroHeadlineSecondary"/);
   assert.match(html, /id="heroBody"/);
-  assert.match(html, /id="heroFeedbackPrompt"/);
-  assert.match(html, /id="heroFeedbackStatus"/);
-  assert.match(html, /data-growth-feedback="clear"/);
-  assert.match(html, /data-growth-feedback="unclear"/);
+  assert.doesNotMatch(html, /id="heroHeadlineSecondary"/);
+  assert.doesNotMatch(html, /id="heroFeedbackPrompt"/);
+  assert.doesNotMatch(html, /id="heroFeedbackStatus"/);
+  assert.doesNotMatch(html, /data-growth-feedback=/);
   assert.match(html, /data-growth-cta="sticky-start-free"/);
-  assert.match(html, /data-growth-cta="start-free-primary"/);
+  assert.match(html, /data-growth-cta="start-project-primary"/);
   assert.match(html, /data-growth-cta="see-plans"/);
   assert.match(html, /class="hero-logo-card(?:\s|")/);
   assert.match(html, /A clear place to land when you need a site, support, or a launch plan\./);
   assert.doesNotMatch(html, /data-growth-cta="enter-3dvr-world"/);
+  assert.match(html, /class="plan-lane-section"/);
   assert.match(html, /data-growth-cta="plan-free"/);
   assert.match(html, /data-growth-cta="plan-starter"/);
   assert.match(html, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(html, /data-growth-cta="sticky-start-free"[^>]+data-portal-path="\/free-trial\.html"/);
-  assert.match(html, /data-growth-cta="start-free-primary"[^>]+data-portal-path="\/free-trial\.html"/);
+  assert.match(html, /data-growth-cta="start-project-primary"[^>]+data-portal-path="\/start\/"/);
   assert.match(html, /data-growth-cta="plan-free"[^>]+data-portal-path="\/free-trial\.html"/);
   assert.match(html, /data-growth-cta="plan-starter"[^>]+data-portal-path="\/billing\/\?plan=starter"/);
   assert.match(html, /data-growth-cta="plan-20"[^>]+data-portal-path="\/billing\/\?plan=pro"/);
@@ -50,13 +50,12 @@ test('homepage ships Gun-backed experiment and feedback plumbing', async () => {
 
   assert.match(js, /EXPERIMENT_CONFIG_PATH = \['3dvr-portal', 'growth', 'experiments', 'homepage-hero', 'config'\]/);
   assert.match(js, /EXPERIMENT_EVENT_PATH = \['3dvr-portal', 'growth', 'experiments', 'homepage-hero', 'events'\]/);
-  assert.match(js, /FEEDBACK_EVENT_PATH = \['3dvr-portal', 'growth', 'feedback', 'homepage-hero'\]/);
   assert.match(js, /eyebrow: 'Launch fast\. Start selling\.'/);
   assert.match(js, /primary: 'Get your project live\.'/);
-  assert.match(js, /secondary: 'Keep it moving with direct support\.'/);
   assert.match(js, /function chooseVariant/);
   assert.match(js, /function applyVariant/);
   assert.match(js, /function logView/);
   assert.match(js, /function logCtaClick/);
-  assert.match(js, /function submitFeedback/);
+  assert.doesNotMatch(js, /FEEDBACK_EVENT_PATH/);
+  assert.doesNotMatch(js, /function submitFeedback/);
 });

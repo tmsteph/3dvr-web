@@ -5,19 +5,25 @@ import { readFile } from 'node:fs/promises';
 describe('3dvr-web customer journey copy', () => {
   it('keeps the homepage focused on concrete first steps and the portal start path', async () => {
     const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+    const heroHtml = html.match(/<section class="hero">[\s\S]*?<\/section>/)?.[0] || '';
+    const heroIndex = html.indexOf('<section class="hero">');
+    const planLaneIndex = html.indexOf('<section class="plan-lane-section"');
+    const whatWeDoIndex = html.indexOf('<section id="vision"');
+
     assert.match(html, /Websites\. Apps\. Direct support\./);
     assert.match(html, /We help small businesses actually launch\./);
-    assert.match(html, /Not just plan\. Not just think about it\./);
-    assert.match(html, /Get a site, landing page, or simple business system with direct help from idea to launch\./);
+    assert.match(html, /Launch a site, offer, or simple business system with direct support from idea to live\./);
     assert.match(html, /Start Free/);
-    assert.match(html, /Start free in portal/);
+    assert.match(html, /Start a project/);
     assert.match(html, /Launch in 3 Days/);
     assert.match(html, /A clear place to land when you need a site, support, or a launch plan\./);
+    assert.match(html, /data-portal-path="\/start\/"/);
     assert.match(html, /data-portal-path="\/free-trial\.html"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=starter"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=pro"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=builder"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=embedded"/);
+    assert.match(html, /Plans after the offer is clear/);
     assert.match(html, /Pick the lane that fits\./);
     assert.match(html, /Get organized first/);
     assert.match(html, /Light monthly support/);
@@ -69,6 +75,19 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Trusted by friends, family, and small businesses/);
     assert.match(html, /See plans/);
     assert.match(html, /hero-logo-card/);
+    assert.ok(heroIndex !== -1, 'Hero section should exist');
+    assert.ok(planLaneIndex !== -1, 'Plan lane section should exist');
+    assert.ok(whatWeDoIndex !== -1, 'What We Do section should exist');
+    assert.ok(heroIndex < planLaneIndex, 'Plan lane should move below the hero');
+    assert.ok(planLaneIndex < whatWeDoIndex, 'Plan lane should sit before What We Do');
+    assert.doesNotMatch(heroHtml, /plan-lane-section/);
+    assert.doesNotMatch(heroHtml, /Pick the lane that fits\./);
+    assert.doesNotMatch(heroHtml, /data-growth-cta="plan-free"/);
+    assert.doesNotMatch(heroHtml, /data-growth-feedback=/);
+    assert.doesNotMatch(html, /Does this explain the offer clearly\?/);
+    assert.doesNotMatch(html, /Still vague/);
+    assert.doesNotMatch(html, /Start free in portal/);
+    assert.doesNotMatch(html, /Not just plan\. Not just think about it\./);
     assert.doesNotMatch(html, /Open the full-screen 3DVR world prototype/);
     assert.match(html, /Nomad system direction/);
     assert.match(html, /Portable work, open hardware, and a calmer way to build on the move\./);
