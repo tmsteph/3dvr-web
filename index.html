@@ -513,21 +513,11 @@
       line-height: 1.1;
     }
     .hero-headline {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: clamp(0.6rem, 1.5vw, 1rem);
-    }
-    .hero-headline-primary,
-    .hero-headline-secondary {
       display: block;
+      max-width: 900px;
     }
-    .hero-headline-divider {
-      width: clamp(60px, 14vw, 120px);
-      height: 4px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(0,255,200,0.85), rgba(255,255,255,0.8));
-      box-shadow: 0 6px 20px rgba(0, 255, 200, 0.35);
+    .hero-headline-primary {
+      display: block;
     }
     .hero p {
       font-size: clamp(1.1rem, 2vw, 1.4rem);
@@ -540,96 +530,40 @@
       gap: 1rem;
       justify-content: center;
     }
-    .hero-route-guide {
-      width: min(100%, 760px);
+    .plan-lane-section {
+      padding-block: clamp(3rem, 6vw, 5rem);
+      background:
+        radial-gradient(circle at 18% 12%, rgba(0, 255, 200, 0.18), transparent 38rem),
+        linear-gradient(160deg, rgba(12, 33, 45, 0.96), rgba(19, 71, 78, 0.96));
+    }
+    .plan-lane-dock {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 0.9rem;
-      padding: 1rem;
-      border-radius: 20px;
-      background: rgba(0, 0, 0, 0.28);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+      width: min(100%, 900px);
     }
-    .hero-route {
-      display: grid;
-      gap: 0.35rem;
-      padding: 0.9rem 1rem;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      text-align: left;
+    .plan-lane-title {
+      margin: 0;
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
     }
-    .hero-route strong {
-      font-size: 1rem;
-      color: var(--accent);
-    }
-    .hero-route span {
-      font-size: 0.92rem;
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.45;
-    }
-    .hero-feedback {
-      width: min(100%, 760px);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      padding: 0.95rem 1rem;
-      border-radius: 18px;
-      background: rgba(0,0,0,0.28);
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.18);
-    }
-    .hero-feedback__prompt {
-      font-size: 0.92rem;
-      color: rgba(255,255,255,0.84);
-      font-weight: 600;
-    }
-    .hero-feedback__buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-      justify-content: center;
-    }
-    .hero-feedback__button {
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.1);
-      color: var(--text-light);
-      border-radius: 999px;
-      padding: 0.55rem 1rem;
-      font: inherit;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.25s ease, background 0.25s ease;
-    }
-    .hero-feedback__button:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,0.16);
-    }
-    .hero-feedback__status {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.66);
-    }
-    .hero-plan-dock {
-      display: grid;
-      gap: 0.85rem;
-      width: min(100%, 760px);
-    }
-    .hero-plan-dock__label {
+    .plan-lane-dock__label {
       font-size: 0.82rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.72);
     }
-    .hero-plan-dock__grid {
+    .plan-lane-dock__intro {
+      margin: 0 auto 0.4rem;
+      max-width: 640px;
+      color: rgba(255,255,255,0.78);
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+    }
+    .plan-lane-dock__grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 0.8rem;
       width: 100%;
     }
-    .hero-plan-chip {
+    .plan-lane-chip {
       display: grid;
       gap: 0.3rem;
       padding: 0.95rem 1rem;
@@ -642,16 +576,16 @@
       transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
       box-shadow: 0 12px 28px rgba(0,0,0,0.2);
     }
-    .hero-plan-chip:hover {
+    .plan-lane-chip:hover {
       transform: translateY(-3px);
       background: rgba(255,255,255,0.14);
       border-color: rgba(0,255,200,0.35);
     }
-    .hero-plan-chip strong {
+    .plan-lane-chip strong {
       font-size: 1rem;
       color: var(--accent);
     }
-    .hero-plan-chip span {
+    .plan-lane-chip span {
       font-size: 0.82rem;
       color: rgba(255,255,255,0.78);
     }
@@ -921,10 +855,10 @@
       .hero-intro { text-align: center; margin-bottom: 0; align-self: center; }
       .hero-content { text-align: center; align-items: center; margin-top: 0; }
       .hero p { max-width: none; }
-      .hero-plan-dock__grid {
+      .plan-lane-dock__grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-      .hero-plan-dock__grid > :last-child:nth-child(odd) {
+      .plan-lane-dock__grid > :last-child:nth-child(odd) {
         grid-column: 1 / -1;
         justify-self: center;
         width: min(100%, calc(50% - 0.4rem));
@@ -1724,92 +1658,89 @@
       <div class="hero-content">
         <h1 class="hero-headline">
           <span id="heroHeadlinePrimary" class="hero-headline-primary">We help small businesses actually launch.</span>
-          <span class="hero-headline-divider" aria-hidden="true"></span>
-          <span id="heroHeadlineSecondary" class="hero-headline-secondary">Not just plan. Not just think about it.</span>
         </h1>
         <p id="heroBody">
-          Get a site, landing page, or simple business system with direct help from idea to launch.
+          Launch a site, offer, or simple business system with direct support from idea to live.
         </p>
         <div class="hero-buttons">
           <a
             class="hero-button hero-button--primary"
-            data-growth-cta="start-free-primary"
-            data-portal-path="/free-trial.html"
-            href="https://portal.3dvr.tech/free-trial.html"
+            data-growth-cta="start-project-primary"
+            data-portal-path="/start/"
+            href="https://portal.3dvr.tech/start/"
           >
-            Start free in portal
+            Start a project
           </a>
           <a class="hero-button hero-button--ghost" data-growth-cta="see-plans" href="#subscribe">
             See plans
           </a>
         </div>
-        <div class="hero-feedback" aria-label="Homepage clarity feedback">
-          <span id="heroFeedbackPrompt" class="hero-feedback__prompt">Does this explain the offer clearly?</span>
-          <div class="hero-feedback__buttons">
-            <button type="button" class="hero-feedback__button" data-growth-feedback="clear">Yes, clear</button>
-            <button type="button" class="hero-feedback__button" data-growth-feedback="unclear">Still vague</button>
-          </div>
-          <span id="heroFeedbackStatus" class="hero-feedback__status">Anonymous feedback helps tune the homepage.</span>
-        </div>
-        <div class="hero-plan-dock" aria-label="Quick plan links">
-          <span class="hero-plan-dock__label">Pick the lane that fits.</span>
-          <div class="hero-plan-dock__grid">
-            <a
-              class="hero-plan-chip"
-              data-growth-cta="plan-free"
-              data-portal-path="/free-trial.html"
-              href="https://portal.3dvr.tech/free-trial.html"
-            >
-              <strong>Free</strong>
-              <span>Get organized first</span>
-            </a>
-            <a
-              class="hero-plan-chip"
-              data-growth-cta="plan-starter"
-              data-portal-path="/billing/?plan=starter"
-              href="https://portal.3dvr.tech/billing/?plan=starter"
-            >
-              <strong>$5</strong>
-              <span>Light monthly support</span>
-            </a>
-            <a
-              class="hero-plan-chip"
-              data-growth-cta="plan-20"
-              data-portal-path="/billing/?plan=pro"
-              href="https://portal.3dvr.tech/billing/?plan=pro"
-            >
-              <strong>$20</strong>
-              <span>Launch in 3 Days</span>
-            </a>
-            <a
-              class="hero-plan-chip"
-              data-growth-cta="plan-50"
-              data-portal-path="/billing/?plan=builder"
-              href="https://portal.3dvr.tech/billing/?plan=builder"
-            >
-              <strong>$50</strong>
-              <span>Default for businesses</span>
-            </a>
-            <a
-              class="hero-plan-chip"
-              data-growth-cta="plan-200"
-              data-portal-path="/billing/?plan=embedded"
-              href="https://portal.3dvr.tech/billing/?plan=embedded"
-            >
-              <strong>$200</strong>
-              <span>Run one calmer team system</span>
-            </a>
-            <a
-              class="hero-plan-chip"
-              data-growth-cta="plan-custom"
-              data-portal-path="/billing/?plan=custom"
-              href="https://portal.3dvr.tech/billing/?plan=custom"
-            >
-              <strong>Custom</strong>
-              <span>One-time payment or deposit</span>
-            </a>
-          </div>
-        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="plan-lane-section" aria-labelledby="planLaneTitle">
+    <div class="plan-lane-dock" aria-label="Quick plan links">
+      <span class="plan-lane-dock__label">Plans after the offer is clear</span>
+      <h2 id="planLaneTitle" class="plan-lane-title">Pick the lane that fits.</h2>
+      <p class="plan-lane-dock__intro">
+        Start free if you are still organizing, or choose the lane that matches the support you need.
+      </p>
+      <div class="plan-lane-dock__grid">
+        <a
+          class="plan-lane-chip"
+          data-growth-cta="plan-free"
+          data-portal-path="/free-trial.html"
+          href="https://portal.3dvr.tech/free-trial.html"
+        >
+          <strong>Free</strong>
+          <span>Get organized first</span>
+        </a>
+        <a
+          class="plan-lane-chip"
+          data-growth-cta="plan-starter"
+          data-portal-path="/billing/?plan=starter"
+          href="https://portal.3dvr.tech/billing/?plan=starter"
+        >
+          <strong>$5</strong>
+          <span>Light monthly support</span>
+        </a>
+        <a
+          class="plan-lane-chip"
+          data-growth-cta="plan-20"
+          data-portal-path="/billing/?plan=pro"
+          href="https://portal.3dvr.tech/billing/?plan=pro"
+        >
+          <strong>$20</strong>
+          <span>Launch in 3 Days</span>
+        </a>
+        <a
+          class="plan-lane-chip"
+          data-growth-cta="plan-50"
+          data-portal-path="/billing/?plan=builder"
+          href="https://portal.3dvr.tech/billing/?plan=builder"
+        >
+          <strong>$50</strong>
+          <span>Default for businesses</span>
+        </a>
+        <a
+          class="plan-lane-chip"
+          data-growth-cta="plan-200"
+          data-portal-path="/billing/?plan=embedded"
+          href="https://portal.3dvr.tech/billing/?plan=embedded"
+        >
+          <strong>$200</strong>
+          <span>Run one calmer team system</span>
+        </a>
+        <a
+          class="plan-lane-chip"
+          data-growth-cta="plan-custom"
+          data-portal-path="/billing/?plan=custom"
+          href="https://portal.3dvr.tech/billing/?plan=custom"
+        >
+          <strong>Custom</strong>
+          <span>One-time payment or deposit</span>
+        </a>
       </div>
     </div>
   </section>
