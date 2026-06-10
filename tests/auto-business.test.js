@@ -2,16 +2,17 @@ import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-describe('3DVR plans ladder page', () => {
-  it('ships a dedicated plans and project sprints route', async () => {
-    const html = await readFile(new URL('../plans/index.html', import.meta.url), 'utf8');
+describe('3DVR auto-business design document', () => {
+  it('ships a quieter internal design document route', async () => {
+    const html = await readFile(new URL('../auto-business/index.html', import.meta.url), 'utf8');
 
-    assert.match(html, /<link rel="canonical" href="https:\/\/3dvr\.tech\/plans\/" \/>/);
-    assert.match(html, /<title>3DVR Plans and Project Sprints \| 3dvr\.tech<\/title>/);
-    assert.match(html, /Build the future with 3DVR\./);
-    assert.match(html, /Join 3DVR monthly, or hire us for a one-time sprint\./);
+    assert.match(html, /<link rel="canonical" href="https:\/\/3dvr\.tech\/auto-business\/" \/>/);
+    assert.match(html, /<meta name="robots" content="noindex, nofollow" \/>/);
+    assert.match(html, /<title>3DVR Auto-Business Design Notes \| 3dvr\.tech<\/title>/);
+    assert.match(html, /3DVR auto-business\./);
+    assert.match(html, /This is not the primary public pricing page\./);
+    assert.match(html, /Internal offer design notes\./);
     assert.match(html, /Start with a \$300 Microsite/);
-    assert.match(html, /Join as a \$5 Supporter/);
     assert.match(html, /Sell and deliver 3DVR plans and microsite services/);
     assert.match(html, /Find leads/);
     assert.match(html, /turn one-time work into recurring support/);
@@ -21,7 +22,7 @@ describe('3DVR plans ladder page', () => {
   });
 
   it('maps monthly plan cards to existing portal billing lanes', async () => {
-    const html = await readFile(new URL('../plans/index.html', import.meta.url), 'utf8');
+    const html = await readFile(new URL('../auto-business/index.html', import.meta.url), 'utf8');
 
     assert.match(html, /Free Explorer/);
     assert.match(html, /Supporter/);
@@ -36,7 +37,7 @@ describe('3DVR plans ladder page', () => {
   });
 
   it('lists the one-time services and uses project-intake contact CTAs', async () => {
-    const html = await readFile(new URL('../plans/index.html', import.meta.url), 'utf8');
+    const html = await readFile(new URL('../auto-business/index.html', import.meta.url), 'utf8');
 
     assert.match(html, /Quick Review/);
     assert.match(html, /\$50/);
@@ -52,13 +53,17 @@ describe('3DVR plans ladder page', () => {
     assert.match(html, /data-portal-path="\/billing\/\?plan=custom"/);
   });
 
-  it('links the new route from the homepage and sitemap', async () => {
+  it('keeps the homepage link low-key and removes the route from the sitemap', async () => {
     const homeHtml = await readFile(new URL('../index.html', import.meta.url), 'utf8');
     const sitemap = await readFile(new URL('../sitemap.xml', import.meta.url), 'utf8');
 
-    assert.match(homeHtml, /href="plans\/">Plans<\/a>/);
-    assert.match(homeHtml, /href="plans\/">\s*See plans\s*<\/a>/);
-    assert.match(homeHtml, /Open plans and project sprints/);
-    assert.match(sitemap, /<loc>https:\/\/3dvr\.tech\/plans\/<\/loc>/);
+    assert.match(homeHtml, /href="#subscribe">Plans<\/a>/);
+    assert.match(homeHtml, /href="#subscribe">\s*See plans\s*<\/a>/);
+    assert.match(homeHtml, /Internal offer notes: <a href="auto-business\/">auto-business design document<\/a>/);
+    assert.doesNotMatch(homeHtml, /href="auto-business\/">Plans<\/a>/);
+    assert.doesNotMatch(homeHtml, /href="auto-business\/">\s*See plans\s*<\/a>/);
+    assert.doesNotMatch(homeHtml, /Open plans and project sprints/);
+    assert.doesNotMatch(sitemap, /<loc>https:\/\/3dvr\.tech\/plans\/<\/loc>/);
+    assert.doesNotMatch(sitemap, /<loc>https:\/\/3dvr\.tech\/auto-business\/<\/loc>/);
   });
 });
