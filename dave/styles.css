@@ -394,6 +394,13 @@ h3 {
   color: var(--muted);
 }
 
+.footer-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 @media (max-width: 980px) {
   .intro-section,
   .reel-section,
@@ -465,6 +472,10 @@ h3 {
 
   .site-footer {
     display: grid;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
   }
 }
 

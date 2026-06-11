@@ -436,6 +436,16 @@
       flex-wrap: wrap;
     }
 
+    .footer-inner a {
+      color: var(--text);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .footer-inner a:hover {
+      color: var(--accent);
+    }
+
     @media (max-width: 900px) {
       .hero-grid, .split { grid-template-columns: 1fr; }
       .orb-card { min-height: 420px; }
@@ -449,11 +459,12 @@
 <body>
   <nav class="nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="#top" aria-label="3DVR home">
+      <a class="brand" href="/" aria-label="3DVR home">
         <span class="mark">3D</span>
         <span>3DVR</span>
       </a>
       <div class="nav-links">
+        <a href="/">Home</a>
         <a href="#story">The Story</a>
         <a href="#break">The Break</a>
         <a href="#join">Join 3DVR</a>
@@ -652,7 +663,7 @@
   <footer>
     <div class="wrap footer-inner">
       <div>© <span id="year"></span> 3DVR · Creating Universal Experiences</div>
-      <div>Open tools · Human agency · Practical consciousness</div>
+      <div><a href="/">3dvr.tech home</a> · Open tools · Human agency · Practical consciousness</div>
     </div>
   </footer>
 
