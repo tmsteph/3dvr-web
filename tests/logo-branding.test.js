@@ -23,6 +23,11 @@ describe('3dvr-web logo branding', () => {
     assert.match(html, /Interactive 3dvr\.tech 3D token/);
     assert.match(html, /\.hero-logo-card > img/);
     assert.match(html, /\.hero-token\[data-token-ready="true"\] \.hero-token__fallback/);
+    const tokenHoverRule = html.match(
+      /\.hero-logo-card--token:hover,\s+\.hero-logo-card--token:focus-visible\s+\{(?<body>[\s\S]*?)\n\s+\}/
+    )?.groups?.body ?? '';
+    assert.match(tokenHoverRule, /translate3d\(0, 0, 0\)/);
+    assert.doesNotMatch(tokenHoverRule, /scale\(/);
     assert.match(html, /homepage-logo-token\.js/);
     assert.match(html, /app-boot-enabled/);
     assert.match(html, /display-mode: standalone/);
