@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>3DVR — Build the Future, Keep It Human</title>
-  <meta name="description" content="3DVR builds human-first microsites, digital assistants, 3D spaces, and small-business operating systems for creators, freelancers, and local businesses." />
+  <meta name="description" content="3DVR builds practical websites, launch pages, interactive experiences, and subscription-backed support for creators, freelancers, and local businesses." />
   <link rel="canonical" href="https://3dvr.tech/build/" />
   <meta property="og:site_name" content="3dvr.tech" />
   <meta property="og:title" content="3DVR — Build the Future, Keep It Human" />
-  <meta property="og:description" content="Human-first microsites, digital assistants, 3D spaces, and small-business operating systems for creators and local businesses." />
+  <meta property="og:description" content="Practical websites, launch pages, interactive experiences, and subscription-backed support for creators and local businesses." />
   <meta property="og:url" content="https://3dvr.tech/build/" />
   <meta property="og:image" content="https://3dvr.tech/3DVR.png" />
   <meta property="og:image:alt" content="3dvr.tech logomark" />
@@ -245,7 +245,7 @@
       overflow: hidden;
     }
 
-    .portal {
+    .offer-panel {
       min-height: 560px;
       padding: 28px;
       display: flex;
@@ -253,7 +253,7 @@
       justify-content: space-between;
     }
 
-    .portal::before {
+    .offer-panel::before {
       content: "";
       position: absolute;
       inset: -40%;
@@ -263,7 +263,7 @@
       opacity: 0.8;
     }
 
-    .portal::after {
+    .offer-panel::after {
       content: "";
       position: absolute;
       inset: 1px;
@@ -279,7 +279,7 @@
       }
     }
 
-    .portal > * {
+    .offer-panel > * {
       position: relative;
       z-index: 1;
     }
@@ -313,11 +313,11 @@
       padding: 42px;
     }
 
-    .portal-logo {
-      width: 68px;
+    .offer-logo {
+      width: 116px;
+      height: auto;
       margin: 0 auto 18px;
-      border-radius: var(--radius);
-      box-shadow: 0 18px 50px rgba(99, 215, 255, 0.28);
+      filter: drop-shadow(0 18px 32px rgba(99, 215, 255, 0.28));
     }
 
     .orb strong {
@@ -334,16 +334,36 @@
       line-height: 1.4;
     }
 
-    .terminal {
+    .deliverables {
       border: 1px solid var(--line);
       border-radius: var(--radius);
       padding: 16px;
       background: rgba(0,0,0,0.26);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      display: grid;
+      gap: 10px;
+    }
+
+    .deliverables div {
+      display: grid;
+      gap: 3px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(247, 243, 232, 0.12);
+    }
+
+    .deliverables div:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .deliverables strong {
       color: #c9fff8;
-      font-size: 0.86rem;
-      line-height: 1.7;
-      overflow-wrap: anywhere;
+      font-size: 0.96rem;
+    }
+
+    .deliverables span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.45;
     }
 
     section {
@@ -491,6 +511,30 @@
       color: var(--muted);
     }
 
+    .plan-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      width: fit-content;
+      padding: 0 14px;
+      border: 1px solid rgba(134, 255, 242, 0.22);
+      border-radius: 999px;
+      color: var(--text);
+      background: rgba(134, 255, 242, 0.08);
+      font-weight: 800;
+      font-size: 0.9rem;
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .plan-link:hover,
+    .plan-link:focus-visible {
+      transform: translateY(-2px);
+      background: rgba(134, 255, 242, 0.14);
+      border-color: rgba(134, 255, 242, 0.42);
+      outline: none;
+    }
+
     .price.featured {
       background:
         linear-gradient(180deg, rgba(134,255,242,0.16), rgba(255,255,255,0.06)),
@@ -548,7 +592,7 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .portal {
+      .offer-panel {
         min-height: 480px;
       }
 
@@ -595,7 +639,7 @@
         margin-top: 14px;
       }
 
-      .portal {
+      .offer-panel {
         padding: 18px;
       }
 
@@ -630,7 +674,7 @@
         scroll-behavior: auto;
       }
 
-      .portal::before {
+      .offer-panel::before {
         animation: none;
       }
 
@@ -650,10 +694,10 @@
         <span>3DVR</span>
       </a>
       <div class="nav-links">
-        <a href="#systems">Systems</a>
-        <a href="#manifesto">Manifesto</a>
+        <a href="#systems">Services</a>
+        <a href="#manifesto">Approach</a>
         <a href="#plans">Plans</a>
-        <a class="button" href="mailto:3dvr.tech@gmail.com" target="_blank" rel="noopener noreferrer">Start</a>
+        <a class="button" href="/subscribe/">View plans</a>
       </div>
     </nav>
   </header>
@@ -662,38 +706,50 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <div class="eyebrow"><span class="dot"></span> Human-first computing for creators and small businesses</div>
+          <div class="eyebrow"><span class="dot"></span> Websites and launch support for creators and small businesses</div>
           <h1><span class="gradient-text">Build the future.</span><br />Keep it human.</h1>
           <p class="lead">
-            3DVR builds small doorways into the next civilization: microsites, 3D rooms,
-            AI-assisted workflows, payment systems, and local-first digital operating systems
-            for people who are ready to stop renting their dreams from platforms.
+            3DVR helps creators, freelancers, and local businesses turn a rough idea into a
+            real web presence: clear pages, stronger offers, payment paths, interactive details,
+            and ongoing support that keeps the work moving after launch.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="mailto:3dvr.tech@gmail.com?subject=I%20want%20to%20build%20with%203DVR" target="_blank" rel="noopener noreferrer">Launch something</a>
-            <a class="button" href="#manifesto">Read the manifesto</a>
+            <a class="button primary" href="/subscribe/">Compare subscriptions</a>
+            <a class="button" href="#plans">See plan options</a>
           </div>
         </div>
 
-        <aside class="panel portal" aria-label="3DVR portal preview">
+        <aside class="panel offer-panel" aria-label="3DVR build offer preview">
           <div class="status">
-            <span>3DVR / PORTAL</span>
-            <span>online</span>
+            <span>3DVR BUILD</span>
+            <span>for real launches</span>
           </div>
 
           <div class="orb">
             <div>
-              <img class="portal-logo" src="/3DVR.png" alt="" width="68" height="68" loading="eager" />
-              <strong>One dream.<br />One system.</strong>
-              <span>Website + payments + agents + 3D space + human approval.</span>
+              <img class="offer-logo" src="/3DVR.png" alt="" width="116" height="33" loading="eager" />
+              <strong>One offer.<br />Clear path.</strong>
+              <span>Site + subscription + follow-up + room to grow.</span>
             </div>
           </div>
 
-          <div class="terminal">
-            <div>&gt; create_microsite("your idea")</div>
-            <div>&gt; connect_payments("$0 / $5 / $20 / $50 / $200")</div>
-            <div>&gt; draft_outreach("human-approved")</div>
-            <div>&gt; ship_future("open-source", "local-first")</div>
+          <div class="deliverables">
+            <div>
+              <strong>Launch page</strong>
+              <span>A polished page that explains what you do and why it matters.</span>
+            </div>
+            <div>
+              <strong>Subscription path</strong>
+              <span>Plans connect back to the real 3DVR subscription options.</span>
+            </div>
+            <div>
+              <strong>Follow-up flow</strong>
+              <span>Simple next steps for inquiries, updates, and customer handoff.</span>
+            </div>
+            <div>
+              <strong>Creative upgrades</strong>
+              <span>3D, audio, visuals, and automation added when they serve the offer.</span>
+            </div>
           </div>
         </aside>
       </div>
@@ -702,32 +758,32 @@
     <section id="systems">
       <div class="wrap">
         <div class="section-head">
-          <h2>Not just websites. Living business systems.</h2>
+          <h2>What you can launch with 3DVR.</h2>
           <p>
-            Start tiny. Add capabilities. Keep humans in control while the machine handles the busywork.
+            Start with the smallest useful public face, then add the pieces that help people trust, buy, and come back.
           </p>
         </div>
 
         <div class="cards">
           <article class="card">
             <div class="icon">✦</div>
-            <h3>Microsites</h3>
-            <p>Fast, beautiful landing pages that explain the offer, collect leads, and route people to payment.</p>
+            <h3>Launch pages</h3>
+            <p>Focused pages for a service, portfolio, event, product, or campaign that needs to look legitimate fast.</p>
           </article>
           <article class="card">
             <div class="icon">◈</div>
-            <h3>3D Spaces</h3>
-            <p>Interactive worlds, product rooms, festival portals, and immersive web experiences.</p>
+            <h3>Interactive moments</h3>
+            <p>3D rooms, audio-forward pages, product previews, and branded moments that give people something to remember.</p>
           </article>
           <article class="card">
             <div class="icon">☑</div>
-            <h3>Human Approval</h3>
-            <p>Agents draft, prepare, and suggest. Humans approve before anything important goes out.</p>
+            <h3>Offer cleanup</h3>
+            <p>Sharper positioning, better calls to action, and a cleaner path from interest to payment or inquiry.</p>
           </article>
           <article class="card">
             <div class="icon">⌁</div>
-            <h3>Digital Mind</h3>
-            <p>A local-first memory layer for clients, tasks, support, delivery, proposals, and follow-ups.</p>
+            <h3>Ongoing support</h3>
+            <p>Subscription-backed updates, revisions, launch help, and practical improvements as your work changes.</p>
           </article>
         </div>
       </div>
@@ -737,13 +793,12 @@
       <div class="wrap manifesto">
         <article class="panel quote">
           <p>
-            The old internet made people into users.
-            The next internet should make people into creators.
+            Your online presence should make the next step obvious.
+            It should sell the work without sanding off the human part.
           </p>
           <small>
-            3DVR is for artists, builders, healers, freelancers, teachers, weirdos,
-            vanlifers, coders, stagehands, and small businesses who know technology
-            should feel more human, not less.
+            3DVR is for creators, freelancers, service providers, small businesses, and teams
+            that need a credible public page, a clearer offer, and a practical way to keep improving.
           </small>
         </article>
 
@@ -751,22 +806,22 @@
           <article class="step">
             <div class="num">1</div>
             <div>
-              <h3>Help first</h3>
-              <p>Find the real bottleneck, then build the smallest useful system that removes it.</p>
+              <h3>Clarify the offer</h3>
+              <p>Figure out what you sell, who it helps, and what visitors should do next.</p>
             </div>
           </article>
           <article class="step">
             <div class="num">2</div>
             <div>
-              <h3>Turn trust into tools</h3>
-              <p>Package the work into repeatable flows: proposal, payment, delivery, support, and growth.</p>
+              <h3>Publish the page</h3>
+              <p>Ship a clean web presence with real calls to action and links into the right subscription path.</p>
             </div>
           </article>
           <article class="step">
             <div class="num">3</div>
             <div>
-              <h3>Use profit as circulation</h3>
-              <p>Revenue keeps the mission alive. The goal is more help, more freedom, more creation.</p>
+              <h3>Improve with support</h3>
+              <p>Use the subscription as the ongoing lane for updates, revisions, and new features.</p>
             </div>
           </article>
         </div>
@@ -777,7 +832,7 @@
       <div class="wrap">
         <div class="section-head">
           <h2>Start where you are.</h2>
-          <p>Simple plans for people who need momentum now, with room to grow into custom systems.</p>
+          <p>Pick a real 3DVR subscription route, then grow into deeper support when the project needs it.</p>
         </div>
 
         <div class="pricing">
@@ -786,35 +841,40 @@
               <span>Explore</span>
               <strong>$0</strong>
             </div>
-            <p>Vision call, rough direction, and one next step.</p>
+            <p>Get organized, choose a lane, and start without paying first.</p>
+            <a class="plan-link" href="/subscribe/free-plan.html">Start free</a>
           </article>
           <article class="panel price">
             <div>
               <span>Seed</span>
               <strong>$5</strong>
             </div>
-            <p>Basic presence, light support, and early access experiments.</p>
+            <p>Lightweight support for friends, family, and early-stage ideas.</p>
+            <a class="plan-link" href="/subscribe/family-friends.html">See $5 plan</a>
           </article>
           <article class="panel price featured">
             <div>
               <span>Launch</span>
               <strong>$20</strong>
             </div>
-            <p>A focused microsite, offer page, or campaign system.</p>
+            <p>Founder-level momentum for a page, offer, campaign, or first serious build.</p>
+            <a class="plan-link" href="/subscribe/founder-plan.html">See $20 plan</a>
           </article>
           <article class="panel price">
             <div>
               <span>Grow</span>
               <strong>$50</strong>
             </div>
-            <p>Ongoing revisions, follow-ups, integrations, and delivery support.</p>
+            <p>Builder support for revisions, launch improvements, and a steadier delivery rhythm.</p>
+            <a class="plan-link" href="/subscribe/builder-plan.html">See $50 plan</a>
           </article>
           <article class="panel price">
             <div>
-              <span>Operate</span>
+              <span>Support</span>
               <strong>$200</strong>
             </div>
-            <p>Agentic workflows, dashboards, automation, and custom build-outs.</p>
+            <p>Team-oriented support for shared follow-up, updates, and practical operating help.</p>
+            <a class="plan-link" href="/subscribe/support-teams.html">See support plan</a>
           </article>
         </div>
       </div>
@@ -823,12 +883,14 @@
     <section>
       <div class="wrap">
         <div class="panel cta">
-          <h2>Bring one idea. Leave with a system.</h2>
+          <h2>Bring one idea. Leave with a public offer.</h2>
           <p>
-            A website is only the first doorway. Behind it: leads, payments, delivery,
-            memory, support, and the next version of your creative life.
+            The subscription page has the current options, handoff details, and the next step for starting with 3DVR.
           </p>
-          <a class="button primary" href="mailto:3dvr.tech@gmail.com?subject=Let%27s%20build%20my%203DVR%20system" target="_blank" rel="noopener noreferrer">Build with 3DVR</a>
+          <div class="hero-actions" style="justify-content: center;">
+            <a class="button primary" href="/subscribe/">View all subscriptions</a>
+            <a class="button" href="/subscribe/founder-plan.html">Start with Launch</a>
+          </div>
         </div>
       </div>
     </section>
