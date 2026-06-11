@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>3DVR — Build the Future, Keep It Human</title>
+  <meta name="description" content="3DVR builds human-first microsites, digital assistants, 3D spaces, and small-business operating systems for creators, freelancers, and local businesses." />
+  <link rel="canonical" href="https://3dvr.tech/build/" />
+  <meta property="og:site_name" content="3dvr.tech" />
+  <meta property="og:title" content="3DVR — Build the Future, Keep It Human" />
+  <meta property="og:description" content="Human-first microsites, digital assistants, 3D spaces, and small-business operating systems for creators and local businesses." />
+  <meta property="og:url" content="https://3dvr.tech/build/" />
+  <meta property="og:image" content="https://3dvr.tech/3DVR.png" />
+  <meta property="og:image:alt" content="3dvr.tech logomark" />
+  <meta name="theme-color" content="#080b12" />
+  <script defer src="/_vercel/insights/script.js"></script>
+  <style>
+    :root {
+      --bg: #080b12;
+      --bg-2: #0d1424;
+      --text: #f7f3e8;
+      --muted: #b9b2a4;
+      --line: rgba(247, 243, 232, 0.16);
+      --glass: rgba(255, 255, 255, 0.07);
+      --glass-2: rgba(255, 255, 255, 0.11);
+      --blue: #63d7ff;
+      --cyan: #86fff2;
+      --gold: #f7d77c;
+      --linen: #e8dcc6;
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+      --radius: 8px;
+      --max: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(99, 215, 255, 0.20), transparent 32rem),
+        radial-gradient(circle at 90% 10%, rgba(247, 215, 124, 0.13), transparent 28rem),
+        radial-gradient(circle at 60% 80%, rgba(134, 255, 242, 0.10), transparent 32rem),
+        linear-gradient(135deg, var(--bg), var(--bg-2));
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: radial-gradient(circle at center, black, transparent 75%);
+      opacity: 0.35;
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    p,
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(8, 11, 18, 0.64);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .mark {
+      width: 42px;
+      aspect-ratio: 1;
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(135deg, rgba(99, 215, 255, 0.95), rgba(134, 255, 242, 0.38)),
+        linear-gradient(45deg, var(--gold), transparent);
+      color: #07101c;
+      box-shadow: 0 0 40px rgba(99, 215, 255, 0.35);
+      font-size: 0.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text);
+      outline: none;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--glass);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+      font-weight: 800;
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+      background: var(--glass-2);
+      border-color: rgba(134, 255, 242, 0.34);
+      outline: none;
+    }
+
+    .button.primary {
+      color: #06111d;
+      background: linear-gradient(135deg, var(--cyan), var(--blue) 58%, var(--gold));
+      border-color: transparent;
+    }
+
+    .hero {
+      position: relative;
+      padding: 96px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      width: fit-content;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--linen);
+      background: rgba(255,255,255,0.06);
+      font-size: 0.92rem;
+    }
+
+    .dot {
+      width: 9px;
+      aspect-ratio: 1;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 18px var(--cyan);
+    }
+
+    h1 {
+      margin: 24px 0 18px;
+      font-size: 6.8rem;
+      line-height: 0.92;
+      letter-spacing: 0;
+      max-width: 900px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--text), var(--linen) 42%, var(--blue) 72%, var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.3rem;
+      line-height: 1.55;
+      max-width: 710px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .panel {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05)),
+        rgba(255,255,255,0.04);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .portal {
+      min-height: 560px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .portal::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        conic-gradient(from 120deg, transparent, rgba(99, 215, 255, 0.28), transparent, rgba(247, 215, 124, 0.18), transparent);
+      animation: spin 12s linear infinite;
+      opacity: 0.8;
+    }
+
+    .portal::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 50% 35%, rgba(134, 255, 242, 0.22), transparent 30%),
+        linear-gradient(160deg, rgba(8, 11, 18, 0.86), rgba(13, 20, 36, 0.94));
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .portal > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .status {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .orb {
+      width: min(100%, 340px);
+      aspect-ratio: 1;
+      margin: 42px auto;
+      border: 1px solid rgba(134, 255, 242, 0.22);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 34% 28%, rgba(255,255,255,0.88), transparent 8%),
+        radial-gradient(circle at 38% 34%, rgba(134,255,242,0.55), transparent 18%),
+        radial-gradient(circle at 58% 60%, rgba(99,215,255,0.38), transparent 28%),
+        radial-gradient(circle at center, rgba(247,215,124,0.20), transparent 52%),
+        rgba(255,255,255,0.04);
+      box-shadow:
+        inset 0 0 60px rgba(134,255,242,0.13),
+        0 0 80px rgba(99,215,255,0.25);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 42px;
+    }
+
+    .portal-logo {
+      width: 68px;
+      margin: 0 auto 18px;
+      border-radius: var(--radius);
+      box-shadow: 0 18px 50px rgba(99, 215, 255, 0.28);
+    }
+
+    .orb strong {
+      display: block;
+      font-size: 2.45rem;
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .orb span {
+      display: block;
+      margin-top: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .terminal {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: rgba(0,0,0,0.26);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: #c9fff8;
+      font-size: 0.86rem;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 28px;
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      font-size: 3.65rem;
+      line-height: 1;
+      letter-spacing: 0;
+      max-width: 760px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 420px;
+      line-height: 1.6;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.055);
+      min-height: 230px;
+    }
+
+    .card .icon {
+      width: 46px;
+      aspect-ratio: 1;
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      background: rgba(134,255,242,0.12);
+      border: 1px solid rgba(134,255,242,0.20);
+      font-size: 1.4rem;
+    }
+
+    .card h3,
+    .step h3 {
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+      letter-spacing: 0;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.98rem;
+    }
+
+    .manifesto {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .quote {
+      padding: 54px;
+    }
+
+    .quote p {
+      font-size: 3.35rem;
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    .quote small {
+      display: block;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 16px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.052);
+    }
+
+    .num {
+      width: 46px;
+      aspect-ratio: 1;
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: #07101c;
+      background: linear-gradient(135deg, var(--gold), var(--cyan));
+    }
+
+    .step p {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .price {
+      padding: 22px;
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .price strong {
+      display: block;
+      font-size: 2.35rem;
+      letter-spacing: 0;
+    }
+
+    .price span,
+    .price p {
+      color: var(--muted);
+    }
+
+    .price.featured {
+      background:
+        linear-gradient(180deg, rgba(134,255,242,0.16), rgba(255,255,255,0.06)),
+        rgba(255,255,255,0.06);
+      border-color: rgba(134,255,242,0.32);
+      transform: translateY(-8px);
+    }
+
+    .cta {
+      text-align: center;
+      padding: 74px 80px;
+    }
+
+    .cta h2 {
+      margin-inline: auto;
+    }
+
+    .cta p {
+      color: var(--muted);
+      max-width: 680px;
+      margin: 22px auto 30px;
+      font-size: 1.18rem;
+      line-height: 1.6;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
+      color: var(--muted);
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px) {
+      h1 {
+        font-size: 4.8rem;
+      }
+
+      h2 {
+        font-size: 3rem;
+      }
+
+      .hero-grid,
+      .manifesto {
+        grid-template-columns: 1fr;
+      }
+
+      .cards,
+      .pricing {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .portal {
+        min-height: 480px;
+      }
+
+      .quote {
+        padding: 36px;
+      }
+
+      .quote p {
+        font-size: 2.7rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 64px;
+      }
+
+      h1 {
+        font-size: 3.25rem;
+      }
+
+      h2 {
+        font-size: 2.35rem;
+      }
+
+      .lead {
+        font-size: 1.08rem;
+      }
+
+      .cards,
+      .pricing {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: 14px;
+      }
+
+      .portal {
+        padding: 18px;
+      }
+
+      .orb {
+        padding: 28px;
+      }
+
+      .orb strong {
+        font-size: 1.85rem;
+      }
+
+      .quote,
+      .cta {
+        padding: 28px;
+      }
+
+      .quote p {
+        font-size: 2.15rem;
+      }
+
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .price.featured {
+        transform: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .portal::before {
+        animation: none;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap">
+      <a class="brand" href="#top" aria-label="3DVR home">
+        <span class="mark">3D</span>
+        <span>3DVR</span>
+      </a>
+      <div class="nav-links">
+        <a href="#systems">Systems</a>
+        <a href="#manifesto">Manifesto</a>
+        <a href="#plans">Plans</a>
+        <a class="button" href="mailto:3dvr.tech@gmail.com" target="_blank" rel="noopener noreferrer">Start</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Human-first computing for creators and small businesses</div>
+          <h1><span class="gradient-text">Build the future.</span><br />Keep it human.</h1>
+          <p class="lead">
+            3DVR builds small doorways into the next civilization: microsites, 3D rooms,
+            AI-assisted workflows, payment systems, and local-first digital operating systems
+            for people who are ready to stop renting their dreams from platforms.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="mailto:3dvr.tech@gmail.com?subject=I%20want%20to%20build%20with%203DVR" target="_blank" rel="noopener noreferrer">Launch something</a>
+            <a class="button" href="#manifesto">Read the manifesto</a>
+          </div>
+        </div>
+
+        <aside class="panel portal" aria-label="3DVR portal preview">
+          <div class="status">
+            <span>3DVR / PORTAL</span>
+            <span>online</span>
+          </div>
+
+          <div class="orb">
+            <div>
+              <img class="portal-logo" src="/3DVR.png" alt="" width="68" height="68" loading="eager" />
+              <strong>One dream.<br />One system.</strong>
+              <span>Website + payments + agents + 3D space + human approval.</span>
+            </div>
+          </div>
+
+          <div class="terminal">
+            <div>&gt; create_microsite("your idea")</div>
+            <div>&gt; connect_payments("$0 / $5 / $20 / $50 / $200")</div>
+            <div>&gt; draft_outreach("human-approved")</div>
+            <div>&gt; ship_future("open-source", "local-first")</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="systems">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Not just websites. Living business systems.</h2>
+          <p>
+            Start tiny. Add capabilities. Keep humans in control while the machine handles the busywork.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">✦</div>
+            <h3>Microsites</h3>
+            <p>Fast, beautiful landing pages that explain the offer, collect leads, and route people to payment.</p>
+          </article>
+          <article class="card">
+            <div class="icon">◈</div>
+            <h3>3D Spaces</h3>
+            <p>Interactive worlds, product rooms, festival portals, and immersive web experiences.</p>
+          </article>
+          <article class="card">
+            <div class="icon">☑</div>
+            <h3>Human Approval</h3>
+            <p>Agents draft, prepare, and suggest. Humans approve before anything important goes out.</p>
+          </article>
+          <article class="card">
+            <div class="icon">⌁</div>
+            <h3>Digital Mind</h3>
+            <p>A local-first memory layer for clients, tasks, support, delivery, proposals, and follow-ups.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="manifesto">
+      <div class="wrap manifesto">
+        <article class="panel quote">
+          <p>
+            The old internet made people into users.
+            The next internet should make people into creators.
+          </p>
+          <small>
+            3DVR is for artists, builders, healers, freelancers, teachers, weirdos,
+            vanlifers, coders, stagehands, and small businesses who know technology
+            should feel more human, not less.
+          </small>
+        </article>
+
+        <div class="steps">
+          <article class="step">
+            <div class="num">1</div>
+            <div>
+              <h3>Help first</h3>
+              <p>Find the real bottleneck, then build the smallest useful system that removes it.</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="num">2</div>
+            <div>
+              <h3>Turn trust into tools</h3>
+              <p>Package the work into repeatable flows: proposal, payment, delivery, support, and growth.</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="num">3</div>
+            <div>
+              <h3>Use profit as circulation</h3>
+              <p>Revenue keeps the mission alive. The goal is more help, more freedom, more creation.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="plans">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Start where you are.</h2>
+          <p>Simple plans for people who need momentum now, with room to grow into custom systems.</p>
+        </div>
+
+        <div class="pricing">
+          <article class="panel price">
+            <div>
+              <span>Explore</span>
+              <strong>$0</strong>
+            </div>
+            <p>Vision call, rough direction, and one next step.</p>
+          </article>
+          <article class="panel price">
+            <div>
+              <span>Seed</span>
+              <strong>$5</strong>
+            </div>
+            <p>Basic presence, light support, and early access experiments.</p>
+          </article>
+          <article class="panel price featured">
+            <div>
+              <span>Launch</span>
+              <strong>$20</strong>
+            </div>
+            <p>A focused microsite, offer page, or campaign system.</p>
+          </article>
+          <article class="panel price">
+            <div>
+              <span>Grow</span>
+              <strong>$50</strong>
+            </div>
+            <p>Ongoing revisions, follow-ups, integrations, and delivery support.</p>
+          </article>
+          <article class="panel price">
+            <div>
+              <span>Operate</span>
+              <strong>$200</strong>
+            </div>
+            <p>Agentic workflows, dashboards, automation, and custom build-outs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="panel cta">
+          <h2>Bring one idea. Leave with a system.</h2>
+          <p>
+            A website is only the first doorway. Behind it: leads, payments, delivery,
+            memory, support, and the next version of your creative life.
+          </p>
+          <a class="button primary" href="mailto:3dvr.tech@gmail.com?subject=Let%27s%20build%20my%203DVR%20system" target="_blank" rel="noopener noreferrer">Build with 3DVR</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span>© <span id="year"></span> 3DVR Productions</span>
+      <span>Build The Future · Creating Universal Experiences</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const cards = document.querySelectorAll(".card, .step, .price");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.animate(
+            [
+              { opacity: 0, transform: "translateY(18px)" },
+              { opacity: 1, transform: "translateY(0)" }
+            ],
+            { duration: 520, easing: "cubic-bezier(.2,.8,.2,1)", fill: "both" }
+          );
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    cards.forEach((card) => observer.observe(card));
+  </script>
+</body>
+</html>
