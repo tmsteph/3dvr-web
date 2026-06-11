@@ -1,6 +1,26 @@
 {
   "rewrites": [
     {
+      "source": "/_vercel/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "dave.3dvr.tech"
+        }
+      ],
+      "destination": "/_vercel/:path*"
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "dave.3dvr.tech"
+        }
+      ],
+      "destination": "/dave/:path*"
+    },
+    {
       "source": "/install",
       "destination": "/install.sh"
     }
