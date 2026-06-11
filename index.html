@@ -708,6 +708,10 @@
       background: transparent;
       border-color: transparent;
       box-shadow: none;
+      transform:
+        translate3d(0, 0, 0)
+        rotateX(calc(var(--hero-tilt-y, 0) * -1deg))
+        rotateY(calc(var(--hero-tilt-x, 0) * 1deg));
     }
 
     .hero-logo-card > img {
