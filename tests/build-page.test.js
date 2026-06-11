@@ -6,6 +6,9 @@ test('build page presents the public offer and routes calls to subscriptions', a
   const html = await readFile(new URL('../build/index.html', import.meta.url), 'utf8');
 
   assert.match(html, /<link rel="canonical" href="https:\/\/3dvr\.tech\/build\/" \/>/);
+  assert.match(html, /<a class="brand" href="\/" aria-label="3DVR home">/);
+  assert.match(html, /<a href="\/">Home<\/a>/);
+  assert.match(html, /<a href="\/">3dvr\.tech home<\/a>/);
   assert.match(html, /Compare subscriptions/);
   assert.match(html, /View all subscriptions/);
   assert.match(html, /href="\/subscribe\/"/);
