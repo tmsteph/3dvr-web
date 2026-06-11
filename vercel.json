@@ -1,25 +1,27 @@
 {
+  "routes": [
+    {
+      "src": "/_vercel/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "dave.3dvr.tech"
+        }
+      ],
+      "dest": "/_vercel/$1"
+    },
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "dave.3dvr.tech"
+        }
+      ],
+      "dest": "/dave/$1"
+    }
+  ],
   "rewrites": [
-    {
-      "source": "/_vercel/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "dave.3dvr.tech"
-        }
-      ],
-      "destination": "/_vercel/:path*"
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "dave.3dvr.tech"
-        }
-      ],
-      "destination": "/dave/:path*"
-    },
     {
       "source": "/install",
       "destination": "/install.sh"

@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>3DVR | Repair Progress</title>
+  <meta name="description" content="A 3DVR manifesto on the last 200 years of progress, why the promise broke for ordinary people, and how open tools, AI, and community ownership can help build what comes next." />
+  <link rel="canonical" href="https://3dvr.tech/repair/" />
+  <meta property="og:site_name" content="3dvr.tech" />
+  <meta property="og:title" content="3DVR | Repair Progress" />
+  <meta property="og:description" content="A 3DVR manifesto on progress, agency, open tools, AI, and community ownership." />
+  <meta property="og:url" content="https://3dvr.tech/repair/" />
+  <meta property="og:image" content="https://3dvr.tech/3DVR.png" />
+  <meta property="og:image:alt" content="3dvr.tech logomark" />
+  <script defer src="/_vercel/insights/script.js"></script>
+  <style>
+    :root {
+      --bg: #071017;
+      --bg-2: #0d1b25;
+      --panel: rgba(255, 255, 255, 0.07);
+      --panel-strong: rgba(255, 255, 255, 0.11);
+      --text: #edf7ff;
+      --muted: #aac0ce;
+      --soft: #d7efe7;
+      --accent: #6ee7ff;
+      --accent-2: #b8ff9f;
+      --accent-3: #f4d58d;
+      --danger: #ff8f70;
+      --line: rgba(255, 255, 255, 0.16);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+      --radius: 26px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 5%, rgba(110, 231, 255, 0.24), transparent 32rem),
+        radial-gradient(circle at 85% 10%, rgba(184, 255, 159, 0.16), transparent 28rem),
+        linear-gradient(180deg, #071017 0%, #0b1720 40%, #081118 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 16, 23, 0.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(110, 231, 255, 0.95), rgba(184, 255, 159, 0.85)),
+        #123;
+      box-shadow: 0 0 28px rgba(110, 231, 255, 0.4);
+      display: grid;
+      place-items: center;
+      color: #061018;
+      font-weight: 950;
+      letter-spacing: -0.08em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: var(--panel);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--panel-strong);
+      border-color: rgba(255, 255, 255, 0.34);
+    }
+
+    .btn.primary {
+      color: #061018;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border: 0;
+    }
+
+    .hero {
+      padding: 86px 0 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--soft);
+      background: rgba(184, 255, 159, 0.1);
+      border: 1px solid rgba(184, 255, 159, 0.22);
+      font-weight: 800;
+      font-size: 0.86rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 { line-height: 1.05; margin: 0; }
+
+    h1 {
+      margin-top: 22px;
+      font-size: clamp(3.25rem, 8vw, 6.6rem);
+      letter-spacing: -0.085em;
+      max-width: 920px;
+    }
+
+    h1 span {
+      color: transparent;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .lead {
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.08rem, 2vw, 1.35rem);
+      max-width: 760px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .orb-card {
+      position: relative;
+      min-height: 520px;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)),
+        radial-gradient(circle at 40% 25%, rgba(110,231,255,0.25), transparent 12rem),
+        radial-gradient(circle at 68% 65%, rgba(184,255,159,0.16), transparent 13rem);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      inset: 72px 36px auto auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 28%, #fff, rgba(110,231,255,0.94) 20%, rgba(32,131,171,0.48) 47%, rgba(5,14,20,0) 70%),
+        linear-gradient(135deg, rgba(110,231,255,0.8), rgba(184,255,159,0.42));
+      filter: drop-shadow(0 0 42px rgba(110,231,255,0.38));
+    }
+
+    .grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(180deg, transparent, #000 15%, #000 78%, transparent);
+      opacity: 0.5;
+    }
+
+    .signal {
+      position: relative;
+      z-index: 1;
+      margin-top: 300px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .signal div {
+      padding: 15px 16px;
+      border-radius: 18px;
+      background: rgba(7, 16, 23, 0.58);
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .signal strong { color: var(--text); }
+
+    section { padding: 72px 0; }
+
+    .section-head {
+      max-width: 780px;
+      margin-bottom: 30px;
+    }
+
+    .section-kicker {
+      color: var(--accent-2);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      margin-bottom: 13px;
+    }
+
+    h2 {
+      font-size: clamp(2.15rem, 5vw, 4rem);
+      letter-spacing: -0.06em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin: 18px 0 0;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      border-radius: var(--radius);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: 0 16px 60px rgba(0, 0, 0, 0.16);
+    }
+
+    .card h3 {
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .era {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 22px;
+      padding: 22px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.055);
+      border: 1px solid var(--line);
+    }
+
+    .era-time {
+      color: var(--accent-3);
+      font-weight: 950;
+      letter-spacing: -0.02em;
+    }
+
+    .era h3 { margin-bottom: 8px; }
+
+    .era p { margin: 0; color: var(--muted); }
+
+    .quote {
+      padding: 38px;
+      border-radius: calc(var(--radius) + 12px);
+      background:
+        linear-gradient(135deg, rgba(110,231,255,0.14), rgba(184,255,159,0.1)),
+        rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: var(--shadow);
+      font-size: clamp(1.55rem, 3vw, 2.55rem);
+      line-height: 1.16;
+      letter-spacing: -0.055em;
+    }
+
+    .quote small {
+      display: block;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 1rem;
+      letter-spacing: 0;
+      line-height: 1.55;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .list li {
+      padding: 14px 14px 14px 42px;
+      border-radius: 17px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
+
+    .list li::before {
+      content: "✦";
+      position: absolute;
+      left: 15px;
+      top: 14px;
+      color: var(--accent);
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .plan {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--line);
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 950;
+      letter-spacing: -0.06em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .plan p { color: var(--muted); margin: 0; font-size: 0.92rem; }
+
+    .cta {
+      text-align: center;
+      padding: 64px 28px;
+      border-radius: calc(var(--radius) + 16px);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(110,231,255,0.24), transparent 28rem),
+        linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .cta p {
+      color: var(--muted);
+      max-width: 760px;
+      margin: 18px auto 0;
+      font-size: 1.18rem;
+    }
+
+    footer {
+      padding: 46px 0 64px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .split { grid-template-columns: 1fr; }
+      .orb-card { min-height: 420px; }
+      .signal { margin-top: 250px; }
+      .cards, .plans { grid-template-columns: 1fr; }
+      .era { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="3DVR home">
+        <span class="mark">3D</span>
+        <span>3DVR</span>
+      </a>
+      <div class="nav-links">
+        <a href="#story">The Story</a>
+        <a href="#break">The Break</a>
+        <a href="#join">Join 3DVR</a>
+        <a class="btn primary" href="mailto:3dvr.tech@gmail.com?subject=I%20want%20to%20join%203DVR">Start Building</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Build the future · Share the future</div>
+          <h1>Progress broke. <span>Let’s repair the operating system.</span></h1>
+          <p class="lead">
+            For 200 years, humanity learned how to produce miracles: electricity, medicine, flight, computers, the internet, and now AI. But somewhere along the way, progress stopped feeling like freedom for the average person.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#join">Join 3DVR</a>
+            <a class="btn" href="#story">Review the arc</a>
+          </div>
+        </div>
+
+        <aside class="orb-card" aria-label="3DVR mission visual">
+          <div class="grid-lines"></div>
+          <div class="orb"></div>
+          <div class="signal">
+            <div><strong>Then:</strong> productivity rose and ordinary people shared more of the gain.</div>
+            <div><strong>Now:</strong> technology accelerates, but ownership and agency concentrate.</div>
+            <div><strong>Next:</strong> open tools, local-first AI, and community businesses that help people build.</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">The last 200 years</div>
+          <h2>Humanity did make progress. The question is who gets to feel it.</h2>
+          <p>
+            The industrial age gave us abundance. The digital age gave us networks. The AI age can give us leverage. But leverage without shared ownership becomes another machine that extracts from people instead of empowering them.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="era">
+            <div class="era-time">1800s</div>
+            <div>
+              <h3>Industrial power</h3>
+              <p>Steam, factories, railroads, mass production, and urbanization changed the limits of human work. The world became more productive, but the first version was often brutal, unequal, and extractive.</p>
+            </div>
+          </div>
+
+          <div class="era">
+            <div class="era-time">1900–1945</div>
+            <div>
+              <h3>Science, war, and scale</h3>
+              <p>Electricity, cars, radio, aviation, modern medicine, and mass media transformed life. But world wars showed that technological power without wisdom can become destruction at planetary scale.</p>
+            </div>
+          </div>
+
+          <div class="era">
+            <div class="era-time">1945–1973</div>
+            <div>
+              <h3>The broad prosperity window</h3>
+              <p>For a generation, productivity and wages rose together more than usual. Stronger unions, public investment, cheaper housing, and expanding education made the future feel accessible to ordinary workers.</p>
+            </div>
+          </div>
+
+          <div class="era">
+            <div class="era-time">1970s–Now</div>
+            <div>
+              <h3>The deal changed</h3>
+              <p>Globalization, financialization, automation, union decline, shareholder primacy, rising housing costs, rising healthcare costs, and education debt changed the bargain. The economy kept growing, but the gains flowed upward.</p>
+            </div>
+          </div>
+
+          <div class="era">
+            <div class="era-time">Now–Next</div>
+            <div>
+              <h3>The agency era</h3>
+              <p>AI, open-source software, local-first computing, 3D worlds, and small-business automation can either deepen extraction or distribute creative power. 3DVR exists to push the second path.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="break">
+      <div class="wrap split">
+        <div class="card">
+          <h2>The break was not just economic. It was spiritual.</h2>
+          <p>
+            When people work harder, produce more, and still feel like they are falling behind, they do not only lose money. They lose trust, meaning, time, health, and belief in the future.
+          </p>
+          <ul class="list">
+            <li>More productivity, but less security.</li>
+            <li>More technology, but less ownership.</li>
+            <li>More information, but less shared reality.</li>
+            <li>More consumption, but less time to create.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>The repair is agency.</h2>
+          <p>
+            3DVR is not just a website shop. We are building toward an open, AI-assisted business and creativity system that helps people launch ideas, present themselves, sell services, automate boring work, and participate in the future.
+          </p>
+          <ul class="list">
+            <li>Microsites and web portals for real people and small businesses.</li>
+            <li>AI-assisted proposals, follow-ups, support, and delivery checklists.</li>
+            <li>3D, VR, audiovisual, and interactive experiences for human connection.</li>
+            <li>Open-source-first tools that people can learn from, remix, and own.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="quote">
+          The next progress is not just faster machines. The next progress is ordinary people getting their creative power back.
+          <small>
+            3DVR’s mission is to help people wake up, launch, build, and participate in a freer technological world — where profit is circulation, not the god.
+          </small>
+        </div>
+      </div>
+    </section>
+
+    <section id="join">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">Join 3DVR</div>
+          <h2>Help build the open business layer for the next 200 years.</h2>
+          <p>
+            Joining 3DVR means becoming part of a practical movement: useful websites, better tools, AI-assisted workflows, 3D/VR experiences, audiovisual systems, and open-source computing for people who want to build instead of just consume.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <h3>For creators</h3>
+            <p>Get a web presence, portfolio, digital storefront, or interactive experience that helps your work look real, feel alive, and reach people.</p>
+          </div>
+          <div class="card">
+            <h3>For small businesses</h3>
+            <p>Use simple AI-assisted systems for leads, proposals, follow-ups, microsites, payments, support, and repeatable delivery.</p>
+          </div>
+          <div class="card">
+            <h3>For builders</h3>
+            <p>Collaborate on open tools, local-first systems, 3D interfaces, custom workflows, and the long-term 3DVR digital operating system.</p>
+          </div>
+        </div>
+
+        <div class="plans" aria-label="3DVR plan ladder">
+          <div class="plan">
+            <div class="price">$0</div>
+            <p>Explore, learn, follow the mission, and join the community.</p>
+          </div>
+          <div class="plan">
+            <div class="price">$5</div>
+            <p>Support the work and get lightweight help or early access.</p>
+          </div>
+          <div class="plan">
+            <div class="price">$20</div>
+            <p>Start a small digital presence, microsite, or improvement loop.</p>
+          </div>
+          <div class="plan">
+            <div class="price">$50</div>
+            <p>Ongoing revisions, consulting, automation, or delivery support.</p>
+          </div>
+          <div class="plan">
+            <div class="price">$200</div>
+            <p>Serious build support for businesses, campaigns, and systems.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap cta">
+        <div class="section-kicker">Build the future</div>
+        <h2>We do not need to wait for the system to give us permission.</h2>
+        <p>
+          We can build local tools, open tools, humane tools, beautiful tools, and business systems that help real people create value again. That is the 3DVR invitation.
+        </p>
+        <div class="hero-actions" style="justify-content: center;">
+          <a class="btn primary" href="mailto:3dvr.tech@gmail.com?subject=I%20want%20to%20join%203DVR&amp;body=Hi%203DVR%2C%0A%0AI%20want%20to%20join%20or%20support%20the%20mission.%20Here%27s%20what%20I%27m%20building%20or%20what%20I%20need%20help%20with%3A%0A">Join the mission</a>
+          <a class="btn" href="https://3dvr.tech">Visit 3dvr.tech</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>© <span id="year"></span> 3DVR · Creating Universal Experiences</div>
+      <div>Open tools · Human agency · Practical consciousness</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
