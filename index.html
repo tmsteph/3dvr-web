@@ -960,24 +960,19 @@
       background: radial-gradient(circle, rgba(255, 165, 92, 0.4) 0%, rgba(255, 165, 92, 0) 72%);
     }
     #features h2 { position: relative; z-index: 1; }
-    #features .section-lede {
-      position: relative;
-      z-index: 1;
-      margin: 0.75rem auto 0;
-      max-width: 700px;
-      text-align: center;
-      font-size: 1.05rem;
-      color: rgba(255, 255, 255, 0.9);
-    }
     .features-grid {
       position: relative;
       z-index: 1;
-      gap: clamp(1.5rem, 3vw, 2.5rem);
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: clamp(0.9rem, 1.5vw, 1.25rem);
+      width: min(1400px, calc(100% - 2rem));
     }
     .feature-card {
-      max-width: 340px;
-      min-width: min(260px, 100%);
-      padding: clamp(1.9rem, 2.8vw, 2.4rem);
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      padding: clamp(1.1rem, 1.5vw, 1.45rem);
       align-items: flex-start;
       text-align: left;
       background: linear-gradient(150deg, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0.15));
@@ -1058,11 +1053,16 @@
     }
     .feature-card:hover .feature-cta { color: #f9f9f9; }
 
-    @media (max-width: 1024px) {
-      .feature-card { max-width: min(48%, 360px); }
+    @media (max-width: 1180px) {
+      .features-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: min(980px, calc(100% - 2rem));
+      }
     }
-    @media (max-width: 768px) {
-      .feature-card { max-width: 100%; }
+    @media (max-width: 760px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
       .feature-card .feature-content { gap: 0.8rem; }
       .feature-card h3 { font-size: 1.25rem; }
     }
@@ -1621,26 +1621,7 @@
 
   <section id="features" style="background: var(--bg-features);">
     <h2>Practical help</h2>
-    <p class="section-lede">Use 3dvr when you need a website, an app flow, better support, or a clearer launch plan.</p>
     <div class="card-grid features-grid">
-      <a
-        href="https://portal.3dvr.tech/calendar/"
-        data-portal-path="/calendar/"
-        class="card feature-card"
-      >
-        <div class="feature-icon" aria-hidden="true">
-          <i class="fa-solid fa-calendar-days"></i>
-        </div>
-        <div class="feature-content">
-          <h3>Calendar Hub</h3>
-          <p>Keep meetings, follow-ups, and the next real slot visible instead of scattered across tabs.</p>
-          <ul class="feature-list">
-            <li>One place for scheduling, planning, and what is actually booked.</li>
-            <li>Built to stay connected to your portal workflow and weekly rhythm.</li>
-          </ul>
-          <span class="feature-cta">Open the calendar →</span>
-        </div>
-      </a>
       <a href="websites.html" class="card feature-card">
         <div class="feature-icon" aria-hidden="true">
           <i class="fa-solid fa-globe"></i>
@@ -1653,20 +1634,6 @@
             <li>Launch guidance covering hosting, analytics, and security.</li>
           </ul>
           <span class="feature-cta">See website work →</span>
-        </div>
-      </a>
-      <a href="https://selfhost.3dvr.tech/" class="card feature-card" target="_blank" rel="noopener">
-        <div class="feature-icon" aria-hidden="true">
-          <i class="fa-solid fa-seedling"></i>
-        </div>
-        <div class="feature-content">
-          <h3>Self-Hosting Lab</h3>
-          <p>A small public proof that 3dvr can host sites and community names from our own edge.</p>
-          <ul class="feature-list">
-            <li>Live Caddy + HTTPS test outside the Vercel app path.</li>
-            <li>Early groundwork for community-run names and portable sites.</li>
-          </ul>
-          <span class="feature-cta">Visit the lab →</span>
         </div>
       </a>
       <a href="apps.html" class="card feature-card">

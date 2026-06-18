@@ -41,8 +41,10 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Build your website or app/);
     assert.match(html, /Help you figure out the offer/);
     assert.match(html, /Stay with you as it grows/);
-    assert.match(html, /Calendar Hub/);
-    assert.match(html, /Open the calendar →/);
+    assert.doesNotMatch(html, /Calendar Hub/);
+    assert.doesNotMatch(html, /Open the calendar →/);
+    assert.doesNotMatch(html, /Self-Hosting Lab/);
+    assert.doesNotMatch(html, /Visit the lab →/);
     assert.doesNotMatch(html, /Choose a lane, continue in portal/);
     assert.doesNotMatch(html, /Calendar front and center/);
     assert.doesNotMatch(html, /Use Life to log/);
