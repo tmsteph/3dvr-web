@@ -820,10 +820,10 @@
       margin: 0;
     }
     .hero-logo-card__tagline {
-      font-size: clamp(1.65rem, 4vw, 2.45rem);
+      font-size: clamp(2rem, 5vw, 3.1rem);
       font-weight: 900;
-      line-height: 1.05;
-      color: rgba(255,255,255,0.92);
+      line-height: 0.98;
+      color: rgba(255,255,255,0.96);
     }
     .hero-logo-card__enter {
       display: inline-flex;
@@ -983,9 +983,9 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: clamp(0.9rem, 1.5vw, 1.25rem);
-      width: min(1400px, calc(100% - 2rem));
+      width: min(980px, calc(100% - 2rem));
     }
     .feature-card {
       width: 100%;
@@ -1072,10 +1072,10 @@
     }
     .feature-card:hover .feature-cta { color: #f9f9f9; }
 
-    @media (max-width: 1180px) {
+    @media (min-width: 1500px) {
       .features-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        width: min(980px, calc(100% - 2rem));
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        width: min(1400px, calc(100% - 2rem));
       }
     }
     @media (max-width: 760px) {
