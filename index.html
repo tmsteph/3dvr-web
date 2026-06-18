@@ -1184,92 +1184,6 @@
         radial-gradient(circle at top left, rgba(0, 255, 200, 0.16), transparent 34%),
         linear-gradient(135deg, #102033 0%, #173b51 55%, #2c4d5f 100%);
     }
-    .system-layers-section {
-      background:
-        radial-gradient(circle at top right, rgba(0, 255, 200, 0.16), transparent 34%),
-        linear-gradient(135deg, #081018 0%, #102236 52%, #173547 100%);
-    }
-    .system-shell {
-      width: min(1120px, calc(100% - 2rem));
-      margin: 0 auto;
-      display: grid;
-      gap: 1.5rem;
-    }
-    .system-heading {
-      max-width: 840px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .system-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.42rem 0.75rem;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      color: #d8fff4;
-      font-size: 0.84rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      margin-bottom: 0.95rem;
-    }
-    .system-heading p {
-      max-width: 760px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .system-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.25rem;
-    }
-    .system-card {
-      background: rgba(7, 18, 28, 0.54);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 24px;
-      padding: 1.45rem;
-      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.24);
-      text-align: left;
-    }
-    .system-card__eyebrow {
-      display: inline-flex;
-      align-items: center;
-      margin-bottom: 0.8rem;
-      padding: 0.32rem 0.62rem;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      color: #d8fff4;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .system-card p {
-      color: rgba(255, 255, 255, 0.84);
-    }
-    .system-points {
-      list-style: none;
-      padding: 0;
-      margin: 1rem 0 0;
-      display: grid;
-      gap: 0.7rem;
-    }
-    .system-points li {
-      padding: 0.75rem 0.9rem;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: rgba(255, 255, 255, 0.88);
-    }
-    .system-points strong {
-      color: #d7fff2;
-    }
-    .system-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      justify-content: center;
-    }
     .nomad-shell {
       width: min(1120px, calc(100% - 2rem));
       margin: 0 auto;
@@ -1618,7 +1532,7 @@
     <nav id="mainNav">
       <a href="subscribe/index.html">Start Free</a>
       <a href="#vision">What We Do</a>
-      <a href="#system">System</a>
+      <a href="system.html">System</a>
       <a href="#subscribe">Plans</a>
       <a href="#testimonials">Trust</a>
       <a href="https://portal.3dvr.tech">Portal</a>
@@ -1782,62 +1696,6 @@
             <li>Practical systems for leads, content, and operations.</li>
           </ul>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="system" class="system-layers-section">
-    <div class="system-shell">
-      <div class="system-heading">
-        <span class="system-kicker">One system. Any device.</span>
-        <h2>Portal, Browser, OS</h2>
-        <p>
-          Start in your browser. Grow into your own operating system. The same 3dvr account,
-          apps, and support lane can move from cloud workspace to browser runtime to deeper
-          Linux-based control without starting over.
-        </p>
-      </div>
-      <div class="system-grid">
-        <article class="system-card">
-          <span class="system-card__eyebrow">Portal</span>
-          <h3>Cloud workspace and identity</h3>
-          <p>
-            Keep billing, CRM, notes, messaging, projects, and AI on one account instead of
-            scattering the work across disconnected tools.
-          </p>
-          <ul class="system-points">
-            <li><strong>Start here:</strong> subscriptions, contacts, notes, support, and daily operating lanes.</li>
-            <li><strong>Same account:</strong> one identity across planning, delivery, and collaboration.</li>
-          </ul>
-        </article>
-        <article class="system-card">
-          <span class="system-card__eyebrow">Browser</span>
-          <h3>Runtime, launcher, and media environment</h3>
-          <p>
-            The portal is also becoming a browser-shaped workspace: app launcher, multi-panel tools,
-            media experiments, AI workbench, and lighter desktop-like flows that run anywhere.
-          </p>
-          <ul class="system-points">
-            <li><strong>Run in tabs today:</strong> launcher, notes, CRM, media, and AI tools.</li>
-            <li><strong>Grow into a workspace:</strong> same apps, but with more context and control.</li>
-          </ul>
-        </article>
-        <article class="system-card">
-          <span class="system-card__eyebrow">OS</span>
-          <h3>TommyOS direction for deeper control</h3>
-          <p>
-            Long term, 3dvr is moving toward a Linux-based operating layer for devices, local servers,
-            hardware experiments, and a calmer builder environment that does not depend on closed platforms.
-          </p>
-          <ul class="system-points">
-            <li><strong>Start practical:</strong> Pocket Workstation, Debian experiments, and open workflows.</li>
-            <li><strong>Deeper later:</strong> same identity, same apps, deeper levels of control.</li>
-          </ul>
-        </article>
-      </div>
-      <div class="system-actions">
-        <a class="cta" href="https://portal.3dvr.tech" target="_blank" rel="noopener">Open the portal command center</a>
-        <a class="cta" href="pocket-workstation.html" data-growth-cta="system-pocket-workstation">See Pocket Workstation</a>
       </div>
     </div>
   </section>
@@ -2173,6 +2031,9 @@
     </div>
     <a class="cta" href="https://portal.3dvr.tech" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem;">
       Open portal.3dvr.tech <i class="fas fa-arrow-right" aria-hidden="true"></i>
+    </a>
+    <a class="cta" href="system.html" style="display: inline-flex; align-items: center; gap: 0.5rem; margin-left: 0.75rem;">
+      See full system map <i class="fas fa-layer-group" aria-hidden="true"></i>
     </a>
   </section>
 
