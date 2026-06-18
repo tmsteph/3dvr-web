@@ -89,12 +89,12 @@ describe('3dvr-web customer journey copy', () => {
     assert.doesNotMatch(html, /Start free in portal/);
     assert.doesNotMatch(html, /Not just plan\. Not just think about it\./);
     assert.doesNotMatch(html, /Open the full-screen 3DVR world prototype/);
-    assert.match(html, /Nomad system direction/);
-    assert.match(html, /Portable work, open hardware, and a calmer way to build on the move\./);
+    assert.match(html, /Nomad system/);
+    assert.match(html, /Portable work, open hardware, Linux-first workflows, and practical gear now live on the dedicated nomad system page\./);
     assert.match(html, /Explore the nomad system/);
-    assert.match(html, /Read the broader vision/);
     assert.match(html, /href="nomad-system\.html"/);
-    assert.match(html, /What the stack includes/);
+    assert.doesNotMatch(html, /Nomad system direction/);
+    assert.doesNotMatch(html, /What the stack includes/);
     assert.match(html, /Portal command center/);
     assert.match(html, /Start in the browser with one identity, one launcher, and one calmer operating lane\./);
     assert.match(html, /Portal layer/);
@@ -254,7 +254,9 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Live anywhere\./);
     assert.match(html, /Build anything\./);
     assert.match(html, /Open-source ecology for digital nomads/);
-    assert.match(html, /The 3dvr nomad system/);
+    assert.match(html, /Nomad system direction/);
+    assert.match(html, /Portable work, open hardware, and a calmer way to build on the move\./);
+    assert.match(html, /The longer vision is a real nomad system/);
     assert.match(html, /What we're offering first/);
     assert.match(html, /Start with membership/);
     assert.match(html, /See membership options/);
