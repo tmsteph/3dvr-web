@@ -531,19 +531,26 @@
       justify-content: center;
     }
     .plan-lane-section {
-      padding-block: clamp(3rem, 6vw, 5rem);
+      padding: clamp(5rem, 9vw, 7.5rem) clamp(1rem, 4vw, 2rem);
       background:
         radial-gradient(circle at 18% 12%, rgba(0, 255, 200, 0.18), transparent 38rem),
         linear-gradient(160deg, rgba(12, 33, 45, 0.96), rgba(19, 71, 78, 0.96));
     }
     .plan-lane-dock {
       display: grid;
-      gap: 0.9rem;
-      width: min(100%, 900px);
+      gap: clamp(1.25rem, 2.8vw, 2rem);
+      width: min(100%, 1060px);
+      margin: 0 auto;
+      padding: clamp(1.2rem, 2.4vw, 2rem);
+      border-radius: 24px;
+      background: rgba(4, 20, 28, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.18);
     }
     .plan-lane-title {
       margin: 0;
-      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      font-size: clamp(2rem, 4.8vw, 3.4rem);
+      line-height: 1.05;
     }
     .plan-lane-dock__label {
       font-size: 0.82rem;
@@ -552,21 +559,23 @@
       color: rgba(255,255,255,0.72);
     }
     .plan-lane-dock__intro {
-      margin: 0 auto 0.4rem;
-      max-width: 640px;
+      margin: 0 auto;
+      max-width: 760px;
       color: rgba(255,255,255,0.78);
-      font-size: clamp(1rem, 1.8vw, 1.18rem);
+      font-size: clamp(1.05rem, 1.8vw, 1.28rem);
     }
     .plan-lane-dock__grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.8rem;
+      gap: clamp(1rem, 2vw, 1.25rem);
       width: 100%;
     }
     .plan-lane-chip {
       display: grid;
-      gap: 0.3rem;
-      padding: 0.95rem 1rem;
+      align-content: center;
+      gap: 0.55rem;
+      min-height: clamp(120px, 12vw, 150px);
+      padding: clamp(1.25rem, 2.1vw, 1.65rem);
       border-radius: 18px;
       text-decoration: none;
       background: rgba(255,255,255,0.08);
@@ -582,11 +591,12 @@
       border-color: rgba(0,255,200,0.35);
     }
     .plan-lane-chip strong {
-      font-size: 1rem;
+      font-size: clamp(1.2rem, 2vw, 1.55rem);
       color: var(--accent);
     }
     .plan-lane-chip span {
-      font-size: 0.82rem;
+      font-size: clamp(0.92rem, 1.2vw, 1rem);
+      line-height: 1.35;
       color: rgba(255,255,255,0.78);
     }
     .hero-button {
@@ -861,6 +871,9 @@
       .hero p { max-width: none; }
       .plan-lane-dock__grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .plan-lane-chip {
+        min-height: 112px;
       }
       .plan-lane-dock__grid > :last-child:nth-child(odd) {
         grid-column: 1 / -1;
