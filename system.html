@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="The 3dvr system map: one account across the portal, browser workspace, and longer-term Linux-based OS direction."
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://3dvr.tech/system.html" />
+  <title>3dvr.tech System Map</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/logo-3dvr.svg" />
+  <link rel="alternate icon" href="3DVRfavicon.png" />
+  <script defer src="/_vercel/insights/script.js"></script>
+  <style>
+    :root {
+      --bg: #07111a;
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-strong: rgba(7, 18, 28, 0.72);
+      --line: rgba(255, 255, 255, 0.13);
+      --text: #f5fbff;
+      --muted: #bdd5df;
+      --accent: #00ffc8;
+      --warm: #ffbd73;
+      --max: 1120px;
+      --shadow: 0 22px 70px rgba(0, 0, 0, 0.32);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 12%, rgba(0, 255, 200, 0.22), transparent 28rem),
+        radial-gradient(circle at 85% 8%, rgba(255, 189, 115, 0.18), transparent 24rem),
+        linear-gradient(180deg, #07111a 0%, #0c1c29 48%, #071018 100%);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(5, 13, 20, 0.78);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.75rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.45rem 0.65rem;
+      border-radius: 6px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero {
+      padding: clamp(4rem, 8vw, 7rem) 0 3.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .kicker,
+    .card-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #d8fff4;
+      font-weight: 800;
+    }
+
+    .kicker {
+      padding: 0.45rem 0.78rem;
+      margin-bottom: 1rem;
+      font-size: 0.86rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin-top: 0;
+      line-height: 1.05;
+    }
+
+    h1 {
+      max-width: 11ch;
+      margin-bottom: 1rem;
+      font-size: clamp(3rem, 8vw, 6.4rem);
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 0.85rem;
+    }
+
+    h3 {
+      font-size: clamp(1.2rem, 2vw, 1.55rem);
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    .hero-copy {
+      max-width: 62ch;
+      font-size: 1.1rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 1.4rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0.85rem 1.15rem;
+      border-radius: 8px;
+      font-weight: 800;
+    }
+
+    .button-primary {
+      background: var(--accent);
+      color: #03120f;
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line);
+    }
+
+    .system-panel {
+      position: relative;
+      display: grid;
+      gap: 0.85rem;
+      padding: 1.2rem;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .system-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 255, 200, 0.12), transparent 46%, rgba(255, 189, 115, 0.1));
+      pointer-events: none;
+    }
+
+    .system-panel > * {
+      position: relative;
+    }
+
+    .layer-row {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 0.9rem;
+      align-items: center;
+      padding: 0.9rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+    }
+
+    .layer-row strong {
+      color: #d8fff4;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.82rem;
+    }
+
+    .layer-row span {
+      color: var(--muted);
+    }
+
+    .section {
+      padding: 3.5rem 0;
+    }
+
+    .section-heading {
+      max-width: 780px;
+      margin-bottom: 1.4rem;
+    }
+
+    .system-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .system-card,
+    .note-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .system-card {
+      padding: 1.3rem;
+    }
+
+    .card-eyebrow {
+      margin-bottom: 0.85rem;
+      padding: 0.34rem 0.62rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .points {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .points li {
+      padding: 0.75rem 0.85rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .points strong {
+      color: #d7fff2;
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .note-card {
+      padding: 1.25rem;
+    }
+
+    .note-card h3 {
+      color: var(--accent);
+    }
+
+    .footer {
+      padding: 2rem 0 2.5rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 880px) {
+      .hero-grid,
+      .system-grid,
+      .notes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 1rem 0;
+      }
+
+      h1 {
+        max-width: 12ch;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .layer-row {
+        grid-template-columns: 1fr;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="index.html" aria-label="3dvr.tech home">
+        <img src="/assets/logo-3dvr.svg" alt="" />
+        <span>3dvr.tech</span>
+      </a>
+      <nav class="nav-links" aria-label="System page navigation">
+        <a href="index.html">Home</a>
+        <a href="#layers">Layers</a>
+        <a href="#direction">Direction</a>
+        <a href="https://portal.3dvr.tech">Portal</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <span class="kicker">One system. Any device.</span>
+          <h1>Portal, Browser, OS</h1>
+          <p class="hero-copy">
+            Start in your browser. Grow into your own operating system. The same 3dvr account,
+            apps, and support lane can move from cloud workspace to browser runtime to deeper
+            Linux-based control without starting over.
+          </p>
+          <div class="actions">
+            <a class="button button-primary" href="https://portal.3dvr.tech" target="_blank" rel="noopener">Open the portal command center</a>
+            <a class="button button-secondary" href="pocket-workstation.html">See Pocket Workstation</a>
+          </div>
+        </div>
+
+        <aside class="system-panel" aria-label="3dvr system layers">
+          <div class="layer-row">
+            <strong>Portal</strong>
+            <span>Cloud workspace, identity, subscriptions, notes, CRM, messaging, support, and AI.</span>
+          </div>
+          <div class="layer-row">
+            <strong>Browser</strong>
+            <span>Launcher, multi-panel tools, media experiments, AI workbench, and workspace runtime.</span>
+          </div>
+          <div class="layer-row">
+            <strong>OS</strong>
+            <span>Linux-based control for devices, local servers, hardware experiments, and calmer building.</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="layers" class="section">
+      <div class="shell">
+        <div class="section-heading">
+          <h2>Three levels of the same account</h2>
+          <p>
+            The system starts practical and gets deeper only when the work calls for it.
+          </p>
+        </div>
+
+        <div class="system-grid">
+          <article class="system-card">
+            <span class="card-eyebrow">Portal</span>
+            <h3>Cloud workspace and identity</h3>
+            <p>
+              Keep billing, CRM, notes, messaging, projects, and AI on one account instead of
+              scattering the work across disconnected tools.
+            </p>
+            <ul class="points">
+              <li><strong>Start here:</strong> subscriptions, contacts, notes, support, and daily operating lanes.</li>
+              <li><strong>Same account:</strong> one identity across planning, delivery, and collaboration.</li>
+            </ul>
+          </article>
+
+          <article class="system-card">
+            <span class="card-eyebrow">Browser</span>
+            <h3>Runtime, launcher, and media environment</h3>
+            <p>
+              The portal is also becoming a browser-shaped workspace: app launcher, multi-panel tools,
+              media experiments, AI workbench, and lighter desktop-like flows that run anywhere.
+            </p>
+            <ul class="points">
+              <li><strong>Run in tabs today:</strong> launcher, notes, CRM, media, and AI tools.</li>
+              <li><strong>Grow into a workspace:</strong> same apps, but with more context and control.</li>
+            </ul>
+          </article>
+
+          <article class="system-card">
+            <span class="card-eyebrow">OS</span>
+            <h3>TommyOS direction for deeper control</h3>
+            <p>
+              Long term, 3dvr is moving toward a Linux-based operating layer for devices, local servers,
+              hardware experiments, and a calmer builder environment that does not depend on closed platforms.
+            </p>
+            <ul class="points">
+              <li><strong>Start practical:</strong> Pocket Workstation, Debian experiments, and open workflows.</li>
+              <li><strong>Deeper later:</strong> same identity, same apps, deeper levels of control.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="direction" class="section">
+      <div class="shell">
+        <div class="section-heading">
+          <h2>What this changes</h2>
+          <p>
+            3dvr can stay simple for a new customer while still pointing toward a stronger builder environment.
+          </p>
+        </div>
+        <div class="notes-grid">
+          <article class="note-card">
+            <h3>Start with service</h3>
+            <p>
+              A customer can begin with a website, a support lane, or the portal dashboard without learning a new operating system first.
+            </p>
+          </article>
+          <article class="note-card">
+            <h3>Keep the path open</h3>
+            <p>
+              The same work can later expand into portable workstations, Debian browser experiments, local servers, and deeper Linux control.
+            </p>
+          </article>
+        </div>
+        <div class="actions">
+          <a class="button button-primary" href="https://portal.3dvr.tech" target="_blank" rel="noopener">Open portal.3dvr.tech</a>
+          <a class="button button-secondary" href="nomad-system.html">Explore the nomad system</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <p>&copy; 2026 3dvr.tech. One account across portal, browser, and deeper open systems.</p>
+    </div>
+  </footer>
+</body>
+</html>

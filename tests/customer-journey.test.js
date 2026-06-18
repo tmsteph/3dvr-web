@@ -95,6 +95,21 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Read the broader vision/);
     assert.match(html, /href="nomad-system\.html"/);
     assert.match(html, /What the stack includes/);
+    assert.match(html, /Portal command center/);
+    assert.match(html, /Start in the browser with one identity, one launcher, and one calmer operating lane\./);
+    assert.match(html, /Portal layer/);
+    assert.match(html, /OS direction/);
+    assert.match(html, /Open portal\.3dvr\.tech/);
+    assert.match(html, /href="system\.html"/);
+    assert.match(html, /See full system map/);
+    assert.doesNotMatch(html, /<section id="system"/);
+    assert.doesNotMatch(html, /Message me/i);
+    assert.doesNotMatch(html, /mailto:3dvr\.tech@gmail\.com\?subject=3DVR%20Project%20Inquiry/);
+    assert.doesNotMatch(html, /Plan your week\. Get support\. Launch work\./);
+  });
+
+  it('moves the full Portal Browser OS system map onto its own page', async () => {
+    const html = await readFile(new URL('../system.html', import.meta.url), 'utf8');
     assert.match(html, /One system\. Any device\./);
     assert.match(html, /Portal, Browser, OS/);
     assert.match(html, /Start in your browser\. Grow into your own operating system\./);
@@ -106,15 +121,8 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Runtime, launcher, and media environment/);
     assert.match(html, /TommyOS direction for deeper control/);
     assert.match(html, /Open the portal command center/);
-    assert.match(html, /data-growth-cta="system-pocket-workstation"/);
-    assert.match(html, /Portal command center/);
-    assert.match(html, /Start in the browser with one identity, one launcher, and one calmer operating lane\./);
-    assert.match(html, /Portal layer/);
-    assert.match(html, /OS direction/);
-    assert.match(html, /Open portal\.3dvr\.tech/);
-    assert.doesNotMatch(html, /Message me/i);
-    assert.doesNotMatch(html, /mailto:3dvr\.tech@gmail\.com\?subject=3DVR%20Project%20Inquiry/);
-    assert.doesNotMatch(html, /Plan your week\. Get support\. Launch work\./);
+    assert.match(html, /href="pocket-workstation\.html"/);
+    assert.match(html, /href="nomad-system\.html"/);
   });
 
   it('keeps the portfolio projects room visually connected to the world', async () => {

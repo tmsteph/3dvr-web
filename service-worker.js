@@ -1,7 +1,8 @@
-const CACHE_NAME = '3dvr-cache-v4';
+const CACHE_NAME = '3dvr-cache-v5';
 const OFFLINE_ASSETS = [
   '/',
   '/index.html',
+  '/system.html',
   '/assets/logo-3dvr.svg',
   '/3DVR.png',
   '/3DVRfavicon.png'
