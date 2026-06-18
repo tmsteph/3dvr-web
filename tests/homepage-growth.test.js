@@ -17,7 +17,8 @@ test('homepage ships Gun-backed experiment and focused CTA plumbing', async () =
   assert.match(html, /data-growth-cta="start-project-primary"/);
   assert.match(html, /data-growth-cta="see-plans"/);
   assert.match(html, /class="hero-logo-card(?:\s|")/);
-  assert.match(html, /Build the future\./);
+  assert.match(html, /Build the future/);
+  assert.doesNotMatch(html, /Build the future\./);
   assert.doesNotMatch(html, /data-growth-cta="enter-3dvr-world"/);
   assert.match(html, /class="plan-lane-section"/);
   assert.match(html, /data-growth-cta="plan-free"/);
