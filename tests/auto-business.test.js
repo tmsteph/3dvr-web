@@ -57,8 +57,8 @@ describe('3DVR auto-business design document', () => {
     const homeHtml = await readFile(new URL('../index.html', import.meta.url), 'utf8');
     const sitemap = await readFile(new URL('../sitemap.xml', import.meta.url), 'utf8');
 
-    assert.match(homeHtml, /href="#subscribe">Plans<\/a>/);
-    assert.match(homeHtml, /href="#subscribe">\s*See plans\s*<\/a>/);
+    assert.match(homeHtml, /href="subscribe\/index\.html">Plans<\/a>/);
+    assert.match(homeHtml, /href="subscribe\/index\.html">\s*See plans\s*<\/a>/);
     assert.doesNotMatch(homeHtml, /Internal offer notes/);
     assert.doesNotMatch(homeHtml, /auto-business design document/);
     assert.doesNotMatch(homeHtml, /href="auto-business\/"/);
