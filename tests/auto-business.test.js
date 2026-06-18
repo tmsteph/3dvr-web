@@ -53,13 +53,15 @@ describe('3DVR auto-business design document', () => {
     assert.match(html, /data-portal-path="\/billing\/\?plan=custom"/);
   });
 
-  it('keeps the homepage link low-key and removes the route from the sitemap', async () => {
+  it('keeps the internal route off the public homepage and sitemap', async () => {
     const homeHtml = await readFile(new URL('../index.html', import.meta.url), 'utf8');
     const sitemap = await readFile(new URL('../sitemap.xml', import.meta.url), 'utf8');
 
     assert.match(homeHtml, /href="#subscribe">Plans<\/a>/);
     assert.match(homeHtml, /href="#subscribe">\s*See plans\s*<\/a>/);
-    assert.match(homeHtml, /Internal offer notes: <a href="auto-business\/">auto-business design document<\/a>/);
+    assert.doesNotMatch(homeHtml, /Internal offer notes/);
+    assert.doesNotMatch(homeHtml, /auto-business design document/);
+    assert.doesNotMatch(homeHtml, /href="auto-business\/"/);
     assert.doesNotMatch(homeHtml, /href="auto-business\/">Plans<\/a>/);
     assert.doesNotMatch(homeHtml, /href="auto-business\/">\s*See plans\s*<\/a>/);
     assert.doesNotMatch(homeHtml, /Open plans and project sprints/);
