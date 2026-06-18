@@ -9,6 +9,7 @@ describe('3dvr-web customer journey copy', () => {
     const heroIndex = html.indexOf('<section class="hero">');
     const planLaneIndex = html.indexOf('<section class="plan-lane-section"');
     const whatWeDoIndex = html.indexOf('<section id="vision"');
+    const navHtml = html.match(/<nav id="mainNav">[\s\S]*?<\/nav>/)?.[0] || '';
 
     assert.match(html, /Websites\. Apps\. Direct support\./);
     assert.match(html, /We help small businesses actually launch\./);
@@ -40,6 +41,11 @@ describe('3dvr-web customer journey copy', () => {
     assert.doesNotMatch(html, /Enterprise Plan/);
     assert.match(html, /Custom/);
     assert.match(html, /What We Do/);
+    assert.ok(
+      navHtml.indexOf('>Start Free<') < navHtml.indexOf('>Plans<') &&
+        navHtml.indexOf('>Plans<') < navHtml.indexOf('>What We Do<'),
+      'Plans nav link should sit between Start Free and What We Do',
+    );
     assert.match(html, /Build your website or app/);
     assert.match(html, /Help you figure out the offer/);
     assert.match(html, /Stay with you as it grows/);
