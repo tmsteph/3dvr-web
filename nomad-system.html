@@ -313,6 +313,16 @@
       color: var(--muted);
     }
 
+    .direction-points {
+      margin: 1.25rem 0 2rem;
+      padding-left: 1.15rem;
+      color: var(--muted);
+    }
+
+    .direction-points li + li {
+      margin-top: 0.4rem;
+    }
+
     .band {
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
       border-top: 1px solid rgba(255, 255, 255, 0.07);
@@ -521,12 +531,19 @@
     <section id="system">
       <div class="container">
         <div class="section-title">
-          <h2>The 3dvr nomad system</h2>
+          <h2>Nomad system direction</h2>
           <p>
-            This is the stack we are building over time, starting with what works now
-            and moving toward deeper hardware and infrastructure independence.
+            Portable work, open hardware, and a calmer way to build on the move.
+            3dvr is not only a website and support business. The longer vision is a real nomad system:
+            portable computing, practical gear, Linux-first workflows, and infrastructure that helps
+            people work from more places with less dependence on closed platforms.
           </p>
         </div>
+        <ul class="direction-points">
+          <li>Start with services, setup help, and community that already work today.</li>
+          <li>Grow into gear guidance, workstation kits, and portable infrastructure experiments.</li>
+          <li>Keep the stack open-source, repairable where possible, and useful in the real world.</li>
+        </ul>
         <div class="grid-4">
           <article class="card">
             <h3>1. Work</h3>
