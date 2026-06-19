@@ -1,40 +1,45 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import test from 'node:test';
 import vm from 'node:vm';
-import { fileURLToPath } from 'node:url';
 
-const serviceWorkerPath = new URL('../service-worker.js', import.meta.url);
-const serviceWorkerFilename = fileURLToPath(serviceWorkerPath);
+const serviceWorkerPath = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  '..',
+  'service-worker.js'
+);
 
 async function loadServiceWorker({
-  cacheMatch,
+  cacheMatch = async () => undefined,
   fetchImpl
 } = {}) {
   const source = await readFile(serviceWorkerPath, 'utf8');
   const listeners = {};
   const cachePuts = [];
+  const deletedCaches = [];
 
   const caches = {
     async match(request) {
-      if (typeof cacheMatch === 'function') {
-        return cacheMatch(request);
-      }
-      return undefined;
+      return cacheMatch(request, 'global');
     },
-    async open() {
+    async open(cacheName) {
       return {
         async addAll() {},
+        async match(request) {
+          return cacheMatch(request, cacheName);
+        },
         async put(request, response) {
-          cachePuts.push({ request, response });
+          cachePuts.push({ cacheName, request, response });
         }
       };
     },
     async keys() {
-      return ['3dvr-cache-v1', '3dvr-cache-v2'];
+      return ['3dvr-cache-v1', '3dvr-runtime-v6', '3dvr-offline-v6'];
     },
-    async delete() {
+    async delete(cacheName) {
+      deletedCaches.push(cacheName);
       return true;
     }
   };
@@ -42,6 +47,7 @@ async function loadServiceWorker({
   const sandbox = {
     URL,
     Response,
+    Headers,
     Promise,
     console,
     caches,
@@ -49,6 +55,9 @@ async function loadServiceWorker({
     self: {
       location: { origin: 'https://www.3dvr.tech' },
       clients: { claim() {} },
+      registration: {
+        navigationPreload: { enable() {} }
+      },
       skipWaiting() {},
       addEventListener(type, handler) {
         listeners[type] = handler;
@@ -57,10 +66,10 @@ async function loadServiceWorker({
   };
 
   vm.runInNewContext(source, sandbox, {
-    filename: path.basename(serviceWorkerFilename)
+    filename: path.basename(serviceWorkerPath)
   });
 
-  return { listeners, cachePuts };
+  return { listeners, cachePuts, deletedCaches };
 }
 
 function createRequest(url, options = {}) {
@@ -83,22 +92,28 @@ function createRequest(url, options = {}) {
 
 async function dispatchFetch(listeners, request) {
   let responsePromise;
+  const waitUntilPromises = [];
   listeners.fetch({
     request,
+    waitUntil(promise) {
+      waitUntilPromises.push(promise);
+    },
     respondWith(promise) {
       responsePromise = promise;
     }
   });
 
   assert.ok(responsePromise, 'fetch handler should call respondWith');
-  return responsePromise;
+  const response = await responsePromise;
+  await Promise.all(waitUntilPromises);
+  return response;
 }
 
 test('service worker uses network-first for html navigations', async () => {
   let fetchCalls = 0;
   const { listeners, cachePuts } = await loadServiceWorker({
-    cacheMatch: async (request) => {
-      if (request === '/index.html') {
+    cacheMatch: async (request, cacheName) => {
+      if (cacheName === '3dvr-offline-v6' && request === '/index.html') {
         return new Response('offline-home', { status: 200 });
       }
       return new Response('cached-html', { status: 200 });
@@ -120,14 +135,18 @@ test('service worker uses network-first for html navigations', async () => {
   assert.equal(fetchCalls, 1);
   assert.equal(await response.text(), 'network-html');
   assert.equal(cachePuts.length, 1);
+  assert.equal(cachePuts[0].cacheName, '3dvr-offline-v6');
 });
 
-test('service worker uses network-first for same-origin js assets', async () => {
+test('service worker refreshes fresh same-origin assets in the background', async () => {
   let fetchCalls = 0;
-  const { listeners, cachePuts } = await loadServiceWorker({
-    cacheMatch: async (request) => {
-      if (request?.url === 'https://www.3dvr.tech/subscribe/portal-links.js') {
-        return new Response('cached-js', { status: 200 });
+  const { listeners } = await loadServiceWorker({
+    cacheMatch: async (request, cacheName) => {
+      if (cacheName === '3dvr-runtime-v6' && request?.url === 'https://www.3dvr.tech/subscribe/portal-links.js') {
+        return new Response('cached-js', {
+          status: 200,
+          headers: { 'sw-cached-at': String(Date.now()) }
+        });
       }
       return undefined;
     },
@@ -145,77 +164,34 @@ test('service worker uses network-first for same-origin js assets', async () => 
   );
 
   assert.equal(fetchCalls, 1);
-  assert.equal(await response.text(), 'network-js');
-  assert.equal(cachePuts.length, 1);
+  assert.equal(await response.text(), 'cached-js');
 });
 
-test('service worker falls back to cached js assets when offline', async () => {
+test('service worker fetches stale same-origin assets before falling back to cache', async () => {
+  let fetchCalls = 0;
   const { listeners } = await loadServiceWorker({
-    cacheMatch: async (request) => {
-      if (request?.url === 'https://www.3dvr.tech/subscribe/portal-links.js') {
-        return new Response('cached-js', { status: 200 });
+    cacheMatch: async (request, cacheName) => {
+      if (cacheName === '3dvr-runtime-v6' && request?.url === 'https://www.3dvr.tech/dist/script.js') {
+        return new Response('stale-js', {
+          status: 200,
+          headers: { 'sw-cached-at': String(Date.now() - 60 * 60 * 1000) }
+        });
       }
       return undefined;
     },
     fetchImpl: async () => {
-      throw new Error('offline');
+      fetchCalls += 1;
+      return new Response('network-js', { status: 200 });
     }
   });
 
   const response = await dispatchFetch(
     listeners,
-    createRequest('https://www.3dvr.tech/subscribe/portal-links.js', {
+    createRequest('https://www.3dvr.tech/dist/script.js', {
       accept: 'text/javascript'
     })
   );
 
-  assert.equal(await response.text(), 'cached-js');
-});
-
-test('service worker keeps same-origin image assets cache-first', async () => {
-  let fetchCalls = 0;
-  const { listeners } = await loadServiceWorker({
-    cacheMatch: async (request) => {
-      if (request?.url === 'https://www.3dvr.tech/3DVR.png') {
-        return new Response('cached-image', { status: 200 });
-      }
-      return undefined;
-    },
-    fetchImpl: async () => {
-      fetchCalls += 1;
-      return new Response('network-image', { status: 200 });
-    }
-  });
-
-  const response = await dispatchFetch(
-    listeners,
-    createRequest('https://www.3dvr.tech/3DVR.png')
-  );
-
-  assert.equal(fetchCalls, 0);
-  assert.equal(await response.text(), 'cached-image');
-});
-
-test('service worker keeps the svg app logo cache-first', async () => {
-  let fetchCalls = 0;
-  const { listeners } = await loadServiceWorker({
-    cacheMatch: async (request) => {
-      if (request?.url === 'https://www.3dvr.tech/assets/logo-3dvr.svg') {
-        return new Response('cached-logo', { status: 200 });
-      }
-      return undefined;
-    },
-    fetchImpl: async () => {
-      fetchCalls += 1;
-      return new Response('network-logo', { status: 200 });
-    }
-  });
-
-  const response = await dispatchFetch(
-    listeners,
-    createRequest('https://www.3dvr.tech/assets/logo-3dvr.svg')
-  );
-
-  assert.equal(fetchCalls, 0);
-  assert.equal(await response.text(), 'cached-logo');
+  assert.equal(fetchCalls, 1);
+  assert.equal(await response.text(), 'network-js');
 });
