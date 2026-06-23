@@ -36,7 +36,7 @@ async function loadServiceWorker({
       };
     },
     async keys() {
-      return ['3dvr-cache-v1', '3dvr-runtime-v6', '3dvr-offline-v6'];
+      return ['3dvr-cache-v1', '3dvr-runtime-v7', '3dvr-offline-v7'];
     },
     async delete(cacheName) {
       deletedCaches.push(cacheName);
@@ -113,7 +113,7 @@ test('service worker uses network-first for html navigations', async () => {
   let fetchCalls = 0;
   const { listeners, cachePuts } = await loadServiceWorker({
     cacheMatch: async (request, cacheName) => {
-      if (cacheName === '3dvr-offline-v6' && request === '/index.html') {
+      if (cacheName === '3dvr-offline-v7' && request === '/index.html') {
         return new Response('offline-home', { status: 200 });
       }
       return new Response('cached-html', { status: 200 });
@@ -135,14 +135,46 @@ test('service worker uses network-first for html navigations', async () => {
   assert.equal(fetchCalls, 1);
   assert.equal(await response.text(), 'network-html');
   assert.equal(cachePuts.length, 1);
-  assert.equal(cachePuts[0].cacheName, '3dvr-offline-v6');
+  assert.equal(cachePuts[0].cacheName, '3dvr-offline-v7');
+});
+
+test('service worker falls back instead of showing Vercel browser checkpoints', async () => {
+  const { listeners, cachePuts } = await loadServiceWorker({
+    cacheMatch: async (request, cacheName) => {
+      if (cacheName === '3dvr-offline-v7' && request?.url === 'https://www.3dvr.tech/system.html') {
+        return new Response('cached-system', { status: 200 });
+      }
+      if (cacheName === '3dvr-offline-v7' && request === '/index.html') {
+        return new Response('offline-home', { status: 200 });
+      }
+      return undefined;
+    },
+    fetchImpl: async () => new Response(
+      '<!doctype html><title>Vercel Security Checkpoint</title><p>Failed to verify your browser Code 805</p>',
+      {
+        status: 200,
+        headers: { 'content-type': 'text/html; charset=utf-8' }
+      }
+    )
+  });
+
+  const response = await dispatchFetch(
+    listeners,
+    createRequest('https://www.3dvr.tech/system.html', {
+      mode: 'navigate',
+      accept: 'text/html'
+    })
+  );
+
+  assert.equal(await response.text(), 'cached-system');
+  assert.equal(cachePuts.length, 0);
 });
 
 test('service worker refreshes fresh same-origin assets in the background', async () => {
   let fetchCalls = 0;
   const { listeners } = await loadServiceWorker({
     cacheMatch: async (request, cacheName) => {
-      if (cacheName === '3dvr-runtime-v6' && request?.url === 'https://www.3dvr.tech/subscribe/portal-links.js') {
+      if (cacheName === '3dvr-runtime-v7' && request?.url === 'https://www.3dvr.tech/subscribe/portal-links.js') {
         return new Response('cached-js', {
           status: 200,
           headers: { 'sw-cached-at': String(Date.now()) }
@@ -171,7 +203,7 @@ test('service worker fetches stale same-origin assets before falling back to cac
   let fetchCalls = 0;
   const { listeners } = await loadServiceWorker({
     cacheMatch: async (request, cacheName) => {
-      if (cacheName === '3dvr-runtime-v6' && request?.url === 'https://www.3dvr.tech/dist/script.js') {
+      if (cacheName === '3dvr-runtime-v7' && request?.url === 'https://www.3dvr.tech/dist/script.js') {
         return new Response('stale-js', {
           status: 200,
           headers: { 'sw-cached-at': String(Date.now() - 60 * 60 * 1000) }
