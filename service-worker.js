@@ -1,7 +1,8 @@
-const CACHE_NAME = '3dvr-runtime-v6';
-const OFFLINE_CACHE_NAME = '3dvr-offline-v6';
+const CACHE_NAME = '3dvr-runtime-v7';
+const OFFLINE_CACHE_NAME = '3dvr-offline-v7';
 const RUNTIME_MAX_AGE_MS = 10 * 60 * 1000;
 const CACHE_TIMESTAMP_HEADER = 'sw-cached-at';
+const SECURITY_CHECKPOINT_PATTERN = /Vercel Security Checkpoint|Failed to verify your browser|We(?:'|’)?re (?:verifying|checking) your browser|Code\s*(?:705|805)/i;
 const OFFLINE_ASSETS = [
   '/',
   '/index.html',
@@ -97,18 +98,32 @@ async function cacheResponse(request, response, cacheName = CACHE_NAME) {
   return response;
 }
 
+async function cachedNavigationFallback(request) {
+  const cache = await caches.open(OFFLINE_CACHE_NAME);
+  const cached = await cache.match(request);
+  if (cached) {
+    return cached;
+  }
+
+  return cache.match('/index.html');
+}
+
 async function networkFirstNavigationResponse(request) {
   try {
     const response = await fetch(request, { cache: 'no-store' });
-    return await cacheResponse(request, response, OFFLINE_CACHE_NAME);
-  } catch (error) {
-    const cache = await caches.open(OFFLINE_CACHE_NAME);
-    const cached = await cache.match(request);
-    if (cached) {
-      return cached;
+    const contentType = response.headers.get('content-type') || '';
+
+    if (contentType.includes('text/html')) {
+      const text = await response.clone().text();
+
+      if (SECURITY_CHECKPOINT_PATTERN.test(text)) {
+        return cachedNavigationFallback(request);
+      }
     }
 
-    return cache.match('/index.html');
+    return await cacheResponse(request, response, OFFLINE_CACHE_NAME);
+  } catch (error) {
+    return cachedNavigationFallback(request);
   }
 }
 
