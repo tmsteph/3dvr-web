@@ -50,6 +50,13 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Build your website or app/);
     assert.match(html, /Help you figure out the offer/);
     assert.match(html, /Stay with you as it grows/);
+    assert.match(html, /href="websites\.html">Website work<\/a>/);
+    assert.match(html, /href="apps\.html">App flows<\/a>/);
+    assert.match(html, /href="support\.html">Support desk<\/a>/);
+    assert.match(html, /href="consulting\.html">Book a session<\/a>/);
+    assert.match(html, /href="community\.html">Builder community<\/a>/);
+    assert.doesNotMatch(html, /<section id="features"/);
+    assert.doesNotMatch(html, /Practical help/);
     assert.doesNotMatch(html, /Calendar Hub/);
     assert.doesNotMatch(html, /Open the calendar →/);
     assert.doesNotMatch(html, /Self-Hosting Lab/);
