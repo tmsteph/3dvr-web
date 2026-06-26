@@ -27,6 +27,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /data-portal-path="\/billing\/\?plan=embedded"/);
     assert.doesNotMatch(html, /Plans after the offer is clear/);
     assert.match(html, /Start free, or choose the lane that fits/);
+    assert.doesNotMatch(html, /Start free if you are still organizing, or choose the lane that matches the support you need\./);
     assert.doesNotMatch(html, /Pick the lane that fits\./);
     assert.match(html, /Get Organized/);
     assert.match(html, /Light Support/);
