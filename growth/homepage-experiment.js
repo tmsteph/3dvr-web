@@ -31,7 +31,7 @@
       key: 'traction',
       eyebrow: 'Launch fast. Start selling.',
       primary: 'Get your project live.',
-      body: '3dvr helps small businesses and creators launch pages, apps, and follow-up systems without getting stuck in tech.',
+      body: '3dvr helps small businesses and creators launch without getting stuck in tech.',
     }),
   });
 
