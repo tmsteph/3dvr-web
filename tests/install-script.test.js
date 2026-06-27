@@ -6,7 +6,7 @@ test('Termux installer ships a real Pocket Workstation bootstrap flow', async ()
   const installScript = await readFile(new URL('../install.sh', import.meta.url), 'utf8');
   const vercelConfig = await readFile(new URL('../vercel.json', import.meta.url), 'utf8');
   const pageHtml = await readFile(new URL('../pocket-workstation.html', import.meta.url), 'utf8');
-  const homepageHtml = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const systemHtml = await readFile(new URL('../system.html', import.meta.url), 'utf8');
 
   assert.match(installScript, /^#!\/usr\/bin\/env bash/m);
   assert.match(installScript, /3dvr install is built for Termux on Android/);
@@ -36,7 +36,6 @@ test('Termux installer ships a real Pocket Workstation bootstrap flow', async ()
   assert.match(pageHtml, /Then run <code>3dvr connect<\/code>/);
   assert.match(pageHtml, /https:\/\/portal\.3dvr\.tech\/pocket-workstation\//);
 
-  assert.match(homepageHtml, /Pocket Workstation install/);
-  assert.match(homepageHtml, /href="pocket-workstation\.html"/);
-  assert.match(homepageHtml, /data-growth-cta="pocket-workstation-page"/);
+  assert.match(systemHtml, /Pocket Workstation install/);
+  assert.match(systemHtml, /href="pocket-workstation\.html"/);
 });
