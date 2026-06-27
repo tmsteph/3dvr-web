@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 
 test('homepage ships Gun-backed experiment and focused CTA plumbing', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const systemHtml = await readFile(new URL('../system.html', import.meta.url), 'utf8');
   const js = await readFile(new URL('../growth/homepage-experiment.js', import.meta.url), 'utf8');
 
   assert.match(html, /id="heroEyebrow"/);
@@ -35,7 +36,9 @@ test('homepage ships Gun-backed experiment and focused CTA plumbing', async () =
   assert.match(html, /data-growth-cta="plan-200"[^>]+data-portal-path="\/billing\/\?plan=embedded"/);
   assert.match(html, /data-growth-cta="plan-custom"/);
   assert.doesNotMatch(html, /data-growth-cta="launch-in-3-days"/);
-  assert.match(html, /href="nomad-system\.html"[^>]+data-growth-cta="explore-nomad-system"/);
+  assert.doesNotMatch(html, /data-growth-cta="explore-nomad-system"/);
+  assert.match(systemHtml, /href="nomad-system\.html"/);
+  assert.match(systemHtml, /Explore the nomad system/);
   assert.match(html, /data-portal-path="\/billing\/\?plan=custom"/);
   assert.match(html, /href="https:\/\/portal\.3dvr\.tech\/billing\/\?plan=custom"/);
   assert.match(html, /src="subscribe\/portal-links\.js"/);
