@@ -938,9 +938,15 @@
     .card p { font-size: 1rem; }
 
     #testimonials {
+      min-height: calc(100vh - 82px);
+      padding: clamp(6rem, 9vw, 8rem) 2rem;
       position: relative;
       overflow: hidden;
       isolation: isolate;
+    }
+    #testimonials > h2 {
+      position: relative;
+      z-index: 1;
     }
     #testimonials::before,
     #testimonials::after {
@@ -992,6 +998,12 @@
     }
     .testimonial-card:hover::after {
       opacity: 1;
+    }
+    @media (max-width: 760px) {
+      #testimonials {
+        min-height: auto;
+        padding-block: 4.5rem;
+      }
     }
 
     #partners {

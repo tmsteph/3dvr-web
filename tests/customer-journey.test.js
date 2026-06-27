@@ -99,6 +99,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.doesNotMatch(html, /A real place to land when you need a site, support, or a launch plan\./);
     assert.doesNotMatch(html, /Best for real businesses that need a site, follow-up, updates, and calmer operations\./);
     assert.match(html, /Trusted by friends, family, and small businesses/);
+    assert.match(html, /#testimonials\s*\{[\s\S]*?min-height:\s*calc\(100vh - 82px\);[\s\S]*?padding:\s*clamp\(6rem, 9vw, 8rem\) 2rem;/);
     assert.match(html, /See plans/);
     assert.match(html, /hero-logo-card/);
     assert.ok(heroIndex !== -1, 'Hero section should exist');
