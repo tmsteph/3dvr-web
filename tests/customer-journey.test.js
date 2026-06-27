@@ -33,7 +33,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /Light Support/);
     assert.match(html, /Launch now!/);
     assert.match(html, /Default for businesses/);
-    assert.match(html, /Run one calmer team system/);
+    assert.match(html, /One Calmer Team System/);
     assert.match(html, /One-time payment or deposit/);
     assert.match(html, /\$5\/mo/);
     assert.match(html, /\$20\/mo/);
