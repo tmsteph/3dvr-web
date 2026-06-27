@@ -124,6 +124,15 @@ describe('3dvr-web customer journey copy', () => {
     assert.doesNotMatch(html, /What the stack includes/);
     assert.doesNotMatch(html, /<section id="system"/);
     assert.doesNotMatch(html, /<section id="portal"/);
+    assert.match(html, /<section id="about" class="about-section" aria-labelledby="aboutTitle">/);
+    assert.match(html, /class="about-shell"/);
+    assert.match(html, /We believe everyone deserves the tools to build their digital life/);
+    assert.match(html, /Contribute on GitHub/);
+    assert.match(html, /<strong>Hardware<\/strong>/);
+    assert.match(html, /<strong>Software<\/strong>/);
+    assert.match(html, /<strong>Support<\/strong>/);
+    assert.match(html, /<strong>Open source<\/strong>/);
+    assert.doesNotMatch(html, /Contributions welcome on <a/);
     assert.doesNotMatch(html, /Message me/i);
     assert.doesNotMatch(html, /mailto:3dvr\.tech@gmail\.com\?subject=3DVR%20Project%20Inquiry/);
     assert.doesNotMatch(html, /Plan your week\. Get support\. Launch work\./);

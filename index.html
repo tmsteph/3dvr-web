@@ -1287,6 +1287,182 @@
       background: rgba(0,255,200,0.22);
     }
 
+    .about-section {
+      min-height: calc(100vh - 82px);
+      background:
+        linear-gradient(135deg, rgba(35, 37, 38, 0.98), rgba(65, 67, 69, 0.96)),
+        var(--bg-about);
+      padding: clamp(5.5rem, 8vw, 7.5rem) clamp(1.25rem, 5vw, 4rem);
+      text-align: left;
+      overflow: hidden;
+      position: relative;
+    }
+    .about-section h2,
+    .about-section p {
+      max-width: none;
+      margin: 0;
+    }
+    .about-shell {
+      width: min(1040px, 100%);
+      min-height: min(720px, calc(100vh - 180px));
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+      align-items: center;
+      gap: clamp(2.25rem, 5vw, 5rem);
+      margin: 0 auto;
+    }
+    .about-copy {
+      display: grid;
+      gap: 1.6rem;
+    }
+    .about-kicker {
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .about-section h2 {
+      font-size: clamp(3rem, 7vw, 5.7rem);
+      line-height: 0.96;
+      margin-bottom: 0.2rem;
+    }
+    .about-lede {
+      color: rgba(255, 255, 255, 0.86);
+      font-size: clamp(1.2rem, 2.3vw, 1.65rem);
+      line-height: 1.55;
+    }
+    .about-points {
+      display: grid;
+      gap: 1rem;
+      margin-top: 0.35rem;
+    }
+    .about-point {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.9rem;
+      align-items: start;
+      padding: 1.1rem 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.2);
+    }
+    .about-point__mark {
+      display: grid;
+      place-items: center;
+      width: 2.3rem;
+      height: 2.3rem;
+      border: 1px solid rgba(0, 255, 200, 0.48);
+      border-radius: 50%;
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 900;
+    }
+    .about-point h3 {
+      color: #fff;
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+    .about-point p {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+    .about-github {
+      color: var(--accent);
+      font-weight: 800;
+      text-decoration: none;
+      width: fit-content;
+      border-bottom: 1px solid rgba(0, 255, 200, 0.45);
+    }
+    .about-github:hover,
+    .about-github:focus-visible {
+      color: #fff;
+      border-color: #fff;
+    }
+    .about-visual {
+      position: relative;
+      display: grid;
+      gap: 1rem;
+      padding: clamp(1rem, 3vw, 1.5rem);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.04)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 42px);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.28);
+    }
+    .about-visual::before {
+      content: "";
+      position: absolute;
+      inset: 1rem;
+      border: 1px solid rgba(0, 255, 200, 0.18);
+      border-radius: 6px;
+      pointer-events: none;
+    }
+    .about-node {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.85rem;
+      align-items: center;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(7, 19, 31, 0.58);
+    }
+    .about-node:nth-child(2) {
+      margin-left: clamp(0.8rem, 4vw, 2.4rem);
+    }
+    .about-node:nth-child(3) {
+      margin-left: clamp(1.6rem, 7vw, 4.2rem);
+    }
+    .about-node:nth-child(4) {
+      margin-left: clamp(0.4rem, 3vw, 1.4rem);
+    }
+    .about-node__icon {
+      display: grid;
+      place-items: center;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 8px;
+      background: rgba(0, 255, 200, 0.12);
+      color: var(--accent);
+      font-weight: 900;
+      border: 1px solid rgba(0, 255, 200, 0.3);
+    }
+    .about-node strong {
+      display: block;
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 0.15rem;
+    }
+    .about-node span {
+      display: block;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 860px) {
+      .about-section {
+        min-height: auto;
+        padding-block: 4.5rem;
+      }
+      .about-shell {
+        min-height: auto;
+        grid-template-columns: 1fr;
+      }
+      .about-node,
+      .about-node:nth-child(2),
+      .about-node:nth-child(3),
+      .about-node:nth-child(4) {
+        margin-left: 0;
+      }
+    }
+
     @keyframes fadeSlideIn { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
     @keyframes web-boot-float {
@@ -1599,14 +1775,70 @@
     </div>
   </section>
 
-  <section id="about" style="background: var(--bg-about);">
-    <h2>About 3dvr.tech</h2>
-    <p style="max-width: 700px; margin: 1rem auto; font-size: 1.3rem;">
-      We believe everyone deserves the tools to build their digital life.<br />
-      We're creating an ecosystem of <strong>open-source</strong> hardware, software, and support—starting with $20/month personal services.<br />
-      Our mission is to empower creators, entrepreneurs, and digital nomads everywhere.<br />
-      Contributions welcome on <a href="https://github.com/tmsteph/3dvr-web" target="_blank" style="color: var(--accent);">GitHub</a>.
-    </p>
+  <section id="about" class="about-section" aria-labelledby="aboutTitle">
+    <div class="about-shell">
+      <div class="about-copy">
+        <span class="about-kicker">Open tools, real support</span>
+        <h2 id="aboutTitle">About 3dvr.tech</h2>
+        <p class="about-lede">
+          We believe everyone deserves the tools to build their digital life, with services that start at $20/month and grow into a practical open-source ecosystem.
+        </p>
+        <div class="about-points" aria-label="3dvr.tech direction">
+          <article class="about-point">
+            <span class="about-point__mark" aria-hidden="true">01</span>
+            <div>
+              <h3>Start with people</h3>
+              <p>Personal services help creators, small businesses, and digital nomads get organized and launch real work.</p>
+            </div>
+          </article>
+          <article class="about-point">
+            <span class="about-point__mark" aria-hidden="true">02</span>
+            <div>
+              <h3>Build the ecosystem</h3>
+              <p>Hardware, software, websites, and support are designed to fit together instead of becoming another pile of tools.</p>
+            </div>
+          </article>
+          <article class="about-point">
+            <span class="about-point__mark" aria-hidden="true">03</span>
+            <div>
+              <h3>Keep it open</h3>
+              <p>Contributions, experiments, and improvements are welcome as the platform grows.</p>
+            </div>
+          </article>
+        </div>
+        <a class="about-github" href="https://github.com/tmsteph/3dvr-web" target="_blank" rel="noopener">Contribute on GitHub</a>
+      </div>
+      <div class="about-visual" aria-label="3dvr.tech ecosystem layers">
+        <div class="about-node">
+          <span class="about-node__icon" aria-hidden="true">HW</span>
+          <div>
+            <strong>Hardware</strong>
+            <span>Repairable devices and field-ready setups.</span>
+          </div>
+        </div>
+        <div class="about-node">
+          <span class="about-node__icon" aria-hidden="true">SW</span>
+          <div>
+            <strong>Software</strong>
+            <span>Web apps, portals, and simple systems.</span>
+          </div>
+        </div>
+        <div class="about-node">
+          <span class="about-node__icon" aria-hidden="true">SP</span>
+          <div>
+            <strong>Support</strong>
+            <span>Direct help to keep the work moving.</span>
+          </div>
+        </div>
+        <div class="about-node">
+          <span class="about-node__icon" aria-hidden="true">OS</span>
+          <div>
+            <strong>Open source</strong>
+            <span>Shared pieces that can improve in public.</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- SOCIAL LINKS SECTION (desktop href + mobile deep-link) -->
