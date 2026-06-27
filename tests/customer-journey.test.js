@@ -47,6 +47,8 @@ describe('3dvr-web customer journey copy', () => {
         navHtml.indexOf('>Plans<') < navHtml.indexOf('>What We Do<'),
       'Plans nav link should sit between Start Free and What We Do',
     );
+    assert.match(navHtml, /href="#about">About<\/a>/);
+    assert.doesNotMatch(navHtml, /href="system\.html">System<\/a>/);
     assert.match(html, /Build your website or app/);
     assert.match(html, /Help you figure out the offer/);
     assert.match(html, /Stay with you as it grows/);
