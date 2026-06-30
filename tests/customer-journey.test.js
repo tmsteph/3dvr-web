@@ -217,6 +217,23 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(builderHtml, /Continue to Portal for Builder/);
   });
 
+  it('makes the friends and family page sendable with real portal links', async () => {
+    const html = await readFile(new URL('../friends.html', import.meta.url), 'utf8');
+
+    assert.match(html, /Try 3DVR free\. If it helps, join for \$5\./);
+    assert.match(html, /This is the simple friends, family, and coworker invite\./);
+    assert.match(html, /Free: one small place to check in and choose your next step\./);
+    assert.match(html, /Friends &amp; Family Pass/);
+    assert.match(html, /Join for \$5\/month/);
+    assert.match(html, /Text this to one person/);
+    assert.match(html, /https:\/\/portal\.3dvr\.tech\/friends-family\//);
+    assert.match(html, /https:\/\/portal\.3dvr\.tech\/free-trial\.html/);
+    assert.match(html, /https:\/\/portal\.3dvr\.tech\/sign-in\.html\?redirect=%2Fbilling%2F%3Fplan%3Dstarter/);
+    assert.match(html, /https:\/\/portal\.3dvr\.tech\/sign-in\.html\?redirect=%2Fbilling%2F%3Fplan%3Dpro/);
+    assert.doesNotMatch(html, /REPLACE_ME_/);
+    assert.doesNotMatch(html, /First Month Free/);
+  });
+
   it('ships segment pages for the three paid wedges', async () => {
     const professionalHtml = await readFile(new URL('../subscribe/professional-services.html', import.meta.url), 'utf8');
     const localHtml = await readFile(new URL('../subscribe/local-services.html', import.meta.url), 'utf8');
