@@ -11,25 +11,27 @@ describe('3dvr-web customer journey copy', () => {
     const whatWeDoIndex = html.indexOf('<section id="vision"');
     const navHtml = html.match(/<nav id="mainNav">[\s\S]*?<\/nav>/)?.[0] || '';
 
-    assert.match(html, /Websites\. Apps\. Direct support\./);
-    assert.match(html, /We help small businesses actually launch\./);
-    assert.match(html, /Launch a site, offer, or simple business system with direct support from idea to live\./);
+    assert.match(html, /Free Plan/);
+    assert.match(html, /Start where you are\./);
+    assert.match(html, /Use 3DVR free to sort one messy thought and pick one small next step\./);
+    assert.match(html, /If you already have a project, site, offer, or business system to launch, get direct help\./);
     assert.match(html, /Start Free/);
-    assert.match(html, /Start a project/);
+    assert.match(html, /Start free/);
+    assert.match(html, /I need help launching something/);
     assert.match(html, /Launch now!/);
     assert.match(html, /Build the future/);
     assert.doesNotMatch(html, /Build the future\./);
-    assert.match(html, /data-portal-path="\/start\/"/);
-    assert.match(html, /data-portal-path="\/free-trial\.html"/);
+    assert.match(html, /data-portal-path="\/life\/index\.html"/);
+    assert.match(html, /data-portal-path="\/start\/#paid-lanes"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=starter"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=pro"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=builder"/);
     assert.match(html, /data-portal-path="\/billing\/\?plan=embedded"/);
     assert.doesNotMatch(html, /Plans after the offer is clear/);
-    assert.match(html, /Start free, or choose the lane that fits/);
+    assert.match(html, /Free first, paid help when you need it/);
     assert.doesNotMatch(html, /Start free if you are still organizing, or choose the lane that matches the support you need\./);
     assert.doesNotMatch(html, /Pick the lane that fits\./);
-    assert.match(html, /Get Organized/);
+    assert.match(html, /One small step/);
     assert.match(html, /Light Support/);
     assert.match(html, /Launch now!/);
     assert.match(html, /Default for businesses/);
@@ -100,7 +102,7 @@ describe('3dvr-web customer journey copy', () => {
     assert.doesNotMatch(html, /Best for real businesses that need a site, follow-up, updates, and calmer operations\./);
     assert.match(html, /Trusted by friends, family, and small businesses/);
     assert.match(html, /#testimonials\s*\{[\s\S]*?min-height:\s*calc\(100vh - 82px\);[\s\S]*?padding:\s*clamp\(6rem, 9vw, 8rem\) 2rem;/);
-    assert.match(html, /See plans/);
+    assert.match(html, /I need help launching something/);
     assert.match(html, /hero-logo-card/);
     assert.ok(heroIndex !== -1, 'Hero section should exist');
     assert.ok(planLaneIndex !== -1, 'Plan lane section should exist');
@@ -220,14 +222,14 @@ describe('3dvr-web customer journey copy', () => {
   it('makes the friends and family page sendable with real portal links', async () => {
     const html = await readFile(new URL('../friends.html', import.meta.url), 'utf8');
 
-    assert.match(html, /Try 3DVR free\. If it helps, join for \$5\./);
-    assert.match(html, /This is the simple friends, family, and coworker invite\./);
+    assert.match(html, /Try 3DVR free\./);
+    assert.match(html, /Sort one messy thought\. Pick one small next step\. No card\./);
     assert.match(html, /Free: one small place to check in and choose your next step\./);
     assert.match(html, /Friends &amp; Family Pass/);
-    assert.match(html, /Join for \$5\/month/);
+    assert.match(html, /Support for \$5\/month/);
     assert.match(html, /Text this to one person/);
     assert.match(html, /https:\/\/portal\.3dvr\.tech\/friends-family\//);
-    assert.match(html, /https:\/\/portal\.3dvr\.tech\/free-trial\.html/);
+    assert.match(html, /https:\/\/portal\.3dvr\.tech\/life\/index\.html/);
     assert.match(html, /https:\/\/portal\.3dvr\.tech\/sign-in\.html\?redirect=%2Fbilling%2F%3Fplan%3Dstarter/);
     assert.match(html, /https:\/\/portal\.3dvr\.tech\/sign-in\.html\?redirect=%2Fbilling%2F%3Fplan%3Dpro/);
     assert.doesNotMatch(html, /REPLACE_ME_/);
