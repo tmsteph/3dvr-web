@@ -7,7 +7,7 @@ test('free plan copy points to the portal start path in plain language', async (
   const plansHtml = await readFile(new URL('../subscribe/index.html', import.meta.url), 'utf8');
   const freeHtml = await readFile(new URL('../subscribe/free-plan.html', import.meta.url), 'utf8');
 
-  assert.match(homeHtml, /Free first, paid help when you need it/);
+  assert.match(homeHtml, /Start free, or choose the lane that fits/);
   assert.match(homeHtml, /Light Support/);
   assert.match(plansHtml, /Get organized, sort out your next steps, and start using the portal without paying first\./);
   assert.match(plansHtml, /Daily check-ins and weekly reflection/);
