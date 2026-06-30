@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="A calm, no-pressure way for friends, family, and coworkers to stay connected with 3DVR.Tech and support ongoing work."
+    content="Try 3DVR free, get one clear next step, or join the Friends & Family Pass for $5/month."
   />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://3dvr.tech/friends.html" />
@@ -19,7 +19,7 @@
   <meta property="og:title" content="Friends, Family &amp; Coworkers | 3DVR.Tech" />
   <meta
     property="og:description"
-    content="Stay connected with 3DVR.Tech in a calm, no-pressure way. Choose free updates or gentle support for ongoing projects."
+    content="Try 3DVR free, get one clear next step, or join the Friends & Family Pass for $5/month."
   />
   <meta property="og:url" content="https://3dvr.tech/friends.html" />
   <meta property="og:image" content="https://3dvr.tech/3DVR.png" />
@@ -28,7 +28,7 @@
   <meta name="twitter:title" content="Friends, Family &amp; Coworkers | 3DVR.Tech" />
   <meta
     name="twitter:description"
-    content="A gentle way for friends, family, and coworkers to stay connected with 3DVR.Tech."
+    content="Try 3DVR free, get one clear next step, or join the Friends & Family Pass for $5/month."
   />
   <meta name="twitter:image" content="https://3dvr.tech/3DVR.png" />
   <script type="application/ld+json">
@@ -212,6 +212,45 @@
       font-weight: 600;
     }
 
+    .mini-list {
+      display: grid;
+      gap: 0.65rem;
+      margin: 0.25rem auto 0;
+      max-width: 42rem;
+      list-style: none;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 1.04rem;
+    }
+
+    .mini-list li {
+      padding: 0.75rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .share-box {
+      display: grid;
+      gap: 1rem;
+      margin: 1rem auto 0;
+      max-width: 680px;
+      padding: 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.24);
+      text-align: left;
+    }
+
+    .share-box p {
+      color: rgba(255, 255, 255, 0.94);
+      font-size: 1.06rem;
+    }
+
+    .note-line {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.98rem;
+    }
+
     .promise {
       background: rgba(0, 0, 0, 0.2);
     }
@@ -265,40 +304,35 @@
     </nav>
   </header>
 
-  <!-- Stripe checkout placeholders: replace REPLACE_ME_FREE, REPLACE_ME_5, and REPLACE_ME_20 with live Stripe checkout URLs. -->
-
   <section class="hero">
     <div class="section-inner">
-      <h1>A Friendly Way to Stay Connected with 3DVR.Tech</h1>
+      <h1>Try 3DVR free. If it helps, join for $5.</h1>
       <p>
-        If you're a friend, family member, or coworker, this is a gentle way to stay in the loop and
-        offer support—no pressure, no awkwardness, just a steady connection.
+        This is the simple friends, family, and coworker invite. Use 3DVR to sort
+        a messy thought, pick one next step, and see if the portal helps.
       </p>
       <div class="button-row">
-        <a class="btn" href="REPLACE_ME_FREE">Start Free</a>
-        <a class="btn" href="REPLACE_ME_5">Try $5 (First Month Free)</a>
-        <a class="btn" href="REPLACE_ME_20">Builder Support</a>
+        <a class="btn" href="https://portal.3dvr.tech/friends-family/">Open the invite</a>
+        <a class="btn" href="https://portal.3dvr.tech/free-trial.html">Start free</a>
+        <a class="btn" href="https://portal.3dvr.tech/sign-in.html?redirect=%2Fbilling%2F%3Fplan%3Dstarter">Join for $5/month</a>
       </div>
       <div class="anchor-links">
-        Jump to plan details:
+        Jump to:
         <a href="#free">Free</a> ·
-        <a href="#supporter">Supporter</a> ·
-        <a href="#builder">Builder Support</a>
+        <a href="#supporter">$5 pass</a> ·
+        <a href="#share">Share message</a>
       </div>
     </div>
   </section>
 
   <section>
     <div class="section-inner">
-      <h2>What this is</h2>
-      <p>
-        This page is for the people who want to stay connected while I build. It’s a small, calm way to
-        keep up with what’s happening and offer support at a pace that feels good.
-      </p>
-      <p>
-        Whether you want updates, a little extra help on a project, or ongoing guidance, the goal is the
-        same: keep relationships first and make it easy to opt in or step back anytime.
-      </p>
+      <h2>What you get</h2>
+      <ul class="mini-list">
+        <li>Free: one small place to check in and choose your next step.</li>
+        <li>$5/month: early access, light support, and a real way to help 3DVR grow.</li>
+        <li>No pressure: cancel anytime. Try it before you pay.</li>
+      </ul>
     </div>
   </section>
 
@@ -307,24 +341,38 @@
       <h2>Plans</h2>
       <div class="card-grid">
         <article class="card" id="free">
-          <h3>Stay in the Loop</h3>
+          <h3>Get Clear</h3>
           <div class="price-tag">Free</div>
-          <p>Community access, periodic updates, and shared resources to stay close to the work.</p>
-          <a class="btn" href="REPLACE_ME_FREE">Start Free</a>
+          <p>Use the portal to sort life, ideas, money, or work into one small next step.</p>
+          <a class="btn" href="https://portal.3dvr.tech/free-trial.html">Start Free</a>
         </article>
         <article class="card" id="supporter">
-          <h3>Supporter</h3>
-          <div class="price-tag">$5/month · First Month Free</div>
-          <p>Light support, early peeks, and a bit more access when you need a faster reply.</p>
-          <a class="btn" href="REPLACE_ME_5">Try $5 (First Month Free)</a>
+          <h3>Friends &amp; Family Pass</h3>
+          <div class="price-tag">$5/month</div>
+          <p>Help fund the work and get the first look at new tools, experiments, and support paths.</p>
+          <a class="btn" href="https://portal.3dvr.tech/sign-in.html?redirect=%2Fbilling%2F%3Fplan%3Dstarter">Join for $5/month</a>
         </article>
         <article class="card" id="builder">
-          <h3>Builder Support</h3>
+          <h3>Build With Me</h3>
           <div class="price-tag">$20/month</div>
-          <p>For active projects that benefit from ongoing guidance, check-ins, and thoughtful feedback.</p>
-          <a class="btn" href="REPLACE_ME_20">Builder Support</a>
+          <p>For people who have a site, idea, page, or project and want more direct help.</p>
+          <a class="btn" href="https://portal.3dvr.tech/sign-in.html?redirect=%2Fbilling%2F%3Fplan%3Dpro">Get builder help</a>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section id="share" class="promise">
+    <div class="section-inner">
+      <h2>Text this to one person</h2>
+      <div class="share-box">
+        <p>
+          I am trying a simple 3DVR invite: use it free to sort one messy thought
+          and pick a next step. If it helps, there is a $5/month friends and
+          family pass too. Try it here: https://portal.3dvr.tech/friends-family/
+        </p>
+      </div>
+      <p class="note-line">Short, honest, and not awkward. Send it to someone who might actually use it.</p>
     </div>
   </section>
 
@@ -347,12 +395,12 @@
           <p>Yes. You can stop or switch plans whenever you want.</p>
         </div>
         <div class="faq-item">
-          <h4>Is the first month of $5 really free?</h4>
-          <p>Yes. It’s a simple way to try it without any pressure.</p>
+          <h4>Do I have to pay?</h4>
+          <p>No. Start free first. Only pay if you want to help keep it growing.</p>
         </div>
         <div class="faq-item">
           <h4>What kind of help is included?</h4>
-          <p>$5 is light help and faster replies. $20 is deeper, ongoing guidance.</p>
+          <p>Free helps you get clear. $5 is early access and light support. $20 is more direct project help.</p>
         </div>
         <div class="faq-item">
           <h4>Is this a contract?</h4>
