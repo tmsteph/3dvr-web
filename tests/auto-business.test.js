@@ -58,12 +58,13 @@ describe('3DVR auto-business design document', () => {
     const sitemap = await readFile(new URL('../sitemap.xml', import.meta.url), 'utf8');
 
     assert.match(homeHtml, /href="subscribe\/index\.html">Plans<\/a>/);
-    assert.match(homeHtml, /href="subscribe\/index\.html">\s*See plans\s*<\/a>/);
+    assert.match(homeHtml, /data-growth-cta="direct-help-primary"[\s\S]*?data-portal-path="\/start\/#paid-lanes"/);
+    assert.match(homeHtml, /I need help launching something/);
     assert.doesNotMatch(homeHtml, /Internal offer notes/);
     assert.doesNotMatch(homeHtml, /auto-business design document/);
     assert.doesNotMatch(homeHtml, /href="auto-business\/"/);
     assert.doesNotMatch(homeHtml, /href="auto-business\/">Plans<\/a>/);
-    assert.doesNotMatch(homeHtml, /href="auto-business\/">\s*See plans\s*<\/a>/);
+    assert.doesNotMatch(homeHtml, /href="auto-business\/">\s*I need help launching something\s*<\/a>/);
     assert.doesNotMatch(homeHtml, /Open plans and project sprints/);
     assert.doesNotMatch(sitemap, /<loc>https:\/\/3dvr\.tech\/plans\/<\/loc>/);
     assert.doesNotMatch(sitemap, /<loc>https:\/\/3dvr\.tech\/auto-business\/<\/loc>/);

@@ -15,8 +15,8 @@ test('homepage ships Gun-backed experiment and focused CTA plumbing', async () =
   assert.doesNotMatch(html, /id="heroFeedbackStatus"/);
   assert.doesNotMatch(html, /data-growth-feedback=/);
   assert.match(html, /data-growth-cta="sticky-start-free"/);
-  assert.match(html, /data-growth-cta="start-project-primary"/);
-  assert.match(html, /data-growth-cta="see-plans"/);
+  assert.match(html, /data-growth-cta="start-free-primary"/);
+  assert.match(html, /data-growth-cta="direct-help-primary"/);
   assert.match(html, /class="hero-logo-card(?:\s|")/);
   assert.match(html, /Build the future/);
   assert.doesNotMatch(html, /Build the future\./);
@@ -27,9 +27,10 @@ test('homepage ships Gun-backed experiment and focused CTA plumbing', async () =
   assert.match(html, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(html, /class="vision-action" href="websites\.html">Website work<\/a>/);
   assert.doesNotMatch(html, /class="card-grid features-grid"/);
-  assert.match(html, /data-growth-cta="sticky-start-free"[^>]+data-portal-path="\/free-trial\.html"/);
-  assert.match(html, /data-growth-cta="start-project-primary"[^>]+data-portal-path="\/start\/"/);
-  assert.match(html, /data-growth-cta="plan-free"[^>]+data-portal-path="\/free-trial\.html"/);
+  assert.match(html, /data-growth-cta="sticky-start-free"[^>]+data-portal-path="\/life\/index\.html"/);
+  assert.match(html, /data-growth-cta="start-free-primary"[^>]+data-portal-path="\/life\/index\.html"/);
+  assert.match(html, /data-growth-cta="direct-help-primary"[^>]+data-portal-path="\/start\/#paid-lanes"/);
+  assert.match(html, /data-growth-cta="plan-free"[^>]+data-portal-path="\/life\/index\.html"/);
   assert.match(html, /data-growth-cta="plan-starter"[^>]+data-portal-path="\/billing\/\?plan=starter"/);
   assert.match(html, /data-growth-cta="plan-20"[^>]+data-portal-path="\/billing\/\?plan=pro"/);
   assert.match(html, /data-growth-cta="plan-50"[^>]+data-portal-path="\/billing\/\?plan=builder"/);
@@ -56,8 +57,9 @@ test('homepage ships Gun-backed experiment and focused CTA plumbing', async () =
 
   assert.match(js, /EXPERIMENT_CONFIG_PATH = \['3dvr-portal', 'growth', 'experiments', 'homepage-hero', 'config'\]/);
   assert.match(js, /EXPERIMENT_EVENT_PATH = \['3dvr-portal', 'growth', 'experiments', 'homepage-hero', 'events'\]/);
-  assert.match(js, /eyebrow: 'Launch fast\. Start selling\.'/);
-  assert.match(js, /primary: 'Get your project live\.'/);
+  assert.match(js, /eyebrow: 'Free Plan'/);
+  assert.match(js, /primary: 'Start where you are\.'/);
+  assert.match(js, /primary: 'Already have something to launch\?'/);
   assert.match(js, /function chooseVariant/);
   assert.match(js, /function applyVariant/);
   assert.match(js, /function logView/);
