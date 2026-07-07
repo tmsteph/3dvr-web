@@ -11,7 +11,7 @@ test('free plan copy points to the portal start path in plain language', async (
   assert.match(homeHtml, /Light Support/);
   assert.match(plansHtml, /Get organized, sort out your next steps, and start using the portal without paying first\./);
   assert.match(plansHtml, /Daily check-ins and weekly reflection/);
-  assert.match(plansHtml, /Start free to get organized/);
+  assert.doesNotMatch(plansHtml, /Start free to get organized/);
   assert.match(freeHtml, /Get organized, sort out your next steps, and start inside the portal\./);
   assert.match(freeHtml, /The free plan gives you a simple place to check in daily, reflect each week, and build momentum before you pay for anything\./);
   assert.match(freeHtml, /data-portal-path="\/start\/"/);
