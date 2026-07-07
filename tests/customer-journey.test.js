@@ -172,7 +172,8 @@ describe('3dvr-web customer journey copy', () => {
 
   it('makes the main plans page explicit about continuing in the portal', async () => {
     const html = await readFile(new URL('../subscribe/index.html', import.meta.url), 'utf8');
-    assert.match(html, /Launch in 3 Days is the fast entry point\. Builder at \$50\/month is the default business lane/);
+    assert.doesNotMatch(html, /Launch in 3 Days is the fast entry point\. Builder at \$50\/month is the default business lane/);
+    assert.doesNotMatch(html, /Use the same portal account for free access, upgrades, invoices, and support/);
     assert.match(html, /Default for active businesses/);
     assert.match(html, /Get organized, sort out your next steps, and start using the portal without paying first\./);
     assert.match(html, /Choose by business type/);
