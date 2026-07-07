@@ -128,7 +128,15 @@ describe('3dvr-web customer journey copy', () => {
     assert.match(html, /<section id="about" class="about-section" aria-labelledby="aboutTitle">/);
     assert.match(html, /class="about-shell"/);
     assert.match(html, /We believe everyone deserves the tools to build their digital life/);
+    assert.match(html, /class="about-flow"/);
+    assert.match(html, /We start with people who need a site, an offer, support, or a calmer way to move their work forward\./);
+    assert.match(html, /href="vision\/index\.html">Read the vision<\/a>/);
     assert.match(html, /Contribute on GitHub/);
+    assert.doesNotMatch(html, /class="about-point"/);
+    assert.doesNotMatch(html, /class="about-point__mark"/);
+    assert.doesNotMatch(html, />01<\/span>/);
+    assert.doesNotMatch(html, />02<\/span>/);
+    assert.doesNotMatch(html, />03<\/span>/);
     assert.doesNotMatch(html, /class="about-visual"/);
     assert.doesNotMatch(html, /class="about-node"/);
     assert.doesNotMatch(html, /Contributions welcome on <a/);
