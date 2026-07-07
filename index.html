@@ -1342,52 +1342,32 @@
       font-size: clamp(1.2rem, 2.3vw, 1.65rem);
       line-height: 1.55;
     }
-    .about-points {
+    .about-flow {
       display: grid;
-      gap: 1rem;
+      gap: 0.9rem;
       margin-top: 0.35rem;
     }
-    .about-point {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0.9rem;
-      align-items: start;
-      padding: 1.1rem 1.2rem;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.06);
-      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.2);
-    }
-    .about-point__mark {
-      display: grid;
-      place-items: center;
-      width: 2.3rem;
-      height: 2.3rem;
-      border: 1px solid rgba(0, 255, 200, 0.48);
-      border-radius: 50%;
-      color: var(--accent);
-      font-size: 0.95rem;
-      font-weight: 900;
-    }
-    .about-point h3 {
-      color: #fff;
-      font-size: 1.05rem;
-      margin-bottom: 0.25rem;
-    }
-    .about-point p {
-      color: rgba(255, 255, 255, 0.75);
-      font-size: 0.98rem;
+    .about-flow p {
+      max-width: 760px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: clamp(1.02rem, 1.8vw, 1.18rem);
       line-height: 1.55;
     }
-    .about-github {
+    .about-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      align-items: center;
+    }
+    .about-link {
       color: var(--accent);
       font-weight: 800;
       text-decoration: none;
       width: fit-content;
       border-bottom: 1px solid rgba(0, 255, 200, 0.45);
     }
-    .about-github:hover,
-    .about-github:focus-visible {
+    .about-link:hover,
+    .about-link:focus-visible {
       color: #fff;
       border-color: #fff;
     }
@@ -1721,30 +1701,15 @@
         <p class="about-lede">
           We believe everyone deserves the tools to build their digital life, with services that start at $20/month and grow into a practical open-source ecosystem.
         </p>
-        <div class="about-points" aria-label="3dvr.tech direction">
-          <article class="about-point">
-            <span class="about-point__mark" aria-hidden="true">01</span>
-            <div>
-              <h3>Start with people</h3>
-              <p>Personal services help creators, small businesses, and digital nomads get organized and launch real work.</p>
-            </div>
-          </article>
-          <article class="about-point">
-            <span class="about-point__mark" aria-hidden="true">02</span>
-            <div>
-              <h3>Build the ecosystem</h3>
-              <p>Hardware, software, websites, and support are designed to fit together instead of becoming another pile of tools.</p>
-            </div>
-          </article>
-          <article class="about-point">
-            <span class="about-point__mark" aria-hidden="true">03</span>
-            <div>
-              <h3>Keep it open</h3>
-              <p>Contributions, experiments, and improvements are welcome as the platform grows.</p>
-            </div>
-          </article>
+        <div class="about-flow" aria-label="3dvr.tech direction">
+          <p>We start with people who need a site, an offer, support, or a calmer way to move their work forward.</p>
+          <p>Over time, those small launches become a larger open-source ecosystem for websites, apps, hardware, learning, and builder support.</p>
+          <p>Contributions, experiments, and improvements are welcome as the platform grows.</p>
         </div>
-        <a class="about-github" href="https://github.com/tmsteph/3dvr-web" target="_blank" rel="noopener">Contribute on GitHub</a>
+        <div class="about-actions">
+          <a class="about-link" href="vision/index.html">Read the vision</a>
+          <a class="about-link" href="https://github.com/tmsteph/3dvr-web" target="_blank" rel="noopener">Contribute on GitHub</a>
+        </div>
       </div>
     </div>
   </section>
