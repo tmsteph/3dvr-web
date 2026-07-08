@@ -119,8 +119,7 @@
 
     .brand img {
       width: 46px;
-      height: auto;
-      max-height: 46px;
+      height: 46px;
       flex: 0 0 auto;
       object-fit: contain;
     }
@@ -538,12 +537,14 @@
     }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+  <script defer src="growth/services-experiment.js"></script>
 </head>
 <body>
   <header class="site-header">
     <div class="page-shell">
       <a class="brand" href="index.html" aria-label="3dvr.tech home">
-        <img src="3DVR.png" alt="3dvr.tech logo" />
+        <img src="assets/logo-3dvr.svg" alt="3dvr.tech logo" />
         <span>
           3dvr.tech
           <small>Services lab</small>
@@ -552,7 +553,7 @@
       <nav class="nav-actions" aria-label="Page navigation">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="#offers">Offers</a>
-        <a class="button" href="mailto:3dvr.tech@gmail.com?subject=Project%20fit%20call%20with%203dvr.tech" target="_blank" rel="noopener">
+        <a class="button" data-service-cta="header-email" href="mailto:3dvr.tech@gmail.com?subject=Project%20fit%20call%20with%203dvr.tech" target="_blank" rel="noopener">
           <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
           Start a project
         </a>
@@ -563,18 +564,22 @@
   <main>
     <section class="page-shell hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <div class="eyebrow">Websites, offers, and simple systems</div>
-        <h1 id="hero-title">Get online without getting lost.</h1>
-        <p>
+        <div class="eyebrow" id="serviceEyebrow">Websites, offers, and simple systems</div>
+        <h1 id="hero-title"><span id="serviceHeadline">Get online without getting lost.</span></h1>
+        <p id="serviceBody">
           3dvr.tech helps small businesses, creators, and local teams turn scattered ideas into a clean website,
           a clear offer, and the lightweight tech stack needed to keep moving.
         </p>
         <div class="hero-actions">
-          <a class="button" href="mailto:3dvr.tech@gmail.com?subject=I%20want%20help%20launching%20a%20website" target="_blank" rel="noopener">
+          <a class="button" data-service-billing-link data-service-cta="hero-billing" href="https://portal.3dvr.tech/billing/?plan=custom&source=services-lab&variant=baseline&cta=hero-billing" target="_blank" rel="noopener">
+            <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
+            Open billing path
+          </a>
+          <a class="button secondary" data-service-cta="hero-email" href="mailto:3dvr.tech@gmail.com?subject=I%20want%20help%20launching%20a%20website" target="_blank" rel="noopener">
             <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
             Book a fit call
           </a>
-          <a class="button secondary" href="#offers">
+          <a class="button secondary" data-service-cta="hero-offers" href="#offers">
             <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
             See the paths
           </a>
@@ -722,9 +727,9 @@
             3dvr.tech can help turn it into a page people can actually act on.
           </p>
         </div>
-        <a class="button" href="mailto:3dvr.tech@gmail.com?subject=Project%20fit%20call%20with%203dvr.tech" target="_blank" rel="noopener">
-          <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
-          Email 3dvr.tech
+        <a class="button" data-service-billing-link data-service-cta="footer-billing" href="https://portal.3dvr.tech/billing/?plan=custom&source=services-lab&variant=baseline&cta=footer-billing" target="_blank" rel="noopener">
+          <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
+          Open project billing
         </a>
       </div>
     </section>
