@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#0f0f0f" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="A 3dvr.tech services page experiment for web design, launch support, and simple business technology systems."
+  />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://3dvr.tech/services-lab.html" />
+  <title>Services Lab | 3dvr.tech</title>
+  <link rel="icon" href="3DVRfavicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="3dvr.tech" />
+  <meta property="og:title" content="3dvr.tech Services Lab" />
+  <meta
+    property="og:description"
+    content="A test page for clearer 3dvr.tech service offers: launch pages, business websites, and simple systems."
+  />
+  <meta property="og:url" content="https://3dvr.tech/services-lab.html" />
+  <meta property="og:image" content="https://3dvr.tech/3DVR.png" />
+  <meta property="og:image:alt" content="3dvr.tech logomark" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="3dvr.tech Services Lab" />
+  <meta
+    name="twitter:description"
+    content="A test page for clearer 3dvr.tech service offers: launch pages, business websites, and simple systems."
+  />
+  <meta name="twitter:image" content="https://3dvr.tech/3DVR.png" />
+  <style>
+    :root {
+      --bg: #071018;
+      --bg-elevated: #0d1a24;
+      --bg-soft: #132532;
+      --panel: rgba(255, 255, 255, 0.075);
+      --panel-strong: rgba(255, 255, 255, 0.12);
+      --border: rgba(255, 255, 255, 0.14);
+      --text: #f7fbff;
+      --muted: rgba(247, 251, 255, 0.72);
+      --accent: #00ffc8;
+      --accent-warm: #ffb45c;
+      --accent-blue: #67d7ff;
+      --ink: #06100e;
+      --max-width: 1120px;
+      --shadow: 0 26px 70px rgba(0, 0, 0, 0.32);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(0, 255, 200, 0.16), transparent 30%),
+        radial-gradient(circle at 86% 6%, rgba(255, 180, 92, 0.14), transparent 28%),
+        linear-gradient(180deg, #112939 0%, var(--bg) 42%, #050a0f 100%);
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: transparent;
+      line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page-shell {
+      width: min(100%, var(--max-width));
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(5, 10, 15, 0.78);
+      backdrop-filter: blur(18px);
+    }
+
+    .site-header .page-shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 0.8rem;
+      padding-bottom: 0.8rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      min-width: 0;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .brand img {
+      width: 46px;
+      height: 46px;
+      flex: 0 0 auto;
+    }
+
+    .brand span {
+      display: block;
+      font-weight: 800;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-link,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.52rem;
+      border-radius: 8px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .nav-link {
+      min-height: 42px;
+      padding: 0.62rem 0.9rem;
+      color: rgba(247, 251, 255, 0.86);
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      font-size: 0.93rem;
+    }
+
+    .button {
+      min-height: 46px;
+      padding: 0.75rem 1rem;
+      color: var(--ink);
+      background: var(--accent);
+      box-shadow: 0 18px 38px rgba(0, 255, 200, 0.18);
+    }
+
+    .button.secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.075);
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
+
+    .nav-link:hover,
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    main {
+      padding: 3.2rem 0 5rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 430px);
+      gap: clamp(2rem, 6vw, 4rem);
+      align-items: center;
+      min-height: calc(100vh - 88px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 1rem;
+      color: rgba(247, 251, 255, 0.72);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: rgba(247, 251, 255, 0.34);
+    }
+
+    .hero h1 {
+      max-width: 12ch;
+      font-size: clamp(3.1rem, 7vw, 5.6rem);
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-copy {
+      max-width: 710px;
+    }
+
+    .hero-copy p {
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: clamp(1.06rem, 2.1vw, 1.24rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      margin-top: 1.6rem;
+    }
+
+    .signal-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background:
+        linear-gradient(150deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.055)),
+        linear-gradient(180deg, rgba(103, 215, 255, 0.1), rgba(0, 255, 200, 0.055));
+      box-shadow: var(--shadow);
+    }
+
+    .signal-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.78), transparent);
+      pointer-events: none;
+    }
+
+    .signal-top {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 230px;
+      padding: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .signal-top img {
+      width: min(56%, 190px);
+      height: auto;
+      filter: drop-shadow(0 24px 38px rgba(0, 0, 0, 0.36));
+    }
+
+    .signal-body {
+      position: relative;
+      display: grid;
+      gap: 1rem;
+      padding: 1.35rem;
+      background: rgba(5, 10, 15, 0.42);
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+    .metric {
+      min-height: 82px;
+      padding: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 0.22rem;
+      color: var(--accent);
+      font-size: 1.25rem;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.35;
+    }
+
+    .status-line {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: rgba(247, 251, 255, 0.82);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .status-line i {
+      color: var(--accent-warm);
+    }
+
+    .section {
+      padding: 5rem 0 0;
+    }
+
+    .section-heading {
+      display: grid;
+      gap: 0.8rem;
+      max-width: 730px;
+      margin-bottom: 1.6rem;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 1.06rem;
+    }
+
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .offer-card,
+    .proof-card,
+    .process-step {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.18);
+    }
+
+    .offer-card {
+      display: grid;
+      gap: 1.15rem;
+      padding: 1.25rem;
+    }
+
+    .offer-card h3 {
+      font-size: 1.32rem;
+    }
+
+    .offer-card p,
+    .offer-card li,
+    .proof-card p,
+    .process-step p {
+      color: var(--muted);
+    }
+
+    .offer-card ul {
+      display: grid;
+      gap: 0.55rem;
+      padding-left: 1.1rem;
+    }
+
+    .offer-kicker {
+      color: var(--accent-blue);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .proof-band {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1rem;
+      align-items: stretch;
+      margin-top: 1rem;
+    }
+
+    .proof-card {
+      display: grid;
+      align-content: center;
+      gap: 0.8rem;
+      padding: 1.4rem;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .proof-card strong {
+      color: var(--accent-warm);
+      font-size: 0.86rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .process-step {
+      padding: 1.2rem;
+    }
+
+    .process-step span {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 1rem;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .process-step h3 {
+      margin-bottom: 0.55rem;
+      font-size: 1.02rem;
+    }
+
+    .cta-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1.5rem;
+      align-items: center;
+      padding: clamp(1.4rem, 4vw, 2.2rem);
+      border: 1px solid rgba(0, 255, 200, 0.28);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(0, 255, 200, 0.14), rgba(255, 180, 92, 0.08)),
+        var(--bg-elevated);
+      box-shadow: var(--shadow);
+    }
+
+    .cta-panel h2 {
+      margin-bottom: 0.65rem;
+      font-size: clamp(2rem, 4.4vw, 3rem);
+    }
+
+    .cta-panel p {
+      max-width: 64ch;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 2.4rem 0 3rem;
+      color: rgba(247, 251, 255, 0.58);
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 880px) {
+      .hero,
+      .proof-band,
+      .cta-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 1rem;
+      }
+
+      .offer-grid,
+      .process-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cta-panel .button {
+        width: fit-content;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .site-header .page-shell {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-actions,
+      .nav-link,
+      .button {
+        width: 100%;
+      }
+
+      main {
+        padding-top: 2rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.65rem, 15vw, 4rem);
+      }
+
+      .metric-row,
+      .offer-grid,
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .signal-top {
+        min-height: 190px;
+      }
+
+      .section {
+        padding-top: 3.6rem;
+      }
+    }
+  </style>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="page-shell">
+      <a class="brand" href="index.html" aria-label="3dvr.tech home">
+        <img src="3DVR.png" alt="3dvr.tech logo" />
+        <span>
+          3dvr.tech
+          <small>Services lab</small>
+        </span>
+      </a>
+      <nav class="nav-actions" aria-label="Page navigation">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="#offers">Offers</a>
+        <a class="button" href="mailto:3dvr.tech@gmail.com?subject=Project%20fit%20call%20with%203dvr.tech">
+          <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+          Start a project
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-shell hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow">Websites, offers, and simple systems</div>
+        <h1 id="hero-title">Get online without getting lost.</h1>
+        <p>
+          3dvr.tech helps small businesses, creators, and local teams turn scattered ideas into a clean website,
+          a clear offer, and the lightweight tech stack needed to keep moving.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="mailto:3dvr.tech@gmail.com?subject=I%20want%20help%20launching%20a%20website">
+            <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+            Book a fit call
+          </a>
+          <a class="button secondary" href="#offers">
+            <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+            See the paths
+          </a>
+        </div>
+      </div>
+
+      <aside class="signal-card" aria-label="3dvr.tech service snapshot">
+        <div class="signal-top">
+          <img src="3DVR.png" alt="3dvr.tech logo" />
+        </div>
+        <div class="signal-body">
+          <div class="metric-row" aria-label="Service focus areas">
+            <div class="metric">
+              <strong>01</strong>
+              <span>Offer and page clarity</span>
+            </div>
+            <div class="metric">
+              <strong>02</strong>
+              <span>Launch-ready website build</span>
+            </div>
+            <div class="metric">
+              <strong>03</strong>
+              <span>Simple systems and support</span>
+            </div>
+          </div>
+          <div class="status-line">
+            <i class="fa-solid fa-signal" aria-hidden="true"></i>
+            Built for practical launches, not endless redesign cycles.
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="page-shell section" id="offers" aria-labelledby="offers-title">
+      <div class="section-heading">
+        <h2 id="offers-title">Three ways to work together</h2>
+        <p>
+          Pick the path that matches where the business is today. Each one keeps the work focused on what helps
+          someone understand, trust, and contact you.
+        </p>
+      </div>
+
+      <div class="offer-grid">
+        <article class="offer-card">
+          <div class="offer-kicker">Fastest path</div>
+          <h3>Launch page</h3>
+          <p>A focused one-page presence for a new offer, event, service, or project.</p>
+          <ul>
+            <li>Clear headline, offer copy, and call to action</li>
+            <li>Mobile-friendly page with your logo and visuals</li>
+            <li>Basic SEO and social sharing metadata</li>
+          </ul>
+        </article>
+
+        <article class="offer-card">
+          <div class="offer-kicker">Core website</div>
+          <h3>Business site</h3>
+          <p>A compact website for teams that need credibility, service pages, and a cleaner customer path.</p>
+          <ul>
+            <li>Homepage plus supporting pages for services or contact</li>
+            <li>Accessible layout, responsive design, and deployment</li>
+            <li>Copy cleanup so the value is easier to understand</li>
+          </ul>
+        </article>
+
+        <article class="offer-card">
+          <div class="offer-kicker">Operations help</div>
+          <h3>Simple systems</h3>
+          <p>Lightweight tech support for the pieces around the website that make the business easier to run.</p>
+          <ul>
+            <li>Forms, booking, payments, subscriptions, or intake flows</li>
+            <li>Tool cleanup for domains, email, analytics, and hosting</li>
+            <li>Ongoing updates when the offer changes</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="page-shell section" aria-labelledby="fit-title">
+      <div class="section-heading">
+        <h2 id="fit-title">Best fit</h2>
+        <p>
+          This is for people who need a real builder in the loop, not a template dump or a strategy deck that
+          never turns into a working page.
+        </p>
+      </div>
+
+      <div class="proof-band">
+        <article class="proof-card">
+          <strong>Good matches</strong>
+          <h3>Local services, creators, repair shops, coaches, small teams, and early-stage projects.</h3>
+          <p>
+            Especially when the business already has momentum but the website, offer, or tech stack does not
+            explain that momentum well yet.
+          </p>
+        </article>
+        <article class="proof-card">
+          <strong>Working style</strong>
+          <h3>Direct, practical, and hands-on.</h3>
+          <p>
+            We clarify the offer, build the page, connect the basics, and keep the next step visible.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="page-shell section" aria-labelledby="process-title">
+      <div class="section-heading">
+        <h2 id="process-title">Simple process</h2>
+        <p>
+          The first version should be small enough to finish and strong enough to start conversations.
+        </p>
+      </div>
+
+      <div class="process-grid">
+        <article class="process-step">
+          <span>1</span>
+          <h3>Map the offer</h3>
+          <p>Define who it is for, what problem it solves, and what action the page should earn.</p>
+        </article>
+        <article class="process-step">
+          <span>2</span>
+          <h3>Shape the page</h3>
+          <p>Turn the offer into structure, copy, visual direction, and a clear customer path.</p>
+        </article>
+        <article class="process-step">
+          <span>3</span>
+          <h3>Launch the build</h3>
+          <p>Publish the site or page with responsive layout, metadata, and working contact paths.</p>
+        </article>
+        <article class="process-step">
+          <span>4</span>
+          <h3>Improve from use</h3>
+          <p>Adjust the page once real people respond, ask questions, or get stuck.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="page-shell section" aria-labelledby="cta-title">
+      <div class="cta-panel">
+        <div>
+          <h2 id="cta-title">Bring the rough version.</h2>
+          <p>
+            A few notes, an old website, a Facebook page, or a half-clear idea is enough to start.
+            3dvr.tech can help turn it into a page people can actually act on.
+          </p>
+        </div>
+        <a class="button" href="mailto:3dvr.tech@gmail.com?subject=Project%20fit%20call%20with%203dvr.tech">
+          <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+          Email 3dvr.tech
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="page-shell">
+      <p>&copy; 2026 <a href="https://3dvr.tech">3dvr.tech</a> - Services page experiment.</p>
+    </div>
+  </footer>
+</body>
+</html>
