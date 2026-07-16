@@ -202,14 +202,14 @@
 
     <section class="card" aria-labelledby="manual-install">
       <h2 id="manual-install">Manual fallback</h2>
-      <pre><code>git clone https://github.com/tmsteph/3dvr-agent.git
-cd 3dvr-agent
+      <pre><code>git clone https://github.com/tmsteph/3dvr-portal.git
+cd 3dvr-portal/apps/agent
 ./install.sh
 3dvr setup
 3dvr doctor</code></pre>
       <p class="note">
-        The installer stores the checkout under <code>~/.3dvr/agent</code> by default.
-        Override with <code>THREEDVR_HOME</code>, <code>THREEDVR_AGENT_DIR</code>, or <code>THREEDVR_BIN_DIR</code>.
+        The installer stores the portal monorepo under <code>~/.3dvr/portal</code> and runs the agent from <code>apps/agent</code>.
+        Override with <code>THREEDVR_HOME</code>, <code>THREEDVR_REPO_DIR</code>, <code>THREEDVR_AGENT_DIR</code>, or <code>THREEDVR_BIN_DIR</code>.
       </p>
     </section>
   </main>
