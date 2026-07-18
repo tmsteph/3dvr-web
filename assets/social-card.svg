@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101a2d" />
+      <stop offset="1" stop-color="#172d42" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0.8" cy="0.18" r="0.72">
+      <stop offset="0" stop-color="#f5df19" stop-opacity="0.42" />
+      <stop offset="1" stop-color="#f5df19" stop-opacity="0" />
+    </radialGradient>
+    <clipPath id="logo-clip"><rect x="150" y="238" width="900" height="253" rx="18" /></clipPath>
+  </defs>
+  <rect width="1200" height="630" fill="url(#background)" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+  <circle cx="1080" cy="72" r="140" fill="#f5df19" opacity="0.08" />
+  <circle cx="1120" cy="560" r="200" fill="#ed147d" opacity="0.08" />
+  <text x="78" y="82" fill="#ffffff" font-family="Arial, sans-serif" font-size="27" font-weight="700" letter-spacing="2">3DVR.TECH</text>
+  <circle cx="1095" cy="72" r="12" fill="#f5df19" />
+  <text x="78" y="170" fill="#ffffff" font-family="Arial, sans-serif" font-size="42" font-weight="700">Launch your website,</text>
+  <text x="78" y="218" fill="#f5df19" font-family="Arial, sans-serif" font-size="42" font-weight="700">offer, or project.</text>
+  <g clip-path="url(#logo-clip)">
+    <image x="150" y="238" width="900" height="253" preserveAspectRatio="xMidYMid meet" xlink:href="../3DVR.png" />
+  </g>
+  <rect x="78" y="562" width="1044" height="1" fill="#ffffff" opacity="0.22" />
+  <text x="78" y="598" fill="#ffffff" opacity="0.76" font-family="Arial, sans-serif" font-size="20">Open web • community • practical digital systems</text>
+</svg>
