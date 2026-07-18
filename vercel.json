@@ -5,6 +5,26 @@
       "has": [
         {
           "type": "host",
+          "value": "buttoncares.3dvr.tech"
+        }
+      ],
+      "dest": "/_vercel/$1"
+    },
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "buttoncares.3dvr.tech"
+        }
+      ],
+      "dest": "/buttoncares/$1"
+    },
+    {
+      "src": "/_vercel/(.*)",
+      "has": [
+        {
+          "type": "host",
           "value": "dave.3dvr.tech"
         }
       ],
