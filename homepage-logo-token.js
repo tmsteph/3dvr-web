@@ -39,7 +39,6 @@
     idleSpin: 0,
     spinVelocityX: 0,
     spinVelocityY: 0,
-    portalPhase: 0,
     lastTimestamp: 0,
     lastDragTimestamp: 0,
     renderer: null,
@@ -112,28 +111,6 @@
       context.stroke();
     }
     context.globalAlpha = 1;
-    context.restore();
-
-    context.save();
-    context.translate(size / 2, size / 2);
-    const portalGradient = context.createRadialGradient(0, 0, size * 0.035, 0, 0, size * 0.34);
-    portalGradient.addColorStop(0, '#020814');
-    portalGradient.addColorStop(0.38, '#0a2742');
-    portalGradient.addColorStop(0.78, '#135a74');
-    portalGradient.addColorStop(1, 'rgba(19, 90, 116, 0)');
-    context.globalAlpha = 0.92;
-    context.fillStyle = portalGradient;
-    context.beginPath();
-    context.arc(0, 0, size * 0.35, 0, Math.PI * 2);
-    context.fill();
-    context.globalAlpha = 0.72;
-    context.strokeStyle = '#69f5ff';
-    context.lineWidth = 6;
-    for (let portalRing = 1; portalRing <= 3; portalRing += 1) {
-      context.beginPath();
-      context.arc(0, 0, size * (0.1 + portalRing * 0.075), 0, Math.PI * 2);
-      context.stroke();
-    }
     context.restore();
 
     context.beginPath();
@@ -241,22 +218,6 @@
     ridges.rotation.x = Math.PI / 2;
     group.add(ridges);
 
-    const portalRings = new THREE.Group();
-    const portalMaterials = [0x76f7ff, 0x36b8ff, 0x9e7bff].map((color) => new THREE.MeshBasicMaterial({
-      color,
-      transparent: true,
-      opacity: 0.72
-    }));
-    [0.34, 0.54, 0.74].forEach((radius, index) => {
-      const ring = new THREE.Mesh(new THREE.TorusGeometry(radius, 0.012, 10, 96), portalMaterials[index]);
-      ring.position.z = 0.142;
-      ring.userData.phase = index * 1.8;
-      ring.userData.radius = radius;
-      portalRings.add(ring);
-    });
-    group.add(portalRings);
-    group.userData.portalRings = portalRings;
-
     return group;
   }
 
@@ -274,8 +235,6 @@
     }
 
     state.idleSpin += elapsed * (IDLE_QUARTER_SPIN_SPEED + state.spinVelocityY);
-    state.portalPhase = (state.portalPhase + elapsed * 0.0024) % (Math.PI * 2);
-
     if (state.spinVelocityY !== 0) {
       state.spinVelocityY *= Math.pow(SPIN_MOMENTUM_DECAY, elapsed / 16.67);
       if (Math.abs(state.spinVelocityY) < MIN_SPIN_MOMENTUM) {
@@ -327,15 +286,6 @@
     if (state.token && state.renderer && state.scene && state.camera) {
       const rotation = getRenderRotation();
       state.token.rotation.set(rotation.x, rotation.y, rotation.z);
-      const portalRings = state.token.userData.portalRings;
-      if (portalRings) {
-        portalRings.rotation.z = state.portalPhase * 0.42;
-        portalRings.children.forEach((ring) => {
-          const pulse = 1 + Math.sin(state.portalPhase * 2 + ring.userData.phase) * 0.035;
-          ring.scale.setScalar(pulse);
-          ring.rotation.z = state.portalPhase * (ring.userData.radius < 0.5 ? -0.7 : 0.5);
-        });
-      }
       state.renderer.render(state.scene, state.camera);
       return;
     }
@@ -507,29 +457,6 @@
       context.moveTo(innerX, innerY);
       context.lineTo(outerX, outerY);
       context.strokeStyle = ridge % 2 ? '#ffe9a3' : '#8f5b16';
-      context.stroke();
-    }
-    context.restore();
-
-    context.save();
-    context.globalAlpha = 0.82;
-    const portalRadius = radius * 0.72;
-    const portalGradient = context.createRadialGradient(0, 0, portalRadius * 0.06, 0, 0, portalRadius);
-    portalGradient.addColorStop(0, '#020814');
-    portalGradient.addColorStop(0.46, '#0a2742');
-    portalGradient.addColorStop(0.82, '#135a74');
-    portalGradient.addColorStop(1, 'rgba(19, 90, 116, 0)');
-    context.fillStyle = portalGradient;
-    context.beginPath();
-    context.arc(0, 0, portalRadius, 0, Math.PI * 2);
-    context.fill();
-    context.globalAlpha = 0.74;
-    context.lineWidth = Math.max(1, size * 0.006);
-    context.strokeStyle = '#69f5ff';
-    for (let portalRing = 1; portalRing <= 3; portalRing += 1) {
-      const ringRadius = portalRadius * (0.28 + portalRing * 0.2 + Math.sin(state.portalPhase * 2 + portalRing) * 0.012);
-      context.beginPath();
-      context.arc(0, 0, ringRadius, state.portalPhase * (portalRing % 2 ? 0.45 : -0.35), Math.PI * 2 + state.portalPhase * (portalRing % 2 ? 0.45 : -0.35));
       context.stroke();
     }
     context.restore();
