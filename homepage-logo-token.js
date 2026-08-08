@@ -157,8 +157,8 @@
     context.fillStyle = '#6f3f0b';
     context.shadowColor = 'rgba(0, 0, 0, 0.45)';
     context.shadowBlur = 24;
-    context.font = '900 168px Poppins, Inter, Arial, sans-serif';
-    context.fillText('3dvr', 0, -20);
+    context.font = '900 220px Poppins, Inter, Arial, sans-serif';
+    context.fillText('3dvr', 0, 0);
     context.restore();
 
     const texture = new THREE.CanvasTexture(textureCanvas);
@@ -539,8 +539,8 @@
     context.shadowColor = 'rgba(111, 63, 11, 0.52)';
     context.shadowBlur = size * 0.025;
     context.fillStyle = '#6f3f0b';
-    context.font = `900 ${Math.floor(size * 0.13)}px Poppins, Inter, Arial, sans-serif`;
-    context.fillText('3dvr', 0, -size * 0.018);
+    context.font = `900 ${Math.floor(size * 0.18)}px Poppins, Inter, Arial, sans-serif`;
+    context.fillText('3dvr', 0, 0);
     context.restore();
   }
 
