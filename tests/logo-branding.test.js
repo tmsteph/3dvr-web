@@ -65,6 +65,10 @@ describe('3dvr-web logo branding', () => {
     assert.match(token, /for \(let index = 0; index < 64; index \+= 1\)/);
     assert.doesNotMatch(token, /fillText\('\.tech'/);
     assert.match(token, /context\.lineTo\(outerX, outerY\)/);
+    assert.match(token, /portalPhase/);
+    assert.match(token, /portalRings/);
+    assert.match(token, /MeshBasicMaterial/);
+    assert.match(token, /69f5ff/);
     assert.match(token, /CanvasTexture/);
     assert.match(token, /targetX: 0/);
     assert.match(token, /targetY: 0/);
