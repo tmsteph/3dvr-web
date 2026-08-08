@@ -90,36 +90,38 @@
     textureCanvas.width = size;
     textureCanvas.height = size;
     const context = textureCanvas.getContext('2d');
-    const gradient = context.createRadialGradient(size * 0.35, size * 0.25, 80, size * 0.5, size * 0.5, size * 0.58);
-    gradient.addColorStop(0, '#45ffe3');
-    gradient.addColorStop(0.46, '#1768f2');
-    gradient.addColorStop(1, '#07131f');
+    const gradient = context.createRadialGradient(size * 0.3, size * 0.22, 30, size * 0.5, size * 0.5, size * 0.64);
+    gradient.addColorStop(0, '#fff1a8');
+    gradient.addColorStop(0.24, '#f9d976');
+    gradient.addColorStop(0.58, '#d99a2b');
+    gradient.addColorStop(0.86, '#a96816');
+    gradient.addColorStop(1, '#6f3f0b');
 
     context.fillStyle = gradient;
     context.fillRect(0, 0, size, size);
 
     context.save();
     context.translate(size / 2, size / 2);
-    context.rotate(Math.PI / 4);
-    context.strokeStyle = 'rgba(255, 255, 255, 0.18)';
-    context.lineWidth = 28;
-    for (let offset = -size; offset < size; offset += 150) {
+    context.globalAlpha = 0.2;
+    for (let ring = 1; ring <= 5; ring += 1) {
       context.beginPath();
-      context.moveTo(offset, -size);
-      context.lineTo(offset, size);
+      context.arc(0, 0, size * (0.21 + ring * 0.085), 0, Math.PI * 2);
+      context.strokeStyle = ring % 2 ? '#fff1a8' : '#7c470d';
+      context.lineWidth = 5;
       context.stroke();
     }
+    context.globalAlpha = 1;
     context.restore();
 
     context.beginPath();
     context.arc(size / 2, size / 2, size * 0.41, 0, Math.PI * 2);
-    context.strokeStyle = '#d8fff7';
+    context.strokeStyle = '#ffe9a3';
     context.lineWidth = 28;
     context.stroke();
 
     context.beginPath();
     context.arc(size / 2, size / 2, size * 0.32, 0, Math.PI * 2);
-    context.strokeStyle = 'rgba(254, 215, 170, 0.7)';
+    context.strokeStyle = 'rgba(111, 63, 11, 0.62)';
     context.lineWidth = 10;
     context.stroke();
 
@@ -129,12 +131,12 @@
     context.rotate(FACE_TEXTURE_ROTATION);
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    context.fillStyle = '#ffffff';
+    context.fillStyle = '#6f3f0b';
     context.shadowColor = 'rgba(0, 0, 0, 0.45)';
     context.shadowBlur = 24;
     context.font = '900 168px Poppins, Inter, Arial, sans-serif';
     context.fillText('3dvr', 0, -20);
-    context.fillStyle = '#ccfbf1';
+    context.fillStyle = '#8a5515';
     context.font = '800 96px Poppins, Inter, Arial, sans-serif';
     context.fillText('.tech', 0, 122);
     context.restore();
@@ -168,19 +170,19 @@
     const faceTexture = makeFaceTexture(THREE, false);
     const backTexture = makeFaceTexture(THREE, false);
     const sideMaterial = new THREE.MeshStandardMaterial({
-      color: 0x13b8b8,
-      metalness: 0.72,
-      roughness: 0.24
+      color: 0xb8791f,
+      metalness: 0.92,
+      roughness: 0.2
     });
     const frontMaterial = new THREE.MeshStandardMaterial({
       map: faceTexture,
-      metalness: 0.45,
-      roughness: 0.2
+      metalness: 0.76,
+      roughness: 0.24
     });
     const backMaterial = new THREE.MeshStandardMaterial({
       map: backTexture,
-      metalness: 0.45,
-      roughness: 0.24
+      metalness: 0.78,
+      roughness: 0.26
     });
 
     const body = new THREE.Mesh(
@@ -191,7 +193,7 @@
     group.add(body);
 
     const rimMaterial = new THREE.MeshStandardMaterial({
-      color: 0xfed7aa,
+      color: 0xffd76a,
       metalness: 0.86,
       roughness: 0.18
     });
@@ -383,9 +385,9 @@
     context.scale(scaleX, scaleY);
 
     const sideGradient = context.createLinearGradient(-radius, -radius, radius, radius);
-    sideGradient.addColorStop(0, '#fed7aa');
-    sideGradient.addColorStop(0.45, '#0f766e');
-    sideGradient.addColorStop(1, '#0b1020');
+    sideGradient.addColorStop(0, '#ffe9a3');
+    sideGradient.addColorStop(0.45, '#b8791f');
+    sideGradient.addColorStop(1, '#6f3f0b');
 
     context.save();
     context.translate(tiltY * radius * 0.8, tiltX * radius * 0.8 + radius * 0.08);
@@ -398,33 +400,46 @@
     context.fill();
     context.restore();
 
-    const faceGradient = context.createRadialGradient(-radius * 0.35, -radius * 0.45, radius * 0.05, 0, 0, radius);
-    faceGradient.addColorStop(0, '#45ffe3');
-    faceGradient.addColorStop(0.5, '#1768f2');
-    faceGradient.addColorStop(1, '#07131f');
+    const faceGradient = context.createRadialGradient(-radius * 0.3, -radius * 0.38, radius * 0.05, 0, 0, radius * 1.12);
+    faceGradient.addColorStop(0, '#fff1a8');
+    faceGradient.addColorStop(0.24, '#f9d976');
+    faceGradient.addColorStop(0.58, '#d99a2b');
+    faceGradient.addColorStop(0.86, '#a96816');
+    faceGradient.addColorStop(1, '#6f3f0b');
     context.beginPath();
     context.ellipse(0, 0, radius, radius, 0, 0, Math.PI * 2);
     context.fillStyle = faceGradient;
     context.fill();
 
+    context.save();
+    context.globalAlpha = 0.2;
+    for (let ring = 1; ring <= 5; ring += 1) {
+      context.beginPath();
+      context.ellipse(0, 0, radius * (0.28 + ring * 0.1), radius * (0.28 + ring * 0.1), 0, 0, Math.PI * 2);
+      context.strokeStyle = ring % 2 ? '#fff1a8' : '#7c470d';
+      context.lineWidth = Math.max(1, size * 0.004);
+      context.stroke();
+    }
+    context.restore();
+
     context.lineWidth = Math.max(8, size * 0.025);
-    context.strokeStyle = '#d8fff7';
+    context.strokeStyle = '#ffe9a3';
     context.stroke();
 
     context.lineWidth = Math.max(3, size * 0.009);
-    context.strokeStyle = 'rgba(254, 215, 170, 0.78)';
+    context.strokeStyle = 'rgba(111, 63, 11, 0.62)';
     context.beginPath();
     context.ellipse(0, 0, radius * 0.79, radius * 0.79, 0, 0, Math.PI * 2);
     context.stroke();
 
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    context.shadowColor = 'rgba(0, 0, 0, 0.42)';
+    context.shadowColor = 'rgba(111, 63, 11, 0.52)';
     context.shadowBlur = size * 0.025;
-    context.fillStyle = '#ffffff';
+    context.fillStyle = '#6f3f0b';
     context.font = `900 ${Math.floor(size * 0.13)}px Poppins, Inter, Arial, sans-serif`;
     context.fillText('3dvr', 0, -size * 0.018);
-    context.fillStyle = '#ccfbf1';
+    context.fillStyle = '#8a5515';
     context.font = `800 ${Math.floor(size * 0.075)}px Poppins, Inter, Arial, sans-serif`;
     context.fillText('.tech', 0, size * 0.1);
     context.restore();
@@ -488,13 +503,13 @@
 
       const token = makeToken(THREE);
       scene.add(token);
-      scene.add(new THREE.AmbientLight(0xe2fff8, 0.72));
+    scene.add(new THREE.AmbientLight(0xffedb0, 0.78));
 
       const key = new THREE.DirectionalLight(0xffffff, 1.35);
       key.position.set(2.5, 2.8, 4.5);
       scene.add(key);
 
-      const fill = new THREE.DirectionalLight(0x99f6e4, 0.65);
+    const fill = new THREE.DirectionalLight(0xffc857, 0.58);
       fill.position.set(-3, -1.5, 2);
       scene.add(fill);
 
