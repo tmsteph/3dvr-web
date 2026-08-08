@@ -136,9 +136,6 @@
     context.shadowBlur = 24;
     context.font = '900 168px Poppins, Inter, Arial, sans-serif';
     context.fillText('3dvr', 0, -20);
-    context.fillStyle = '#8a5515';
-    context.font = '800 96px Poppins, Inter, Arial, sans-serif';
-    context.fillText('.tech', 0, 122);
     context.restore();
 
     const texture = new THREE.CanvasTexture(textureCanvas);
@@ -186,7 +183,7 @@
     });
 
     const body = new THREE.Mesh(
-      new THREE.CylinderGeometry(1.45, 1.45, 0.34, 128, 1, false),
+      new THREE.CylinderGeometry(1.45, 1.45, 0.24, 128, 1, false),
       [sideMaterial, frontMaterial, backMaterial]
     );
     body.rotation.x = Math.PI / 2;
@@ -197,13 +194,29 @@
       metalness: 0.86,
       roughness: 0.18
     });
-    const frontRim = new THREE.Mesh(new THREE.TorusGeometry(1.47, 0.035, 16, 128), rimMaterial);
-    frontRim.position.z = 0.18;
+    const frontRim = new THREE.Mesh(new THREE.TorusGeometry(1.47, 0.028, 12, 128), rimMaterial);
+    frontRim.position.z = 0.13;
     group.add(frontRim);
 
     const backRim = frontRim.clone();
-    backRim.position.z = -0.18;
+    backRim.position.z = -0.13;
     group.add(backRim);
+
+    const ridges = new THREE.Group();
+    const ridgeMaterial = new THREE.MeshStandardMaterial({
+      color: 0x8f5b16,
+      metalness: 0.9,
+      roughness: 0.28
+    });
+    for (let index = 0; index < 64; index += 1) {
+      const angle = (index / 64) * Math.PI * 2;
+      const ridge = new THREE.Mesh(new THREE.BoxGeometry(0.026, 0.21, 0.012), ridgeMaterial);
+      ridge.position.set(Math.cos(angle) * 1.458, 0, Math.sin(angle) * 1.458);
+      ridge.rotation.y = angle;
+      ridges.add(ridge);
+    }
+    ridges.rotation.x = Math.PI / 2;
+    group.add(ridges);
 
     return group;
   }
@@ -432,6 +445,23 @@
     context.ellipse(0, 0, radius * 0.79, radius * 0.79, 0, 0, Math.PI * 2);
     context.stroke();
 
+    context.save();
+    context.globalAlpha = 0.72;
+    context.lineWidth = Math.max(1, size * 0.004);
+    for (let ridge = 0; ridge < 64; ridge += 1) {
+      const angle = (ridge / 64) * Math.PI * 2;
+      const innerX = Math.cos(angle) * radius * 1.01;
+      const innerY = Math.sin(angle) * radius * 1.01;
+      const outerX = Math.cos(angle) * radius * 1.045;
+      const outerY = Math.sin(angle) * radius * 1.045;
+      context.beginPath();
+      context.moveTo(innerX, innerY);
+      context.lineTo(outerX, outerY);
+      context.strokeStyle = ridge % 2 ? '#ffe9a3' : '#8f5b16';
+      context.stroke();
+    }
+    context.restore();
+
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     context.shadowColor = 'rgba(111, 63, 11, 0.52)';
@@ -439,9 +469,6 @@
     context.fillStyle = '#6f3f0b';
     context.font = `900 ${Math.floor(size * 0.13)}px Poppins, Inter, Arial, sans-serif`;
     context.fillText('3dvr', 0, -size * 0.018);
-    context.fillStyle = '#8a5515';
-    context.font = `800 ${Math.floor(size * 0.075)}px Poppins, Inter, Arial, sans-serif`;
-    context.fillText('.tech', 0, size * 0.1);
     context.restore();
   }
 
