@@ -91,11 +91,11 @@
     textureCanvas.height = size;
     const context = textureCanvas.getContext('2d');
     const gradient = context.createRadialGradient(size * 0.3, size * 0.22, 30, size * 0.5, size * 0.5, size * 0.64);
-    gradient.addColorStop(0, '#fff1a8');
-    gradient.addColorStop(0.24, '#f9d976');
-    gradient.addColorStop(0.58, '#d99a2b');
-    gradient.addColorStop(0.86, '#a96816');
-    gradient.addColorStop(1, '#6f3f0b');
+    gradient.addColorStop(0, '#fff8b8');
+    gradient.addColorStop(0.24, '#ffe04a');
+    gradient.addColorStop(0.58, '#f4b51b');
+    gradient.addColorStop(0.86, '#c77a05');
+    gradient.addColorStop(1, '#754000');
 
     context.fillStyle = gradient;
     context.fillRect(0, 0, size, size);
@@ -106,8 +106,8 @@
     for (let ring = 1; ring <= 5; ring += 1) {
       context.beginPath();
       context.arc(0, 0, size * (0.21 + ring * 0.085), 0, Math.PI * 2);
-      context.strokeStyle = ring % 2 ? '#fff1a8' : '#7c470d';
-      context.lineWidth = 5;
+      context.strokeStyle = ring % 2 ? '#fff3a0' : '#8b4b00';
+      context.lineWidth = 7;
       context.stroke();
     }
     context.globalAlpha = 1;
@@ -115,14 +115,14 @@
 
     context.beginPath();
     context.arc(size / 2, size / 2, size * 0.41, 0, Math.PI * 2);
-    context.strokeStyle = '#ffe9a3';
-    context.lineWidth = 28;
+    context.strokeStyle = '#fff0a0';
+    context.lineWidth = 32;
     context.stroke();
 
     context.beginPath();
     context.arc(size / 2, size / 2, size * 0.32, 0, Math.PI * 2);
-    context.strokeStyle = 'rgba(111, 63, 11, 0.62)';
-    context.lineWidth = 10;
+    context.strokeStyle = 'rgba(117, 56, 0, 0.68)';
+    context.lineWidth = 12;
     context.stroke();
 
     context.save();
@@ -132,15 +132,15 @@
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     context.font = '900 220px Poppins, Inter, Arial, sans-serif';
-    // Three small passes make the mark read as raised minting instead of flat ink.
-    context.shadowColor = 'rgba(0, 0, 0, 0.24)';
-    context.shadowBlur = 12;
-    context.fillStyle = '#6f3f0b';
-    context.fillText('3dvr', 0, 8);
+    // Layered offsets create a small minted bevel: deep lower edge, light catch, raised face.
+    context.shadowColor = 'rgba(73, 34, 0, 0.45)';
+    context.shadowBlur = 9;
+    context.fillStyle = '#6b3500';
+    context.fillText('3dvr', 0, 10);
     context.shadowColor = 'transparent';
-    context.fillStyle = '#fff1a8';
-    context.fillText('3dvr', -3, -3);
-    context.fillStyle = '#8a5010';
+    context.fillStyle = '#fff4a3';
+    context.fillText('3dvr', -5, -5);
+    context.fillStyle = '#9a5200';
     context.fillText('3dvr', 0, 0);
     context.restore();
 
@@ -173,7 +173,7 @@
     const faceTexture = makeFaceTexture(THREE, false);
     const backTexture = makeFaceTexture(THREE, false);
     const sideMaterial = new THREE.MeshStandardMaterial({
-      color: 0xb8791f,
+      color: 0xc78308,
       metalness: 0.92,
       roughness: 0.2
     });
@@ -189,34 +189,49 @@
     });
 
     const body = new THREE.Mesh(
-      new THREE.CylinderGeometry(1.45, 1.45, 0.24, 128, 1, false),
+      new THREE.CylinderGeometry(1.45, 1.45, 0.18, 128, 1, false),
       [sideMaterial, frontMaterial, backMaterial]
     );
     body.rotation.x = Math.PI / 2;
     group.add(body);
 
     const rimMaterial = new THREE.MeshStandardMaterial({
-      color: 0xffd76a,
+      color: 0xffdf48,
       metalness: 0.86,
       roughness: 0.18
     });
-    const frontRim = new THREE.Mesh(new THREE.TorusGeometry(1.47, 0.028, 12, 128), rimMaterial);
-    frontRim.position.z = 0.13;
+    const frontRim = new THREE.Mesh(new THREE.TorusGeometry(1.47, 0.034, 12, 128), rimMaterial);
+    frontRim.position.z = 0.096;
     group.add(frontRim);
 
     const backRim = frontRim.clone();
-    backRim.position.z = -0.13;
+    backRim.position.z = -0.096;
     group.add(backRim);
+
+    // Raised concentric beads catch the light like a minted coin instead of reading as ink.
+    const beadMaterial = new THREE.MeshStandardMaterial({
+      color: 0xf6b817,
+      metalness: 0.9,
+      roughness: 0.2
+    });
+    [1.16, 0.96, 0.76].forEach((radius, index) => {
+      const bead = new THREE.Mesh(
+        new THREE.TorusGeometry(radius, index === 0 ? 0.026 : 0.018, 10, 128),
+        beadMaterial
+      );
+      bead.position.z = 0.096 + index * 0.002;
+      group.add(bead);
+    });
 
     const ridges = new THREE.Group();
     const ridgeMaterial = new THREE.MeshStandardMaterial({
-      color: 0x8f5b16,
+      color: 0xa76200,
       metalness: 0.9,
       roughness: 0.28
     });
-    for (let index = 0; index < 64; index += 1) {
-      const angle = (index / 64) * Math.PI * 2;
-      const ridge = new THREE.Mesh(new THREE.BoxGeometry(0.026, 0.21, 0.012), ridgeMaterial);
+    for (let index = 0; index < 96; index += 1) {
+      const angle = (index / 96) * Math.PI * 2;
+      const ridge = new THREE.Mesh(new THREE.BoxGeometry(0.018, 0.18, 0.014), ridgeMaterial);
       ridge.position.set(Math.cos(angle) * 1.458, 0, Math.sin(angle) * 1.458);
       ridge.rotation.y = angle;
       ridges.add(ridge);
@@ -403,9 +418,9 @@
     context.scale(scaleX, scaleY);
 
     const sideGradient = context.createLinearGradient(-radius, -radius, radius, radius);
-    sideGradient.addColorStop(0, '#ffe9a3');
-    sideGradient.addColorStop(0.45, '#b8791f');
-    sideGradient.addColorStop(1, '#6f3f0b');
+    sideGradient.addColorStop(0, '#fff0a0');
+    sideGradient.addColorStop(0.45, '#d18a05');
+    sideGradient.addColorStop(1, '#754000');
 
     context.save();
     context.translate(tiltY * radius * 0.8, tiltX * radius * 0.8 + radius * 0.08);
@@ -419,11 +434,11 @@
     context.restore();
 
     const faceGradient = context.createRadialGradient(-radius * 0.3, -radius * 0.38, radius * 0.05, 0, 0, radius * 1.12);
-    faceGradient.addColorStop(0, '#fff1a8');
-    faceGradient.addColorStop(0.24, '#f9d976');
-    faceGradient.addColorStop(0.58, '#d99a2b');
-    faceGradient.addColorStop(0.86, '#a96816');
-    faceGradient.addColorStop(1, '#6f3f0b');
+    faceGradient.addColorStop(0, '#fff8b8');
+    faceGradient.addColorStop(0.24, '#ffe04a');
+    faceGradient.addColorStop(0.58, '#f4b51b');
+    faceGradient.addColorStop(0.86, '#c77a05');
+    faceGradient.addColorStop(1, '#754000');
     context.beginPath();
     context.ellipse(0, 0, radius, radius, 0, 0, Math.PI * 2);
     context.fillStyle = faceGradient;
@@ -434,27 +449,27 @@
     for (let ring = 1; ring <= 5; ring += 1) {
       context.beginPath();
       context.ellipse(0, 0, radius * (0.28 + ring * 0.1), radius * (0.28 + ring * 0.1), 0, 0, Math.PI * 2);
-      context.strokeStyle = ring % 2 ? '#fff1a8' : '#7c470d';
+      context.strokeStyle = ring % 2 ? '#fff3a0' : '#8b4b00';
       context.lineWidth = Math.max(1, size * 0.004);
       context.stroke();
     }
     context.restore();
 
     context.lineWidth = Math.max(8, size * 0.025);
-    context.strokeStyle = '#ffe9a3';
+    context.strokeStyle = '#fff0a0';
     context.stroke();
 
     context.lineWidth = Math.max(3, size * 0.009);
-    context.strokeStyle = 'rgba(111, 63, 11, 0.62)';
+    context.strokeStyle = 'rgba(117, 56, 0, 0.68)';
     context.beginPath();
     context.ellipse(0, 0, radius * 0.79, radius * 0.79, 0, 0, Math.PI * 2);
     context.stroke();
 
     context.save();
-    context.globalAlpha = 0.72;
+    context.globalAlpha = 0.86;
     context.lineWidth = Math.max(1, size * 0.004);
-    for (let ridge = 0; ridge < 64; ridge += 1) {
-      const angle = (ridge / 64) * Math.PI * 2;
+    for (let ridge = 0; ridge < 96; ridge += 1) {
+      const angle = (ridge / 96) * Math.PI * 2;
       const innerX = Math.cos(angle) * radius * 1.01;
       const innerY = Math.sin(angle) * radius * 1.01;
       const outerX = Math.cos(angle) * radius * 1.045;
@@ -462,7 +477,7 @@
       context.beginPath();
       context.moveTo(innerX, innerY);
       context.lineTo(outerX, outerY);
-      context.strokeStyle = ridge % 2 ? '#ffe9a3' : '#8f5b16';
+      context.strokeStyle = ridge % 2 ? '#fff0a0' : '#a76200';
       context.stroke();
     }
     context.restore();
@@ -471,14 +486,14 @@
     context.textBaseline = 'middle';
     context.font = `900 ${Math.floor(size * 0.18)}px Poppins, Inter, Arial, sans-serif`;
     // Match the WebGL face: a lower bevel, a light catch, then the raised face.
-    context.shadowColor = 'rgba(50, 27, 4, 0.28)';
-    context.shadowBlur = size * 0.012;
-    context.fillStyle = '#6f3f0b';
-    context.fillText('3dvr', 0, size * 0.012);
+    context.shadowColor = 'rgba(73, 34, 0, 0.45)';
+    context.shadowBlur = size * 0.01;
+    context.fillStyle = '#6b3500';
+    context.fillText('3dvr', 0, size * 0.018);
     context.shadowColor = 'transparent';
-    context.fillStyle = '#fff1a8';
-    context.fillText('3dvr', -size * 0.006, -size * 0.006);
-    context.fillStyle = '#8a5010';
+    context.fillStyle = '#fff4a3';
+    context.fillText('3dvr', -size * 0.008, -size * 0.008);
+    context.fillStyle = '#9a5200';
     context.fillText('3dvr', 0, 0);
     context.restore();
   }
