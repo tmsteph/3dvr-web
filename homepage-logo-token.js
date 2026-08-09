@@ -132,14 +132,14 @@
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     context.font = '900 220px Poppins, Inter, Arial, sans-serif';
-    // Layered offsets create a small minted bevel: deep lower edge, light catch, raised face.
-    context.shadowColor = 'rgba(73, 34, 0, 0.45)';
-    context.shadowBlur = 9;
+    // Exaggerated offsets make the lettering read as a deep raised mint, not printed ink.
+    context.shadowColor = 'rgba(73, 34, 0, 0.62)';
+    context.shadowBlur = 14;
     context.fillStyle = '#6b3500';
-    context.fillText('3dvr', 0, 10);
+    context.fillText('3dvr', 0, 22);
     context.shadowColor = 'transparent';
     context.fillStyle = '#fff4a3';
-    context.fillText('3dvr', -5, -5);
+    context.fillText('3dvr', -11, -11);
     context.fillStyle = '#9a5200';
     context.fillText('3dvr', 0, 0);
     context.restore();
@@ -189,7 +189,7 @@
     });
 
     const body = new THREE.Mesh(
-      new THREE.CylinderGeometry(1.45, 1.45, 0.18, 128, 1, false),
+      new THREE.CylinderGeometry(1.45, 1.45, 0.11, 128, 1, false),
       [sideMaterial, frontMaterial, backMaterial]
     );
     body.rotation.x = Math.PI / 2;
@@ -201,11 +201,11 @@
       roughness: 0.18
     });
     const frontRim = new THREE.Mesh(new THREE.TorusGeometry(1.47, 0.034, 12, 128), rimMaterial);
-    frontRim.position.z = 0.096;
+    frontRim.position.z = 0.061;
     group.add(frontRim);
 
     const backRim = frontRim.clone();
-    backRim.position.z = -0.096;
+    backRim.position.z = -0.061;
     group.add(backRim);
 
     // Raised concentric beads catch the light like a minted coin instead of reading as ink.
@@ -216,11 +216,15 @@
     });
     [1.16, 0.96, 0.76].forEach((radius, index) => {
       const bead = new THREE.Mesh(
-        new THREE.TorusGeometry(radius, index === 0 ? 0.026 : 0.018, 10, 128),
+        new THREE.TorusGeometry(radius, index === 0 ? 0.018 : 0.012, 10, 128),
         beadMaterial
       );
-      bead.position.z = 0.096 + index * 0.002;
+      bead.position.z = 0.061 + index * 0.001;
       group.add(bead);
+
+      const backBead = bead.clone();
+      backBead.position.z = -0.061 - index * 0.001;
+      group.add(backBead);
     });
 
     const ridges = new THREE.Group();
