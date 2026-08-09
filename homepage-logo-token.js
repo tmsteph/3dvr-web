@@ -155,11 +155,11 @@
   function makeCoinLettering(THREE, font) {
     const shapes = font.generateShapes('3dvr', 0.52);
     const geometry = new THREE.ExtrudeGeometry(shapes, {
-      depth: 0.14,
+      depth: 0.07,
       bevelEnabled: true,
       bevelSegments: 3,
-      bevelSize: 0.025,
-      bevelThickness: 0.025,
+      bevelSize: 0.014,
+      bevelThickness: 0.014,
       curveSegments: 8,
       steps: 1
     });
@@ -232,6 +232,25 @@
     const backRim = frontRim.clone();
     backRim.position.z = -0.061;
     group.add(backRim);
+
+    // Two restrained outer beads add minted detail without bringing back the inner ring.
+    const beadMaterial = new THREE.MeshStandardMaterial({
+      color: 0xf6b817,
+      metalness: 0.9,
+      roughness: 0.2
+    });
+    [1.18, 0.98].forEach((radius, index) => {
+      const bead = new THREE.Mesh(
+        new THREE.TorusGeometry(radius, index === 0 ? 0.014 : 0.01, 10, 128),
+        beadMaterial
+      );
+      bead.position.z = 0.061 + index * 0.001;
+      group.add(bead);
+
+      const backBead = bead.clone();
+      backBead.position.z = -0.061 - index * 0.001;
+      group.add(backBead);
+    });
 
     group.add(makeCoinLettering(THREE, font));
 

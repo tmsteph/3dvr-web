@@ -62,7 +62,7 @@ describe('3dvr-web logo branding', () => {
     assert.match(token, /TorusGeometry/);
     assert.match(token, /CylinderGeometry\(1\.45, 1\.45, 0\.11/);
     assert.match(token, /ExtrudeGeometry/);
-    assert.match(token, /depth: 0\.14/);
+    assert.match(token, /depth: 0\.07/);
     assert.match(token, /bevelEnabled: true/);
     assert.match(token, /makeCoinLettering/);
     assert.match(token, /back\.rotation\.y = Math\.PI/);
@@ -73,7 +73,8 @@ describe('3dvr-web logo branding', () => {
     assert.match(token, /fillText\('3dvr', 0, 0\)/);
     assert.match(token, /Approximate the raised face/);
     assert.doesNotMatch(token, /ring <= 5/);
-    assert.doesNotMatch(token, /beadMaterial/);
+    assert.match(token, /beadMaterial/);
+    assert.match(token, /\[1\.18, 0\.98\]/);
     assert.doesNotMatch(token, /size \* 0\.32/);
     assert.match(token, /context\.lineTo\(outerX, outerY\)/);
     assert.doesNotMatch(token, /portalPhase|portalRings|MeshBasicMaterial|69f5ff|portalGradient/);
