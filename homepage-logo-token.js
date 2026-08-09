@@ -477,6 +477,19 @@
     }
     context.restore();
 
+    // Approximate the raised face for browsers that cannot create WebGL.
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.font = `900 ${Math.floor(size * 0.18)}px Poppins, Inter, Arial, sans-serif`;
+    context.fillStyle = '#7a4300';
+    [[0, size * 0.024], [size * 0.012, size * 0.012], [size * 0.006, 0]].forEach(([x, y]) => {
+      context.fillText('3dvr', x, y);
+    });
+    context.fillStyle = '#fff4a3';
+    context.fillText('3dvr', -size * 0.008, -size * 0.008);
+    context.fillStyle = '#b96c00';
+    context.fillText('3dvr', 0, 0);
+
     context.restore();
   }
 

@@ -70,7 +70,8 @@ describe('3dvr-web logo branding', () => {
     assert.match(token, /BoxGeometry\(0\.018, 0\.18, 0\.014\)/);
     assert.match(token, /for \(let index = 0; index < 96; index \+= 1\)/);
     assert.doesNotMatch(token, /fillText\('\.tech'/);
-    assert.doesNotMatch(token, /fillText\('3dvr'/);
+    assert.match(token, /fillText\('3dvr', 0, 0\)/);
+    assert.match(token, /Approximate the raised face/);
     assert.doesNotMatch(token, /ring <= 5/);
     assert.doesNotMatch(token, /beadMaterial/);
     assert.doesNotMatch(token, /size \* 0\.32/);
