@@ -42,7 +42,6 @@ describe('3dvr-web logo branding', () => {
 
     assert.match(token, /THREE_CDN_URL/);
     assert.match(token, /three\.js\/r128\/three\.min\.js/);
-    assert.match(token, /FACE_TEXTURE_ROTATION/);
     assert.match(token, /IDLE_QUARTER_SPIN_SPEED = \(Math\.PI \* 2\) \/ 18000/);
     assert.match(token, /IDLE_WOBBLE_X = 0\.025/);
     assert.match(token, /IDLE_WOBBLE_Z = 0\.012/);
@@ -61,14 +60,22 @@ describe('3dvr-web logo branding', () => {
     assert.match(token, /MANUAL_CURRENT_RETURN = 0\.18/);
     assert.match(token, /CylinderGeometry/);
     assert.match(token, /TorusGeometry/);
-    assert.match(token, /BoxGeometry\(0\.026, 0\.21, 0\.012\)/);
-    assert.match(token, /for \(let index = 0; index < 64; index \+= 1\)/);
+    assert.match(token, /CylinderGeometry\(1\.45, 1\.45, 0\.11/);
+    assert.match(token, /ExtrudeGeometry/);
+    assert.match(token, /depth: 0\.07/);
+    assert.match(token, /bevelEnabled: true/);
+    assert.match(token, /makeCoinLettering/);
+    assert.match(token, /back\.rotation\.y = Math\.PI/);
+    assert.match(token, /COIN_FONT_URL/);
+    assert.match(token, /BoxGeometry\(0\.018, 0\.18, 0\.014\)/);
+    assert.match(token, /for \(let index = 0; index < 96; index \+= 1\)/);
     assert.doesNotMatch(token, /fillText\('\.tech'/);
-    assert.match(token, /font = '900 220px Poppins, Inter, Arial, sans-serif'/);
     assert.match(token, /fillText\('3dvr', 0, 0\)/);
-    assert.match(token, /fillText\('3dvr', 0, 8\)/);
-    assert.match(token, /fillText\('3dvr', -3, -3\)/);
-    assert.match(token, /raised minting/);
+    assert.match(token, /Approximate the raised face/);
+    assert.doesNotMatch(token, /ring <= 5/);
+    assert.match(token, /beadMaterial/);
+    assert.match(token, /\[1\.18, 0\.98\]/);
+    assert.doesNotMatch(token, /size \* 0\.32/);
     assert.match(token, /context\.lineTo\(outerX, outerY\)/);
     assert.doesNotMatch(token, /portalPhase|portalRings|MeshBasicMaterial|69f5ff|portalGradient/);
     assert.match(token, /CanvasTexture/);

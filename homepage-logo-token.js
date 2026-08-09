@@ -1,6 +1,7 @@
 (function () {
   const THREE_CDN_URL = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-  const FACE_TEXTURE_ROTATION = -Math.PI / 2;
+  const FONT_LOADER_CDN_URL = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/loaders/FontLoader.js';
+  const COIN_FONT_URL = 'https://threejs.org/examples/fonts/helvetiker_bold.typeface.json';
   const IDLE_QUARTER_SPIN_SPEED = (Math.PI * 2) / 18000;
   const IDLE_WOBBLE_X = 0.025;
   const IDLE_WOBBLE_Z = 0.012;
@@ -84,65 +85,48 @@
     });
   }
 
-  function makeFaceTexture(THREE, mirrored) {
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.onload = resolve;
+      script.onerror = () => reject(new Error(`Unable to load ${src}.`));
+      document.head.appendChild(script);
+    });
+  }
+
+  async function loadCoinFont(THREE) {
+    if (!THREE.FontLoader) await loadScript(FONT_LOADER_CDN_URL);
+    return new Promise((resolve, reject) => {
+      new THREE.FontLoader().load(COIN_FONT_URL, resolve, undefined, reject);
+    });
+  }
+
+  function makeFaceTexture(THREE) {
     const textureCanvas = document.createElement('canvas');
     const size = 1024;
     textureCanvas.width = size;
     textureCanvas.height = size;
     const context = textureCanvas.getContext('2d');
     const gradient = context.createRadialGradient(size * 0.3, size * 0.22, 30, size * 0.5, size * 0.5, size * 0.64);
-    gradient.addColorStop(0, '#fff1a8');
-    gradient.addColorStop(0.24, '#f9d976');
-    gradient.addColorStop(0.58, '#d99a2b');
-    gradient.addColorStop(0.86, '#a96816');
-    gradient.addColorStop(1, '#6f3f0b');
+    gradient.addColorStop(0, '#fff8b8');
+    gradient.addColorStop(0.24, '#ffe04a');
+    gradient.addColorStop(0.58, '#f4b51b');
+    gradient.addColorStop(0.86, '#c77a05');
+    gradient.addColorStop(1, '#754000');
 
     context.fillStyle = gradient;
     context.fillRect(0, 0, size, size);
 
-    context.save();
-    context.translate(size / 2, size / 2);
-    context.globalAlpha = 0.2;
-    for (let ring = 1; ring <= 5; ring += 1) {
-      context.beginPath();
-      context.arc(0, 0, size * (0.21 + ring * 0.085), 0, Math.PI * 2);
-      context.strokeStyle = ring % 2 ? '#fff1a8' : '#7c470d';
-      context.lineWidth = 5;
-      context.stroke();
-    }
-    context.globalAlpha = 1;
-    context.restore();
-
     context.beginPath();
     context.arc(size / 2, size / 2, size * 0.41, 0, Math.PI * 2);
-    context.strokeStyle = '#ffe9a3';
-    context.lineWidth = 28;
+    context.strokeStyle = '#fff0a0';
+    context.lineWidth = 32;
     context.stroke();
 
-    context.beginPath();
-    context.arc(size / 2, size / 2, size * 0.32, 0, Math.PI * 2);
-    context.strokeStyle = 'rgba(111, 63, 11, 0.62)';
-    context.lineWidth = 10;
-    context.stroke();
-
-    context.save();
-    context.translate(size / 2, size / 2);
-    if (mirrored) context.scale(-1, 1);
-    context.rotate(FACE_TEXTURE_ROTATION);
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.font = '900 220px Poppins, Inter, Arial, sans-serif';
-    // Three small passes make the mark read as raised minting instead of flat ink.
-    context.shadowColor = 'rgba(0, 0, 0, 0.24)';
-    context.shadowBlur = 12;
-    context.fillStyle = '#6f3f0b';
-    context.fillText('3dvr', 0, 8);
-    context.shadowColor = 'transparent';
-    context.fillStyle = '#fff1a8';
-    context.fillText('3dvr', -3, -3);
-    context.fillStyle = '#8a5010';
-    context.fillText('3dvr', 0, 0);
-    context.restore();
+    // The lettering is actual extruded geometry in makeCoinLettering; keep the face
+    // texture clean so it cannot flatten the relief with a second printed copy.
 
     const texture = new THREE.CanvasTexture(textureCanvas);
     texture.anisotropy = 8;
@@ -168,12 +152,53 @@
     state.camera.updateProjectionMatrix();
   }
 
-  function makeToken(THREE) {
+  function makeCoinLettering(THREE, font) {
+    const shapes = font.generateShapes('3dvr', 0.52);
+    const geometry = new THREE.ExtrudeGeometry(shapes, {
+      depth: 0.07,
+      bevelEnabled: true,
+      bevelSegments: 3,
+      bevelSize: 0.014,
+      bevelThickness: 0.014,
+      curveSegments: 8,
+      steps: 1
+    });
+    geometry.computeBoundingBox();
+    const bounds = geometry.boundingBox;
+    geometry.translate(
+      -(bounds.max.x + bounds.min.x) / 2,
+      -(bounds.max.y + bounds.min.y) / 2,
+      0
+    );
+
+    const faceMaterial = new THREE.MeshStandardMaterial({
+      color: 0xffe66a,
+      metalness: 0.9,
+      roughness: 0.18
+    });
+    const edgeMaterial = new THREE.MeshStandardMaterial({
+      color: 0x9b5700,
+      metalness: 0.88,
+      roughness: 0.22
+    });
+    const lettering = new THREE.Group();
+    const front = new THREE.Mesh(geometry, [faceMaterial, edgeMaterial]);
+    front.position.z = 0.055;
+    lettering.add(front);
+
+    const back = new THREE.Mesh(geometry.clone(), [faceMaterial, edgeMaterial]);
+    back.rotation.y = Math.PI;
+    back.position.z = -0.055;
+    lettering.add(back);
+    return lettering;
+  }
+
+  function makeToken(THREE, font) {
     const group = new THREE.Group();
-    const faceTexture = makeFaceTexture(THREE, false);
-    const backTexture = makeFaceTexture(THREE, false);
+    const faceTexture = makeFaceTexture(THREE);
+    const backTexture = makeFaceTexture(THREE);
     const sideMaterial = new THREE.MeshStandardMaterial({
-      color: 0xb8791f,
+      color: 0xc78308,
       metalness: 0.92,
       roughness: 0.2
     });
@@ -189,34 +214,55 @@
     });
 
     const body = new THREE.Mesh(
-      new THREE.CylinderGeometry(1.45, 1.45, 0.24, 128, 1, false),
+      new THREE.CylinderGeometry(1.45, 1.45, 0.11, 128, 1, false),
       [sideMaterial, frontMaterial, backMaterial]
     );
     body.rotation.x = Math.PI / 2;
     group.add(body);
 
     const rimMaterial = new THREE.MeshStandardMaterial({
-      color: 0xffd76a,
+      color: 0xffdf48,
       metalness: 0.86,
       roughness: 0.18
     });
-    const frontRim = new THREE.Mesh(new THREE.TorusGeometry(1.47, 0.028, 12, 128), rimMaterial);
-    frontRim.position.z = 0.13;
+    const frontRim = new THREE.Mesh(new THREE.TorusGeometry(1.47, 0.034, 12, 128), rimMaterial);
+    frontRim.position.z = 0.061;
     group.add(frontRim);
 
     const backRim = frontRim.clone();
-    backRim.position.z = -0.13;
+    backRim.position.z = -0.061;
     group.add(backRim);
+
+    // Two restrained outer beads add minted detail without bringing back the inner ring.
+    const beadMaterial = new THREE.MeshStandardMaterial({
+      color: 0xf6b817,
+      metalness: 0.9,
+      roughness: 0.2
+    });
+    [1.18, 0.98].forEach((radius, index) => {
+      const bead = new THREE.Mesh(
+        new THREE.TorusGeometry(radius, index === 0 ? 0.014 : 0.01, 10, 128),
+        beadMaterial
+      );
+      bead.position.z = 0.061 + index * 0.001;
+      group.add(bead);
+
+      const backBead = bead.clone();
+      backBead.position.z = -0.061 - index * 0.001;
+      group.add(backBead);
+    });
+
+    group.add(makeCoinLettering(THREE, font));
 
     const ridges = new THREE.Group();
     const ridgeMaterial = new THREE.MeshStandardMaterial({
-      color: 0x8f5b16,
+      color: 0xa76200,
       metalness: 0.9,
       roughness: 0.28
     });
-    for (let index = 0; index < 64; index += 1) {
-      const angle = (index / 64) * Math.PI * 2;
-      const ridge = new THREE.Mesh(new THREE.BoxGeometry(0.026, 0.21, 0.012), ridgeMaterial);
+    for (let index = 0; index < 96; index += 1) {
+      const angle = (index / 96) * Math.PI * 2;
+      const ridge = new THREE.Mesh(new THREE.BoxGeometry(0.018, 0.18, 0.014), ridgeMaterial);
       ridge.position.set(Math.cos(angle) * 1.458, 0, Math.sin(angle) * 1.458);
       ridge.rotation.y = angle;
       ridges.add(ridge);
@@ -403,9 +449,9 @@
     context.scale(scaleX, scaleY);
 
     const sideGradient = context.createLinearGradient(-radius, -radius, radius, radius);
-    sideGradient.addColorStop(0, '#ffe9a3');
-    sideGradient.addColorStop(0.45, '#b8791f');
-    sideGradient.addColorStop(1, '#6f3f0b');
+    sideGradient.addColorStop(0, '#fff0a0');
+    sideGradient.addColorStop(0.45, '#d18a05');
+    sideGradient.addColorStop(1, '#754000');
 
     context.save();
     context.translate(tiltY * radius * 0.8, tiltX * radius * 0.8 + radius * 0.08);
@@ -419,42 +465,25 @@
     context.restore();
 
     const faceGradient = context.createRadialGradient(-radius * 0.3, -radius * 0.38, radius * 0.05, 0, 0, radius * 1.12);
-    faceGradient.addColorStop(0, '#fff1a8');
-    faceGradient.addColorStop(0.24, '#f9d976');
-    faceGradient.addColorStop(0.58, '#d99a2b');
-    faceGradient.addColorStop(0.86, '#a96816');
-    faceGradient.addColorStop(1, '#6f3f0b');
+    faceGradient.addColorStop(0, '#fff8b8');
+    faceGradient.addColorStop(0.24, '#ffe04a');
+    faceGradient.addColorStop(0.58, '#f4b51b');
+    faceGradient.addColorStop(0.86, '#c77a05');
+    faceGradient.addColorStop(1, '#754000');
     context.beginPath();
     context.ellipse(0, 0, radius, radius, 0, 0, Math.PI * 2);
     context.fillStyle = faceGradient;
     context.fill();
 
-    context.save();
-    context.globalAlpha = 0.2;
-    for (let ring = 1; ring <= 5; ring += 1) {
-      context.beginPath();
-      context.ellipse(0, 0, radius * (0.28 + ring * 0.1), radius * (0.28 + ring * 0.1), 0, 0, Math.PI * 2);
-      context.strokeStyle = ring % 2 ? '#fff1a8' : '#7c470d';
-      context.lineWidth = Math.max(1, size * 0.004);
-      context.stroke();
-    }
-    context.restore();
-
     context.lineWidth = Math.max(8, size * 0.025);
-    context.strokeStyle = '#ffe9a3';
-    context.stroke();
-
-    context.lineWidth = Math.max(3, size * 0.009);
-    context.strokeStyle = 'rgba(111, 63, 11, 0.62)';
-    context.beginPath();
-    context.ellipse(0, 0, radius * 0.79, radius * 0.79, 0, 0, Math.PI * 2);
+    context.strokeStyle = '#fff0a0';
     context.stroke();
 
     context.save();
-    context.globalAlpha = 0.72;
+    context.globalAlpha = 0.86;
     context.lineWidth = Math.max(1, size * 0.004);
-    for (let ridge = 0; ridge < 64; ridge += 1) {
-      const angle = (ridge / 64) * Math.PI * 2;
+    for (let ridge = 0; ridge < 96; ridge += 1) {
+      const angle = (ridge / 96) * Math.PI * 2;
       const innerX = Math.cos(angle) * radius * 1.01;
       const innerY = Math.sin(angle) * radius * 1.01;
       const outerX = Math.cos(angle) * radius * 1.045;
@@ -462,24 +491,24 @@
       context.beginPath();
       context.moveTo(innerX, innerY);
       context.lineTo(outerX, outerY);
-      context.strokeStyle = ridge % 2 ? '#ffe9a3' : '#8f5b16';
+      context.strokeStyle = ridge % 2 ? '#fff0a0' : '#a76200';
       context.stroke();
     }
     context.restore();
 
+    // Approximate the raised face for browsers that cannot create WebGL.
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     context.font = `900 ${Math.floor(size * 0.18)}px Poppins, Inter, Arial, sans-serif`;
-    // Match the WebGL face: a lower bevel, a light catch, then the raised face.
-    context.shadowColor = 'rgba(50, 27, 4, 0.28)';
-    context.shadowBlur = size * 0.012;
-    context.fillStyle = '#6f3f0b';
-    context.fillText('3dvr', 0, size * 0.012);
-    context.shadowColor = 'transparent';
-    context.fillStyle = '#fff1a8';
-    context.fillText('3dvr', -size * 0.006, -size * 0.006);
-    context.fillStyle = '#8a5010';
+    context.fillStyle = '#7a4300';
+    [[0, size * 0.024], [size * 0.012, size * 0.012], [size * 0.006, 0]].forEach(([x, y]) => {
+      context.fillText('3dvr', x, y);
+    });
+    context.fillStyle = '#fff4a3';
+    context.fillText('3dvr', -size * 0.008, -size * 0.008);
+    context.fillStyle = '#b96c00';
     context.fillText('3dvr', 0, 0);
+
     context.restore();
   }
 
@@ -529,6 +558,7 @@
   async function init() {
     try {
       const THREE = await loadThree();
+      const font = await loadCoinFont(THREE);
       const renderer = new THREE.WebGLRenderer({
         canvas,
         antialias: true,
@@ -539,7 +569,7 @@
       const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
       camera.position.set(0, 0, 5);
 
-      const token = makeToken(THREE);
+      const token = makeToken(THREE, font);
       scene.add(token);
     scene.add(new THREE.AmbientLight(0xffedb0, 0.78));
 
