@@ -131,10 +131,16 @@
     context.rotate(FACE_TEXTURE_ROTATION);
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    context.fillStyle = '#6f3f0b';
-    context.shadowColor = 'rgba(0, 0, 0, 0.45)';
-    context.shadowBlur = 24;
     context.font = '900 220px Poppins, Inter, Arial, sans-serif';
+    // Three small passes make the mark read as raised minting instead of flat ink.
+    context.shadowColor = 'rgba(0, 0, 0, 0.24)';
+    context.shadowBlur = 12;
+    context.fillStyle = '#6f3f0b';
+    context.fillText('3dvr', 0, 8);
+    context.shadowColor = 'transparent';
+    context.fillStyle = '#fff1a8';
+    context.fillText('3dvr', -3, -3);
+    context.fillStyle = '#8a5010';
     context.fillText('3dvr', 0, 0);
     context.restore();
 
@@ -463,10 +469,16 @@
 
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    context.shadowColor = 'rgba(111, 63, 11, 0.52)';
-    context.shadowBlur = size * 0.025;
-    context.fillStyle = '#6f3f0b';
     context.font = `900 ${Math.floor(size * 0.18)}px Poppins, Inter, Arial, sans-serif`;
+    // Match the WebGL face: a lower bevel, a light catch, then the raised face.
+    context.shadowColor = 'rgba(50, 27, 4, 0.28)';
+    context.shadowBlur = size * 0.012;
+    context.fillStyle = '#6f3f0b';
+    context.fillText('3dvr', 0, size * 0.012);
+    context.shadowColor = 'transparent';
+    context.fillStyle = '#fff1a8';
+    context.fillText('3dvr', -size * 0.006, -size * 0.006);
+    context.fillStyle = '#8a5010';
     context.fillText('3dvr', 0, 0);
     context.restore();
   }
