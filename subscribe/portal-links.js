@@ -11,6 +11,12 @@ const PORTAL_ORIGIN_BY_WEB_HOST = {
   '3dvr-web-git-feature-billing-center-links-tmstephs-projects.vercel.app':
     DEFAULT_PREVIEW_PORTAL_ORIGIN
 };
+const DIRECT_PAY_PATHS = new Set([
+  '/billing/?plan=starter',
+  '/billing/?plan=pro',
+  '/billing/?plan=builder',
+  '/billing/?plan=embedded'
+]);
 
 function trimTrailingSlash(value = '') {
   return String(value || '').trim().replace(/\/+$/, '');
@@ -86,9 +92,17 @@ function resolvePortalOrigin() {
   );
 }
 
+function resolvePortalPath(value = '') {
+  const path = String(value || '').trim();
+  if (DIRECT_PAY_PATHS.has(path)) {
+    return path.replace('/billing/', '/pay/');
+  }
+  return path;
+}
+
 function setPortalLinks(portalOrigin) {
   document.querySelectorAll('[data-portal-path]').forEach(link => {
-    const path = String(link.dataset.portalPath || '').trim();
+    const path = resolvePortalPath(link.dataset.portalPath || '');
     if (!path) {
       return;
     }
