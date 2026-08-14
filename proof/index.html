@@ -7,90 +7,31 @@
   <title>Proof | 3DVR</title>
   <link rel="icon" href="../3DVRfavicon.png" />
   <style>
-    :root {
-      color-scheme: dark;
-      --bg: #081417;
-      --panel: #102228;
-      --line: rgba(255,255,255,.12);
-      --text: #f5fbfa;
-      --muted: #b8c9c7;
-      --accent: #00ffc8;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #14343d 0, var(--bg) 46%);
-      color: var(--text);
-      line-height: 1.55;
-    }
-    a { color: var(--accent); }
-    main { width: min(920px, calc(100% - 32px)); margin: 0 auto; padding: 48px 0 72px; }
-    .eyebrow { color: var(--accent); font-weight: 800; letter-spacing: .1em; text-transform: uppercase; font-size: .78rem; }
-    h1 { font-size: clamp(2.4rem, 8vw, 5rem); line-height: .98; margin: .35rem 0 1rem; }
-    h2 { margin-top: 0; }
-    .lead { max-width: 720px; color: var(--muted); font-size: 1.15rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 14px; margin: 30px 0; }
-    .card { background: rgba(16,34,40,.88); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
-    .metric { font-size: 2.2rem; font-weight: 850; margin: 4px 0; }
-    .muted { color: var(--muted); }
-    .receipt { border-left: 3px solid var(--accent); padding-left: 16px; margin: 20px 0; }
-    .status { display: inline-block; padding: .25rem .55rem; border: 1px solid rgba(0,255,200,.4); border-radius: 999px; color: var(--accent); font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
-    .cta { display: inline-block; margin-top: 16px; background: var(--accent); color: #00100d; text-decoration: none; font-weight: 850; padding: 12px 16px; border-radius: 10px; }
-    footer { margin-top: 42px; color: var(--muted); font-size: .9rem; }
+    :root { color-scheme: dark; --bg:#081417; --panel:#102228; --line:rgba(255,255,255,.12); --text:#f5fbfa; --muted:#b8c9c7; --accent:#00ffc8; }
+    * { box-sizing:border-box; } body { margin:0; font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:radial-gradient(circle at top,#14343d 0,var(--bg) 46%); color:var(--text); line-height:1.55; }
+    a { color:var(--accent); } main { width:min(920px,calc(100% - 32px)); margin:0 auto; padding:48px 0 72px; } .eyebrow { color:var(--accent); font-weight:800; letter-spacing:.1em; text-transform:uppercase; font-size:.78rem; }
+    h1 { font-size:clamp(2.4rem,8vw,5rem); line-height:.98; margin:.35rem 0 1rem; } h2 { margin-top:0; } .lead { max-width:720px; color:var(--muted); font-size:1.15rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin:30px 0; } .card { background:rgba(16,34,40,.88); border:1px solid var(--line); border-radius:16px; padding:20px; }
+    .metric { font-size:2.2rem; font-weight:850; margin:4px 0; } .muted { color:var(--muted); } .receipt { border-left:3px solid var(--accent); padding-left:16px; margin:20px 0; }
+    .status { display:inline-block; padding:.25rem .55rem; border:1px solid rgba(0,255,200,.4); border-radius:999px; color:var(--accent); font-size:.78rem; font-weight:800; text-transform:uppercase; letter-spacing:.06em; }
+    .cta { display:inline-block; margin-top:16px; background:var(--accent); color:#00100d; text-decoration:none; font-weight:850; padding:12px 16px; border-radius:10px; } footer { margin-top:42px; color:var(--muted); font-size:.9rem; }
   </style>
 </head>
-<body>
-  <main>
-    <p class="eyebrow">3DVR uses 3DVR</p>
-    <h1>We are our own first Builder customer.</h1>
-    <p class="lead">Before asking another small business to trust us, we are using the same promise on ourselves: find the thing slowing the business down, ship a meaningful improvement, measure the result, and show the receipts.</p>
-
-    <section class="grid" aria-label="Baseline metrics">
-      <article class="card">
-        <p class="eyebrow">Baseline</p>
-        <div class="metric">3</div>
-        <p class="muted">active paid subscriptions</p>
-      </article>
-      <article class="card">
-        <p class="eyebrow">Baseline MRR</p>
-        <div class="metric">$45</div>
-        <p class="muted">monthly recurring revenue</p>
-      </article>
-      <article class="card">
-        <p class="eyebrow">Started</p>
-        <div class="metric">Aug 13</div>
-        <p class="muted">2026 · live Stripe baseline</p>
-      </article>
-    </section>
-
-    <section class="card">
-      <span class="status">Case study #001</span>
-      <h2>Can 3DVR make 3DVR easier to buy?</h2>
-      <p class="muted">The first problem is not lack of software. It is friction between interest and becoming a recurring customer.</p>
-
-      <div class="receipt">
-        <strong>Shipped:</strong> paid plans now route to a simple Stripe subscription checkout without requiring a portal account first.
-      </div>
-      <div class="receipt">
-        <strong>Shipped:</strong> feature-branch Vercel previews are skipped so rapid building does not consume the deployment quota needed for production.
-      </div>
-      <div class="receipt">
-        <strong>Next:</strong> make subscription language unmistakable, instrument the funnel, and measure plan view → subscribe click → active subscription.
-      </div>
-    </section>
-
-    <section class="card" style="margin-top:14px">
-      <h2>The Builder promise we are testing</h2>
-      <p><strong>Every month, ship one meaningful improvement that helps the business make money, save time, or operate more calmly.</strong></p>
-      <p class="muted">For 3DVR itself, the first measurable outcome is recurring revenue. We will update this page as the numbers move. If they do not move, that is part of the proof too.</p>
-      <a class="cta" href="../subscribe/">See the subscription offer</a>
-    </section>
-
-    <footer>
-      No invented testimonials. No vanity case study. This page is a dated operating record of 3DVR applying its own product to itself.
-    </footer>
-  </main>
-  <script defer src="/_vercel/insights/script.js"></script>
-</body>
-</html>
+<body><main>
+  <p class="eyebrow">3DVR uses 3DVR</p>
+  <h1>We are our own first Builder customer.</h1>
+  <p class="lead">Before asking another small business to trust us, we are using the same promise on ourselves: find the thing slowing the business down, ship a meaningful improvement, measure the result, and show the receipts.</p>
+  <section class="grid" aria-label="Baseline metrics">
+    <article class="card"><p class="eyebrow">Starting baseline</p><div class="metric">3</div><p class="muted">paid subscriptions recorded when this experiment began</p></article>
+    <article class="card"><p class="eyebrow">Starting MRR</p><div class="metric">$45</div><p class="muted">monthly recurring revenue at the Aug 13 baseline</p></article>
+    <article class="card"><p class="eyebrow">Started</p><div class="metric">Aug 13</div><p class="muted">2026 · dated Stripe baseline</p></article>
+  </section>
+  <section class="card"><span class="status">Case study #001</span><h2>Can 3DVR make 3DVR easier to buy?</h2><p class="muted">The first problem is not lack of software. It is friction between interest and becoming a recurring customer.</p>
+    <div class="receipt"><strong>Shipped:</strong> paid plans route to a simple Stripe subscription checkout without requiring a portal account first.</div>
+    <div class="receipt"><strong>Shipped:</strong> the paid-plan buttons now say exactly what happens — pay securely — instead of promising an account-first portal flow.</div>
+    <div class="receipt"><strong>Shipped:</strong> feature-branch Vercel previews are skipped so rapid building does not consume the deployment quota needed for production.</div>
+    <div class="receipt"><strong>Now measuring:</strong> whether simpler checkout and clearer language turn more interested visitors into paying subscribers.</div>
+  </section>
+  <section class="card" style="margin-top:14px"><h2>The Builder promise we are testing</h2><p><strong>Every month, ship one meaningful improvement that helps the business make money, save time, or operate more calmly.</strong></p><p class="muted">For 3DVR itself, the first measurable outcome is recurring revenue. We will update this page as the numbers move. If they do not move, that is part of the proof too.</p><a class="cta" href="../subscribe/">See the subscription offer</a></section>
+  <footer>No invented testimonials. No vanity case study. This page is a dated operating record of 3DVR applying its own product to itself.</footer>
+</main><script defer src="/_vercel/insights/script.js"></script></body></html>
