@@ -17,13 +17,6 @@ const DIRECT_PAY_PATHS = new Set([
   '/billing/?plan=builder',
   '/billing/?plan=embedded'
 ]);
-const DIRECT_PAY_LABELS = new Map([
-  ['/pay/?plan=starter', 'Pay $5 securely'],
-  ['/pay/?plan=pro', 'Pay $20 securely'],
-  ['/pay/?plan=builder', 'Pay $50 securely'],
-  ['/pay/?plan=embedded', 'Pay $200 securely']
-]);
-const DIRECT_PAY_NOTICE = 'Secure Stripe checkout. No portal account required before payment.';
 
 function trimTrailingSlash(value = '') {
   return String(value || '').trim().replace(/\/+$/, '');
@@ -107,23 +100,6 @@ function resolvePortalPath(value = '') {
   return path;
 }
 
-function applyDirectPayPresentation(link, path) {
-  const label = DIRECT_PAY_LABELS.get(path);
-  if (!label) {
-    return;
-  }
-
-  link.textContent = label;
-  link.removeAttribute('target');
-  link.removeAttribute('rel');
-  link.dataset.checkoutMode = 'direct';
-
-  const notice = link.closest?.('.card')?.querySelector?.('.notice');
-  if (notice) {
-    notice.textContent = DIRECT_PAY_NOTICE;
-  }
-}
-
 function setPortalLinks(portalOrigin) {
   document.querySelectorAll('[data-portal-path]').forEach(link => {
     const path = resolvePortalPath(link.dataset.portalPath || '');
@@ -132,7 +108,6 @@ function setPortalLinks(portalOrigin) {
     }
 
     link.href = `${portalOrigin}${path.startsWith('/') ? path : `/${path}`}`;
-    applyDirectPayPresentation(link, path);
   });
 }
 
