@@ -67,6 +67,13 @@ test('homepage ships Gun-backed experiment and focused CTA plumbing', async () =
   assert.match(js, /\$1 challenge/);
   assert.match(js, /https:\/\/portal\.3dvr\.tech\/challenge\//);
   assert.match(js, /one-dollar-challenge/);
+  assert.match(js, /Free Website/);
+  assert.match(js, /Free website/);
+  assert.match(js, /We build it for you/);
+  assert.match(js, /https:\/\/portal\.3dvr\.tech\/free-page\//);
+  assert.match(js, /free-website-sticky/);
+  assert.match(js, /free-website/);
+  assert.match(js, /removeAttribute\('data-portal-path'\)/);
   assert.match(js, /Launch what customers see/);
   assert.match(js, /Run the business behind it/);
   assert.match(js, /Get a human when you want one/);
