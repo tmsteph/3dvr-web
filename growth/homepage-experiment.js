@@ -172,6 +172,13 @@
       primaryCta.textContent = 'Start free';
     }
 
+    const challengeCta = document.querySelector('[data-growth-cta="see-plans"]');
+    if (challengeCta) {
+      challengeCta.textContent = '$1 challenge';
+      challengeCta.href = 'https://portal.3dvr.tech/challenge/';
+      challengeCta.dataset.growthCta = 'one-dollar-challenge';
+    }
+
     setText('#planLaneTitle', 'Start free. Add support when you want it.');
     const planLabels = [
       ['[data-growth-cta="plan-free"] span', 'Explore the platform'],
