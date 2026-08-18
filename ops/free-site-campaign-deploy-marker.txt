@@ -1,0 +1,5 @@
+Free Site Campaign production deployment marker.
+
+Purpose: trigger production after the Vercel daily deployment limit interrupted PR #270.
+Campaign source-of-truth is the merged Free Website homepage promotion on main.
+Date: 2026-08-18
