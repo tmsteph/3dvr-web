@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Open Source CRM, Contacts & Calendar | 3DVR</title>
+  <meta
+    name="description"
+    content="3DVR is an open-source business operating system for CRM, contacts, calendar, notes, projects, payments, websites, and more—with optional human support when you need it."
+  />
+  <meta
+    name="keywords"
+    content="open source CRM, open source contacts, open source calendar, open source business software, small business CRM, business operating system, 3DVR"
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://3dvr.tech/open-source-business-system.html" />
+  <link rel="icon" type="image/svg+xml" href="/assets/logo-3dvr.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="3dvr.tech" />
+  <meta property="og:title" content="Open Source CRM, Contacts & Calendar | 3DVR" />
+  <meta
+    property="og:description"
+    content="Run customers, contacts, calendar, notes, projects, payments, websites, and more in one open-source business system."
+  />
+  <meta property="og:url" content="https://3dvr.tech/open-source-business-system.html" />
+  <meta property="og:image" content="https://3dvr.tech/3DVR.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Open Source CRM, Contacts & Calendar | 3DVR" />
+  <meta
+    name="twitter:description"
+    content="An open-source business operating system with optional human support. Start free and grow without rebuilding your workflow."
+  />
+  <meta name="twitter:image" content="https://3dvr.tech/3DVR.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "3DVR",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "url": "https://3dvr.tech/open-source-business-system.html",
+      "description": "An open-source business operating system for CRM, contacts, calendar, notes, projects, payments, websites, and optional human support.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Free plan available"
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #07131f;
+      --panel: rgba(255,255,255,0.07);
+      --panel-strong: rgba(255,255,255,0.11);
+      --text: #f7fbff;
+      --muted: #c8d5df;
+      --accent: #00ffc8;
+      --accent-soft: rgba(0,255,200,0.16);
+      --border: rgba(255,255,255,0.12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 5%, rgba(0,255,200,0.16), transparent 30rem),
+        radial-gradient(circle at 90% 18%, rgba(95,39,205,0.2), transparent 32rem),
+        linear-gradient(180deg, #0b2030 0%, var(--bg) 54%, #0b1c27 100%);
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .shell { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(7,19,31,0.82);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      text-decoration: none;
+      font-weight: 850;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-weight: 650; }
+    .nav-links a:hover { color: #fff; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0.72rem 1.15rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      border: 1px solid var(--border);
+      background: var(--panel);
+    }
+    .button-primary {
+      color: #04110f;
+      background: var(--accent);
+      border-color: transparent;
+      box-shadow: 0 12px 32px rgba(0,255,200,0.24);
+    }
+    .hero {
+      padding: clamp(5.5rem, 11vw, 9rem) 0 clamp(4.5rem, 9vw, 7rem);
+      text-align: center;
+    }
+    .eyebrow {
+      margin: 0 0 1rem;
+      color: var(--accent);
+      font-size: 0.86rem;
+      font-weight: 850;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { line-height: 1.08; letter-spacing: -0.035em; }
+    h1 { margin: 0 auto; max-width: 920px; font-size: clamp(3rem, 8vw, 6.25rem); }
+    .hero-copy {
+      max-width: 760px;
+      margin: 1.5rem auto 0;
+      color: var(--muted);
+      font-size: clamp(1.13rem, 2.3vw, 1.45rem);
+    }
+    .hero-actions { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-top: 2rem; }
+    section { padding: clamp(4rem, 8vw, 6.5rem) 0; }
+    .section-heading { max-width: 760px; margin: 0 auto 2.2rem; text-align: center; }
+    .section-heading h2 { margin: 0; font-size: clamp(2.3rem, 5vw, 4.2rem); }
+    .section-heading p { margin: 1rem 0 0; color: var(--muted); font-size: 1.1rem; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .card {
+      padding: 1.5rem;
+      border-radius: 20px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.16);
+    }
+    .card h3 { margin: 0 0 0.65rem; font-size: 1.35rem; color: var(--accent); }
+    .card p { margin: 0; color: var(--muted); }
+    .module-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.85rem; }
+    .module {
+      padding: 1.1rem;
+      border-radius: 16px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(0,255,200,0.22);
+      font-weight: 800;
+      text-align: center;
+    }
+    .split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1.2rem; align-items: stretch; }
+    .split .card { padding: clamp(1.5rem, 3vw, 2.2rem); }
+    .split h2 { margin: 0 0 1rem; font-size: clamp(2rem, 4vw, 3.25rem); }
+    .split p, .split li { color: var(--muted); }
+    .split ul { margin: 1rem 0 0; padding-left: 1.25rem; }
+    .callout {
+      padding: clamp(2rem, 5vw, 3.5rem);
+      text-align: center;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(0,255,200,0.14), rgba(95,39,205,0.18));
+      border: 1px solid var(--border);
+    }
+    .callout h2 { margin: 0; font-size: clamp(2.2rem, 5vw, 4rem); }
+    .callout p { max-width: 720px; margin: 1rem auto 0; color: var(--muted); font-size: 1.1rem; }
+    footer { padding: 3rem 0 4rem; color: #9fb2c1; text-align: center; }
+    footer a { color: var(--accent); }
+    @media (max-width: 860px) {
+      .grid, .module-grid, .split { grid-template-columns: 1fr 1fr; }
+      .split > :first-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 620px) {
+      .nav { align-items: flex-start; padding: 1rem 0; }
+      .nav-links { justify-content: flex-end; }
+      .nav-links .hide-small { display: none; }
+      .grid, .module-grid, .split { grid-template-columns: 1fr; }
+      .split > :first-child { grid-column: auto; }
+      .hero { text-align: left; }
+      .hero-copy { margin-left: 0; }
+      .hero-actions { justify-content: flex-start; }
+      .section-heading { text-align: left; margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell nav">
+      <a class="brand" href="/">3dvr<span>.tech</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a class="hide-small" href="/">Home</a>
+        <a class="hide-small" href="/subscribe/">Plans</a>
+        <a href="https://portal.3dvr.tech/">Portal</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell">
+        <p class="eyebrow">Open source business software</p>
+        <h1>Run your business in one open system.</h1>
+        <p class="hero-copy">
+          3DVR brings CRM, contacts, calendar, notes, projects, payments, websites, and more into one connected business workspace—with optional human support when you want help launching or improving it.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://portal.3dvr.tech/free-trial.html">Start free</a>
+          <a class="button" href="/subscribe/">See plans</a>
+          <a class="button" href="https://github.com/tmsteph/3dvr-portal">View the source</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="section-heading">
+          <h2>The everyday business tools, connected.</h2>
+          <p>Start with the piece you need today. The goal is one calmer system instead of a pile of subscriptions that barely talk to each other.</p>
+        </div>
+        <div class="module-grid" aria-label="3DVR business modules">
+          <div class="module">CRM</div>
+          <div class="module">Contacts</div>
+          <div class="module">Calendar</div>
+          <div class="module">Notes</div>
+          <div class="module">Projects</div>
+          <div class="module">Payments</div>
+          <div class="module">Websites</div>
+          <div class="module">Support</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="section-heading">
+          <h2>Software you can use. People you can call.</h2>
+          <p>3DVR is both a platform and a service layer. You can use the open tools yourself or ask for direct help when something needs to become real.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h3>Launch</h3>
+            <p>Turn an idea into a live website, offer, landing page, simple app, or customer flow.</p>
+          </article>
+          <article class="card">
+            <h3>Operate</h3>
+            <p>Keep customers, contacts, calendar, notes, projects, and payments together as the business grows.</p>
+          </article>
+          <article class="card">
+            <h3>Get support</h3>
+            <p>Bring in a real human for setup, fixes, strategy, integrations, and ongoing technical help.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell split">
+        <article class="card">
+          <h2>Why open source?</h2>
+          <p>Business software should help you build independence, not make your company more dependent on the vendor that sold it to you.</p>
+          <ul>
+            <li>Inspect how the system works.</li>
+            <li>Contribute improvements and extensions.</li>
+            <li>Keep your workflows portable as the platform evolves.</li>
+            <li>Self-host components where practical instead of being permanently locked in.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2>Start small.</h2>
+          <p>You do not need to migrate your whole business on day one. Start free, organize one part of the work, and expand when 3DVR earns the next job.</p>
+          <div style="margin-top:1.4rem; display:flex; gap:.7rem; flex-wrap:wrap;">
+            <a class="button button-primary" href="https://portal.3dvr.tech/free-trial.html">Open 3DVR</a>
+            <a class="button" href="/system.html">See the system direction</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="callout">
+          <h2>The Debian of business is the direction.</h2>
+          <p>
+            Open, inspectable, community-improvable tools that can become boringly dependable infrastructure for everyday businesses—plus practical help for the people who do not want to assemble everything alone.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://portal.3dvr.tech/">Explore the portal</a>
+            <a class="button" href="/vision/">Read the vision</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <p>© 2026 <a href="https://3dvr.tech/">3dvr.tech</a> — Open Source. Open Future.</p>
+    </div>
+  </footer>
+</body>
+</html>
