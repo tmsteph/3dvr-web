@@ -167,6 +167,20 @@
     setText('nav a[href="#vision"]', 'Platform');
     setText('nav a[href="#testimonials"]', 'Customers');
 
+    const navStart = document.querySelector('#mainNav a[href="subscribe/index.html"]');
+    if (navStart) {
+      navStart.textContent = 'Free Website';
+      navStart.href = 'https://portal.3dvr.tech/free-page/';
+    }
+
+    const stickyCta = document.querySelector('[data-growth-cta="sticky-start-free"]');
+    if (stickyCta) {
+      stickyCta.textContent = 'Free Website';
+      stickyCta.href = 'https://portal.3dvr.tech/free-page/';
+      stickyCta.removeAttribute('data-portal-path');
+      stickyCta.dataset.growthCta = 'free-website-sticky';
+    }
+
     const primaryCta = document.querySelector('[data-growth-cta="start-project-primary"]');
     if (primaryCta) {
       primaryCta.textContent = 'Start free';
@@ -179,9 +193,17 @@
       challengeCta.dataset.growthCta = 'one-dollar-challenge';
     }
 
+    const freeWebsiteCta = document.querySelector('[data-growth-cta="plan-free"]');
+    if (freeWebsiteCta) {
+      freeWebsiteCta.href = 'https://portal.3dvr.tech/free-page/';
+      freeWebsiteCta.removeAttribute('data-portal-path');
+      freeWebsiteCta.dataset.growthCta = 'free-website';
+      setText('strong', 'Free website', freeWebsiteCta);
+      setText('span', 'We build it for you', freeWebsiteCta);
+    }
+
     setText('#planLaneTitle', 'Start free. Add support when you want it.');
     const planLabels = [
-      ['[data-growth-cta="plan-free"] span', 'Explore the platform'],
       ['[data-growth-cta="plan-starter"] span', 'Keep it moving'],
       ['[data-growth-cta="plan-20"] span', 'Launch with help'],
       ['[data-growth-cta="plan-50"] span', 'Run your business'],
