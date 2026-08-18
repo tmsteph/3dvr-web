@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Open Source Personal Computing & AI Control | 3DVR</title>
+  <meta name="description" content="3DVR is building an open-source personal computing system that connects your portal, CRM, calendar, notes, Android phone control, and permissioned AI automation without giving up ownership or inspectability." />
+  <meta name="keywords" content="open source personal computing, open source AI assistant, Android AI control, permissioned AI, open source CRM, personal operating system, 3DVR" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://3dvr.tech/open-personal-computing.html" />
+  <link rel="icon" type="image/svg+xml" href="/assets/logo-3dvr.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="3dvr.tech" />
+  <meta property="og:title" content="Open Source Personal Computing & AI Control | 3DVR" />
+  <meta property="og:description" content="One open system for your work, relationships, projects, and devices—built around explicit permissions instead of hidden automation." />
+  <meta property="og:url" content="https://3dvr.tech/open-personal-computing.html" />
+  <meta property="og:image" content="https://3dvr.tech/3DVR.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Open Source Personal Computing & AI Control | 3DVR" />
+  <meta name="twitter:description" content="Portal + business tools + Android Companion + RUNE + permissioned AI automation in one open computing direction." />
+  <meta name="twitter:image" content="https://3dvr.tech/3DVR.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "3DVR Personal Computing",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web, Android, Linux",
+      "url": "https://3dvr.tech/open-personal-computing.html",
+      "description": "An open-source personal computing system connecting business tools, device capabilities, and permissioned AI automation.",
+      "isAccessibleForFree": true,
+      "codeRepository": "https://github.com/tmsteph/3dvr-portal"
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #07131f;
+      --panel: rgba(255,255,255,0.07);
+      --text: #f7fbff;
+      --muted: #c8d5df;
+      --accent: #00ffc8;
+      --border: rgba(255,255,255,0.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(0,255,200,0.16), transparent 32rem),
+        radial-gradient(circle at 90% 15%, rgba(72,110,255,0.18), transparent 34rem),
+        linear-gradient(180deg, #0b2030 0%, var(--bg) 55%, #0a1822 100%);
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .shell { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(7,19,31,0.84);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brand { text-decoration: none; font-weight: 850; font-size: 1.25rem; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 700; }
+    .nav-links a:hover { color: #fff; }
+    .hero { padding: clamp(5.5rem, 11vw, 9rem) 0 clamp(4rem, 8vw, 6rem); text-align: center; }
+    .eyebrow { margin: 0 0 1rem; color: var(--accent); font-size: 0.86rem; font-weight: 850; letter-spacing: 0.16em; text-transform: uppercase; }
+    h1, h2, h3 { line-height: 1.08; letter-spacing: -0.035em; }
+    h1 { margin: 0 auto; max-width: 980px; font-size: clamp(3rem, 8vw, 6.4rem); }
+    .hero-copy { max-width: 780px; margin: 1.5rem auto 0; color: var(--muted); font-size: clamp(1.12rem, 2.3vw, 1.45rem); }
+    .actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0.72rem 1.15rem; border-radius: 999px; text-decoration: none; font-weight: 800; border: 1px solid var(--border); background: var(--panel); }
+    .button-primary { color: #04110f; background: var(--accent); border-color: transparent; box-shadow: 0 12px 32px rgba(0,255,200,0.24); }
+    section { padding: clamp(4rem, 8vw, 6.5rem) 0; }
+    .section-heading { max-width: 760px; margin: 0 auto 2.2rem; text-align: center; }
+    .section-heading h2 { margin: 0; font-size: clamp(2.3rem, 5vw, 4.2rem); }
+    .section-heading p { margin: 1rem 0 0; color: var(--muted); font-size: 1.08rem; }
+    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+    .card { padding: 1.45rem; border-radius: 20px; background: var(--panel); border: 1px solid var(--border); box-shadow: 0 20px 48px rgba(0,0,0,0.16); }
+    .card h3 { margin: 0 0 0.65rem; color: var(--accent); font-size: 1.3rem; }
+    .card p { margin: 0; color: var(--muted); }
+    .stack { display: grid; gap: 1rem; max-width: 920px; margin: 0 auto; }
+    .stack-row { display: grid; grid-template-columns: 190px 1fr; gap: 1.2rem; padding: 1.35rem; border: 1px solid var(--border); background: rgba(255,255,255,0.05); border-radius: 18px; }
+    .stack-row strong { color: var(--accent); }
+    .stack-row p { margin: 0; color: var(--muted); }
+    .safety { max-width: 900px; margin: 0 auto; padding: clamp(1.6rem, 4vw, 2.5rem); border-radius: 24px; background: linear-gradient(135deg, rgba(0,255,200,0.12), rgba(72,110,255,0.14)); border: 1px solid var(--border); }
+    .safety h2 { margin-top: 0; font-size: clamp(2rem, 4vw, 3.2rem); }
+    .safety p, .safety li { color: var(--muted); }
+    .callout { text-align: center; padding: clamp(2rem, 5vw, 3.5rem); border-radius: 28px; background: rgba(255,255,255,0.07); border: 1px solid var(--border); }
+    .callout h2 { margin: 0; font-size: clamp(2.2rem, 5vw, 4rem); }
+    .callout p { max-width: 720px; margin: 1rem auto 0; color: var(--muted); font-size: 1.08rem; }
+    footer { padding: 3rem 0 4rem; color: #9fb2c1; text-align: center; }
+    footer a { color: var(--accent); }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 620px) {
+      .nav { align-items: flex-start; padding: 1rem 0; }
+      .hero, .section-heading { text-align: left; }
+      .hero-copy { margin-left: 0; }
+      .actions { justify-content: flex-start; }
+      .grid { grid-template-columns: 1fr; }
+      .stack-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell nav">
+      <a class="brand" href="/">3dvr<span>.tech</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/open-source-business-system.html">Business system</a>
+        <a href="https://portal.3dvr.tech/">Portal</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell">
+        <p class="eyebrow">Open source personal computing</p>
+        <h1>Your life and devices should work as one system you can understand.</h1>
+        <p class="hero-copy">
+          3DVR is building a practical open computing layer for everyday life and work: your portal, CRM, calendar, notes, projects, phone, and AI assistant connected through explicit capabilities instead of invisible control.
+        </p>
+        <div class="actions">
+          <a class="button button-primary" href="https://portal.3dvr.tech/">Open the portal</a>
+          <a class="button" href="https://github.com/tmsteph/3dvr-portal">View the source</a>
+          <a class="button" href="/open-source-business-system.html">Business tools</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="section-heading">
+          <h2>One direction, four layers.</h2>
+          <p>Instead of treating every app and device as a separate island, 3DVR is converging them into a small set of interoperable open layers.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h3>Portal</h3>
+            <p>The human-facing workspace for contacts, calendar, notes, projects, communication, finance, and daily direction.</p>
+          </article>
+          <article class="card">
+            <h3>Companion</h3>
+            <p>An opt-in Android device layer for bounded actions such as app launches, device state, notifications, and approved UI interaction.</p>
+          </article>
+          <article class="card">
+            <h3>Agent + RUNE</h3>
+            <p>A readable mission layer for automation that keeps execution inspectable, bounded, and tied to evidence and approvals.</p>
+          </article>
+          <article class="card">
+            <h3>Open business system</h3>
+            <p>CRM, contacts, calendar, projects, payments, websites, and support that can grow with the same personal computing foundation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="section-heading">
+          <h2>A daily-driver loop, not an AI demo.</h2>
+          <p>The goal is simple: say what you need, let the system route the work, and keep the result visible enough to inspect or undo.</p>
+        </div>
+        <div class="stack">
+          <div class="stack-row"><strong>Ask</strong><p>Use natural language, voice, or the Portal to describe the outcome you want.</p></div>
+          <div class="stack-row"><strong>Route</strong><p>The Agent maps the request to known capabilities across Portal, Companion, and connected services.</p></div>
+          <div class="stack-row"><strong>Approve</strong><p>Safe actions can run under existing permission rules; higher-impact actions stay behind confirmation boundaries.</p></div>
+          <div class="stack-row"><strong>Act + record</strong><p>The system performs the bounded action and preserves enough state or audit context to understand what happened.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="safety">
+          <p class="eyebrow">Permissioned by design</p>
+          <h2>AI control should increase agency, not replace it.</h2>
+          <p>3DVR's Companion model separates capabilities by risk and keeps dangerous actions from becoming a generic remote-control pipe.</p>
+          <ul>
+            <li>Green actions can be automated after the required device permission is granted.</li>
+            <li>Yellow actions require a user-created rule or explicit confirmation.</li>
+            <li>Red actions—such as spending money, deleting important data, changing credentials, or making commitments—require explicit approval near the time of action.</li>
+            <li>No arbitrary shell field is part of the Companion contract.</li>
+          </ul>
+          <div class="actions">
+            <a class="button" href="https://github.com/tmsteph/3dvr-portal/tree/main/apps/companion">Read the Companion design</a>
+            <a class="button" href="/system.html">See the wider system direction</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="callout">
+          <h2>Build the future by owning more of your stack.</h2>
+          <p>3DVR is not trying to hide complexity behind another closed assistant. The long-term direction is an open family of software, devices, and protocols that normal people can use while builders can inspect, repair, fork, and improve them.</p>
+          <div class="actions">
+            <a class="button button-primary" href="https://portal.3dvr.tech/">Try the Portal</a>
+            <a class="button" href="https://github.com/tmsteph/3dvr-portal">Build with us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <p>© 2026 <a href="https://3dvr.tech/">3dvr.tech</a> — open tools for human agency.</p>
+    </div>
+  </footer>
+</body>
+</html>
