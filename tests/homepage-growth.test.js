@@ -64,6 +64,9 @@ test('homepage ships Gun-backed experiment and focused CTA plumbing', async () =
   assert.match(js, /function applyHomepagePositioning/);
   assert.match(js, /3DVR \| Open-source business system \+ human support/);
   assert.match(js, /Start free\. Add support when you want it\./);
+  assert.match(js, /\$1 challenge/);
+  assert.match(js, /https:\/\/portal\.3dvr\.tech\/challenge\//);
+  assert.match(js, /one-dollar-challenge/);
   assert.match(js, /Launch what customers see/);
   assert.match(js, /Run the business behind it/);
   assert.match(js, /Get a human when you want one/);
