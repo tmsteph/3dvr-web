@@ -56,9 +56,19 @@ test('homepage ships Gun-backed experiment and focused CTA plumbing', async () =
 
   assert.match(js, /EXPERIMENT_CONFIG_PATH = \['3dvr-portal', 'growth', 'experiments', 'homepage-hero', 'config'\]/);
   assert.match(js, /EXPERIMENT_EVENT_PATH = \['3dvr-portal', 'growth', 'experiments', 'homepage-hero', 'events'\]/);
-  assert.match(js, /eyebrow: 'Launch fast\. Start selling\.'/);
-  assert.match(js, /primary: 'Get your project live\.'/);
+  assert.match(js, /eyebrow: 'Open-source business system\. Real human support\.'/);
+  assert.match(js, /primary: 'Launch your business\. Run it in one place\.'/);
+  assert.match(js, /eyebrow: 'Start small\. Own your system\.'/);
+  assert.match(js, /primary: 'Get your business live without getting locked in\.'/);
   assert.match(js, /function chooseVariant/);
+  assert.match(js, /function applyHomepagePositioning/);
+  assert.match(js, /3DVR \| Open-source business system \+ human support/);
+  assert.match(js, /Start free\. Add support when you want it\./);
+  assert.match(js, /Launch what customers see/);
+  assert.match(js, /Run the business behind it/);
+  assert.match(js, /Get a human when you want one/);
+  assert.match(js, /Built with real small businesses/);
+  assert.match(js, /open-source business operating system with optional human support/i);
   assert.match(js, /function applyVariant/);
   assert.match(js, /function logView/);
   assert.match(js, /function logCtaClick/);
