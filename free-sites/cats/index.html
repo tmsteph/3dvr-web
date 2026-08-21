@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cats</title>
+  <meta name="description" content="A simple, friendly page about cats: curious companions with big personalities.">
+  <style>
+    :root{color-scheme:dark;--bg:#0d0e14;--card:#171923;--line:#2b2f3d;--text:#f8f5ef;--muted:#c7c2b9;--accent:#f0b56a;--accent2:#9cc6ff}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-height:100vh;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 15% 10%,rgba(240,181,106,.16),transparent 34%),radial-gradient(circle at 85% 85%,rgba(156,198,255,.14),transparent 38%),var(--bg);line-height:1.6}
+    main,footer{width:min(100% - 2rem,920px);margin:auto}
+    main{padding:4.5rem 0 3rem}
+    .eyebrow{margin:0 0 1rem;color:var(--accent);font-size:.82rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    h1{margin:0;font-size:clamp(4rem,13vw,7rem);line-height:.9;letter-spacing:-.06em}
+    .lede{max-width:690px;margin:1.4rem 0 0;color:var(--muted);font-size:clamp(1.1rem,2.5vw,1.35rem)}
+    .cat{margin-top:2rem;font-size:clamp(4rem,16vw,8rem);filter:drop-shadow(0 16px 30px rgba(0,0,0,.25))}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:3rem}
+    .card{padding:1.4rem;border:1px solid var(--line);border-radius:22px;background:rgba(23,25,35,.88);backdrop-filter:blur(10px)}
+    .card h2{margin:0 0 .55rem;font-size:1.15rem}
+    .card p{margin:0;color:var(--muted)}
+    .note{margin-top:2.5rem;padding:1.25rem 1.4rem;border-left:3px solid var(--accent2);background:rgba(156,198,255,.07);border-radius:0 16px 16px 0;color:var(--muted)}
+    footer{padding:1rem 0 3rem;color:var(--muted);font-size:.9rem}
+    footer a{color:var(--accent)}
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Small animals. Huge personalities.</p>
+    <h1>Cats</h1>
+    <p class="lede">Cats are curious, expressive companions known for their independence, playfulness, and surprisingly strong opinions about boxes, windows, and where you are allowed to sit.</p>
+    <div class="cat" aria-label="cat">🐈</div>
+
+    <section class="grid" aria-label="Cat facts">
+      <article class="card">
+        <h2>Curious by nature</h2>
+        <p>Cats explore with their eyes, ears, whiskers, paws, and noses. New sounds, smells, shelves, and cardboard boxes can become instant investigations.</p>
+      </article>
+      <article class="card">
+        <h2>Quiet communicators</h2>
+        <p>Tail position, ears, posture, purring, chirps, meows, and slow blinks all help cats communicate how they feel.</p>
+      </article>
+      <article class="card">
+        <h2>Built to play</h2>
+        <p>Short bursts of chasing, pouncing, climbing, scratching, and puzzle-like play help keep indoor cats active and engaged.</p>
+      </article>
+      <article class="card">
+        <h2>Comfort matters</h2>
+        <p>Most cats appreciate clean water, a safe sleeping place, scratching surfaces, a clean litter area, and a little control over their own space.</p>
+      </article>
+    </section>
+
+    <p class="note">Every cat is different. Some are social shadows, some are dignified roommates, and some need more time and space before they decide you are acceptable.</p>
+  </main>
+  <footer>Free site hosted by <a href="https://3dvr.tech/">3DVR</a>.</footer>
+</body>
+</html>
