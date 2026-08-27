@@ -139,7 +139,7 @@
     .site-brand {
       display: inline-flex;
       align-items: center;
-      gap: 0.78rem;
+      gap: 0.68rem;
       color: #fff;
       text-decoration: none;
       font-family: 'Poppins', sans-serif;
@@ -149,26 +149,37 @@
       min-width: 0;
     }
 
+    /* Miniature companion to the interactive gold token in the hero. */
     .site-token-mark {
       position: relative;
       display: grid;
       place-items: center;
-      width: clamp(48px, 7vw, 58px);
+      width: clamp(42px, 5vw, 48px);
       aspect-ratio: 1;
       border-radius: 50%;
-      background:
-        radial-gradient(circle at 50% 48%, #1768f2 0, #0f766e 58%, #07131f 100%);
-      border: 2px solid rgba(216, 255, 247, 0.9);
-      box-shadow:
-        inset -7px -8px 12px rgba(0, 0, 0, 0.3),
-        0 12px 28px rgba(0, 0, 0, 0.26);
       flex: 0 0 auto;
       overflow: hidden;
+      background:
+        radial-gradient(circle at 34% 27%, rgba(255,255,255,0.82) 0 2%, transparent 7%),
+        radial-gradient(circle at 38% 34%, #fff0a8 0%, #e8c85d 24%, #b88920 62%, #73500f 100%);
+      border: 1px solid #f7dc79;
+      box-shadow:
+        inset 2px 2px 4px rgba(255,255,255,0.42),
+        inset -5px -6px 8px rgba(71,43,3,0.42),
+        0 5px 12px rgba(0,0,0,0.26);
       transform:
-        translate3d(calc(var(--hero-tilt-x, 0) * 0.18px), calc(var(--hero-tilt-y, 0) * -0.18px), 0)
-        rotate(calc(var(--hero-tilt-x, 0) * 0.06deg));
-      transition: transform 120ms ease;
+        translate3d(calc(var(--hero-tilt-x, 0) * 0.12px), calc(var(--hero-tilt-y, 0) * -0.12px), 0)
+        rotate(calc(var(--hero-tilt-x, 0) * 0.04deg));
+      transition: transform 120ms ease, box-shadow 160ms ease;
       will-change: transform;
+    }
+
+    .site-brand:hover .site-token-mark,
+    .site-brand:focus-visible .site-token-mark {
+      box-shadow:
+        inset 2px 2px 4px rgba(255,255,255,0.5),
+        inset -5px -6px 8px rgba(71,43,3,0.38),
+        0 7px 16px rgba(0,0,0,0.3);
     }
 
     .site-token-mark::before,
@@ -180,13 +191,17 @@
     }
 
     .site-token-mark::before {
-      inset: 7px;
-      border: 2px solid rgba(254, 215, 170, 0.78);
-      box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.24);
+      inset: 4px;
+      border: 1px solid rgba(116,76,9,0.68);
+      box-shadow:
+        0 0 0 1px rgba(255,236,157,0.7),
+        inset 0 0 5px rgba(77,47,2,0.2);
     }
 
     .site-token-mark::after {
-      display: none;
+      inset: 8px;
+      border: 1px solid rgba(255,238,164,0.5);
+      box-shadow: inset 0 0 7px rgba(83,51,4,0.22);
     }
 
     .site-token-mark__text {
@@ -194,25 +209,21 @@
       z-index: 1;
       display: grid;
       place-items: center;
-      line-height: 0.9;
+      line-height: 1;
       text-align: center;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.48);
-      transform: translateY(1px);
+      transform: translateY(0.5px);
     }
 
     .site-token-mark__main {
-      color: #ffffff;
-      font-size: clamp(0.72rem, 2vw, 0.9rem);
+      color: #5d3f08;
+      font-size: clamp(0.66rem, 1.5vw, 0.78rem);
       font-weight: 900;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.055em;
+      text-shadow: 0 1px 0 rgba(255,241,177,0.72);
     }
 
     .site-token-mark__suffix {
-      margin-top: 0.1rem;
-      color: #ccfbf1;
-      font-size: clamp(0.42rem, 1.2vw, 0.55rem);
-      font-weight: 850;
-      letter-spacing: 0;
+      display: none;
     }
 
     .site-brand__name {
@@ -1419,7 +1430,6 @@
       <span class="site-token-mark" aria-hidden="true">
         <span class="site-token-mark__text">
           <span class="site-token-mark__main">3dvr</span>
-          <span class="site-token-mark__suffix">.tech</span>
         </span>
       </span>
       <span class="site-brand__name">3dvr<span>.tech</span></span>
