@@ -14,8 +14,8 @@
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://3dvr.tech/" />
   <title>3dvr.tech</title>
-  <link rel="icon" type="image/svg+xml" href="/assets/logo-3dvr.svg" />
-  <link rel="alternate icon" href="3DVRfavicon.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" href="/favicon.svg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
@@ -336,12 +336,13 @@
       z-index: 2000;
       display: none;
       place-items: center;
-      gap: 1rem;
+      gap: 1.05rem;
       align-content: center;
       padding: 2rem;
       background:
-        radial-gradient(circle at 50% 36%, rgba(0, 255, 200, 0.25), transparent 30rem),
-        #07131f;
+        radial-gradient(circle at 50% 37%, rgba(245, 196, 71, 0.18), transparent 16rem),
+        radial-gradient(circle at 50% 48%, rgba(0, 255, 200, 0.12), transparent 30rem),
+        linear-gradient(160deg, #07131f 0%, #0b1824 52%, #081019 100%);
       color: #fff;
       transition: opacity 280ms ease, visibility 280ms ease;
     }
@@ -357,17 +358,31 @@
     }
 
     .app-boot__mark {
-      width: 112px;
+      position: relative;
+      width: 124px;
       aspect-ratio: 1;
-      border-radius: 28px;
-      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
-      animation: web-boot-float 1600ms ease-in-out infinite;
+      perspective: 760px;
+      filter: drop-shadow(0 28px 34px rgba(0, 0, 0, 0.38));
+    }
+
+    .app-boot__mark::before {
+      content: "";
+      position: absolute;
+      inset: -18%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 223, 108, 0.28), rgba(0, 255, 200, 0.08) 46%, transparent 72%);
+      filter: blur(8px);
+      animation: web-boot-halo 1800ms ease-in-out infinite;
     }
 
     .app-boot__mark img {
+      position: relative;
       display: block;
       width: 100%;
       height: 100%;
+      transform-style: preserve-3d;
+      animation: web-boot-coin-spin 2600ms cubic-bezier(.45,.05,.55,.95) infinite;
+      will-change: transform;
     }
 
     .app-boot__text {
@@ -399,7 +414,8 @@
       width: 42%;
       height: 100%;
       border-radius: inherit;
-      background: linear-gradient(90deg, #00ffc8, #fed7aa);
+      background: linear-gradient(90deg, #b67a16, #ffe981 48%, #00ffc8 100%);
+      box-shadow: 0 0 12px rgba(255, 226, 117, 0.35);
       animation: web-boot-load 1400ms ease-in-out infinite;
     }
 
@@ -1394,9 +1410,16 @@
 
     @keyframes fadeSlideIn { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
-    @keyframes web-boot-float {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-8px) scale(1.02); }
+    @keyframes web-boot-coin-spin {
+      0% { transform: rotateX(7deg) rotateY(-18deg) translateY(0); }
+      25% { transform: rotateX(-3deg) rotateY(74deg) translateY(-7px); }
+      50% { transform: rotateX(5deg) rotateY(164deg) translateY(-2px); }
+      75% { transform: rotateX(-5deg) rotateY(258deg) translateY(-8px); }
+      100% { transform: rotateX(7deg) rotateY(342deg) translateY(0); }
+    }
+    @keyframes web-boot-halo {
+      0%, 100% { opacity: 0.56; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.08); }
     }
     @keyframes web-boot-load {
       0% { transform: translateX(-100%); }
@@ -1404,7 +1427,8 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .app-boot__mark,
+      .app-boot__mark::before,
+      .app-boot__mark img,
       .app-boot__bar span {
         animation: none;
       }
@@ -1417,7 +1441,7 @@
 <body id="top">
   <div class="app-boot" aria-hidden="true">
     <div class="app-boot__mark">
-      <img src="/assets/logo-3dvr.svg" alt="">
+      <img src="/assets/coin-mark.svg" alt="">
     </div>
     <div class="app-boot__text">
       <strong>3dvr.tech</strong>

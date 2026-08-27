@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
-  <title id="title">3dvr.tech logo</title>
-  <desc id="desc">A polished gold coin mark for 3dvr.tech.</desc>
+  <title id="title">3dvr gold coin mark</title>
+  <desc id="desc">A polished gold 3dvr coin on a transparent background.</desc>
   <defs>
-    <radialGradient id="coin-face" cx="31%" cy="23%" r="84%">
+    <radialGradient id="face" cx="31%" cy="23%" r="84%">
       <stop offset="0" stop-color="#fff9cf"/>
       <stop offset="0.16" stop-color="#ffe788"/>
       <stop offset="0.43" stop-color="#f4c247"/>
       <stop offset="0.72" stop-color="#c98818"/>
       <stop offset="1" stop-color="#70420a"/>
     </radialGradient>
-    <linearGradient id="coin-rim" x1="116" y1="98" x2="410" y2="420" gradientUnits="userSpaceOnUse">
+    <linearGradient id="rim" x1="116" y1="98" x2="410" y2="420" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#fff8c9"/>
       <stop offset="0.22" stop-color="#f7d45f"/>
       <stop offset="0.58" stop-color="#c58315"/>
@@ -21,13 +21,13 @@
       <stop offset="0.55" stop-color="#5d3607"/>
       <stop offset="1" stop-color="#3e2405"/>
     </linearGradient>
-    <filter id="depth" x="-24%" y="-24%" width="148%" height="154%">
-      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#020617" flood-opacity="0.38"/>
+    <filter id="shadow" x="-24%" y="-24%" width="148%" height="154%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#020617" flood-opacity="0.42"/>
     </filter>
   </defs>
-  <g filter="url(#depth)">
-    <circle cx="256" cy="248" r="206" fill="url(#coin-rim)"/>
-    <circle cx="256" cy="248" r="188" fill="url(#coin-face)" stroke="#8a560f" stroke-width="5"/>
+  <g filter="url(#shadow)">
+    <circle cx="256" cy="248" r="206" fill="url(#rim)"/>
+    <circle cx="256" cy="248" r="188" fill="url(#face)" stroke="#8a560f" stroke-width="5"/>
     <circle cx="256" cy="248" r="161" fill="none" stroke="#fff0a0" stroke-width="7" opacity="0.62"/>
     <circle cx="256" cy="248" r="145" fill="none" stroke="#7f4b0c" stroke-width="5" opacity="0.56"/>
     <circle cx="256" cy="248" r="123" fill="none" stroke="#ffe989" stroke-width="2" opacity="0.4"/>
@@ -38,6 +38,6 @@
       <circle cx="97" cy="248" r="6"/><circle cx="144" cy="136" r="6"/>
     </g>
     <text x="256" y="274" text-anchor="middle" font-family="Poppins, Inter, Arial, sans-serif" font-size="104" font-weight="900" fill="url(#letter)" letter-spacing="-6">3dvr</text>
-    <text x="256" y="324" text-anchor="middle" font-family="Poppins, Inter, Arial, sans-serif" font-size="38" font-weight="800" fill="#75470d" letter-spacing="2">.tech</text>
+    <text x="256" y="323" text-anchor="middle" font-family="Poppins, Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#75470d" letter-spacing="5">TECH</text>
   </g>
 </svg>
