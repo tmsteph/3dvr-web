@@ -8,6 +8,8 @@ const OFFLINE_ASSETS = [
   '/index.html',
   '/system.html',
   '/assets/logo-3dvr.svg',
+  '/assets/coin-mark.svg',
+  '/favicon.svg',
   '/3DVR.png',
   '/3DVRfavicon.png'
 ];
