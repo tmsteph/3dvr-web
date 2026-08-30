@@ -1,17 +1,22 @@
 # 3dvr-web
 
-html re-write
+**Core product surface:** this is the maintained repository for the public `3dvr.tech` commercial front door.
 
-Welcome to 3dvr.tech
+Welcome to 3dvr.tech.
 
-This is the Code Repository for our main 3dvr.tech website known as our home-page. 
+This repository contains the main 3DVR website. If you want to view or edit the code for the current public homepage, you are in the right place.
 
-If you want to view or edit the code for the 3dvr.tech website, you are in the right place. 
+The site intentionally uses a simple HTML/CSS/JavaScript stack. Earlier website repositories and React experiments are Legacy unless a README explicitly says otherwise.
 
+## Ecosystem position
 
-We recently re-designed to pure html, css, and java-scritpt. We were using React but found it a bit too complex and fragile for our needs. 
+- **Core:** `3dvr-web`, `3dvr-portal`, 3DVR OS, 3DVR Calendar, and the current `tmsteph.com` path.
+- **Labs:** experimental computing, browser, hardware, character, and research work that may later graduate into Core.
+- **Legacy:** superseded 3DVR website/app repositories kept as historical source and redirected toward the current maintained path.
 
-Check it out for yourself at https://3dvr.tech 
+Public product work for the main 3DVR website belongs here rather than in older website repositories.
+
+Check it out at https://3dvr.tech
 
 ## Deployment Topology
 
