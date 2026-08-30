@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0d1117" />
+  <meta name="description" content="Three real 3DVR client projects: a librarian portfolio, a motorcycle business launch, and a San Diego van-life community." />
+  <link rel="canonical" href="https://3dvr.tech/case-studies.html" />
+  <title>Client Case Studies | 3dvr.tech</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <style>
+    :root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color-scheme: dark; --bg:#0d1117; --panel:#161b22; --line:#30363d; --text:#e6edf3; --muted:#9da7b3; --accent:#00ffc8; }
+    * { box-sizing: border-box; }
+    body { margin:0; background:radial-gradient(circle at 50% 0%, rgba(0,255,200,.09), transparent 34rem), var(--bg); color:var(--text); }
+    a { color:inherit; }
+    header { position:sticky; top:0; z-index:10; display:flex; align-items:center; gap:1rem; padding:1rem clamp(1rem,4vw,2rem); background:rgba(13,17,23,.9); border-bottom:1px solid var(--line); backdrop-filter:blur(12px); }
+    header a { text-decoration:none; font-weight:800; }
+    header .home { margin-right:auto; color:var(--accent); }
+    main { width:min(1080px,calc(100% - 2rem)); margin:0 auto; padding:clamp(3rem,8vw,6rem) 0; }
+    .hero { max-width:760px; margin-bottom:3rem; }
+    .eyebrow { color:var(--accent); font-weight:850; letter-spacing:.12em; text-transform:uppercase; font-size:.78rem; }
+    h1 { margin:.5rem 0 1rem; font-size:clamp(2.6rem,8vw,5.6rem); line-height:.96; letter-spacing:-.055em; }
+    .hero p { color:var(--muted); font-size:clamp(1.05rem,2.5vw,1.28rem); line-height:1.6; }
+    .funding-loop { margin-top:1.2rem; padding:1rem 1.1rem; border:1px solid rgba(0,255,200,.3); border-radius:14px; background:rgba(0,255,200,.06); color:#dffff7; }
+    .case-list { display:grid; gap:1.4rem; }
+    .case { scroll-margin-top:84px; display:grid; grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr); gap:1.4rem; padding:1.2rem; border:1px solid var(--line); border-radius:20px; background:rgba(22,27,34,.88); box-shadow:0 18px 55px rgba(0,0,0,.22); }
+    .preview { min-height:330px; overflow:hidden; border:1px solid var(--line); border-radius:14px; background:#fff; position:relative; }
+    .preview::before { content:"Live site preview"; position:absolute; top:8px; left:8px; z-index:2; padding:.28rem .5rem; border-radius:999px; background:rgba(13,17,23,.84); color:white; font-size:.7rem; font-weight:800; }
+    iframe { width:160%; height:160%; border:0; transform:scale(.625); transform-origin:top left; pointer-events:none; background:white; }
+    .case-copy { padding:.3rem .25rem .4rem; }
+    .case-kicker { color:var(--accent); font-size:.76rem; text-transform:uppercase; letter-spacing:.1em; font-weight:800; }
+    h2 { margin:.35rem 0 .45rem; font-size:clamp(1.8rem,4vw,2.6rem); letter-spacing:-.035em; }
+    .case-copy > p { color:var(--muted); line-height:1.6; }
+    dl { display:grid; grid-template-columns:7.2rem 1fr; gap:.72rem 1rem; margin:1.2rem 0; }
+    dt { color:#fff; font-weight:800; }
+    dd { margin:0; color:#c5ced8; line-height:1.5; }
+    blockquote { margin:1.2rem 0; padding:1rem 1.05rem; border-left:3px solid var(--accent); background:rgba(255,255,255,.035); color:#f0f6fc; line-height:1.55; }
+    .actions { display:flex; flex-wrap:wrap; gap:.7rem; }
+    .button { display:inline-flex; align-items:center; justify-content:center; min-height:42px; padding:.7rem 1rem; border-radius:10px; text-decoration:none; font-weight:800; border:1px solid var(--line); }
+    .button.primary { background:var(--accent); color:#00110d; border-color:var(--accent); }
+    .button:hover,.button:focus-visible { transform:translateY(-1px); outline:2px solid rgba(0,255,200,.25); outline-offset:2px; }
+    .note { margin-top:2.5rem; color:#7d8794; font-size:.84rem; line-height:1.5; }
+    @media (max-width:780px) { .case { grid-template-columns:1fr; } .preview { min-height:250px; } dl { grid-template-columns:1fr; gap:.25rem; } dd { margin-bottom:.65rem; } }
+  </style>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+  <header>
+    <a class="home" href="/">3dvr.tech</a>
+    <a href="/subscribe/">Plans</a>
+    <a href="https://portal.3dvr.tech/start/">Start a project</a>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Proof over promises</div>
+      <h1>Real work that shipped.</h1>
+      <p>Small organizations usually do not need a giant transformation project. They need someone to understand the goal, build the useful thing, get it live, and stay available when it changes.</p>
+      <div class="funding-loop"><strong>Client work funds open tools:</strong> paid 3DVR projects help finance software, experiments, and documentation that stay open for everyone.</div>
+    </section>
+    <section class="case-list" aria-label="3DVR client case studies">
+      <article class="case" id="brenda">
+        <div class="preview" aria-label="Live preview of Brenda Dye Stephens website"><iframe title="Brenda Dye Stephens live website preview" src="https://www.brendadyestephens.com/" loading="lazy"></iframe></div>
+        <div class="case-copy">
+          <div class="case-kicker">Education · personal knowledge site</div>
+          <h2>SC Librarian</h2>
+          <p>A working home for a librarian’s presentations, projects, library advocacy, and international collaborations.</p>
+          <dl>
+            <dt>Need</dt><dd>Turn years of teaching, library work, presentations, and international projects into a site people could actually explore.</dd>
+            <dt>Shipped</dt><dd>A modern, accessible web presence with room for projects, presentations, collaboration stories, and ongoing updates.</dd>
+            <dt>Delivery</dt><dd>Launch plus continuing technical support as the body of work grows.</dd>
+            <dt>Live result</dt><dd>The site is still online and actively organizes presentations, literacy work, and collaborations across Guatemala, Kenya, and Portugal.</dd>
+          </dl>
+          <blockquote>“3dvr.tech helped me create a modern and accessible site for my library project. Tech support has been amazing.”</blockquote>
+          <div class="actions"><a class="button primary" href="https://www.brendadyestephens.com/" target="_blank" rel="noopener">Visit the live site</a><a class="button" href="https://portal.3dvr.tech/start/">Build something similar</a></div>
+        </div>
+      </article>
+      <article class="case" id="cruisers">
+        <div class="preview" aria-label="Live preview of Cruisers Garage website"><iframe title="Cruisers Garage live website preview" src="https://cruisersgarage.com/" loading="lazy"></iframe></div>
+        <div class="case-copy">
+          <div class="case-kicker">Motorcycles · local business</div>
+          <h2>Cruisers Garage</h2>
+          <p>A fast launch path for a motorcycle business that needed a mobile-friendly public presence instead of another unfinished idea.</p>
+          <dl>
+            <dt>Need</dt><dd>Give customers a clean way to discover the motorcycle business online and reach the parts of the business that matter.</dd>
+            <dt>Shipped</dt><dd>A mobile-friendly launch page; the early 3DVR prototype also explored dedicated sales, rentals, service, and an interactive 3D garage concept.</dd>
+            <dt>Turnaround</dt><dd>The customer described the launch as happening “in no time.”</dd>
+            <dt>Live result</dt><dd>Cruisers Garage remains online with clear routes into motorcycle sales, rentals, tours, and information.</dd>
+          </dl>
+          <blockquote>“They built a slick, mobile-friendly landing page for our custom motorcycles in no time. Highly recommend.”</blockquote>
+          <div class="actions"><a class="button primary" href="https://cruisersgarage.com/" target="_blank" rel="noopener">Visit the live site</a><a class="button" href="https://portal.3dvr.tech/start/">Launch a business page</a></div>
+        </div>
+      </article>
+      <article class="case" id="sdvanlife">
+        <div class="preview" aria-label="Live preview of San Diego Van Life website"><iframe title="San Diego Van Life live website preview" src="https://www.sdvanlife.com/" loading="lazy"></iframe></div>
+        <div class="case-copy">
+          <div class="case-kicker">Community · van life</div>
+          <h2>San Diego Van Life</h2>
+          <p>Launch guidance for turning a local van-life idea into an online home that connects community, events, classes, and services.</p>
+          <dl>
+            <dt>Need</dt><dd>Move from an offline/local idea toward a web presence that could support the community and the business around it.</dd>
+            <dt>Shipped</dt><dd>Tools and guidance for getting the project online and giving visitors useful paths into the community.</dd>
+            <dt>Delivery</dt><dd>Hands-on launch guidance rather than handing over a generic template and disappearing.</dd>
+            <dt>Live result</dt><dd>The current site connects a 10k+ member community with events, classes, a shop, local information, and van-life services.</dd>
+          </dl>
+          <blockquote>“Thomas and 3dvr.tech gave us the tools and guidance we needed to launch our van conversion business online.”</blockquote>
+          <div class="actions"><a class="button primary" href="https://www.sdvanlife.com/" target="_blank" rel="noopener">Visit the live site</a><a class="button" href="https://portal.3dvr.tech/start/">Turn a community into a project</a></div>
+        </div>
+      </article>
+    </section>
+    <p class="note">Live-site descriptions were checked against the public sites in August 2026. We avoid attributing business growth or audience size to 3DVR unless the client has explicitly said so.</p>
+  </main>
+</body>
+</html>
