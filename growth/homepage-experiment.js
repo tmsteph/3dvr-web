@@ -165,7 +165,11 @@
     setMeta('meta[name="twitter:description"]', description);
 
     setText('nav a[href="#vision"]', 'Platform');
-    setText('nav a[href="#testimonials"]', 'Customers');
+    const customersNav = document.querySelector('nav a[href="#testimonials"]');
+    if (customersNav) {
+      customersNav.textContent = 'Customers';
+      customersNav.href = '/case-studies.html';
+    }
 
     const navStart = document.querySelector('#mainNav a[href="subscribe/index.html"]');
     if (navStart) {
@@ -242,6 +246,22 @@
     }
 
     setText('#testimonials h2', 'Built with real small businesses');
+    const testimonials = document.querySelector('#testimonials');
+    if (testimonials && !testimonials.querySelector('[data-case-studies-link]')) {
+      const proofLink = document.createElement('a');
+      proofLink.href = '/case-studies.html';
+      proofLink.dataset.caseStudiesLink = 'true';
+      proofLink.textContent = 'See 3 client case studies →';
+      proofLink.style.display = 'block';
+      proofLink.style.width = 'fit-content';
+      proofLink.style.margin = '1.5rem auto 0';
+      proofLink.style.padding = '.72rem 1rem';
+      proofLink.style.border = '1px solid rgba(255,255,255,.35)';
+      proofLink.style.borderRadius = '999px';
+      proofLink.style.textDecoration = 'none';
+      proofLink.style.fontWeight = '800';
+      testimonials.appendChild(proofLink);
+    }
 
     const about = document.querySelector('#about');
     if (about) {
@@ -259,7 +279,7 @@
         paragraphs[1].textContent = 'The pieces are designed to connect, so a small business can grow into one calmer operating system instead of another stack of disconnected apps.';
       }
       if (paragraphs[2]) {
-        paragraphs[2].textContent = 'The code, experiments, and direction stay open so builders can inspect them, improve them, self-host where practical, and help shape what comes next.';
+        paragraphs[2].textContent = 'The code, experiments, and direction stay open so builders can inspect them, improve them, self-host where practical, and help shape what comes next. Paid client work helps fund these open tools for everyone.';
       }
     }
   }
