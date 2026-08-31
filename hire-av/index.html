@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07111f" />
+  <meta name="robots" content="index, follow" />
+  <meta name="description" content="Request freelance AV technicians in San Diego with an instant labor estimate. A1, A2, V1, V2, graphics, camera, and general corporate event support." />
+  <meta name="keywords" content="freelance AV technician San Diego, A1 San Diego, A2 San Diego, V1 San Diego, corporate event AV technician" />
+  <meta name="3dvr:portal-origin" content="https://portal.3dvr.tech" />
+  <link rel="canonical" href="https://3dvr.tech/hire-av/" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>Hire a Freelance AV Technician in San Diego | 3DVR</title>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="3dvr.tech" />
+  <meta property="og:title" content="Hire a Freelance AV Technician in San Diego | 3DVR" />
+  <meta property="og:description" content="Get a quick AV labor estimate, send the event details, and let 3DVR help line up the right technician." />
+  <meta property="og:url" content="https://3dvr.tech/hire-av/" />
+  <meta property="og:image" content="https://3dvr.tech/3DVR.png" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Freelance AV Technician Booking",
+      "serviceType": "Audio visual technician staffing for corporate events",
+      "url": "https://3dvr.tech/hire-av/",
+      "provider": {
+        "@type": "Organization",
+        "name": "3dvr.tech",
+        "url": "https://3dvr.tech/"
+      },
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "San Diego County, California"
+      },
+      "description": "Request freelance A1, A2, V1, V2, graphics, camera, and general AV technicians for corporate events in San Diego."
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What AV roles can I request?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "3DVR can start with requests for A1, A2, V1, V2, graphics, camera, and general corporate AV technician roles."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the price shown a final quote?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The calculator is a planning estimate for labor. Final pricing can change with scope, schedule, travel, equipment, and technician availability."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is the service available?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The first service area is San Diego County, with other Southern California locations considered by request."
+          }
+        }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">3DVR</a>
+    <nav aria-label="Primary navigation">
+      <a href="#estimate">Estimate</a>
+      <a href="#request">Request</a>
+      <a href="mailto:3dvr.tech@gmail.com">Email</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <p class="eyebrow">San Diego corporate AV</p>
+      <h1>Need an AV tech? Get the labor estimate first.</h1>
+      <p class="lede">No phone tag. Pick the crew shape, see a planning estimate, send the event details, and we’ll reply from there.</p>
+      <div class="hero-points" aria-label="Available AV roles">
+        <span>A1</span><span>A2</span><span>V1</span><span>V2</span><span>Graphics</span><span>Camera</span>
+      </div>
+    </section>
+
+    <section class="shell booking-grid" id="estimate">
+      <article class="panel calculator-panel">
+        <p class="eyebrow">1 · Estimate</p>
+        <h2>Build the crew</h2>
+        <div class="form-grid compact-grid">
+          <label>
+            <span>Technician level</span>
+            <select id="level">
+              <option value="lead">Lead technician</option>
+              <option value="support">Support technician</option>
+            </select>
+          </label>
+          <label>
+            <span>Technicians</span>
+            <input id="technicians" type="number" min="1" max="8" value="1" inputmode="numeric" />
+          </label>
+          <label>
+            <span>Days</span>
+            <input id="days" type="number" min="1" max="14" value="1" inputmode="numeric" />
+          </label>
+          <label>
+            <span>Hours / day</span>
+            <input id="hoursPerDay" type="number" min="4" max="18" value="10" inputmode="numeric" />
+          </label>
+        </div>
+        <div class="estimate-card" aria-live="polite">
+          <span>Planning estimate</span>
+          <strong id="estimateTotal">$750</strong>
+          <small id="estimateBreakdown">1 lead technician · 1 day · up to 10 hours</small>
+        </div>
+        <p class="fine-print">Estimate covers labor only. Ten hours are included per day; additional hours are estimated at 1.5× the hourly equivalent. Final pricing depends on scope and availability.</p>
+      </article>
+
+      <article class="panel" id="request">
+        <p class="eyebrow">2 · Request</p>
+        <h2>Tell us where to show up</h2>
+        <form id="bookingForm" class="form-grid">
+          <label>
+            <span>Name *</span>
+            <input name="name" required autocomplete="name" />
+          </label>
+          <label>
+            <span>Email *</span>
+            <input name="email" type="email" required autocomplete="email" />
+          </label>
+          <label>
+            <span>Company</span>
+            <input name="company" autocomplete="organization" />
+          </label>
+          <label>
+            <span>Phone</span>
+            <input name="phone" type="tel" autocomplete="tel" />
+          </label>
+          <label>
+            <span>Event date *</span>
+            <input name="eventDate" id="eventDate" type="date" required />
+          </label>
+          <label>
+            <span>Venue / location *</span>
+            <input name="venue" required placeholder="San Diego Convention Center" />
+          </label>
+          <label class="wide">
+            <span>Role / show position</span>
+            <input name="role" placeholder="General session A1, breakout V1, camera op…" />
+          </label>
+          <label class="wide">
+            <span>Anything else?</span>
+            <textarea name="notes" rows="4" placeholder="Call time, show type, gear, travel, dress code, special requirements…"></textarea>
+          </label>
+          <label class="honeypot" aria-hidden="true">
+            <span>Company website</span>
+            <input name="companyWebsite" tabindex="-1" autocomplete="off" />
+          </label>
+          <div class="wide submit-row">
+            <button id="submitButton" type="submit">Send booking request</button>
+            <p id="formStatus" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </article>
+    </section>
+
+    <section class="shell explainer">
+      <article>
+        <p class="eyebrow">What happens next</p>
+        <h2>Simple on purpose.</h2>
+      </article>
+      <ol>
+        <li><strong>Request.</strong> You send the event details and crew estimate.</li>
+        <li><strong>Confirm.</strong> We verify availability, scope, and final rate.</li>
+        <li><strong>Work.</strong> The technician shows up and runs the call.</li>
+      </ol>
+    </section>
+
+    <section class="shell faq">
+      <p class="eyebrow">Common questions</p>
+      <h2>Before you book</h2>
+      <details>
+        <summary>What roles can I request?</summary>
+        <p>A1, A2, V1, V2, graphics, camera, and general corporate AV technician requests are a good fit for the first version.</p>
+      </details>
+      <details>
+        <summary>Is the estimate a final quote?</summary>
+        <p>No. It is a fast labor planning number. Scope, travel, equipment, schedule changes, and technician availability can change the final rate.</p>
+      </details>
+      <details>
+        <summary>Where do you work?</summary>
+        <p>We’re starting in San Diego County. Southern California requests outside San Diego can still be submitted for review.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="shell footer">
+    <span>3DVR — Build the future together.</span>
+    <a href="mailto:3dvr.tech@gmail.com">3dvr.tech@gmail.com</a>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
