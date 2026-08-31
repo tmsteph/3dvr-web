@@ -48,12 +48,14 @@ function renderEstimate() {
     maximumFractionDigits: 0,
   }).format(estimate.total);
 
-  const techLabel = estimate.crewSize === 1 ? 'technician' : 'technicians';
+  const crewLabel = estimate.crewSize === 1
+    ? estimate.selectedRate.label
+    : estimate.selectedRate.label.replace('technician', 'technicians');
   const dayLabel = estimate.eventDays === 1 ? 'day' : 'days';
   const overtimeCopy = estimate.overtimeHours > 0
     ? ` · ${estimate.overtimeHours} OT hr/day estimated`
     : '';
-  estimateBreakdown.textContent = `${estimate.crewSize} ${estimate.selectedRate.label} ${techLabel} · ${estimate.eventDays} ${dayLabel} · ${estimate.dailyHours} hr/day${overtimeCopy}`;
+  estimateBreakdown.textContent = `${estimate.crewSize} ${crewLabel} · ${estimate.eventDays} ${dayLabel} · ${estimate.dailyHours} hr/day${overtimeCopy}`;
 }
 
 function isAllowedPortalOrigin(value) {
