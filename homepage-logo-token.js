@@ -27,8 +27,8 @@
   const MAX_MAGIC_PARTICLES = 30;
 
   const GOLD = {
-    white: '#fffbd5',
-    highlight: '#fff59b',
+    white: '#fff3bd',
+    highlight: '#f9df82',
     light: '#ffe252',
     mid: '#ffc928',
     rich: '#f4ad08',
@@ -186,9 +186,9 @@
       radius * 0.8
     );
     sweep.addColorStop(0.25, 'rgba(255,255,255,0)');
-    sweep.addColorStop(0.43, 'rgba(255,255,230,0.12)');
-    sweep.addColorStop(0.52, 'rgba(255,255,245,0.34)');
-    sweep.addColorStop(0.61, 'rgba(255,255,230,0.08)');
+    sweep.addColorStop(0.43, 'rgba(255,255,230,0.08)');
+    sweep.addColorStop(0.52, 'rgba(255,255,245,0.2)');
+    sweep.addColorStop(0.61, 'rgba(255,255,230,0.05)');
     sweep.addColorStop(0.76, 'rgba(255,255,255,0)');
     context.fillStyle = sweep;
     context.beginPath();
@@ -265,9 +265,9 @@
     const faceMaterial = new THREE.MeshPhysicalMaterial({
       color: 0xfff078,
       metalness: 0.96,
-      roughness: 0.12,
-      clearcoat: 0.55,
-      clearcoatRoughness: 0.09
+      roughness: 0.2,
+      clearcoat: 0.34,
+      clearcoatRoughness: 0.14
     });
     const edgeMaterial = new THREE.MeshPhysicalMaterial({
       color: 0xd98900,
@@ -297,23 +297,23 @@
     const sideMaterial = new THREE.MeshPhysicalMaterial({
       color: 0xe5a10b,
       metalness: 0.96,
-      roughness: 0.16,
-      clearcoat: 0.4,
-      clearcoatRoughness: 0.12
+      roughness: 0.24,
+      clearcoat: 0.25,
+      clearcoatRoughness: 0.16
     });
     const frontMaterial = new THREE.MeshPhysicalMaterial({
       map: faceTexture,
       metalness: 0.88,
-      roughness: 0.16,
-      clearcoat: 0.6,
-      clearcoatRoughness: 0.08
+      roughness: 0.24,
+      clearcoat: 0.34,
+      clearcoatRoughness: 0.14
     });
     const backMaterial = new THREE.MeshPhysicalMaterial({
       map: backTexture,
       metalness: 0.9,
-      roughness: 0.17,
-      clearcoat: 0.6,
-      clearcoatRoughness: 0.08
+      roughness: 0.24,
+      clearcoat: 0.34,
+      clearcoatRoughness: 0.14
     });
 
     const body = new THREE.Mesh(
@@ -326,9 +326,9 @@
     const rimMaterial = new THREE.MeshPhysicalMaterial({
       color: 0xffdb3d,
       metalness: 0.99,
-      roughness: 0.09,
-      clearcoat: 0.72,
-      clearcoatRoughness: 0.06
+      roughness: 0.18,
+      clearcoat: 0.4,
+      clearcoatRoughness: 0.14
     });
     const frontRim = new THREE.Mesh(
       new THREE.TorusGeometry(1.47, 0.046, 16, 128),
@@ -365,9 +365,9 @@
     const studMaterial = new THREE.MeshPhysicalMaterial({
       color: 0xffe566,
       metalness: 0.98,
-      roughness: 0.1,
-      clearcoat: 0.6,
-      clearcoatRoughness: 0.06
+      roughness: 0.18,
+      clearcoat: 0.35,
+      clearcoatRoughness: 0.14
     });
     for (let index = 0; index < 12; index += 1) {
       const angle = (index / 12) * FULL_TURN;
@@ -976,21 +976,21 @@
       token.rotation.y = 0.1;
       scene.add(token);
 
-      scene.add(new THREE.HemisphereLight(0xfff9dd, 0x5f3500, 1.0));
+      scene.add(new THREE.HemisphereLight(0xfff9dd, 0x5f3500, 0.78));
 
-      const key = new THREE.DirectionalLight(0xffffff, 2.0);
+      const key = new THREE.DirectionalLight(0xffffff, 1.35);
       key.position.set(2.7, 3.2, 4.8);
       scene.add(key);
 
-      const fill = new THREE.DirectionalLight(0xffc857, 0.82);
+      const fill = new THREE.DirectionalLight(0xffc857, 0.5);
       fill.position.set(-3, -1.5, 2.4);
       scene.add(fill);
 
-      const rim = new THREE.DirectionalLight(0xc8efff, 0.55);
+      const rim = new THREE.DirectionalLight(0xc8efff, 0.32);
       rim.position.set(-2.7, 3.1, -2.5);
       scene.add(rim);
 
-      const sparkle = new THREE.PointLight(0xffdf70, 0.7, 8);
+      const sparkle = new THREE.PointLight(0xffdf70, 0.34, 8);
       sparkle.position.set(0.9, -2.1, 3.4);
       scene.add(sparkle);
 
