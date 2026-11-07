@@ -23,6 +23,16 @@
         }
       ],
       "dest": "/dave/$1"
+    },
+    {
+      "src": "^/operator/?$",
+      "dest": "https://operator.3dvr.tech/operator/",
+      "status": 308
+    },
+    {
+      "src": "^/operator/(.+)$",
+      "dest": "https://operator.3dvr.tech/operator/$1",
+      "status": 308
     }
   ],
   "rewrites": [
