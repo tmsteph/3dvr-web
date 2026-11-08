@@ -27,12 +27,12 @@
     {
       "src": "^/operator/?$",
       "dest": "https://portal.3dvr.tech/operator/",
-      "status": 308
+      "status": 307
     },
     {
       "src": "^/operator/(.+)$",
       "dest": "https://portal.3dvr.tech/operator/$1",
-      "status": 308
+      "status": 307
     }
   ],
   "rewrites": [
