@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test:unit": "node --test tests/*.test.js",
+    "test:unit": "node --test tests/*.test.js tests/*.test.mjs",
+    "test:redirect": "node --test tests/operator-redirect.test.mjs",
     "test:e2e:local": "playwright test",
     "test:e2e:chromium:local": "playwright test --project=chromium-desktop --project=chromium-fold-closed",
     "test:e2e:webkit:local": "playwright test --project=webkit-desktop-safari --project=webkit-mobile-safari",
