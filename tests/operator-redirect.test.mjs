@@ -29,6 +29,27 @@ test('nested paths are forwarded without rewriting to unrelated routes', () => {
     status: 307, pathname: 'https://portal.3dvr.tech/operator/example'
   });
 });
+// Static config-order safety check. This does not prove provider-generated routes. 
+test('host-scoped Dave rewrites precede marketing Operator redirects on apex and www', () => {
+  const hostMatches = (route, host) => !route.has || route.has.every(
+    condition => condition.type !== 'host' || condition.value === host
+  );
+  const firstMatch = (path, host) => config.routes.find(
+    route => hostMatches(route, host) && new RegExp(route.src).test(path)
+  );
+  for (const path of ['/operator', '/operator/', '/operator/chats/42']) {
+    const dave = firstMatch(path, 'dave.3dvr.tech');
+    assert.equal(dave.dest, '/dave/$1', 'Dave host must keep its scoped rewrite');
+    assert.equal(dave.status, undefined, 'Dave host must not redirect to OVH');
+    for (const host of ['3dvr.tech', 'www.3dvr.tech']) {
+      const marketing = firstMatch(path, host);
+      assert.equal(marketing.status, 307, host + path);
+      assert.ok(marketing.dest.startsWith('https://portal.3dvr.tech/operator/'),
+        host + path + ' must target canonical OVH Operator');
+    }
+  }
+});
+
 test('unrelated homepage and assets do not match Operator rules', () => {
   for (const path of ['/', '/install', '/service-worker.js', '/assets/main.js']) {
     assert.equal(resolve(path), null);
