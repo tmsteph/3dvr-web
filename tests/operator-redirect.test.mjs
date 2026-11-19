@@ -57,6 +57,12 @@ test('isolated preview preserves redirect locations and leaves public routes alo
       const response = await fetch(new URL(path, base), { redirect: 'manual', signal: AbortSignal.timeout(8000) });
       assert.equal(response.status, 307, path + ' status');
       assert.equal(response.headers.get('location'), destination, path + ' Location');
+      // A temporary redirect must not become a long-lived cached entrypoint.
+      // This checks the HTTP policy; browser-cache rollback still needs a real rehearsal.
+      const cachePolicy = response.headers.get('cache-control') || '';
+      assert.ok(/\bno-store\b/i.test(cachePolicy) ||
+        (/\bmax-age=0\b/i.test(cachePolicy) && /\bmust-revalidate\b/i.test(cachePolicy)),
+        path + ' must require revalidation or disable caching: ' + cachePolicy);
     }
     for (const [path, expectedStatus] of [['/', 200], ['/operatorx', 404]]) {
       const response = await fetch(new URL(path, base), { redirect: 'manual', signal: AbortSignal.timeout(8000) });
